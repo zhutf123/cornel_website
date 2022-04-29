@@ -8,22 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/AuthTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/BaseTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/CommodityTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/LorryInfoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/OrderTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/SupplierTaskTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/TaskInfoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/TaskServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cornel/dao/UserInfoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/lua_test.lua" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-default.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/datasource/RedisConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/datasource/RedisConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +130,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="2207000" />
+      <workItem from="1651224811459" duration="3439000" />
     </task>
     <servers />
   </component>
