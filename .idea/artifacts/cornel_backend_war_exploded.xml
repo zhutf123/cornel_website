@@ -14,6 +14,26 @@
           <element id="module-output" name="cornel_backend" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.9.0" />
+          <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-core:4.6.0" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.1" />
+          <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
+          <element id="library" level="project" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.1" />
+          <element id="library" level="project" name="Maven: org.glassfish.jaxb:txw2:2.3.1" />
+          <element id="library" level="project" name="Maven: com.sun.istack:istack-commons-runtime:3.0.7" />
+          <element id="library" level="project" name="Maven: org.jvnet.staxex:stax-ex:1.8" />
+          <element id="library" level="project" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.15" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.70" />
+          <element id="library" level="project" name="Maven: org.jacoco:org.jacoco.agent:runtime:0.8.7" />
+          <element id="library" level="project" name="Maven: org.ini4j:ini4j:0.5.4" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Maven: io.opentracing:opentracing-api:0.33.0" />
+          <element id="library" level="project" name="Maven: io.opentracing:opentracing-util:0.33.0" />
+          <element id="library" level="project" name="Maven: io.opentracing:opentracing-noop:0.33.0" />
+          <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-vod:2.16.5" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.62" />
+          <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-kms:2.10.1" />
           <element id="library" level="project" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.31.Final" />
           <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.31.Final" />
           <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.1.31.Final" />
@@ -25,13 +45,6 @@
           <element id="library" level="project" name="Maven: com.caucho:hessian:4.0.63" />
           <element id="library" level="project" name="Maven: com.xuxueli:xxl-registry-client:1.1.0" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:2.5.5" />
-          <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-core:4.0.3" />
-          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
-          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.1" />
-          <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
-          <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-core:2.1.14" />
-          <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.1" />
-          <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.1" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.9" />
@@ -57,7 +70,6 @@
           <element id="library" level="project" name="Maven: com.alicp.jetcache:jetcache-redis:2.5.11" />
           <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.1" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.6.0" />
-          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.51" />
           <element id="library" level="project" name="Maven: com.alicp.jetcache:jetcache-redis-lettuce:2.5.11" />
           <element id="library" level="project" name="Maven: com.alicp.jetcache:jetcache-core:2.5.11" />
           <element id="library" level="project" name="Maven: com.alicp.jetcache:jetcache-anno-api:2.5.11" />
@@ -73,7 +85,6 @@
           <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.2" />
           <element id="library" level="project" name="Maven: io.reactivex.rxjava2:rxjava:2.2.5" />
           <element id="library" level="project" name="Maven: de.ruedigermoeller:fst:2.57" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.23" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.9.7" />
@@ -139,11 +150,11 @@
           <element id="library" level="project" name="Maven: org.lz4:lz4-java:1.4" />
           <element id="library" level="project" name="Maven: org.xerial.snappy:snappy-java:1.1.7.1" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.5" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: com.hp.gagawa:gagawa:1.0.1" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
           <element id="library" level="project" name="Maven: commons-configuration:commons-configuration:1.9" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
-          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
           <element id="library" level="project" name="Maven: com.netflix.hystrix:hystrix-metrics-event-stream:1.5.1" />
         </element>
