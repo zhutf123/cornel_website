@@ -1,13 +1,13 @@
 debug: false
 
 #redis 集群模式
-spring:
-  redis:
-    cluster:
-      nodes: 192.168.0.107:6379,192.168.0.107:6380,192.168.0.107:6381,192.168.0.107:6382,192.168.0.107:6383,192.168.0.107:6384
-      max-redirects: 5
-      password: cornel00147258
-      timeout: 5
+#spring:
+#  redis:
+#    cluster:
+#      nodes: 192.168.0.107:6379,192.168.0.107:6380,192.168.0.107:6381,192.168.0.107:6382,192.168.0.107:6383,192.168.0.107:6384
+#      max-redirects: 5
+#      password: cornel00147258
+#      timeout: 5
 
 jetcache:
   statIntervalMinutes: 1
@@ -54,9 +54,9 @@ ali-config:
 datasources:
   dm-master:
     driverClassName: org.postgresql.Driver
-    jdbcUrl: 'jdbc:postgresql://192.168.0.107:5432/cornel_product'
-    username: cornel_prd
-    password: a9e43160-7d34-4a9d-8120-f605b111ce59
+    jdbcUrl: 'jdbc:postgresql://172.31.251.89:5432/ydyl_db'
+    username: ydyl
+    password: 5ac0be54-c677-11ec-96b8-acde48001122
     maximumPoolSize: 5
     idleTimeout: 600000
     maxLifetime: 1800000

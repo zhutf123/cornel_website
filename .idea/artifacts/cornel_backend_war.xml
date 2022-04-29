@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="cornel_backend.war">
+    <root id="archive" name="cornel_website.war">
       <element id="artifact" artifact-name="cornel_backend:war exploded" />
     </root>
   </artifact>

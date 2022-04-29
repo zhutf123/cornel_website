@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="cornel_backend:war exploded">
-    <output-path>$PROJECT_DIR$/target/cornel_backend</output-path>
+    <output-path>$PROJECT_DIR$/target/cornel_website</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
@@ -149,7 +149,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/cornel_backend/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/cornel_website/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="cornel_backend/web/Web" />
     </root>
