@@ -1,7 +1,7 @@
-package com.demai.cornel.auth.service.impl;
+package com.demai.cornel.service.impl;
 
-import com.demai.cornel.auth.service.IUserService;
-import com.demai.cornel.auth.dao.AclDao;
+import com.demai.cornel.dao.AclDao;
+import com.demai.cornel.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author tfzhu
+ */
 @Service
 @Slf4j
 public class UserServiceImpl implements IUserService {

@@ -1,11 +1,22 @@
-package com.demai.cornel.auth.model;
+package com.demai.cornel.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+
+/**
+ * @author tfzhu
+ */
 @Data
-public class AclInfo {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class AclInfo implements Serializable {
     private static final long serialVersionUID = -3278874872049402020L;
     private Integer id ;
     private String name ;

@@ -1,4 +1,4 @@
-package com.demai.cornel.auth.service;
+package com.demai.cornel.service;
 
 import java.util.List;
 

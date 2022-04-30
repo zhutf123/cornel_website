@@ -8,13 +8,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/TeleplayDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/Teleplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeleplayMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/UserAddUserResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/UserInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/UserRoleInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/RoleInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/UserRoleInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/UserAddParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/UserLoginSendMsgParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserLoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserRoleInfoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/init_sql_20220423.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/init_sql_20220423.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/dao/AclDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/AclDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/interceptors/AuthCheckInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/interceptors/AuthCheckInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/model/AclInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/AclInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/service/IUrlAclService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/IUrlAclService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/service/impl/UrlAclServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/impl/UrlAclServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/UserLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/UserLoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/AclInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/AclInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/GenJavaCode4Pg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/GenJavaCode4Pg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/TeleplayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/TeleplayDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/Teleplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/Teleplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/SendMsgService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/SendMsgService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/auth.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/auth.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AclMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AclMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/agreement/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/agreement/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/info/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/info/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pay/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pay/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,7 +94,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mapper" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
@@ -75,9 +103,17 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/mapper" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/demai/cornel/service" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.demai.cornel.vo.delivery" />
-      <recent name="com.demai.cornel.interceptor" />
+      <recent name="com.demai.cornel.dao" />
+      <recent name="com.demai.cornel.model" />
+      <recent name="com.demai.cornel.Resp" />
+      <recent name="com.demai.cornel.service" />
+      <recent name="com.demai.cornel.reqParam" />
     </key>
   </component>
   <component name="RunManager" selected="Application.GenJavaCode4Pg">
@@ -167,7 +203,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="20245000" />
+      <workItem from="1651224811459" duration="27178000" />
     </task>
     <servers />
   </component>

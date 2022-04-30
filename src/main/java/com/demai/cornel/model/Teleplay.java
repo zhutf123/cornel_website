@@ -24,7 +24,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class Teleplay implements Serializable {
     private static final long serialVersionUID = 2272768995014657918L;
-    private Integer id;
+    private Long id;
     private String mainImage;
     private String title;
     private String desc;

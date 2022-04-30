@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demai.cornel.dao.UserInfoDao">
+    <resultMap type="com.demai.cornel.model.UserInfo" id="userInfoResultMap">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="open_id" property="openId"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="head_img" property="headImg"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="id_type" property="idType"/>
+        <result column="id_card" property="idCard"/>
+        <result column="term_validity" property="termValidity"/>
+        <result column="mobile" property="mobile"/>
+        <result column="score" property="score"/>
+        <result column="status" property="status"/>
+        <result column="ext_info" property="extInfo"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="role" property="role"/>
+    </resultMap>
+
+    <sql id="main_column">
+        id,
+        user_id,
+        open_id,
+        name,
+        gender,
+        birthday,
+        head_img,
+        nick_name,
+        id_type,
+        id_card,
+        term_validity,
+        mobile,
+        score,
+        status,
+        ext_info,
+        last_login_time,
+        create_time,
+        operate_time,
+        role
+    </sql>
+
+    <update id="update" parameterType="com.demai.cornel.model.UserInfo">
+        update user_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="openId != null">
+                open_id = #{openId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="headImg != null">
+                head_img = #{headImg},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName},
+            </if>
+            <if test="idType != null">
+                id_type = #{idType},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard},
+            </if>
+            <if test="termValidity != null">
+                term_validity = #{termValidity},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="extInfo != null">
+                ext_info = #{extInfo},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="operateTime != null">
+                operate_time = #{operateTime},
+            </if>
+            <if test="role != null">
+                role = #{role},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="com.demai.cornel.model.UserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into user_info(
+        <trim suffixOverrides=",">
+            <if test="userId != null">
+                user_id ,
+            </if>
+            <if test="openId != null">
+                open_id ,
+            </if>
+            <if test="name != null">
+                name ,
+            </if>
+            <if test="gender != null">
+                gender ,
+            </if>
+            <if test="birthday != null">
+                birthday ,
+            </if>
+            <if test="headImg != null">
+                head_img ,
+            </if>
+            <if test="nickName != null">
+                nick_name ,
+            </if>
+            <if test="idType != null">
+                id_type ,
+            </if>
+            <if test="idCard != null">
+                id_card ,
+            </if>
+            <if test="termValidity != null">
+                term_validity ,
+            </if>
+            <if test="mobile != null">
+                mobile ,
+            </if>
+            <if test="score != null">
+                score ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="extInfo != null">
+                ext_info ,
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time ,
+            </if>
+            <if test="createTime != null">
+                create_time ,
+            </if>
+            <if test="operateTime != null">
+                operate_time ,
+            </if>
+            <if test="role != null">
+                role ,
+            </if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="userId != null">
+                #{userId} ,
+            </if>
+            <if test="openId != null">
+                #{openId} ,
+            </if>
+            <if test="name != null">
+                #{name} ,
+            </if>
+            <if test="gender != null">
+                #{gender} ,
+            </if>
+            <if test="birthday != null">
+                #{birthday} ,
+            </if>
+            <if test="headImg != null">
+                #{headImg} ,
+            </if>
+            <if test="nickName != null">
+                #{nickName} ,
+            </if>
+            <if test="idType != null">
+                #{idType} ,
+            </if>
+            <if test="idCard != null">
+                #{idCard} ,
+            </if>
+            <if test="termValidity != null">
+                #{termValidity} ,
+            </if>
+            <if test="mobile != null">
+                #{mobile} ,
+            </if>
+            <if test="score != null">
+                #{score} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="extInfo != null">
+                #{extInfo} ,
+            </if>
+            <if test="lastLoginTime != null">
+                #{lastLoginTime} ,
+            </if>
+            <if test="createTime != null">
+                #{createTime} ,
+            </if>
+            <if test="operateTime != null">
+                #{operateTime} ,
+            </if>
+            <if test="role != null">
+                #{role} ,
+            </if>
+        </trim>
+        )
+    </insert>
+
+
+    <select id="getUserInfoByUserId" resultMap="userInfoResultMap">
+        select
+        <include refid="main_column"/>
+        from user_info where user_id=#{userId} and status=1;
+    </select>
+
+    <select id="getUserInfoNoDriverByPhone" parameterType="String" resultMap="userInfoResultMap">
+        SELECT
+        <include refid="main_column"/>
+        from user_info
+        where status=1 and mobile = #{phone} and role !=1
+        limit 1
+    </select>
+
+
+    <update id="updateUserOpenIdByUid">
+        update user_info
+        set open_id= #{openId}
+        where id = #{userId}
+    </update>
+</mapper>

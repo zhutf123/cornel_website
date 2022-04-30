@@ -3,7 +3,6 @@
  */
 package com.demai.cornel.dao;
 
-import com.demai.cornel.auth.model.AclInfo;
 import com.demai.cornel.model.Teleplay;
 
 /**

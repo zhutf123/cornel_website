@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Create By zhutf 19-11-1 上午12:36
+ * @author tfzhu
  */
 @Service
 @Slf4j
@@ -104,51 +104,6 @@ public class SendMsgService {
     }
 
 
-    /***
-     * 给烘干塔发送价格变化提醒
-     *
-     * @param phone
-     * @param productName  产品名称
-     * @param prices  报价
-     */
-    public Integer sendPriceChangeMsg(Set<String> phone, String productName, BigDecimal prices) {
-        Integer result = SEND_MSG_CODE.PARAM_ERROR.getValue();
-        try {
-            result = doSendMsg(Lists.newArrayList(phone),
-                    "{\"product\":\"" + productName + "\", \"price\": " + prices.intValue() + "}",
-                    configProperties.priceChangeCodeId);
-            if (log.isDebugEnabled()) {
-                log.debug("send msg to phone: {},{}", phone.toString() , result);
-            }
-        } catch (Exception e){
-              log.error("发送短信失败", e);
-        }
-
-        return result;
-    }
-
-
-    /***
-     * 给烘干塔发送价格变化提醒
-     *
-     * @param phone
-     * @param key  短信key
-     */
-    public Integer sendNotifyMsgToOp(Set<String> phone, String key, String company) {
-        Integer result = SEND_MSG_CODE.PARAM_ERROR.getValue();
-        try {
-            result = doSendMsg(Lists.newArrayList(phone),
-                    "{\"company\":\"" + company + "\""+ "}",
-                    key);
-            if (log.isDebugEnabled()) {
-                log.debug("send msg to phone: {},{}", phone.toString() , result);
-            }
-        } catch (Exception e){
-            log.error("发送短信失败", e);
-        }
-
-        return result;
-    }
 
     /***
      * 阿里平台发送短信操作，phones size limit 1000
@@ -167,7 +122,7 @@ public class SendMsgService {
 
             if (phones.size() >= phone_max_size) {
                 if (log.isDebugEnabled()) {
-                    log.debug("返送短信手机号长度不得大于1000");
+                    log.debug("发送短信手机号长度不得大于1000");
                 }
                 return SEND_MSG_CODE.MANY_PHONE.getValue();
             }
@@ -189,7 +144,7 @@ public class SendMsgService {
             request.setAction("SendSms");
             request.putQueryParameter("RegionId", "cn-hangzhou");
             request.putQueryParameter("PhoneNumbers", Joiner.on(",").join(phones));
-            request.putQueryParameter("SignName", "得麦科技");
+            request.putQueryParameter("SignName", "一点娱乐");
             request.putQueryParameter("TemplateCode", templateCode);
             if (StringUtils.isNotBlank(paramValue)) {
                 request.putQueryParameter("TemplateParam", paramValue);
