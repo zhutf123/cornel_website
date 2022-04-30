@@ -8,21 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminUserLoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/annotation/Authority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/annotation/Authority.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/interceptors/AuthCheckInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/interceptor/AuthCheckInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.beta/application-default.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.beta/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.beta/sms.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/application-default.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/qconfig.profile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/sms.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.local/application-default.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.local/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.local/sms.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/DomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/DomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/aliTvShowUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,9 +84,9 @@
       <recent name="com.demai.cornel.Resp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.aliTvShowUtil">
-    <configuration name="GenJavaCode4Pg" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.GenJavaCode4Pg" />
+  <component name="RunManager" selected="Application.AliStaticSourceUtil">
+    <configuration name="AliStaticSourceUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.AliStaticSourceUtil" />
       <module name="cornel_backend" />
       <extension name="coverage">
         <pattern>
@@ -110,8 +98,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="aliTvShowUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.aliTvShowUtil" />
+    <configuration name="GenJavaCode4Pg" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.GenJavaCode4Pg" />
       <module name="cornel_backend" />
       <extension name="coverage">
         <pattern>
@@ -138,7 +126,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.aliTvShowUtil" />
+        <item itemvalue="Application.AliStaticSourceUtil" />
         <item itemvalue="Application.GenJavaCode4Pg" />
       </list>
     </recent_temporary>
@@ -183,7 +171,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="30753000" />
+      <workItem from="1651224811459" duration="30986000" />
     </task>
     <servers />
   </component>

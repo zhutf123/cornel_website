@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * @author tfzhu
  */
-@Slf4j public class aliTvShowUtil {
+@Slf4j public class AliStaticSourceUtil {
 
     /**
      * 只有RAM用户（子账号）才能调用 AssumeRole 接口
