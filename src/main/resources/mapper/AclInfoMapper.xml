@@ -3,7 +3,7 @@
 
 <mapper namespace="com.demai.cornel.dao.AclInfoDao">
 
-    <resultMap type="com.demai.cornel.auth.model.AclInfo" id="aclInfoResultMap">
+    <resultMap type="com.demai.cornel.model.AclInfo" id="aclInfoResultMap">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="code" property="code"/>
@@ -29,7 +29,7 @@
         operate_time
     </sql>
 
-    <update id="update" parameterType="com.demai.cornel.auth.model.AclInfo">
+    <update id="update" parameterType="com.demai.cornel.model.AclInfo">
         update acl_info
         <trim prefix="set" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
@@ -46,7 +46,7 @@
         where id = #{id}
     </update>
 
-    <insert id="save" parameterType="com.demai.cornel.auth.model.AclInfo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.demai.cornel.model.AclInfo" useGeneratedKeys="true" keyProperty="id">
         insert into acl_info(
         <trim suffixOverrides=",">
             <if test="name != null">name ,</if>
