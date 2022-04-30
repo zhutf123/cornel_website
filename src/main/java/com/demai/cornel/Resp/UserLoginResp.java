@@ -16,7 +16,6 @@ import java.io.Serializable;
  */
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class UserLoginResp implements Serializable {
     /** 微信openId */
