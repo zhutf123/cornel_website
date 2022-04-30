@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demai.cornel.dao.TeleplayDao">
+    <resultMap type="com.demai.cornel.model.Teleplay" id="teleplayResultMap">
+        <id column="id" property="id"/>
+        <result column="main_image" property="mainImage"/>
+        <result column="title" property="title"/>
+        <result column="desc" property="desc"/>
+        <result column="nums" property="nums"/>
+        <result column="vip" property="vip"/>
+        <result column="status" property="status"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="operator" property="operator"/>
+        <result column="follow_num" property="followNum"/>
+        <result column="play_num" property="playNum"/>
+        <result column="like_num" property="likeNum"/>
+        <result column="share_num" property="shareNum"/>
+        <result column="comment_num" property="commentNum"/>
+        <result column="recommend" property="recommend"/>
+        <result column="top" property="top"/>
+        <result column="ext_info" property="extInfo"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="main_column">
+        id,
+        main_image,
+        title,
+        desc,
+        nums,
+        vip,
+        status,
+        operate_time,
+        operator,
+        follow_num,
+        play_num,
+        like_num,
+        share_num,
+        comment_num,
+        recommend,
+        top,
+        ext_info,
+        create_time
+    </sql>
+
+    <update id="update" parameterType="com.demai.cornel.model.Teleplay">
+        update teleplay
+        <trim prefix="set" suffixOverrides=",">
+            <if test="mainImage != null">
+                main_image = #{mainImage},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="desc != null">
+                desc = #{desc},
+            </if>
+            <if test="nums != null">
+                nums = #{nums},
+            </if>
+            <if test="vip != null">
+                vip = #{vip},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="operateTime != null">
+                operate_time = #{operateTime},
+            </if>
+            <if test="operator != null">
+                operator = #{operator},
+            </if>
+            <if test="followNum != null">
+                follow_num = #{followNum},
+            </if>
+            <if test="playNum != null">
+                play_num = #{playNum},
+            </if>
+            <if test="likeNum != null">
+                like_num = #{likeNum},
+            </if>
+            <if test="shareNum != null">
+                share_num = #{shareNum},
+            </if>
+            <if test="commentNum != null">
+                comment_num = #{commentNum},
+            </if>
+            <if test="recommend != null">
+                recommend = #{recommend},
+            </if>
+            <if test="top != null">
+                top = #{top},
+            </if>
+            <if test="extInfo != null">
+                ext_info = #{extInfo},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="com.demai.cornel.model.Teleplay" useGeneratedKeys="true" keyProperty="id">
+        insert into teleplay(
+        <trim suffixOverrides=",">
+            <if test="mainImage != null">
+                main_image ,
+            </if>
+            <if test="title != null">
+                title ,
+            </if>
+            <if test="desc != null">
+                desc ,
+            </if>
+            <if test="nums != null">
+                nums ,
+            </if>
+            <if test="vip != null">
+                vip ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="operateTime != null">
+                operate_time ,
+            </if>
+            <if test="operator != null">
+                operator ,
+            </if>
+            <if test="followNum != null">
+                follow_num ,
+            </if>
+            <if test="playNum != null">
+                play_num ,
+            </if>
+            <if test="likeNum != null">
+                like_num ,
+            </if>
+            <if test="shareNum != null">
+                share_num ,
+            </if>
+            <if test="commentNum != null">
+                comment_num ,
+            </if>
+            <if test="recommend != null">
+                recommend ,
+            </if>
+            <if test="top != null">
+                top ,
+            </if>
+            <if test="extInfo != null">
+                ext_info ,
+            </if>
+            <if test="createTime != null">
+                create_time ,
+            </if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="mainImage != null">
+                #{mainImage} ,
+            </if>
+            <if test="title != null">
+                #{title} ,
+            </if>
+            <if test="desc != null">
+                #{desc} ,
+            </if>
+            <if test="nums != null">
+                #{nums} ,
+            </if>
+            <if test="vip != null">
+                #{vip} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="operateTime != null">
+                #{operateTime} ,
+            </if>
+            <if test="operator != null">
+                #{operator} ,
+            </if>
+            <if test="followNum != null">
+                #{followNum} ,
+            </if>
+            <if test="playNum != null">
+                #{playNum} ,
+            </if>
+            <if test="likeNum != null">
+                #{likeNum} ,
+            </if>
+            <if test="shareNum != null">
+                #{shareNum} ,
+            </if>
+            <if test="commentNum != null">
+                #{commentNum} ,
+            </if>
+            <if test="recommend != null">
+                #{recommend} ,
+            </if>
+            <if test="top != null">
+                #{top} ,
+            </if>
+            <if test="extInfo != null">
+                #{extInfo} ,
+            </if>
+            <if test="createTime != null">
+                #{createTime} ,
+            </if>
+        </trim>
+        )
+    </insert>
+</mapper>

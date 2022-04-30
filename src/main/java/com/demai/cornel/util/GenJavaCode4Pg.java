@@ -64,10 +64,11 @@ public class GenJavaCode4Pg {
         StringBuilder sb = new StringBuilder(name.length() + 20);
         for (int i = 0; i < name.length(); i++) {
             char c = name.charAt(i);
-            if (Character.isUpperCase(c))
+            if (Character.isUpperCase(c)) {
                 sb.append("_" + Character.toLowerCase(c));
-            else
+            } else {
                 sb.append(c);
+            }
         }
         return sb.toString();
     }
@@ -194,8 +195,9 @@ public class GenJavaCode4Pg {
             if (flag) {
                 format = String.format("  <id column=\"%s\" property=\"%s\" />", data.srcfield, data.field);
                 flag = false;
-            } else
+            } else {
                 format = String.format("  <result column=\"%s\" property=\"%s\" />", data.srcfield, data.field);
+            }
             System.out.println(format);
         }
         System.out.println("</resultMap>");
@@ -258,12 +260,13 @@ public class GenJavaCode4Pg {
                 String rename = rename2Bean(tableName);
                 javabeanName = firstChar2UpperCase(rename);
                 isStart = true;
-            } else if (line.startsWith("("))
+            } else if (line.startsWith("(")) {
                 continue;
-            else if (line.startsWith("primary key"))
+            } else if (line.startsWith("primary key")) {
                 break;
-            else if (isStart)
+            } else if (isStart) {
                 lines.add(line);
+            }
         }
         return lines;
     }
@@ -302,16 +305,3 @@ public class GenJavaCode4Pg {
         return new java.util.Date(milliseconds);
     }
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//

@@ -12,4 +12,5 @@ public interface AclInfoDao {
     public void update(AclInfo aclInfo);
 
     public void save(AclInfo aclInfo);
+    
 }

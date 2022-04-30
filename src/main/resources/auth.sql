@@ -1,11 +1,20 @@
-create table sub_task
-(
-	id serial not null,
-	taskId varchar(40),
-	start_time timestamp,
-	end_time timestamp,
-	lorry_num int,
-	status int default 1,
-	undist_num int,
-	sub_task_id varchar(40)
-);
+CREATE TABLE teleplay (
+                            id serial PRIMARY KEY,
+                            main_image varchar(512),
+                            title text ,
+                            desc text,
+                            nums integer,
+                            vip integer default 0 ,
+                            status integer default 0 ,
+                            operate_time timestamptz(6) default now(),
+                            operator bigint,
+                            follow_num integer default 0 ,
+                            play_num integer default 0 ,
+                            like_num integer default 0 ,
+                            share_num integer default 0 ,
+                            comment_num integer default 0 ,
+                            recommend integer default 0,
+                            top integer default 0,
+                            ext_info hstore,
+                            create_time timestamptz(6) default now()
+)
