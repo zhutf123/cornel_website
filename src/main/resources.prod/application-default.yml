@@ -90,4 +90,8 @@ cookie:
 
 noLoginPath:
   startWith: /test/
-  fullPath:  /user/sendCode.json,/user/login.json
+  fullPath: /user/sendCode.json,/user/login.json
+
+user:
+  userRole: 1
+  sysUserRole: 2

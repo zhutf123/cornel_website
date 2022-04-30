@@ -18,13 +18,9 @@ public class CookieAuthUtils {
 
     public static final String KEY_USER_DOMAIN = "o"; //openid
 
-    public static final String KEY_REQUEST_TIME = "t"; //tel
-
     public static final String CKEY_SPLIT = "&";
 
     public static final String CKEY_KEY_JOINER = "=";
-
-    public static final String CKEY_KEY_TOKEN = "tk";
 
 
     /**
@@ -46,7 +42,4 @@ public class CookieAuthUtils {
         return UserHolder.getValue(KEY_USER_NAME);
     }
 
-    public static String getCurrentUserToken() {
-        return UserHolder.getValue(CKEY_KEY_TOKEN);
-    }
 }

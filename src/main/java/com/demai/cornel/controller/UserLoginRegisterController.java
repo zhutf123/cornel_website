@@ -17,6 +17,7 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.reqParam.UserAddParam;
 import com.demai.cornel.reqParam.UserLoginParam;
 import com.demai.cornel.reqParam.UserLoginSendMsgParam;
+import com.demai.cornel.reqParam.UserRegisterParam;
 import com.demai.cornel.service.UserLoginService;
 import com.demai.cornel.service.UserService;
 import com.demai.cornel.util.CookieAuthUtils;
@@ -50,7 +51,7 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
 @Controller
 @RequestMapping("/user")
 @Slf4j
-public class UserLoginController {
+public class UserLoginRegisterController {
 
     @Resource
     private UserLoginService userLoginService;
@@ -76,6 +77,18 @@ public class UserLoginController {
             log.error("用户发送短信异常！", e);
             return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
         }
+    }
+
+    /***
+     * 用户注册
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/register.json", method = RequestMethod.POST) @ResponseBody public JsonResult userRegister(
+            @RequestBody UserRegisterParam param) {
+        Preconditions.checkNotNull(param);
+        String cKey = userService.userRegister(param);
+        return JsonResult.success(cKey);
     }
 
     /**

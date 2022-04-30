@@ -59,8 +59,10 @@ import org.springframework.stereotype.Component;
 
 
     public @Value("${cookie.domain}") String cookieDomain;
-    
     public @Value("${noLoginPath.startWith}") String noLoginStartWith;
     public @Value("${noLoginPath.fullPath}") String noLoginFullPath;
+
+    public @Value("${user.userRole}") String userRole;
+    public @Value("${user.sysUserRole}") String sysUserRole;
 
 }

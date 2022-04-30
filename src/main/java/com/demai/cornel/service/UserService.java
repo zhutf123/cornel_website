@@ -1,12 +1,14 @@
 package com.demai.cornel.service;
 
 import com.demai.cornel.Resp.UserAddUserResp;
+import com.demai.cornel.constant.ConfigProperties;
 import com.demai.cornel.dao.UserInfoDao;
 import com.demai.cornel.dao.UserRoleInfoDao;
 import com.demai.cornel.model.RoleInfo;
 import com.demai.cornel.model.UserInfo;
 import com.demai.cornel.model.UserRoleInfo;
 import com.demai.cornel.reqParam.UserAddParam;
+import com.demai.cornel.reqParam.UserRegisterParam;
 import com.demai.cornel.util.CookieAuthUtils;
 import com.demai.cornel.util.JacksonUtils;
 import com.demai.cornel.util.PhoneUtil;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -32,6 +35,8 @@ import java.util.stream.Collectors;
 
     @Resource private UserInfoDao userInfoDao;
     @Resource private UserRoleInfoDao userRoleInfoDao;
+    @Resource private ConfigProperties configProperties;
+    private String c_key = "u=%s&o=%s";
 
     //todo 这一块更新需要补全
     public UserAddUserResp updateUserInfo(UserAddParam userAddReq) {
@@ -67,6 +72,23 @@ import java.util.stream.Collectors;
         userAddUserResp.setStatus(UserAddUserResp.CODE_ENUE.SUCCESS.getValue());
         return userAddUserResp;
 
+    }
+
+    /***
+     * 用户注册
+     * @param userRegisterParam
+     * @return
+     */
+    public String userRegister(UserRegisterParam userRegisterParam) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(UUID.randomUUID().toString());
+        userInfo.setNickName(userRegisterParam.getNickName());
+        userInfo.setHeadImg(userRegisterParam.getHeadImg());
+        userInfo.setMobile(userRegisterParam.getMobile());
+        userInfo.setOpenId(userRegisterParam.getOpenId());
+        userInfo.setRole(Integer.parseInt(configProperties.userRole));
+        userInfoDao.save(userInfo);
+        return String.format(c_key, userInfo.getUserId(), userInfo.getOpenId());
     }
 
     public UserInfo getUserInfoResp(){

@@ -5,6 +5,7 @@ CREATE TABLE user_info
     user_id         varchar(50),
     open_id         varchar(50),
     name            varchar(40),
+    passwd          varchar(128),
     gender          integer,
     birthday        varchar(20),
     head_img        varchar(128),
@@ -13,6 +14,7 @@ CREATE TABLE user_info
     id_card         varchar(64),
     term_validity   varchar(20),
     mobile          varchar(64),
+    mail          varchar(64),
     score           integer,
     status          integer default 1,
     ext_info        hstore,
@@ -52,7 +54,7 @@ ON COLUMN user_info.ext_info IS '扩展信息';
 COMMENT
 ON COLUMN user_info.last_login_time IS '最后登录时间';
 COMMENT
-ON COLUMN user_info.role IS '1 用户 2 管理员';
+ON COLUMN user_info.role IS '';
 
 
 
@@ -118,7 +120,6 @@ CREATE TABLE role_info
 (
     id           serial PRIMARY KEY,
     name         varchar(40),
-    role_id      varchar(40),
     status       integer default 1,
     ext_info     hstore,
     acl_code     varchar(40),
@@ -136,13 +137,16 @@ ON COLUMN role_info.acl_code IS '角色对应的权限';
 COMMENT
 ON COLUMN role_info.role_id IS '角色id';
 
+insert into role_info(name,acl_code) values('user','user');
+insert into role_info(name,acl_code) values('sys-user','sys-user');
+
 
 DROP TABLE IF EXISTS user_role_info;
 CREATE TABLE user_role_info
 (
     id           serial PRIMARY KEY,
-    user_id      integer,
-    role_id      varchar(40),
+    user_id      bigint,
+    role_id      bigint,
     status       integer default 1,
     ext_info     hstore,
     create_time  timestamptz(6) default now(),
@@ -162,8 +166,8 @@ DROP TABLE IF EXISTS user_acl_info;
 CREATE TABLE user_acl_info
 (
     id           serial PRIMARY KEY,
-    user_id      varchar(40),
-    acl_code     varchar(40),
+    user_id      bigint,
+    acl_code     bigint,
     status       integer default 1,
     ext_info     hstore,
     create_time  timestamptz(6) default now(),

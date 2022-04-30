@@ -27,6 +27,7 @@ public class UserInfo implements Serializable {
     private String userId;
     private String openId;
     private String name;
+    private String passwd;
     private Integer gender;
     private String birthday;
     private String headImg;
@@ -35,6 +36,7 @@ public class UserInfo implements Serializable {
     private String idCard;
     private String termValidity;
     private String mobile;
+    private String mail;
     private Long score;
     private Integer status;
     private Map<String, String> extInfo;
