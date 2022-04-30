@@ -1,10 +1,6 @@
-package com.demai.cornel.auth.interceptors;
+package com.demai.cornel.interceptor;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.demai.cornel.auth.annotation.Authority;
+import com.demai.cornel.annotation.Authority;
 import com.demai.cornel.dao.UserInfoDao;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.UserInfo;
@@ -12,14 +8,13 @@ import com.demai.cornel.service.impl.UrlAclServiceImpl;
 import com.demai.cornel.util.CookieAuthUtils;
 import com.demai.cornel.util.json.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demai.cornel.interceptor.CustomInterceptor;
-
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**

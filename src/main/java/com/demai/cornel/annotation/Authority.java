@@ -1,4 +1,4 @@
-package com.demai.cornel.auth.annotation;
+package com.demai.cornel.annotation;
 
 import java.lang.annotation.*;
 

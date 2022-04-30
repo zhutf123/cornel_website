@@ -8,8 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminUserLoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AclInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AclInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/annotation/Authority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/annotation/Authority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/auth/interceptors/AuthCheckInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/interceptor/AuthCheckInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.beta/application-default.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.beta/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.beta/sms.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/application-default.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/qconfig.profile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.dev/sms.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.local/application-default.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.local/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.local/sms.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,14 +89,14 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/demai/cornel/service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.demai.cornel.interceptor" />
+      <recent name="com.demai.cornel.controller" />
       <recent name="com.demai.cornel.dao" />
       <recent name="com.demai.cornel.model" />
       <recent name="com.demai.cornel.Resp" />
-      <recent name="com.demai.cornel.service" />
-      <recent name="com.demai.cornel.reqParam" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GenJavaCode4Pg">
+  <component name="RunManager" selected="Application.aliTvShowUtil">
     <configuration name="GenJavaCode4Pg" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.GenJavaCode4Pg" />
       <module name="cornel_backend" />
@@ -125,8 +138,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GenJavaCode4Pg" />
         <item itemvalue="Application.aliTvShowUtil" />
+        <item itemvalue="Application.GenJavaCode4Pg" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +183,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="29005000" />
+      <workItem from="1651224811459" duration="30753000" />
     </task>
     <servers />
   </component>
