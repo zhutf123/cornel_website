@@ -41,9 +41,9 @@ public class DomeController {
     @ResponseBody
     public JsonResult demo(String sourceId,Integer type) {
         if (type == 0){
-            JsonResult.success(AliStaticSourceUtil.getVideoUrl(sourceId));
+           return JsonResult.success(AliStaticSourceUtil.getVideoUrl(sourceId));
         }else{
-            JsonResult.success(AliStaticSourceUtil.getImageUrl(sourceId));
+            return JsonResult.success(AliStaticSourceUtil.getImageUrl(sourceId));
         }
     }
 

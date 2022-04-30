@@ -87,3 +87,7 @@ car-config:
 
 cookie:
   domain: wx.ydwlys.com
+
+noLoginPath:
+  startWith: /test/
+  fullPath:  /user/sendCode.json,/user/login.json
