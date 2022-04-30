@@ -1,13 +1,13 @@
 debug: false
 
 #redis 集群模式
-#spring:
-#  redis:
-#    cluster:
-#      nodes: 192.168.0.107:6379,192.168.0.107:6380,192.168.0.107:6381,192.168.0.107:6382,192.168.0.107:6383,192.168.0.107:6384
-#      max-redirects: 5
-#      password: cornel00147258
-#      timeout: 5
+spring:
+  redis:
+    cluster:
+      nodes: 172.31.251.89:6379,172.31.251.89:6380,172.31.251.89:6381,172.31.251.89:6382,172.31.251.89:6383,172.31.251.89:6384
+      max-redirects: 5
+      password: schrd
+      timeout: 5
 
 jetcache:
   statIntervalMinutes: 1
