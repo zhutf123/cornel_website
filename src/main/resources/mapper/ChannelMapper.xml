@@ -77,7 +77,7 @@
         select
         <include refid="main_column"/>
         from channel
-        order by update_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
     
 </mapper>
