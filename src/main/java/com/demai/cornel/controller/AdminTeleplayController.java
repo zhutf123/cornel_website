@@ -11,12 +11,14 @@ import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.vo.JsonResult;
+import com.hp.gagawa.java.elements.I;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -88,16 +90,13 @@ import java.util.List;
      * @param response
      * @return
      */
-    @RequestMapping(value = "/delChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonResult delChannel(
-            @RequestBody ChannelAddParam param, HttpServletResponse response) {
+    @RequestMapping(value = "/delChannel.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult delChannel(@RequestParam Long id, HttpServletResponse response) {
         try {
-            teleplayService.addChannelInfo(param);
+            teleplayService.delChannelInfo(id);
             return JsonResult.success("success");
-        } catch (DuplicateKeyException e) {
-            return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
         } catch (Exception e) {
-            log.error("用户登录异常！", e);
+            log.error("删除频道异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }

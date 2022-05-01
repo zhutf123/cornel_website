@@ -75,8 +75,7 @@ import java.util.List;
 
     public void addChannelInfo(ChannelAddParam param) throws DuplicateKeyException {
         try {
-            Channel channel;
-            channel = Channel.builder()
+            Channel channel = Channel.builder()
                     .id(param.getId())
                     .name(param.getName())
                     .weight(param.getWeight())
@@ -96,6 +95,16 @@ import java.util.List;
         } catch (Exception e) {
             log.error("保存频道信息错误", e);
         }
+    }
+
+    /**
+     * 删除频道信息
+     * @param id
+     */
+    public void delChannelInfo(Long id) {
+        Channel channel = Channel.builder().id(id).status(Channel.ChannelStatusEnum.OFFLINE.getValue())
+                .operator(Long.parseLong(UserHolder.getValue("uid"))).operatorName(UserHolder.getValue("name")).build();
+        channelDao.update(channel);
     }
 
 }
