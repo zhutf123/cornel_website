@@ -68,7 +68,7 @@ import java.util.stream.Collectors;
         try {
             List<Teleplay> teleplayList = teleplayDao.queryTeleplayList(param);
             if (CollectionUtils.isNotEmpty(teleplayList)) {
-                List<Channel> channelList = channelDao.queryAllChannel();
+                List<Channel> channelList = channelDao.queryAllOnlineChannel();
                 Map<Long, String> channelMap = channelList.stream()
                         .collect(Collectors.toMap(Channel::getId, Channel::getName));
                 teleplayList.forEach(t -> {

@@ -237,7 +237,7 @@
         )
     </insert>
 
-    <select id="queryTeleplayList" parameterType="com.demai.cornel.reqParam.QueryTeleplayParam"
+    d<select id="queryTeleplayList" parameterType="com.demai.cornel.reqParam.QueryTeleplayParam"
             resultMap="teleplayResultMap">
         select
         <include refid="main_column"/>

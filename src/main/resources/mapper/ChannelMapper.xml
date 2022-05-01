@@ -99,6 +99,14 @@
         where status!=4
     </select>
 
+    <select id="queryAllOnlineChannel" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
+            resultMap="channelResultMap">
+        select
+        <include refid="main_column"/>
+        from channel
+        where status=1
+    </select>
+
     <select id="suggestChannel" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
             resultMap="channelResultMap">
         select id,
