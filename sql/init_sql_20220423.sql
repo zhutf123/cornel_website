@@ -56,6 +56,7 @@ ON COLUMN user_info.last_login_time IS '最后登录时间';
 COMMENT
 ON COLUMN user_info.role IS '';
 
+insert into user_info(name,passwd,role) values('test','e10adc3949ba59abbe56e057f20f883e',2);
 
 
 DROP TABLE IF EXISTS teleplay;

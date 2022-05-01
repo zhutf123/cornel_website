@@ -52,7 +52,7 @@ import java.util.concurrent.TimeUnit;
             userInfo = userInfoDao
                     .getUserInfoByNamePasswd(param.getName(), MD5Util.MD5Encode(param.getPasswd(), "UTF-8"));
             if (userInfo != null) {
-                UserLoginResp.builder().userId(userInfo.getUserId()).code(UserLoginResp.CODE_ENUE.SUCCESS.getValue())
+                return UserLoginResp.builder().userId(userInfo.getUserId()).code(UserLoginResp.CODE_ENUE.SUCCESS.getValue())
                         .build();
             }
         } else {
