@@ -13,6 +13,7 @@
         <result column="vip" property="vip"/>
         <result column="status" property="status"/>
         <result column="operate_time" property="operateTime"/>
+        <result column="operator_name" property="operatorName"/>
         <result column="operator" property="operator"/>
         <result column="follow_num" property="followNum"/>
         <result column="play_num" property="playNum"/>
@@ -36,6 +37,7 @@
         vip,
         status,
         operate_time,
+        operator_name,
         operator,
         follow_num,
         play_num,
@@ -80,6 +82,9 @@
             </if>
             <if test="operator != null">
                 operator = #{operator},
+            </if>
+            <if test="operatorName != null">
+                operator_name = #{operatorName},
             </if>
             <if test="followNum != null">
                 follow_num = #{followNum},
@@ -145,6 +150,9 @@
             <if test="operator != null">
                 operator ,
             </if>
+            <if test="operatorName != null">
+                operator_name ,
+            </if>
             <if test="followNum != null">
                 follow_num ,
             </if>
@@ -204,6 +212,9 @@
             </if>
             <if test="operator != null">
                 #{operator} ,
+            </if>
+            <if test="operatorName != null">
+                #{operatorName},
             </if>
             <if test="followNum != null">
                 #{followNum} ,
