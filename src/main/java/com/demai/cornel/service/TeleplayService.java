@@ -118,4 +118,20 @@ import java.util.stream.Collectors;
         channelDao.update(channel);
     }
 
+    public List<Channel> getAllOnlineChannel() {
+        try {
+            List<Channel> channelList = channelDao.getAllOnlineChannel();
+            if (CollectionUtils.isNotEmpty(channelList)) {
+                channelList.forEach(t -> {
+                    t.setStatusDesc(Teleplay.TeleplayStatusEnum
+                            .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
+                });
+                return channelList;
+            }
+        } catch (Exception e) {
+            log.error("查询频道list异常", e);
+        }
+        return Lists.newArrayList();
+    }
+
 }

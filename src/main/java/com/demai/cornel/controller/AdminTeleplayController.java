@@ -48,6 +48,23 @@ import java.util.List;
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+    /**
+     * 查询剧集list
+     * @return
+     */
+    @RequestMapping(value = "/addTeleplay.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult addTeleplay(
+            @RequestBody OperateTeleplayParam param, HttpServletResponse response) {
+        try {
+            List<Teleplay> teleplayList = teleplayService.getTeleplayList(param);
+            return JsonResult.success(teleplayList);
+        } catch (Exception e) {
+            log.error("用户登录异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+
     /***
      * 添加/编辑频道
      * @param param
@@ -77,6 +94,21 @@ import java.util.List;
             @RequestBody OperateChannelParam param, HttpServletResponse response) {
         try {
             List<Channel> channelList = teleplayService.getChannelList(param);
+            return JsonResult.success(channelList);
+        } catch (Exception e) {
+            log.error("获取频道list异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /**
+     * 查询频道list
+     * @return
+     */
+    @RequestMapping(value = "/getAllOnlineChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody public JsonResult getAllOnlineChannel(HttpServletResponse response) {
+        try {
+            List<Channel> channelList = teleplayService.getAllOnlineChannel();
             return JsonResult.success(channelList);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);

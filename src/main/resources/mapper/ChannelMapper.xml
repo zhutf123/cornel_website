@@ -98,5 +98,14 @@
         from channel
         where status!=4
     </select>
+
+    <select id="getAllOnlineChannel" parameterType="com.demai.cornel.reqParam.OperateChannelParam"
+            resultMap="channelResultMap">
+        select id,
+               name
+        from channel
+        where status = 1
+    </select>
+
     
 </mapper>

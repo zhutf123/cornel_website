@@ -24,4 +24,6 @@ public interface ChannelDao {
 
     List<Channel> queryAllChannel();
 
+    List<Channel> getAllOnlineChannel();
+
 }
