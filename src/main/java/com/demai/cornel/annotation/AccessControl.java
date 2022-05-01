@@ -16,6 +16,7 @@ import java.lang.annotation.Target;
  * value 属性设值：s_n  s:秒 n次
  *
  * Create By zhutf  19-11-9  上午10:32
+ * @author tfzhu
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

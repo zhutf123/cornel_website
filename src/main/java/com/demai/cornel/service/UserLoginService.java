@@ -8,6 +8,7 @@ import com.demai.cornel.dao.UserInfoDao;
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.UserInfo;
 import com.demai.cornel.reqParam.UserLoginParam;
+import com.demai.cornel.util.CookieAuthUtils;
 import com.demai.cornel.util.DateUtils;
 import com.demai.cornel.util.GenRandomCodeUtil;
 import com.demai.cornel.util.MD5Util;
@@ -70,7 +71,7 @@ import java.util.concurrent.TimeUnit;
                     userInfoDao.update(userInfo);
                     return UserLoginResp.builder().openId(resp.getOpenid()).userId(userInfo.getUserId())
                             .role(userInfo.getRole()).code(UserLoginResp.CODE_ENUE.SUCCESS.getValue())
-                            .CKey(String.format(UserService.c_key, userInfo.getUserId(), userInfo.getOpenId())).build();
+                            .CKey(String.format(CookieAuthUtils.c_key, userInfo.getUserId(), userInfo.getOpenId())).build();
                 }
             }
         }

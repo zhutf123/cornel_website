@@ -9,10 +9,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/annotation/AccessControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/annotation/AccessControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/constant/ContextConsts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/constant/ContextConsts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminUserLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminUserLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/FileStoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/FileStoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/interceptor/CookieInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/interceptor/CookieInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/UserLoginRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/UserLoginRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserLoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/CookieAuthUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/CookieAuthUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +205,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="49898000" />
+      <workItem from="1651224811459" duration="50818000" />
     </task>
     <servers />
   </component>

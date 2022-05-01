@@ -16,7 +16,11 @@ public class CookieAuthUtils {
 
     public static final String KEY_USER_NAME = "u"; //userId
 
+    public static final String COOKIE_ADMIN_USER = "uid";
+
     public static final String KEY_USER_DOMAIN = "o"; //openid
+
+    public static String c_key = "u=%s&o=%s";
 
     public static final String CKEY_SPLIT = "&";
 

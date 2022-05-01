@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.demai.cornel.util.CookieAuthUtils.COOKIE_ADMIN_USER;
 import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
 
 /**
@@ -61,7 +62,7 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
             param.setAdmin(Boolean.TRUE);
             UserLoginResp login = userLoginService.doLogin(param);
             if (login.getCode().compareTo(UserLoginResp.CODE_ENUE.SUCCESS.getValue()) == 0) {
-                Cookie cookie = new Cookie(ContextConsts.COOKIE_ADMIN_USER, login.getUserId());
+                Cookie cookie = new Cookie(COOKIE_ADMIN_USER, login.getUserId());
                 cookie.setMaxAge(24 * 60 * 60);
                 cookie.setDomain(configProperties.cookieDomain);
                 cookie.setPath("/");

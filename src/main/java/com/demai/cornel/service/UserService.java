@@ -26,6 +26,8 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.demai.cornel.util.CookieAuthUtils.c_key;
+
 /**
  * @Author binz.zhang
  * @Date: 2020-01-07    13:11
@@ -35,7 +37,6 @@ import java.util.stream.Collectors;
     @Resource private UserInfoDao userInfoDao;
     @Resource private UserRoleInfoDao userRoleInfoDao;
     @Resource private ConfigProperties configProperties;
-    public static String c_key = "u=%s&o=%s";
 
     //todo 这一块更新需要补全
     public UserAddUserResp updateUserInfo(UserAddParam userAddReq) {

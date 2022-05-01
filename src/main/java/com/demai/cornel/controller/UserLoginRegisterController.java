@@ -43,22 +43,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.demai.cornel.util.CookieAuthUtils.COOKIE_ADMIN_USER;
 import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
+import static com.demai.cornel.util.CookieAuthUtils.c_key;
 
 /**
  * @author tfzhu
  */
-@Controller
-@RequestMapping("/user")
-@Slf4j
-public class UserLoginRegisterController {
+@Controller @RequestMapping("/user") @Slf4j public class UserLoginRegisterController {
 
-    @Resource
-    private UserLoginService userLoginService;
-    @Resource
-    private UserService userService;
-    @Resource
-    private ConfigProperties configProperties;
+    @Resource private UserLoginService userLoginService;
+    @Resource private UserService userService;
+    @Resource private ConfigProperties configProperties;
 
     /***
      * 给用户手机号 发送短信验证码 需要补充逻辑 在n分钟内，发送x条的限制
@@ -66,10 +62,8 @@ public class UserLoginRegisterController {
      * @param phone 手机号
      * @return
      */
-    @RequestMapping(value = "/sendCode.json", method = RequestMethod.POST)
-    @ResponseBody
-    @AccessControl(value = "60_3")
-    public JsonResult userLoginSendCode(@RequestBody UserLoginSendMsgParam phone) {
+    @RequestMapping(value = "/sendCode.json", method = RequestMethod.POST) @ResponseBody @AccessControl(value = "60_3") public JsonResult userLoginSendCode(
+            @RequestBody UserLoginSendMsgParam phone) {
         try {
             log.debug("send code access [{}]", JacksonUtils.obj2String(phone));
             return JsonResult.successStatus(userLoginService.sendLoginCodeMsg(phone.getPhone()));
@@ -85,24 +79,32 @@ public class UserLoginRegisterController {
      * @return
      */
     @RequestMapping(value = "/register.json", method = RequestMethod.POST) @ResponseBody public JsonResult userRegister(
-            @RequestBody UserRegisterParam param) {
+            @RequestBody UserRegisterParam param, HttpServletResponse response) {
         Preconditions.checkNotNull(param);
         String cKey = userService.userRegister(param);
+        setUserCookie(cKey, response);
         return JsonResult.success(cKey);
     }
 
+    private void setUserCookie(String value, HttpServletResponse response) {
+        Cookie cookie = new Cookie(COOKIE_ADMIN_USER, value);
+        cookie.setMaxAge(24 * 60 * 60);
+        cookie.setDomain(configProperties.cookieDomain);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+    }
+
     /**
-     *
      * @return
      */
-    @RequestMapping(value = "/login.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public JsonResult doUserLogin(@RequestBody UserLoginParam param, HttpServletResponse response) {
+    @RequestMapping(value = "/login.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult doUserLogin(
+            @RequestBody UserLoginParam param, HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(param);
             Preconditions.checkNotNull(param.getJscode());
             UserLoginResp login = userLoginService.doLogin(param);
             if (login.getCode().compareTo(UserLoginResp.CODE_ENUE.SUCCESS.getValue()) == 0) {
+                setUserCookie(String.format(c_key, login.getUserId(), login.getOpenId()),response);
                 return JsonResult.success(login);
             } else {
                 return JsonResult.successStatus(UserLoginResp.CODE_ENUE.getByValue(login.getCode()));
@@ -113,9 +115,8 @@ public class UserLoginRegisterController {
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
-    @RequestMapping(value = "/update-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public JsonResult addUser(@RequestBody UserAddParam param) {
+    @RequestMapping(value = "/update-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult addUser(
+            @RequestBody UserAddParam param) {
         try {
             Preconditions.checkNotNull(param);
             return JsonResult.success(userService.updateUserInfo(param));
@@ -125,9 +126,7 @@ public class UserLoginRegisterController {
         return JsonResult.success(ResponseStatusEnum.NETWORK_ERROR);
     }
 
-    @RequestMapping(value = "/get-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public JsonResult getUserInfo() {
+    @RequestMapping(value = "/get-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult getUserInfo() {
         try {
             return JsonResult.success(userService.getUserInfoResp());
         } catch (Exception e) {
@@ -136,8 +135,8 @@ public class UserLoginRegisterController {
         return JsonResult.success(ResponseStatusEnum.NETWORK_ERROR);
     }
 
-    @RequestMapping(value = "/check-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody public JsonResult checkAdminRoleUser(HttpServletRequest request,  HttpServletResponse response) {
+    @RequestMapping(value = "/check-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult checkAdminRoleUser(
+            HttpServletRequest request, HttpServletResponse response) {
         try {
             String curUser = Optional.ofNullable(UserHolder.getValue(CookieAuthUtils.KEY_USER_NAME)).orElse(null);
             if (StringUtil.isNotEmpty(curUser)) {
@@ -179,6 +178,5 @@ public class UserLoginRegisterController {
         }
         return JsonResult.success(ResponseStatusEnum.NETWORK_ERROR);
     }
-
 
 }
