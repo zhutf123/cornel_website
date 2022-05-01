@@ -26,7 +26,7 @@ import java.util.UUID;
  * @Author tfzhu
  * @Date: 2020-01-17    16:19
  */
-@RestController @RequestMapping("/file/") @Slf4j public class FileStoreController {
+@RestController @RequestMapping("/admin/file/") @Slf4j public class FileStoreController {
 
     @Resource private UploadFileService uploadFileService;
     @Resource private DownloadFileService downloadFileService;

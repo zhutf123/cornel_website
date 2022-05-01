@@ -44,31 +44,28 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
 /**
  * @author tfzhu
  */
-@Controller
-@RequestMapping("/admin")
-@Slf4j
-public class AdminUserLoginController {
+@Controller @RequestMapping("/admin") @Slf4j public class AdminUserLoginController {
 
-    @Resource
-    private UserLoginService userLoginService;
-    @Resource
-    private UserService userService;
-    @Resource
-    private ConfigProperties configProperties;
+    @Resource private UserLoginService userLoginService;
+    @Resource private UserService userService;
+    @Resource private ConfigProperties configProperties;
 
     /**
-     *
      * @return
      */
-    @RequestMapping(value = "/login.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public JsonResult doUserLogin(@RequestBody UserLoginParam param, HttpServletResponse response) {
+    @RequestMapping(value = "/login.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult doUserLogin(
+            @RequestBody UserLoginParam param, HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(param.getName());
             Preconditions.checkNotNull(param.getPasswd());
             param.setAdmin(Boolean.TRUE);
             UserLoginResp login = userLoginService.doLogin(param);
             if (login.getCode().compareTo(UserLoginResp.CODE_ENUE.SUCCESS.getValue()) == 0) {
+                Cookie cookie = new Cookie(ContextConsts.COOKIE_ADMIN_USER, login.getUserId());
+                cookie.setMaxAge(24 * 60 * 60);
+                cookie.setDomain(configProperties.cookieDomain);
+                cookie.setPath("/");
+                response.addCookie(cookie);
                 return JsonResult.success(login);
             } else {
                 return JsonResult.successStatus(UserLoginResp.CODE_ENUE.getByValue(login.getCode()));
@@ -78,59 +75,5 @@ public class AdminUserLoginController {
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
-
-    @RequestMapping(value = "/update-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public JsonResult addUser(@RequestBody UserAddParam param) {
-        try {
-            Preconditions.checkNotNull(param);
-            return JsonResult.success(userService.updateUserInfo(param));
-        } catch (Exception e) {
-            log.error("用户登录异常！", e);
-        }
-        return JsonResult.success(ResponseStatusEnum.NETWORK_ERROR);
-    }
-
-    @RequestMapping(value = "/get-user.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public JsonResult getUserInfo() {
-        try {
-            return JsonResult.success(userService.getUserInfoResp());
-        } catch (Exception e) {
-            log.error("用户登录异常！", e);
-        }
-        return JsonResult.success(ResponseStatusEnum.NETWORK_ERROR);
-    }
-
-    @RequestMapping(value = "/setV.json", method = RequestMethod.GET) @ResponseBody public JsonResult setUserCookieInfo(
-            @RequestParam(value = "key", required = true) String key, HttpServletResponse response) {
-        try {
-            log.info("get ckey info {}", key);
-            Map<String, String> userInfoMap = CookieAuthUtils.getUserFromCKey(key);
-            log.info("get ckey info {}", JsonUtil.toJson(userInfoMap));
-            String curUser = null;
-            if (MapUtils.isNotEmpty(userInfoMap)) {
-                UserHolder.set(userInfoMap);
-                curUser = userInfoMap.get(KEY_USER_NAME);
-            }
-            log.info("get curUser info {}", curUser);
-
-            if (StringUtil.isNotEmpty(curUser)) {
-                List<String> roleIds = userService.getUserRoleId(curUser);
-                if (!CollectionUtils.isEmpty(roleIds)) {
-                    Cookie cookie = new Cookie(ContextConsts.COOKIE_CKEY_NAME, key);
-                    cookie.setMaxAge(24 * 60 * 60);
-                    cookie.setDomain(configProperties.cookieDomain);
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                }
-            }
-            JsonResult.success(0);
-        } catch (Exception e) {
-            log.error("检测用户信息异常！", e);
-        }
-        return JsonResult.success(ResponseStatusEnum.NETWORK_ERROR);
-    }
-
 
 }

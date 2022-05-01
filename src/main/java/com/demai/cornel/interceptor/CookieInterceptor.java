@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_DOMAIN;
 import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
 
 
@@ -24,7 +23,7 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
  * Created by tfzhu on 2019/1/4.
  * 获取用户信息
  */
-@Slf4j @CustomInterceptor(order = 2, addPathPatterns = { "/**" }, excludePathPatterns = { "/check.jsp" })
+@Slf4j @CustomInterceptor(order = 2, addPathPatterns = { "/user/**" }, excludePathPatterns = { "/check.jsp" })
 public class CookieInterceptor implements HandlerInterceptor {
 
 
@@ -39,7 +38,6 @@ public class CookieInterceptor implements HandlerInterceptor {
                 log.warn("request not attach user cKey info");
                 Map<String,String> defaultUserMap = Maps.newHashMap();
                 defaultUserMap.put(KEY_USER_NAME, "System_Default");
-                defaultUserMap.put(KEY_USER_DOMAIN, "ejabhost1");
                 UserHolder.set(defaultUserMap);
             } else {
                 Map<String, String> userInfoMap = CookieAuthUtils.getUserFromCKey(cKey);

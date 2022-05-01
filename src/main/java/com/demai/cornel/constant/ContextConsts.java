@@ -13,6 +13,8 @@ public class ContextConsts {
 
     public static final String COOKIE_CKEY_NAME_TALK = "q_ckey";
 
+    public static final String COOKIE_ADMIN_USER = "uid";
+
     public static final String MDC_URI = "mdc_uri";
 
     public static final String MDC_TRACE_ID = "mdc_trace_id";
