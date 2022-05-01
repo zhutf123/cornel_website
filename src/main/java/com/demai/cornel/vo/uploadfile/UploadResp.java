@@ -11,6 +11,7 @@ import lombok.Data;
 @Data @Builder public class UploadResp {
     private Integer optResult;
     private String url;
+    private String sourceId;
     public static enum CODE_ENUE implements IEmus {
         SUCCESS(0, "请求成功"),
         PARAM_ERROR(1, "参数错误"),

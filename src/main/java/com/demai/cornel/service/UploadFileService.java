@@ -62,7 +62,7 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
                 sourceId = AliStaticSourceUtil.uploadImg(name, path);
                 url = AliStaticSourceUtil.getImageUrl(sourceId);
             }
-            return UploadResp.builder().build();
+            return UploadResp.builder().sourceId(sourceId).url(url).build();
         } catch (Exception e) {
             log.error("save file fail ", e);
             return null;
