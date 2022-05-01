@@ -27,7 +27,7 @@ public class ChannelAddParam implements Serializable {
     private Integer type;
     private Integer weight;
     private Integer status;
-
+    private Long id;
 
     private String nickName;
     private Long operator;

@@ -47,7 +47,7 @@ import java.util.List;
     }
 
     /***
-     * 添加频道
+     * 添加/编辑频道
      * @param param
      * @param response
      * @return
@@ -61,7 +61,7 @@ import java.util.List;
         } catch (DuplicateKeyException e) {
             return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
         } catch (Exception e) {
-            log.error("用户登录异常！", e);
+            log.error("添加频道信息异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
@@ -76,6 +76,26 @@ import java.util.List;
         try {
             List<Channel> channelList = teleplayService.getChannelList(param);
             return JsonResult.success(channelList);
+        } catch (Exception e) {
+            log.error("获取频道list异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /***
+     * 添加/编辑频道
+     * @param param
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/delChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult delChannel(
+            @RequestBody ChannelAddParam param, HttpServletResponse response) {
+        try {
+            teleplayService.addChannelInfo(param);
+            return JsonResult.success("success");
+        } catch (DuplicateKeyException e) {
+            return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
         } catch (Exception e) {
             log.error("用户登录异常！", e);
         }

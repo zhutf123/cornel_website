@@ -22,7 +22,7 @@ import java.io.Serializable;
     private Integer type;
     private Integer status;
     private Integer pageSize;
-    private Integer pageNum;
+    private Integer pageNum = 1;
     private Integer offSet;
 
     public void setPageSize(Integer pageSize) {

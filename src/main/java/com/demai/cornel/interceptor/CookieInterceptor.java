@@ -4,6 +4,7 @@ import com.demai.cornel.constant.ContextConsts;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.util.CookieAuthUtils;
 import com.demai.cornel.util.CookieUtils;
+import com.demai.cornel.util.StringUtil;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,9 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
             throws Exception {
         try {
             String cKey = CookieUtils.getCookieValue(request, CookieAuthUtils.COOKIE_ADMIN_USER);
+            if (StringUtil.isBlank(cKey)) {
+                return false;
+            }
             if (!cKey.contains("u=")) {
                 log.info("admin user info");
                 Map<String, String> defaultUserMap = Maps.newHashMap();

@@ -11,15 +11,18 @@ import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.ChannelAddParam;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
+import com.demai.cornel.util.DateUtils;
 import com.demai.cornel.vo.WeChat.WechatCode2SessionResp;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.security.cert.PKIXParameters;
 import java.util.List;
 
 /**
@@ -74,6 +77,7 @@ import java.util.List;
         try {
             Channel channel;
             channel = Channel.builder()
+                    .id(param.getId())
                     .name(param.getName())
                     .weight(param.getWeight())
                     .type(param.getType())
@@ -81,7 +85,12 @@ import java.util.List;
                     .operator(Long.parseLong(UserHolder.getValue("uid")))
                     .operatorName(UserHolder.getValue("name"))
                     .build();
-            channelDao.save(channel);
+            if (param.getId() != null) {
+                channel.setOperateTime(DateUtils.now());
+                channelDao.update(channel);
+            } else {
+                channelDao.save(channel);
+            }
         } catch (DuplicateKeyException e) {
             throw e;
         } catch (Exception e) {
