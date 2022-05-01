@@ -10,13 +10,13 @@ import com.demai.cornel.model.UserRoleInfo;
 import com.demai.cornel.reqParam.UserAddParam;
 import com.demai.cornel.reqParam.UserRegisterParam;
 import com.demai.cornel.util.CookieAuthUtils;
+import com.demai.cornel.util.IDUtils;
 import com.demai.cornel.util.JacksonUtils;
 import com.demai.cornel.util.PhoneUtil;
 import com.demai.cornel.util.StringUtil;
 import com.demai.cornel.util.json.JsonUtil;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -81,7 +80,7 @@ import java.util.stream.Collectors;
      */
     public String userRegister(UserRegisterParam userRegisterParam) {
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(UUID.randomUUID().toString());
+        userInfo.setUserId(IDUtils.getUUID());
         userInfo.setNickName(userRegisterParam.getNickName());
         userInfo.setHeadImg(userRegisterParam.getHeadImg());
         userInfo.setMobile(userRegisterParam.getMobile());
