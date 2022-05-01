@@ -8,10 +8,6 @@ import java.math.BigDecimal;
  * 系统常量
  */
 public class ContextConsts {
-    //todo 这儿的cookie的名字待定
-    public static final String COOKIE_CKEY_NAME = "ckey";
-
-    public static final String COOKIE_CKEY_NAME_TALK = "q_ckey";
 
     public static final String MDC_URI = "mdc_uri";
 

@@ -162,16 +162,16 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
             }
             log.info("get curUser info {}", curUser);
 
-            if (StringUtil.isNotEmpty(curUser)) {
-                List<String> roleIds = userService.getUserRoleId(curUser);
-                if (!CollectionUtils.isEmpty(roleIds)) {
-                    Cookie cookie = new Cookie(ContextConsts.COOKIE_CKEY_NAME, key);
-                    cookie.setMaxAge(24 * 60 * 60);
-                    cookie.setDomain(configProperties.cookieDomain);
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                }
-            }
+//            if (StringUtil.isNotEmpty(curUser)) {
+//                List<String> roleIds = userService.getUserRoleId(curUser);
+//                if (!CollectionUtils.isEmpty(roleIds)) {
+//                    Cookie cookie = new Cookie(ContextConsts.COOKIE_CKEY_NAME, key);
+//                    cookie.setMaxAge(24 * 60 * 60);
+//                    cookie.setDomain(configProperties.cookieDomain);
+//                    cookie.setPath("/");
+//                    response.addCookie(cookie);
+//                }
+//            }
             JsonResult.success(0);
         } catch (Exception e) {
             log.error("检测用户信息异常！", e);
