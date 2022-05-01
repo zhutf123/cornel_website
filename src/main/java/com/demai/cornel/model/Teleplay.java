@@ -34,7 +34,7 @@ public class Teleplay implements Serializable {
     private String mainSource;
     private String title;
     private String depict;
-    private List<String> channel;
+    private List<Integer> channel;
     private Integer nums;
     private Integer vip;
     private Integer status;

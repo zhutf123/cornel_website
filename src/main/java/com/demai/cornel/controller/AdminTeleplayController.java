@@ -37,7 +37,8 @@ import java.util.List;
      * 查询剧集list
      * @return
      */
-    @RequestMapping(value = "/teleplayList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult teleplayList(
+    @RequestMapping(value = "/teleplayList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult teleplayList(
             @RequestBody QueryTeleplayParam param, HttpServletResponse response) {
         try {
             List<Teleplay> teleplayList = teleplayService.getTeleplayList(param);
@@ -49,7 +50,7 @@ import java.util.List;
     }
 
     /**
-     * 查询剧集list
+     * 保存、编辑剧集list
      * @return
      */
     @RequestMapping(value = "/operateTeleplay.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody

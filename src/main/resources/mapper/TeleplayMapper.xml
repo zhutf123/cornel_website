@@ -9,8 +9,7 @@
         <result column="title" property="title"/>
         <result column="depict" property="depict"/>
         <result column="nums" property="nums"/>
-        <result column="channel" property="channel" jdbcType="ARRAY" javaType="java.util.List"
-                typeHandler="com.demai.cornel.databaseHandler.ArrayStringListTypeHandler"/>
+        <result column="channel" property="channel" typeHandler="com.demai.cornel.databaseHandler.ArrayTypeHandler"/>
         <result column="vip" property="vip"/>
         <result column="status" property="status"/>
         <result column="operate_time" property="operateTime"/>
@@ -59,7 +58,7 @@
                 main_source = #{mainSource},
             </if>
             <if test="channel != null">
-                channel = #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},
+                channel = #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayTypeHandler},
             </if>
             <if test="title != null">
                 title = #{title},
@@ -183,7 +182,7 @@
                 #{mainSource} ,
             </if>
             <if test="channel != null">
-                #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},
+                #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayTypeHandler},
             </if>
             <if test="title != null">
                 #{title} ,
