@@ -77,7 +77,7 @@ import java.util.stream.Collectors;
                     if (CollectionUtils.isNotEmpty(t.getChannel())){
                         List<String> channelNames = Lists.newArrayList();
                         t.getChannel().stream().forEach(c ->{
-                            channelNames.add(channelMap.get(c));
+                            channelNames.add(channelMap.get(Long.parseLong(c)));
                         });
                         t.setChannelDesc(channelNames);
                     }
