@@ -23,6 +23,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import com.google.common.base.Splitter;
 
+/**
+ * @author tfzhu
+ */
 @Configuration
 @Slf4j
 public class RedisConfiguration {

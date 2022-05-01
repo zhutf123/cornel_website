@@ -3,8 +3,12 @@
  */
 package com.demai.cornel.service;
 
+import com.demai.cornel.dao.ChannelDao;
 import com.demai.cornel.dao.TeleplayDao;
+import com.demai.cornel.holder.UserHolder;
+import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
+import com.demai.cornel.reqParam.ChannelAddParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.vo.WeChat.WechatCode2SessionResp;
 import com.google.common.collect.Lists;
@@ -23,6 +27,7 @@ import java.util.List;
 @Service @Slf4j public class TeleplayService {
 
     @Resource private TeleplayDao teleplayDao;
+    @Resource private ChannelDao channelDao;
 
     public List<Teleplay> getTeleplayList(OperateTeleplayParam param) {
         try {
@@ -41,6 +46,21 @@ import java.util.List;
             log.error("查询剧集list异常", e);
         }
         return Lists.newArrayList();
+    }
+
+    public void addChannelInfo(ChannelAddParam param) {
+        try {
+            Channel channel = Channel.builder()
+                    .name(param.getName())
+                    .weight(param.getWeight())
+                    .status(param.getStatus())
+                    .operator(Long.parseLong(UserHolder.getValue("uid")))
+                    .operatorName(UserHolder.getValue("name"))
+                    .build();
+            channelDao.save(channel);
+        } catch (Exception e) {
+            log.error("保存频道信息错误", e);
+        }
     }
 
 }

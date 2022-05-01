@@ -92,6 +92,29 @@ COMMENT
 ON COLUMN teleplay.channel IS '频道';
 
 
+DROP TABLE IF EXISTS channel;
+CREATE TABLE channel
+(
+    id            serial PRIMARY KEY,
+    name          varchar(256),
+    type          integer,
+    weight        integer,
+    status        integer default 0,
+    operate_time  timestamptz(6) default now(),
+    operator      bigint,
+    operator_name varchar(256),
+    ext_info      hstore,
+    create_time   timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+COMMENT
+ON COLUMN channel.name IS '标签名称';
+
+create unique index idx_unique_name_type on channel(name,type);
+
+
 
 
 DROP TABLE IF EXISTS acl_info;

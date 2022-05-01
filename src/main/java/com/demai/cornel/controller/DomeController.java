@@ -2,29 +2,18 @@ package com.demai.cornel.controller;
 
 import com.demai.cornel.annotation.AccessControl;
 import com.demai.cornel.constant.ConfigProperties;
-import com.demai.cornel.dmEnum.ResponseStatusEnum;
-import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.service.WeChatService;
 import com.demai.cornel.util.AliStaticSourceUtil;
-import com.demai.cornel.util.CookieAuthUtils;
 import com.demai.cornel.util.MD5Util;
-import com.demai.cornel.util.json.JsonUtil;
+import com.demai.cornel.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.demai.cornel.vo.JsonResult;
-
 import javax.annotation.Resource;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/test")

@@ -28,6 +28,10 @@ public class UserHolder {
         holder.set(map);
     }
 
+    public static void add(String key,String value) {
+        getMap().put(key, value);
+    }
+
     public static void remove() {
         holder.remove();
     }

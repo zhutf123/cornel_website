@@ -42,11 +42,15 @@ import java.util.Map;
         if (checkUrl(url)) {
             return true;
         }
+        
         UserInfo userInfo = userInfoDao.getUserInfoByUserId(UserHolder.getValue(CookieAuthUtils.KEY_USER_NAME));
         if (userInfo == null) {
             log.info("url [{}] no user required ", url);
             return false;
         }
+        UserHolder.add("uid",String.valueOf(userInfo.getId()));
+        UserHolder.add("name",userInfo.getNickName());
+
         Authority methodAnnotation = method.getMethodAnnotation(Authority.class);
         if (methodAnnotation == null) {
             log.info("url [{}] No permission authentication required ", url);

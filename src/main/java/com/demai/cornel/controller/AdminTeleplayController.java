@@ -5,6 +5,7 @@ package com.demai.cornel.controller;
 
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Teleplay;
+import com.demai.cornel.reqParam.ChannelAddParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.vo.JsonResult;
@@ -35,6 +36,18 @@ import java.util.List;
         try {
             List<Teleplay> teleplayList = teleplayService.getTeleplayList(param);
             return JsonResult.success(teleplayList);
+        } catch (Exception e) {
+            log.error("用户登录异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    @RequestMapping(value = "/addChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult addChannel(
+            @RequestBody ChannelAddParam param, HttpServletResponse response) {
+        try {
+            teleplayService.addChannelInfo(param);
+            return JsonResult.success("success");
         } catch (Exception e) {
             log.error("用户登录异常！", e);
         }

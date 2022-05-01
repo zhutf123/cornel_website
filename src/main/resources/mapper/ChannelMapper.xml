@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demai.cornel.dao.ChannelDao">
+    <resultMap type="com.demai.cornel.model.Channel" id="channelResultMap">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="weight" property="weight" />
+        <result column="status" property="status" />
+        <result column="operate_time" property="operateTime" />
+        <result column="operator" property="operator" />
+        <result column="operator_name" property="operatorName" />
+        <result column="ext_info" property="extInfo" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <sql id="main_column">
+        id,
+        name,
+        type,
+        weight,
+        status,
+        operate_time,
+        operator,
+        operator_name,
+        ext_info,
+        create_time
+    </sql>
+
+    <update id="update" parameterType="com.demai.cornel.model.Channel">
+        update channel
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null"> name = #{name},</if>
+            <if test="type != null"> type = #{type},</if>
+            <if test="weight != null"> weight = #{weight},</if>
+            <if test="status != null"> status = #{status},</if>
+            <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="operator != null"> operator = #{operator},</if>
+            <if test="operatorName != null"> operator_name = #{operatorName},</if>
+            <if test="extInfo != null"> ext_info = #{extInfo},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="com.demai.cornel.model.Channel" useGeneratedKeys="true" keyProperty="id" >
+        insert into channel(
+        <trim suffixOverrides=",">
+            <if test="name != null"> name ,</if>
+            <if test="type != null"> type ,</if>
+            <if test="weight != null"> weight ,</if>
+            <if test="status != null"> status ,</if>
+            <if test="operateTime != null"> operate_time ,</if>
+            <if test="operator != null"> operator ,</if>
+            <if test="operatorName != null"> operator_name ,</if>
+            <if test="extInfo != null"> ext_info ,</if>
+            <if test="createTime != null"> create_time ,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="name != null"> #{name} ,</if>
+            <if test="type != null"> #{type} ,</if>
+            <if test="weight != null"> #{weight} ,</if>
+            <if test="status != null"> #{status} ,</if>
+            <if test="operateTime != null"> #{operateTime} ,</if>
+            <if test="operator != null"> #{operator} ,</if>
+            <if test="operatorName != null"> #{operatorName} ,</if>
+            <if test="extInfo != null"> #{extInfo} ,</if>
+            <if test="createTime != null"> #{createTime} ,</if>
+        </trim>
+        )
+    </insert>
+    
+</mapper>

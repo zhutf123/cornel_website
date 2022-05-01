@@ -2,25 +2,18 @@ package com.demai.cornel.controller;
 
 import com.demai.cornel.service.DownloadFileService;
 import com.demai.cornel.service.UploadFileService;
-import com.demai.cornel.util.IDUtils;
 import com.demai.cornel.vo.JsonResult;
 import com.demai.cornel.vo.uploadfile.UploadResp;
-import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.UUID;
 
 /**
  * @Author tfzhu
