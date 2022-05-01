@@ -129,7 +129,7 @@
                 title ,
             </if>
             <if test="desc != null">
-                desc ,
+                "desc" ,
             </if>
             <if test="nums != null">
                 nums ,
