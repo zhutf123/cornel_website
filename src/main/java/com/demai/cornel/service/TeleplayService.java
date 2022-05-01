@@ -41,6 +41,7 @@ import java.util.stream.Collectors;
                     .channel(param.getChannel())
                     .title(param.getTitle())
                     .depict(param.getDepict())
+                    .nums(param.getNums())
                     .mainImage(param.getMainImage())
                     .mainSource(param.getMainSource())
                     .vip(param.getVip())
