@@ -14,6 +14,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +38,11 @@ public class Channel implements Serializable {
     private String operatorName;
     private Map<String, String> extInfo;
     private Date createTime;
+
+    /**==========for admin,user show property=============**/
+    private String statusDesc;
+    private List<String> channelDesc;
+    
 
     @AllArgsConstructor
     @NoArgsConstructor
@@ -62,6 +68,40 @@ public class Channel implements Serializable {
 
         public static ChannelTypeEnum getChannelTypeEnum(Integer value, ChannelTypeEnum def) {
             ChannelTypeEnum p = channelTypeEnumMap.get(value);
+            if (null != p) {
+                return p;
+            } else {
+                return def;
+            }
+        }
+
+    }
+
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static enum ChannelStatusEnum implements IEmus {
+
+        ERROR_CODE(-1, "未知"),
+        ONLINE(1, "在线"),
+        AUDITING(3, "审核中"),
+        OFFLINE(2, "下线");
+
+        @Setter @Getter
+        private int value;
+        @Setter @Getter
+        private String expr;
+
+        private static Map<Integer, ChannelStatusEnum> channelStatusEnumMap;
+        static {
+            channelStatusEnumMap = Maps.newHashMap();
+            for (ChannelStatusEnum code : ChannelStatusEnum.values()) {
+                channelStatusEnumMap.put(code.getValue(), code);
+            }
+        }
+
+        public static ChannelStatusEnum getChannelStatusEnum(Integer value, ChannelStatusEnum def) {
+            ChannelStatusEnum p = channelStatusEnumMap.get(value);
             if (null != p) {
                 return p;
             } else {

@@ -6,6 +6,7 @@ package com.demai.cornel.controller;
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.ChannelAddParam;
+import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.vo.JsonResult;
@@ -30,6 +31,7 @@ import java.util.List;
     @Resource private TeleplayService teleplayService;
 
     /**
+     * 查询剧集list
      * @return
      */
     @RequestMapping(value = "/teleplayList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult teleplayList(
@@ -43,6 +45,12 @@ import java.util.List;
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+    /***
+     * 添加频道
+     * @param param
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/addChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
     public JsonResult addChannel(
             @RequestBody ChannelAddParam param, HttpServletResponse response) {
@@ -51,6 +59,22 @@ import java.util.List;
             return JsonResult.success("success");
         } catch (DuplicateKeyException e) {
             return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
+        } catch (Exception e) {
+            log.error("用户登录异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /**
+     * 查询频道list
+     * @return
+     */
+    @RequestMapping(value = "/channelList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody public JsonResult channelList(
+            @RequestBody OperateChannelParam param, HttpServletResponse response) {
+        try {
+            List<Teleplay> teleplayList = teleplayService.getChannelList(param);
+            return JsonResult.success(teleplayList);
         } catch (Exception e) {
             log.error("用户登录异常！", e);
         }

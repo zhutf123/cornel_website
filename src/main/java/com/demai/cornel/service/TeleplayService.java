@@ -9,6 +9,7 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.ChannelAddParam;
+import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.vo.WeChat.WechatCode2SessionResp;
 import com.google.common.collect.Lists;
@@ -38,14 +39,33 @@ import java.util.List;
                 teleplayList.forEach(t -> {
                     t.setStatusDesc(Teleplay.TeleplayStatusEnum
                             .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
-                    
-
-
+                    t.setChannelDesc(Lists.newArrayList(""));
                 });
                 return teleplayList;
             }
         } catch (Exception e) {
             log.error("查询剧集list异常", e);
+        }
+        return Lists.newArrayList();
+    }
+
+    /***
+     * 获取频道list
+     * @param param
+     * @return
+     */
+    public List<Channel> getChannelList(OperateChannelParam param) {
+        try {
+            List<Channel> channelList = channelDao.queryChannelList(param);
+            if (CollectionUtils.isNotEmpty(channelList)) {
+                channelList.forEach(t -> {
+                    t.setStatusDesc(Teleplay.TeleplayStatusEnum
+                            .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
+                });
+                return channelList;
+            }
+        } catch (Exception e) {
+            log.error("查询频道list异常", e);
         }
         return Lists.newArrayList();
     }
