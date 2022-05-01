@@ -71,7 +71,7 @@ import java.util.List;
      * @param response
      * @return
      */
-    @RequestMapping(value = "/addChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    @RequestMapping(value = "/operateChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
     public JsonResult addChannel(
             @RequestBody ChannelAddParam param, HttpServletResponse response) {
         try {
@@ -105,7 +105,7 @@ import java.util.List;
      * 查询频道list
      * @return
      */
-    @RequestMapping(value = "/getAllOnlineChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/getAllOnlineChannel.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody public JsonResult getAllOnlineChannel(HttpServletResponse response) {
         try {
             List<Channel> channelList = teleplayService.getAllOnlineChannel();
