@@ -3,6 +3,7 @@
  */
 package com.demai.cornel.reqParam;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,32 +12,25 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * Create By tfzhu  2022/5/1  3:14 PM
+ * Create By tfzhu  2022/5/1  4:23 PM
  *
  * @author tfzhu
  */
-@Data @NoArgsConstructor @AllArgsConstructor @Builder public class OperateChannelParam implements Serializable {
-    
-    private Integer id;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class OperateChannelParam implements Serializable {
+    @NotNull
     private String name;
+    @NotNull
     private Integer type;
+    private Integer weight;
     private Integer status;
-    private Integer pageSize;
-    private Integer pageNum = 1;
-    private Integer offSet;
+    private Long id;
 
-    public void setPageSize(Integer pageSize) {
-        if (pageSize == null || pageSize == 0) {
-            pageSize = 10;
-        }
-        this.pageSize = pageSize;
-    }
+    private String nickName;
+    private Long operator;
+    
 
-    public void setPageNum(Integer pageNum) {
-        if (pageNum == null || pageNum == 0) {
-            pageNum = 1;
-        }
-        this.pageNum = pageNum;
-        this.offSet = (this.pageNum - 1) * this.pageSize;
-    }
 }

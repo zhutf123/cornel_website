@@ -72,7 +72,7 @@
         )
     </insert>
 
-    <select id="queryChannelList" parameterType="com.demai.cornel.reqParam.OperateChannelParam"
+    <select id="queryChannelList" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
             resultMap="channelResultMap">
         select
         <include refid="main_column"/>
@@ -91,7 +91,7 @@
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
 
-    <select id="queryAllChannel" parameterType="com.demai.cornel.reqParam.OperateChannelParam"
+    <select id="queryAllChannel" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
             resultMap="channelResultMap">
         select
         <include refid="main_column"/>
@@ -99,12 +99,13 @@
         where status!=4
     </select>
 
-    <select id="getAllOnlineChannel" parameterType="com.demai.cornel.reqParam.OperateChannelParam"
+    <select id="suggestChannel" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
             resultMap="channelResultMap">
         select id,
                name
         from channel
         where status = 1
+        and name ~ #{name}
     </select>
 
     

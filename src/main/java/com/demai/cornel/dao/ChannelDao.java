@@ -4,9 +4,8 @@
 package com.demai.cornel.dao;
 
 import com.demai.cornel.model.Channel;
-import com.demai.cornel.model.Teleplay;
-import com.demai.cornel.reqParam.OperateChannelParam;
-import com.demai.cornel.reqParam.OperateTeleplayParam;
+import com.demai.cornel.reqParam.QueryChannelParam;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,10 +19,10 @@ public interface ChannelDao {
 
     void save(Channel channel);
 
-    List<Channel> queryChannelList(OperateChannelParam param);
+    List<Channel> queryChannelList(QueryChannelParam param);
 
     List<Channel> queryAllChannel();
 
-    List<Channel> getAllOnlineChannel();
+    List<Channel> suggestChannel(@Param("name") String name);
 
 }

@@ -3,41 +3,38 @@
  */
 package com.demai.cornel.reqParam;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Create By tfzhu  2022/5/1  3:14 PM
+ * Create By tfzhu  2022/5/1  4:23 PM
  *
  * @author tfzhu
  */
-@Data @NoArgsConstructor @AllArgsConstructor @Builder public class OperateTeleplayParam implements Serializable {
-
-    private Integer id;
-    private Boolean vip;
-    private String channel;
-    private Integer status;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class OperateTeleplayParam implements Serializable {
+    private Long id;
+    private String mainImage;
+    private String mainSource;
     private String title;
-    private Integer pageSize;
-    private Integer pageNum;
-    private Integer offSet;
+    private String desc;
+    private List<Long> channel;
+    private Integer nums;
+    private Integer vip;
+    private Integer status;
+    private Integer recommend;
+    private Integer top;
+    
 
-    public void setPageSize(Integer pageSize) {
-        if (pageSize == null || pageSize == 0) {
-            pageSize = 10;
-        }
-        this.pageSize = pageSize;
-    }
-
-    public void setPageNum(Integer pageNum) {
-        if (pageNum == null || pageNum == 0) {
-            pageNum = 1;
-        }
-        this.pageNum = pageNum;
-        this.offSet = (this.pageNum - 1) * this.pageSize;
-    }
 }
