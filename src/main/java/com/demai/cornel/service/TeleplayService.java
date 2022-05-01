@@ -47,7 +47,9 @@ import java.util.stream.Collectors;
                     .vip(param.getVip())
                     .recommend(param.getRecommend())
                     .top(param.getTop())
-                    .status(param.getStatus())
+                    .status(Teleplay.TeleplayStatusEnum.getTeleplayStatusEnum(param.getStatus(), null) != null ?
+                            param.getStatus() :
+                            null)
                     .operator(Long.parseLong(UserHolder.getValue("uid")))
                     .operatorName(UserHolder.getValue("name"))
                     .build();
@@ -118,7 +120,9 @@ import java.util.stream.Collectors;
                     .name(param.getName())
                     .weight(param.getWeight())
                     .type(param.getType())
-                    .status(param.getStatus())
+                    .status(Channel.ChannelStatusEnum.getChannelStatusEnum(param.getStatus(), null) != null ?
+                            param.getStatus() :
+                            null)
                     .operator(Long.parseLong(UserHolder.getValue("uid")))
                     .operatorName(UserHolder.getValue("name"))
                     .build();
