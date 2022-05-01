@@ -78,7 +78,25 @@
         <include refid="main_column"/>
         from channel
         where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
+        <if test="name !=null">
+            and name ~ #{name}
+        </if>
+        <if test="type !=null">
+            and type = #{type}
+        </if>
+        
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="queryAllChannel" parameterType="com.demai.cornel.reqParam.OperateChannelParam"
+            resultMap="channelResultMap">
+        select
+        <include refid="main_column"/>
+        from channel
+        where status!=4
     </select>
     
 </mapper>

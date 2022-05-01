@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.security.cert.PKIXParameters;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Create By tfzhu  2022/5/1  3:16 PM
@@ -39,10 +41,19 @@ import java.util.List;
         try {
             List<Teleplay> teleplayList = teleplayDao.queryTeleplayList(param);
             if (CollectionUtils.isNotEmpty(teleplayList)) {
+                List<Channel> channelList = channelDao.queryAllChannel();
+                Map<Long, String> channelMap = channelList.stream()
+                        .collect(Collectors.toMap(Channel::getId, Channel::getName));
                 teleplayList.forEach(t -> {
                     t.setStatusDesc(Teleplay.TeleplayStatusEnum
                             .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
-                    t.setChannelDesc(Lists.newArrayList(""));
+                    if (CollectionUtils.isNotEmpty(t.getChannel())){
+                        List<String> channelNames = Lists.newArrayList();
+                        t.getChannel().stream().forEach(c ->{
+                            channelNames.add(channelMap.get(c));
+                        });
+                        t.setChannelDesc(channelNames);
+                    }
                 });
                 return teleplayList;
             }

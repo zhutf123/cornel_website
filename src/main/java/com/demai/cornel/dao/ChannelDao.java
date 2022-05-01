@@ -22,4 +22,6 @@ public interface ChannelDao {
 
     List<Channel> queryChannelList(OperateChannelParam param);
 
+    List<Channel> queryAllChannel();
+
 }

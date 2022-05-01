@@ -31,9 +31,10 @@ public class Teleplay implements Serializable {
     private static final long serialVersionUID = 2272768995014657918L;
     private Long id;
     private String mainImage;
+    private String mainSource;
     private String title;
     private String desc;
-    private List<Integer> channel;
+    private List<Long> channel;
     private Integer nums;
     private Integer vip;
     private Integer status;

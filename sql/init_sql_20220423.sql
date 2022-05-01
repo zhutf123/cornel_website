@@ -64,6 +64,7 @@ CREATE TABLE teleplay
 (
     id           serial PRIMARY KEY,
     main_image   varchar(256),
+    main_source   varchar(256),
     title        text,
     "desc"       text,
     nums         integer,

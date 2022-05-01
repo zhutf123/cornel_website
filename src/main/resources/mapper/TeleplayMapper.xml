@@ -5,9 +5,12 @@
     <resultMap type="com.demai.cornel.model.Teleplay" id="teleplayResultMap">
         <id column="id" property="id"/>
         <result column="main_image" property="mainImage"/>
+        <result column="main_source" property="mainSource"/>
         <result column="title" property="title"/>
         <result column="desc" property="desc"/>
         <result column="nums" property="nums"/>
+        <result column="channel" property="channel" jdbcType="ARRAY" javaType="java.util.List"
+                typeHandler="com.demai.cornel.databaseHandler.ArrayStringListTypeHandler"/>
         <result column="vip" property="vip"/>
         <result column="status" property="status"/>
         <result column="operate_time" property="operateTime"/>
@@ -26,6 +29,8 @@
     <sql id="main_column">
         id,
         main_image,
+        main_source,
+        channel,
         title,
         desc,
         nums,
@@ -49,6 +54,12 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="mainImage != null">
                 main_image = #{mainImage},
+            </if>
+            <if test="mainSource != null">
+                main_source = #{mainSource},
+            </if>
+            <if test="channel != null">
+                channel = #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},
             </if>
             <if test="title != null">
                 title = #{title},
@@ -108,6 +119,12 @@
             <if test="mainImage != null">
                 main_image ,
             </if>
+            <if test="mainSource != null">
+                main_source,
+            </if>
+            <if test="channel != null">
+                channel,
+            </if>
             <if test="title != null">
                 title ,
             </if>
@@ -161,6 +178,12 @@
         <trim suffixOverrides=",">
             <if test="mainImage != null">
                 #{mainImage} ,
+            </if>
+            <if test="mainSource != null">
+                #{mainSource} ,
+            </if>
+            <if test="channel != null">
+                #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},
             </if>
             <if test="title != null">
                 #{title} ,
@@ -219,7 +242,29 @@
         select
         <include refid="main_column"/>
         from teleplay
-        where order by id desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        <where>
+            1=1
+            <if test="id != null">
+               and id=#{id}
+            </if>
+            <if test="title !=null">
+                and title ~ #{title}
+            </if>
+            
+            <if test="status !=null">
+                and status = #{status}
+            </if>
+            
+            <if test="channel !=null">
+                and <![CDATA[ channel @> array[#{channel}] ]]>
+            </if>
+
+            <if test="vip !=null">
+                vip =  #{vip}
+            </if>
+
+        </where>
+        order by id desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
     
 </mapper>
