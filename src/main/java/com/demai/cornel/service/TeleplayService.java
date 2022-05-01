@@ -102,7 +102,7 @@ import java.util.List;
      * @param id
      */
     public void delChannelInfo(Long id) {
-        Channel channel = Channel.builder().id(id).status(Channel.ChannelStatusEnum.OFFLINE.getValue())
+        Channel channel = Channel.builder().id(id).status(Channel.ChannelStatusEnum.DELETE.getValue())
                 .operator(Long.parseLong(UserHolder.getValue("uid"))).operatorName(UserHolder.getValue("name")).build();
         channelDao.update(channel);
     }

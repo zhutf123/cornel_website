@@ -85,7 +85,9 @@ public class Channel implements Serializable {
         ERROR_CODE(-1, "未知"),
         ONLINE(1, "在线"),
         AUDITING(3, "审核中"),
-        OFFLINE(2, "下线");
+        OFFLINE(2, "下线"),
+        DELETE(4, "删除")
+        ;
 
         @Setter @Getter
         private int value;
