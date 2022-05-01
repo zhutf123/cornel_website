@@ -213,4 +213,13 @@
         </trim>
         )
     </insert>
+
+    <select id="queryTeleplayList" parameterType="com.demai.cornel.reqParam.OperateTeleplayParam"
+            resultMap="teleplayResultMap">
+        select
+        <include refid="main_column"/>
+        from teleplay
+        where order by id desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+    
 </mapper>

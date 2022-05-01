@@ -4,6 +4,9 @@
 package com.demai.cornel.dao;
 
 import com.demai.cornel.model.Teleplay;
+import com.demai.cornel.reqParam.OperateTeleplayParam;
+
+import java.util.List;
 
 /**
  * Create By tfzhu  2022/4/30  11:10 AM
@@ -11,7 +14,10 @@ import com.demai.cornel.model.Teleplay;
  * @author tfzhu
  */
 public interface TeleplayDao {
-    public void update(Teleplay teleplay);
+    void update(Teleplay teleplay);
 
-    public void save(Teleplay teleplay);
+    void save(Teleplay teleplay);
+
+    List<Teleplay> queryTeleplayList(OperateTeleplayParam param);
+
 }
