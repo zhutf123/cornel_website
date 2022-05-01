@@ -93,6 +93,76 @@ COMMENT
 ON COLUMN teleplay.channel IS '频道';
 
 
+DROP TABLE IF EXISTS teleplay_video;
+CREATE TABLE teleplay_video
+(
+    id           serial PRIMARY KEY,
+    teleplay_id   bigint,
+    main_image   varchar(256),
+    main_source   varchar(256),
+    video_url   varchar(256),
+    video_source   varchar(256),
+    title        text,
+    seq         integer,
+    video_time   bigint,
+    vip          integer default 0,
+    status       integer default 1,
+    operate_time timestamptz(6) default now(),
+    operator     bigint,
+    operator_name varchar(256),
+    recommend    integer default 0,
+    ext_info     hstore,
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+COMMENT
+ON COLUMN teleplay_video.title IS '剧集名称';
+
+
+DROP TABLE IF EXISTS teleplay_video_follow_detail;
+CREATE TABLE teleplay_video_follow_detail
+(
+    id           serial PRIMARY KEY,
+    video_id   bigint,
+    teleplay_id   bigint,
+    follow_num   integer default 0,
+    all_follow_num   integer default 0,
+    play_num     integer default 0,
+    all_play_num     integer default 0,
+    like_num     integer default 0,
+    all_like_num     integer default 0,
+    share_num    integer default 0,
+    all_share_num    integer default 0,
+    comment_num  integer default 0,
+    all_comment_num  integer default 0,
+    use_day varchar(256),
+    ext_info     hstore,
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+
+
+DROP TABLE IF EXISTS teleplay_video;
+CREATE TABLE video_user_play_info
+(
+    id         serial PRIMARY KEY,
+    video_id   bigint,
+    user_id    bigint,
+    play_time  bigint,
+    ext_info     hstore,
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+
+
 DROP TABLE IF EXISTS channel;
 CREATE TABLE channel
 (

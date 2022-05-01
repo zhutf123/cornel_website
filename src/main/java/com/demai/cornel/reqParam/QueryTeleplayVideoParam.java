@@ -16,11 +16,7 @@ import java.io.Serializable;
  *
  * @author tfzhu
  */
-@Data @NoArgsConstructor @AllArgsConstructor @Builder public class QueryChannelParam extends BaseQueryParam {
+@Data @NoArgsConstructor @AllArgsConstructor @Builder public class QueryTeleplayVideoParam extends BaseQueryParam {
 
-    private Long id;
-    private String name;
-    private Integer type;
-    private Integer status;
-
+    private Long teleplayId;
 }

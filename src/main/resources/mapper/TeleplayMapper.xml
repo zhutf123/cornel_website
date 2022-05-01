@@ -39,15 +39,34 @@
         operate_time,
         operator_name,
         operator,
-        follow_num,
-        play_num,
-        like_num,
-        share_num,
-        comment_num,
         recommend,
         top,
         ext_info,
         create_time
+    </sql>
+
+    <sql id="query_list_column">
+        t.id,
+        t.main_image,
+        t.main_source,
+        t.channel,
+        t.title,
+        t.depict,
+        t.nums,
+        t.vip,
+        t.status,
+        t.operate_time,
+        t.operator_name,
+        t.operator,
+        t.recommend,
+        t.top,
+        t.ext_info,
+        t.create_time,
+        coalesce(fd.all_follow_num,0) as follow_num,
+        coalesce(fd.all_play_num,0) as play_num,
+        coalesce(fd.all_like_num,0) as like_num,
+        coalesce(fd.all_share_num,0) as share_num,
+        coalesce(fd.all_comment_num,0) as comment_num
     </sql>
 
     <update id="update" parameterType="com.demai.cornel.model.Teleplay">
@@ -85,21 +104,6 @@
             </if>
             <if test="operatorName != null">
                 operator_name = #{operatorName},
-            </if>
-            <if test="followNum != null">
-                follow_num = #{followNum},
-            </if>
-            <if test="playNum != null">
-                play_num = #{playNum},
-            </if>
-            <if test="likeNum != null">
-                like_num = #{likeNum},
-            </if>
-            <if test="shareNum != null">
-                share_num = #{shareNum},
-            </if>
-            <if test="commentNum != null">
-                comment_num = #{commentNum},
             </if>
             <if test="recommend != null">
                 recommend = #{recommend},
@@ -153,21 +157,6 @@
             <if test="operatorName != null">
                 operator_name ,
             </if>
-            <if test="followNum != null">
-                follow_num ,
-            </if>
-            <if test="playNum != null">
-                play_num ,
-            </if>
-            <if test="likeNum != null">
-                like_num ,
-            </if>
-            <if test="shareNum != null">
-                share_num ,
-            </if>
-            <if test="commentNum != null">
-                comment_num ,
-            </if>
             <if test="recommend != null">
                 recommend ,
             </if>
@@ -216,21 +205,6 @@
             <if test="operatorName != null">
                 #{operatorName},
             </if>
-            <if test="followNum != null">
-                #{followNum} ,
-            </if>
-            <if test="playNum != null">
-                #{playNum} ,
-            </if>
-            <if test="likeNum != null">
-                #{likeNum} ,
-            </if>
-            <if test="shareNum != null">
-                #{shareNum} ,
-            </if>
-            <if test="commentNum != null">
-                #{commentNum} ,
-            </if>
             <if test="recommend != null">
                 #{recommend} ,
             </if>
@@ -250,31 +224,51 @@
     <select id="queryTeleplayList" parameterType="com.demai.cornel.reqParam.QueryTeleplayParam"
             resultMap="teleplayResultMap">
         select
-        <include refid="main_column"/>
-        from teleplay
+        <include refid="query_list_column"/>
+        from teleplay t left join
+        (
+            select
+                teleplay_id,
+                sum(all_follow_num) as all_follow_num,
+                sum(all_play_num) as all_play_num,
+                sum(all_like_num) as all_like_num,
+                sum(all_share_num) as all_share_num,
+                sum(all_comment_num) as all_comment_num
+            from (
+            select
+                teleplay_id,
+                video_id,
+                max(all_follow_num) as all_follow_num,
+                max(all_play_num) as all_play_num,
+                max(all_like_num) as all_like_num,
+                max(all_share_num) as all_share_num,
+                max(all_comment_num) as all_comment_num
+            from teleplay_video_follow_detail group by teleplay_id,video_id) t group by teleplay_id
+        )fd
+        on t.id=fd.teleplay_id
         <where>
             1=1
             <if test="id != null">
-               and id=#{id}
+               and t.id=#{id}
             </if>
             <if test="title !=null">
-                and title ~ #{title}
+                and t.title ~ #{title}
             </if>
             
             <if test="status !=null">
-                and status = #{status}
+                and t.status = #{status}
             </if>
             
             <if test="channel !=null">
-                and <![CDATA[ channel @> array[#{channel}] ]]>
+                and <![CDATA[ t.channel @> array[#{channel}] ]]>
             </if>
 
             <if test="vip !=null">
-                vip =  #{vip}
+                t.vip =  #{vip}
             </if>
 
         </where>
-        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        order by t.operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
     
 </mapper>

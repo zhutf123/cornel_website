@@ -6,11 +6,14 @@ package com.demai.cornel.controller;
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
+import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
+import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
 import com.demai.cornel.service.TeleplayService;
+import com.demai.cornel.service.TeleplayVideoService;
 import com.demai.cornel.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
@@ -32,6 +35,7 @@ import java.util.List;
 @Controller @RequestMapping("/admin") @Slf4j public class AdminTeleplayController {
 
     @Resource private TeleplayService teleplayService;
+    @Resource private TeleplayVideoService teleplayVideoService;
 
     /**
      * 查询剧集list
@@ -130,6 +134,22 @@ import java.util.List;
             return JsonResult.success("success");
         } catch (Exception e) {
             log.error("删除频道异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+    
+    /**
+     * 查询剧集list
+     * @return
+     */
+    @RequestMapping(value = "/teleplayVideoList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult teleplayVideoList(
+            @RequestBody QueryTeleplayVideoParam param, HttpServletResponse response) {
+        try {
+            List<TeleplayVideo> teleplayVideoList = teleplayVideoService.getTeleplayVideoList(param);
+            return JsonResult.success(teleplayVideoList);
+        } catch (Exception e) {
+            log.error("用户登录异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
