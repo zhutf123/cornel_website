@@ -76,7 +76,7 @@
             resultMap="channelResultMap">
         select
         <include refid="main_column"/>
-        from chain 
+        from channel
         where order by update_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
     
