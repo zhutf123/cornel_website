@@ -53,6 +53,7 @@ import java.util.List;
             Channel channel = Channel.builder()
                     .name(param.getName())
                     .weight(param.getWeight())
+                    .type(param.getType())
                     .status(param.getStatus())
                     .operator(Long.parseLong(UserHolder.getValue("uid")))
                     .operatorName(UserHolder.getValue("name"))
