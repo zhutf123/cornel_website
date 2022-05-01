@@ -8,7 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/init_sql_20220423.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/init_sql_20220423.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/Teleplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/Teleplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/OperateTeleplayParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/OperateTeleplayParam.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +213,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="76900000" />
+      <workItem from="1651224811459" duration="77356000" />
     </task>
     <servers />
   </component>
