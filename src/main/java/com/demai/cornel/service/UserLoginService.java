@@ -57,10 +57,7 @@ import java.util.concurrent.TimeUnit;
             }
         } else {
             WechatCode2SessionResp resp = weChatService.getOpenId(param.getJscode());
-            if (log.isDebugEnabled()) {
-                log.debug("get openid by js code result:{}", JsonUtil.toJson(resp));
-            }
-
+            log.info("get openid by js code result:{}", JsonUtil.toJson(resp));
             if (resp != null && StringUtil.isNotBlank(resp.getOpenid())) {
                 userInfo = userInfoDao.getUserInfoByOpenId(resp.getOpenid());
                 if (userInfo != null) {
