@@ -129,7 +129,7 @@
                 title ,
             </if>
             <if test="depict != null">
-                depictri ,
+                depict ,
             </if>
             <if test="nums != null">
                 nums ,
