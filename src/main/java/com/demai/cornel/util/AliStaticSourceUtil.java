@@ -55,8 +55,8 @@ import lombok.extern.slf4j.Slf4j;
                     + "      \"Resource\": \"*\",\n" + "      \"Effect\": \"Allow\"\n" + "    }\n" + "  ]\n" + "}";
 
     public static void main(String[] args) {
-        System.out.println(getVideoUrl("3e8a569162c646d8bb5f399dfa73177b"));
-        System.out.println(getImageUrl("5e8236886e4845e3bcf61cb8f3a51f41"));
+        log.info(getVideoUrl("3e8a569162c646d8bb5f399dfa73177b"));
+        log.info(getImageUrl("5e8236886e4845e3bcf61cb8f3a51f41"));
     }
 
     public static String uploadVideo(String showName, String path) {
@@ -148,11 +148,11 @@ import lombok.extern.slf4j.Slf4j;
         String result = null;
         try {
             CreateUploadVideoResponse response = client.getAcsResponse(request);
-            System.out.println("CreateUploadVideoRequest, " + request.getUrl());
-            System.out.println("CreateUploadVideoRequest, requestId:" + response.getRequestId());
-            System.out.println("UploadAddress, " + response.getUploadAddress());
-            System.out.println("UploadAuth, " + response.getUploadAuth());
-            System.out.println("VideoId, " + response.getVideoId());
+            log.info("CreateUploadVideoRequest, " + request.getUrl());
+            log.info("CreateUploadVideoRequest, requestId:" + response.getRequestId());
+            log.info("UploadAddress, " + response.getUploadAddress());
+            log.info("UploadAuth, " + response.getUploadAuth());
+            log.info("VideoId, " + response.getVideoId());
             result = response.getVideoId();
         } catch (ClientException e) {
             log.error("upload video exception ", e);
@@ -192,12 +192,12 @@ import lombok.extern.slf4j.Slf4j;
 
         try {
             CreateUploadImageResponse response = client.getAcsResponse(request);
-            System.out.println("CreateUploadVideoRequest, " + request.getUserData());
-            System.out.println("CreateUploadVideoRequest, requestId:" + response.getRequestId());
-            System.out.println("UploadAddress, " + response.getUploadAddress());
-            System.out.println("UploadAuth, " + response.getUploadAuth());
-            System.out.println("imageId, " + response.getImageId());
-            System.out.println("imageURL, " + response.getImageURL());
+            log.info("CreateUploadVideoRequest, " + request.getUserData());
+            log.info("CreateUploadVideoRequest, requestId:" + response.getRequestId());
+            log.info("UploadAddress, " + response.getUploadAddress());
+            log.info("UploadAuth, " + response.getUploadAuth());
+            log.info("imageId, " + response.getImageId());
+            log.info("imageURL, " + response.getImageURL());
             result = response.getImageId();
         } catch (ClientException e) {
             log.error("upload video exception ", e);

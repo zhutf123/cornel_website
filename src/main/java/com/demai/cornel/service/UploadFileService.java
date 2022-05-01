@@ -1,7 +1,11 @@
 package com.demai.cornel.service;
 
 import com.demai.cornel.constant.ConfigProperties;
+import com.demai.cornel.util.AliStaticSourceUtil;
+import com.demai.cornel.util.IDUtils;
+import com.demai.cornel.util.StringUtil;
 import com.demai.cornel.util.json.JsonUtil;
+import com.demai.cornel.vo.uploadfile.UploadResp;
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.startup.ContextConfig;
@@ -39,21 +43,26 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
         }
     }
 
-    public String uploadFile(MultipartFile files, String key) throws IOException {
+    public UploadResp uploadFile(MultipartFile files,String name,Integer type) throws IOException {
         try {
-            log.info("file name is [{}]", files.getOriginalFilename());
-            File saveFile = new File(configProperties.uploadLocation + key);
-            String downloadUrl=null;
-            if(saveFile.exists()&&saveFile.isFile()){
-                log.debug("file already exist key is [{}]",key);
-                 downloadUrl = downloadFileService.getDownloadUri(saveFile.getName());
-                log.info("==={}", JsonUtil.toJson(downloadUrl));
-                return downloadUrl;
+            String fileName = files.getOriginalFilename();
+            if (StringUtil.isBlank(name)){
+                name = fileName;
             }
+            log.info("file name is [{}]", fileName);
+            String path = configProperties.uploadLocation + IDUtils.getUUID();
+            File saveFile = new File(path);
             FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
-             downloadUrl = downloadFileService.getDownloadUri(saveFile.getName());
-            log.info("==={}", JsonUtil.toJson(downloadUrl));
-            return downloadUrl;
+            String sourceId;
+            String url;
+            if (type == 0) {
+                sourceId = AliStaticSourceUtil.uploadVideo(name, path);
+                url = AliStaticSourceUtil.getVideoUrl(sourceId);
+            } else {
+                sourceId = AliStaticSourceUtil.uploadImg(name, path);
+                url = AliStaticSourceUtil.getImageUrl(sourceId);
+            }
+            return UploadResp.builder().build();
         } catch (Exception e) {
             log.error("save file fail ", e);
             return null;
