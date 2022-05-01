@@ -38,6 +38,6 @@ import java.io.Serializable;
             pageNum = 1;
         }
         this.pageNum = pageNum;
-        this.offSet = (this.pageNum - 1) * this.pageSize + 1;
+        this.offSet = (this.pageNum - 1) * this.pageSize;
     }
 }
