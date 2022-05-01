@@ -10,6 +10,7 @@ import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,8 @@ import java.util.List;
         try {
             teleplayService.addChannelInfo(param);
             return JsonResult.success("success");
+        } catch (DuplicateKeyException e) {
+            return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
         } catch (Exception e) {
             log.error("用户登录异常！", e);
         }
