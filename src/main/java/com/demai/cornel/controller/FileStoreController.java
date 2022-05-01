@@ -34,7 +34,7 @@ import java.util.UUID;
     @PostMapping(value = "/upload", headers = ("content-type=multipart/*")) @ResponseBody public JsonResult upload(
             @RequestParam("file") MultipartFile req, @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "type", required = true) Integer type) {
-        log.info("upload the file the file key is [{}] name is:{}", key, name);
+        log.info("upload the file the file key is [{}] name is:{}", name);
         try {
             UploadResp resp = uploadFileService.uploadFile(req, name, type);
             return JsonResult.success(resp);
@@ -42,7 +42,6 @@ import java.util.UUID;
             log.error("upload file fail due to ", e);
             return JsonResult.error("upload fail");
         }
-        return JsonResult.error("upload fail");
     }
 
 }
