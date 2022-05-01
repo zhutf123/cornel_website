@@ -36,8 +36,7 @@ public class Channel implements Serializable {
     private Long operator;
     private String operatorName;
     private Map<String, String> extInfo;
-
-
+    private Date createTime;
 
     @AllArgsConstructor
     @NoArgsConstructor

@@ -60,9 +60,9 @@ public class Teleplay implements Serializable {
     public static enum TeleplayStatusEnum implements IEmus {
 
         ERROR_CODE(-1, "未知"),
-        ONLINE(0, "在线"),
-        AUDITING(2, "审核中"),
-        OFFLINE(1, "下线");
+        ONLINE(1, "在线"),
+        AUDITING(3, "审核中"),
+        OFFLINE(2, "下线");
 
         @Setter @Getter
         private int value;
