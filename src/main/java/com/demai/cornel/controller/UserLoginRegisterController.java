@@ -101,8 +101,6 @@ public class UserLoginRegisterController {
         try {
             Preconditions.checkNotNull(param);
             Preconditions.checkNotNull(param.getJscode());
-            Preconditions.checkNotNull(param.getPhone());
-            Preconditions.checkNotNull(param.getMsgCode());
             UserLoginResp login = userLoginService.doLogin(param);
             if (login.getCode().compareTo(UserLoginResp.CODE_ENUE.SUCCESS.getValue()) == 0) {
                 return JsonResult.success(login);

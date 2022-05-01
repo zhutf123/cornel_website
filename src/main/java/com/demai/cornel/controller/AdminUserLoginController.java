@@ -64,10 +64,9 @@ public class AdminUserLoginController {
     @ResponseBody
     public JsonResult doUserLogin(@RequestBody UserLoginParam param, HttpServletResponse response) {
         try {
-            Preconditions.checkNotNull(param);
-            Preconditions.checkNotNull(param.getJscode());
-            Preconditions.checkNotNull(param.getPhone());
-            Preconditions.checkNotNull(param.getMsgCode());
+            Preconditions.checkNotNull(param.getName());
+            Preconditions.checkNotNull(param.getPasswd());
+            param.setAdmin(Boolean.TRUE);
             UserLoginResp login = userLoginService.doLogin(param);
             if (login.getCode().compareTo(UserLoginResp.CODE_ENUE.SUCCESS.getValue()) == 0) {
                 return JsonResult.success(login);

@@ -7,6 +7,7 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.service.WeChatService;
 import com.demai.cornel.util.AliStaticSourceUtil;
 import com.demai.cornel.util.CookieAuthUtils;
+import com.demai.cornel.util.MD5Util;
 import com.demai.cornel.util.json.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -66,6 +67,11 @@ public class DomeController {
     public JsonResult dealRedis(String key, String value) {
         stringRedisTemplate.opsForValue().set(key, value);
         return JsonResult.success("");
+    }
+
+    @RequestMapping(value = "/genPasswd", method = RequestMethod.GET)
+    @ResponseBody public JsonResult genPasswd(String key) {
+        return JsonResult.success(MD5Util.MD5Encode(key, "UTF-8"));
     }
 
 //    @RequestMapping(value = "/confirm.json", method = RequestMethod.POST)

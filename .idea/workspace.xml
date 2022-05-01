@@ -9,7 +9,17 @@
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/FileStoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/FileStoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/UserLoginResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/UserLoginResp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminUserLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminUserLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/DomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/DomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/UserLoginRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/UserLoginRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/UserInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/UserInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/UserLoginParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/UserLoginParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserLoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/MD5Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/MD5Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources.prod/application-default.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +93,7 @@
       <recent name="com.demai.cornel.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AliStaticSourceUtil">
+  <component name="RunManager" selected="Application.MD5Util">
     <configuration name="AliStaticSourceUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.AliStaticSourceUtil" />
       <module name="cornel_backend" />
@@ -110,6 +120,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MD5Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.MD5Util" />
+      <module name="cornel_backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.demai.cornel.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -125,6 +148,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MD5Util" />
         <item itemvalue="Application.AliStaticSourceUtil" />
         <item itemvalue="Application.GenJavaCode4Pg" />
       </list>
@@ -170,7 +194,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="43864000" />
+      <workItem from="1651224811459" duration="45917000" />
     </task>
     <servers />
   </component>

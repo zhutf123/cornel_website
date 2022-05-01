@@ -21,6 +21,10 @@ public interface UserInfoDao {
 
     UserInfo getUserInfoByUserId(@Param("userId") String userId);
 
+    UserInfo getUserInfoByOpenId(@Param("openId") String openId);
+
+    UserInfo getUserInfoByNamePasswd(@Param("name") String name, @Param("passwd") String passwd);
+
     UserInfo getUserInfoNoDriverByPhone(@Param("phone") String phone);
 
     int updateUserOpenIdByUid(@Param("openId") String openId, @Param("userId") Long userId);

@@ -254,6 +254,18 @@
         from user_info where user_id=#{userId} and status=1;
     </select>
 
+    <select id="getUserInfoByNamePasswd" resultMap="userInfoResultMap">
+        select
+        <include refid="main_column"/>
+        from user_info where name=#{name} and passwd=#{passwd} and status=1;
+    </select>
+
+    <select id="getUserInfoByOpenId" resultMap="userInfoResultMap">
+        select
+        <include refid="main_column"/>
+        from user_info where open_id=#{openId} and status=1;
+    </select>
+
     <select id="getUserInfoNoDriverByPhone" parameterType="String" resultMap="userInfoResultMap">
         SELECT
         <include refid="main_column"/>

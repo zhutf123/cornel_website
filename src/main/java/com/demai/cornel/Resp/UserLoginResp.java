@@ -16,6 +16,8 @@ import java.io.Serializable;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserLoginResp implements Serializable {
     /** 微信openId */
     private String openId;
@@ -32,22 +34,8 @@ public class UserLoginResp implements Serializable {
     /**  用户当前的状态 **/
     private Integer userStatus=0;
 
-    public UserLoginResp(String openId, String userId, Integer role, Integer code, String phone) {
-        this.openId = openId;
-        this.userId = userId;
-        this.role = role;
-        this.code = code;
-        this.phone = phone;
-    }
+    private String CKey ;
 
-    public UserLoginResp(String openId, String userId, Integer role, Integer code, String phone, Integer userStatus) {
-        this.openId = openId;
-        this.userId = userId;
-        this.role = role;
-        this.code = code;
-        this.phone = phone;
-        this.userStatus = userStatus;
-    }
 
     public static enum CODE_ENUE implements IEmus {
         NO_USER(-1, "用户不存在，请先注册"),
