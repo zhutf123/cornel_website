@@ -28,8 +28,8 @@ public class OperateTeleplayParam implements Serializable {
     private String mainImage;
     private String mainSource;
     private String title;
-    private String desc;
-    private List<Long> channel;
+    private String depict;
+    private List<String> channel;
     private Integer nums;
     private Integer vip;
     private Integer status;

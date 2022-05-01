@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
                     .id(param.getId())
                     .channel(param.getChannel())
                     .title(param.getTitle())
-                    .desc(param.getDesc())
+                    .depict(param.getDepict())
                     .mainImage(param.getMainImage())
                     .mainSource(param.getMainSource())
                     .vip(param.getVip())

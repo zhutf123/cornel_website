@@ -7,7 +7,7 @@
         <result column="main_image" property="mainImage"/>
         <result column="main_source" property="mainSource"/>
         <result column="title" property="title"/>
-        <result column="desc" property="desc"/>
+        <result column="depict" property="depict"/>
         <result column="nums" property="nums"/>
         <result column="channel" property="channel" jdbcType="ARRAY" javaType="java.util.List"
                 typeHandler="com.demai.cornel.databaseHandler.ArrayStringListTypeHandler"/>
@@ -32,7 +32,7 @@
         main_source,
         channel,
         title,
-        desc,
+        depict,
         nums,
         vip,
         status,
@@ -64,8 +64,8 @@
             <if test="title != null">
                 title = #{title},
             </if>
-            <if test="desc != null">
-                desc = #{desc},
+            <if test="depict != null">
+                depict = #{depict},
             </if>
             <if test="nums != null">
                 nums = #{nums},
@@ -128,8 +128,8 @@
             <if test="title != null">
                 title ,
             </if>
-            <if test="desc != null">
-                "desc" ,
+            <if test="depict != null">
+                depictri ,
             </if>
             <if test="nums != null">
                 nums ,
@@ -188,8 +188,8 @@
             <if test="title != null">
                 #{title} ,
             </if>
-            <if test="desc != null">
-                #{desc} ,
+            <if test="depict != null">
+                #{depict} ,
             </if>
             <if test="nums != null">
                 #{nums} ,
@@ -264,7 +264,7 @@
             </if>
 
         </where>
-        order by id desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
     
 </mapper>
