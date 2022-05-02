@@ -59,6 +59,7 @@ import java.util.stream.Collectors;
                     .videoUrl(param.getVideoUrl())
                     .videoTime(param.getVideoTime())
                     .vip(param.getVip())
+                    .seq(param.getSeq())
                     .teleplayId(param.getTeleplayId())
                     .recommend(param.getRecommend())
                     .status(TeleplayVideo.TeleplayVideoStatusEnum.getTeleplayVideoStatusEnum(param.getStatus(), null)

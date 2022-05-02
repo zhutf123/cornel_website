@@ -16,6 +16,7 @@ import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.service.TeleplayVideoService;
 import com.demai.cornel.vo.JsonResult;
+import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -114,6 +115,7 @@ import java.util.List;
     @RequestMapping(value = "/suggestChannel.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody public JsonResult suggestChannel(@RequestParam("name")String name, HttpServletResponse response) {
         try {
+            Preconditions.checkNotNull(name);
             List<Channel> channelList = teleplayService.suggestChannel(name);
             return JsonResult.success(channelList);
         } catch (Exception e) {
@@ -131,6 +133,7 @@ import java.util.List;
     @RequestMapping(value = "/delChannel.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
     public JsonResult delChannel(@RequestParam Long id, HttpServletResponse response) {
         try {
+            Preconditions.checkNotNull(id);
             teleplayService.delChannelInfo(id);
             return JsonResult.success("success");
         } catch (Exception e) {
@@ -164,6 +167,7 @@ import java.util.List;
     @RequestMapping(value = "/operateTeleplayVideo.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult operateTeleplayVideo(
             @RequestBody OperateTeleplayVideoParam param, HttpServletResponse response) {
         try {
+            Preconditions.checkNotNull(param);
             teleplayVideoService.operateTeleplayVideo(param);
             return JsonResult.success("success");
         }  catch (Exception e) {

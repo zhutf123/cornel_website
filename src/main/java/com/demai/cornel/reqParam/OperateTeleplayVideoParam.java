@@ -35,6 +35,8 @@ public class OperateTeleplayVideoParam implements Serializable {
     private Long videoTime;
     @NonNull
     private Long teleplayId;
+    @NonNull
+    private Integer seq;
     private Integer vip;
     private Integer status;
     private Integer recommend;
