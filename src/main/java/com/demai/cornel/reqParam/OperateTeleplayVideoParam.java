@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Create By tfzhu  2022/5/1  4:23 PM
