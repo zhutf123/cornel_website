@@ -5,6 +5,10 @@ spring:
     admin:
       enabled: true
     name: cornel_website
+    jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+      default-property-inclusion: non_null
 
 #  profiles:
 #    active:
@@ -19,7 +23,7 @@ spring:
       use-suffix-pattern: true
       use-registered-suffix-pattern: true
     contentnegotiation:
-      favor-path-extension: false
+      favor-path-extension: true
       parameter-name: format
   sleuth:
     sampler:
