@@ -20,4 +20,6 @@ public interface TeleplayDao {
 
     List<Teleplay> queryTeleplayList(QueryTeleplayParam param);
 
+    Integer queryTeleplayAllNum(QueryTeleplayParam param);
+
 }

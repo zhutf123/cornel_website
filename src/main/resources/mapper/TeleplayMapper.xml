@@ -270,5 +270,34 @@
         </where>
         order by t.operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
+
+
+    <select id="queryTeleplayAllNum" parameterType="com.demai.cornel.reqParam.QueryTeleplayParam"
+            resultType="int">
+        select
+         count(1)
+        from teleplay 
+        <where>
+            1=1
+            <if test="id != null">
+                and t.id=#{id}
+            </if>
+            <if test="title !=null">
+                and t.title ~ #{title}
+            </if>
+
+            <if test="status !=null">
+                and t.status = #{status}
+            </if>
+
+            <if test="channel !=null">
+                and <![CDATA[ t.channel @> array[#{channel}] ]]>
+            </if>
+
+            <if test="vip !=null">
+                t.vip =  #{vip}
+            </if>
+        </where>
+    </select>
     
 </mapper>

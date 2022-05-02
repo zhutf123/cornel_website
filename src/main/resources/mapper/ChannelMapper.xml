@@ -87,8 +87,25 @@
         <if test="type !=null">
             and type = #{type}
         </if>
-        
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+
+    <select id="queryChannelAllNum" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
+            resultType="int">
+        select
+         count(1)
+        from channel
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
+        <if test="name !=null">
+            and name ~ #{name}
+        </if>
+        <if test="type !=null">
+            and type = #{type}
+        </if>
     </select>
 
     <select id="queryAllChannel" parameterType="com.demai.cornel.reqParam.QueryChannelParam"

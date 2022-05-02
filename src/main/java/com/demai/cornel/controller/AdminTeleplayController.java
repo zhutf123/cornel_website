@@ -15,6 +15,7 @@ import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.service.TeleplayVideoService;
+import com.demai.cornel.vo.JsonListResult;
 import com.demai.cornel.vo.JsonResult;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
@@ -44,15 +45,16 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/teleplayList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonResult teleplayList(
+    public JsonListResult teleplayList(
             @RequestBody QueryTeleplayParam param, HttpServletResponse response) {
         try {
             List<Teleplay> teleplayList = teleplayService.getTeleplayList(param);
-            return JsonResult.success(teleplayList);
+            Integer allNum = teleplayService.getTeleplayAllNum(param);
+            return JsonListResult.success(teleplayList,allNum);
         } catch (Exception e) {
             log.error("用户登录异常！", e);
         }
-        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
     /**
@@ -97,15 +99,16 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/channelList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody public JsonResult channelList(
+    @ResponseBody public JsonListResult channelList(
             @RequestBody QueryChannelParam param, HttpServletResponse response) {
         try {
             List<Channel> channelList = teleplayService.getChannelList(param);
-            return JsonResult.success(channelList);
+            Integer allNum = teleplayService.getChannelAllNum(param);
+            return JsonListResult.success(channelList,allNum);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);
         }
-        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
     /**
@@ -147,16 +150,17 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/teleplayVideoList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonResult teleplayVideoList(
+    public JsonListResult teleplayVideoList(
             @RequestBody QueryTeleplayVideoParam param, HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(param);
             List<TeleplayVideo> teleplayVideoList = teleplayVideoService.getTeleplayVideoList(param);
-            return JsonResult.success(teleplayVideoList);
+            Integer allNum = teleplayVideoService.getTeleplayVideoAllNum(param);
+            return JsonListResult.success(teleplayVideoList, allNum);
         } catch (Exception e) {
             log.error("用户登录异常！", e);
         }
-        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
     /***

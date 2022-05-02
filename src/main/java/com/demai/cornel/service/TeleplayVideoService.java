@@ -47,6 +47,15 @@ import java.util.stream.Collectors;
         return Lists.newArrayList();
     }
 
+    public Integer getTeleplayVideoAllNum(QueryTeleplayVideoParam param) {
+        try {
+            return teleplayVideoDao.queryTeleplayVideoAllNum(param);
+        } catch (Exception e) {
+            log.error("查询剧集list异常", e);
+        }
+        return 0;
+    }
+
 
     public void operateTeleplayVideo(OperateTeleplayVideoParam param) throws DuplicateKeyException {
         try {

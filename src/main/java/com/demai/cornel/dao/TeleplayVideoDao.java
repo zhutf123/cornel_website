@@ -20,4 +20,6 @@ public interface TeleplayVideoDao {
 
     List<TeleplayVideo> queryTeleplayVideoList(QueryTeleplayVideoParam param);
 
+    Integer queryTeleplayVideoAllNum(QueryTeleplayVideoParam param);
+
 }

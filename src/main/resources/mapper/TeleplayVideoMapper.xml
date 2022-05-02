@@ -168,5 +168,18 @@
         </where>
         order by v.seq offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
+
+    <select id="queryTeleplayVideoAllNum" parameterType="com.demai.cornel.reqParam.QueryTeleplayVideoParam"
+            resultType="int">
+        select
+         count(1)
+        from teleplay_video
+        <where>
+            1=1
+            <if test="teleplayId != null">
+                and v.teleplay_id=#{teleplayId}
+            </if>
+        </where>
+    </select>
     
 </mapper>
