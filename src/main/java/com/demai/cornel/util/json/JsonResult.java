@@ -12,8 +12,6 @@ public class JsonResult<T> {
 
     public static final int SUCCESS_CODE = 0;
 
-    public static final int SHOULD_LOGIN_CODE = 1000;
-
     public JsonResult() {
     }
 

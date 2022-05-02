@@ -21,6 +21,8 @@ public class JsonResult<DATATYPE> implements Serializable {
     private String msg;
     private DATATYPE data;
 
+    public static final int SHOULD_LOGIN_CODE = 1000;
+
     public JsonResult() {
         this.ret = true;
         this.msg = "";
