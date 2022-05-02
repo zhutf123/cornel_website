@@ -5,10 +5,10 @@ spring:
     admin:
       enabled: true
     name: cornel_website
-    jackson:
-      time-zone: GMT+8
-      date-format: yyyy-MM-dd HH:mm:ss
-      default-property-inclusion: non_null
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
 
 #  profiles:
 #    active:
