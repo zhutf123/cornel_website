@@ -5,6 +5,8 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.util.CookieAuthUtils;
 import com.demai.cornel.util.CookieUtils;
 import com.demai.cornel.util.StringUtil;
+import com.demai.cornel.util.json.JsonResult;
+import com.demai.cornel.util.json.JsonUtil;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
+import static com.demai.cornel.util.json.JsonResult.SHOULD_LOGIN_CODE;
 
 /**
  * Created by tfzhu on 2019/1/4.
@@ -33,6 +36,8 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
             String cKey = CookieUtils.getCookieValue(request, CookieAuthUtils.COOKIE_ADMIN_USER);
             if (StringUtil.isBlank(cKey)) {
                 log.info("check cookie is null please login");
+                response.getWriter()
+                        .println(JsonUtil.toJson(new JsonResult(Boolean.TRUE, SHOULD_LOGIN_CODE, "请登录", null)));
                 return false;
             }
             if (!cKey.contains("u=")) {
@@ -56,16 +61,11 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
 
     @Override public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
             Object o, ModelAndView modelAndView) throws Exception {
-        log.info("cookieInterceptor prepare");
-
     }
 
     @Override public void afterCompletion(HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
         UserHolder.remove();
-
-        log.info("cookieInterceptor end");
-
     }
 
 }

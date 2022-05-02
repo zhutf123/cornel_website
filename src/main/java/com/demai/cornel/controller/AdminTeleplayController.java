@@ -129,7 +129,7 @@ import java.util.List;
 
     /***
      * 添加/编辑频道
-     * @param param
+     * @param id
      * @param response
      * @return
      */
