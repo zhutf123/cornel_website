@@ -131,6 +131,10 @@
         from channel
         where status = 1
         and name ~ #{name}
+        <if test="type !=null">
+            and type=#{type}
+        </if>
+
     </select>
 
     

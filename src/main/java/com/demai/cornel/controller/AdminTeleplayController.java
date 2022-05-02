@@ -120,10 +120,10 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/suggestChannel.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    @ResponseBody public JsonResult suggestChannel(@RequestParam("name")String name, HttpServletResponse response) {
+    @ResponseBody public JsonResult suggestChannel(@RequestParam("name")String name,@RequestParam(value = "type", required = false)Integer type, HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(name);
-            List<Channel> channelList = teleplayService.suggestChannel(name);
+            List<Channel> channelList = teleplayService.suggestChannel(name, type);
             return JsonResult.success(channelList);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);

@@ -166,14 +166,10 @@ import java.util.stream.Collectors;
         channelDao.update(channel);
     }
 
-    public List<Channel> suggestChannel(String name) {
+    public List<Channel> suggestChannel(String name,Integer type) {
         try {
-            List<Channel> channelList = channelDao.suggestChannel(name);
+            List<Channel> channelList = channelDao.suggestChannel(name, type);
             if (CollectionUtils.isNotEmpty(channelList)) {
-                channelList.forEach(t -> {
-                    t.setStatusDesc(Teleplay.TeleplayStatusEnum
-                            .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
-                });
                 return channelList;
             }
         } catch (Exception e) {
