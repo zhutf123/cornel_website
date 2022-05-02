@@ -89,7 +89,7 @@
             <if test="status != null">
                 status = #{status},
                 <if test="status = 2">
-                    operator_name = null,
+                    operate_time = null,
                 </if>
             </if>
             <if test="operator != null"> operator = #{operator},</if>
