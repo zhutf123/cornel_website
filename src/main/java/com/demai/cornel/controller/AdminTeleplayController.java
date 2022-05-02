@@ -150,6 +150,7 @@ import java.util.List;
     public JsonResult teleplayVideoList(
             @RequestBody QueryTeleplayVideoParam param, HttpServletResponse response) {
         try {
+            Preconditions.checkNotNull(param);
             List<TeleplayVideo> teleplayVideoList = teleplayVideoService.getTeleplayVideoList(param);
             return JsonResult.success(teleplayVideoList);
         } catch (Exception e) {

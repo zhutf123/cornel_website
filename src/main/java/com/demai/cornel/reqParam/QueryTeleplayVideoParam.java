@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.io.Serializable;
 
@@ -18,5 +19,6 @@ import java.io.Serializable;
  */
 @Data @NoArgsConstructor @AllArgsConstructor @Builder public class QueryTeleplayVideoParam extends BaseQueryParam {
 
+    @NonNull
     private Long teleplayId;
 }
