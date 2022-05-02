@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * zhutf 2019
  */
-@Slf4j @CustomInterceptor(order = 3, addPathPatterns = { "/**" }) public class AuthCheckInterceptor
+@Slf4j @CustomInterceptor(order = 2, addPathPatterns = { "/**" }) public class AuthCheckInterceptor
         implements HandlerInterceptor {
 
     @Resource private UrlAclServiceImpl urlAclService;
