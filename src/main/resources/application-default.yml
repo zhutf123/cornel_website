@@ -13,7 +13,10 @@ spring:
       max-redirects: 5
       password: cornel00147258
       timeout: 5
-
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
 
 jetcache:
   statIntervalMinutes: 1
