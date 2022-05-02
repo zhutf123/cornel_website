@@ -38,22 +38,11 @@ import java.util.stream.Collectors;
     @Resource private TeleplayVideoDao teleplayVideoDao;
 
     public List<TeleplayVideo> getTeleplayVideoList(QueryTeleplayVideoParam param) {
-        try {
-            List<TeleplayVideo> teleplayList = teleplayVideoDao.queryTeleplayVideoList(param);
-            return teleplayList;
-        } catch (Exception e) {
-            log.error("查询剧集list异常", e);
-        }
-        return Lists.newArrayList();
+        return teleplayVideoDao.queryTeleplayVideoList(param);
     }
 
     public Integer getTeleplayVideoAllNum(QueryTeleplayVideoParam param) {
-        try {
-            return teleplayVideoDao.queryTeleplayVideoAllNum(param);
-        } catch (Exception e) {
-            log.error("查询剧集list异常", e);
-        }
-        return 0;
+        return teleplayVideoDao.queryTeleplayVideoAllNum(param);
     }
 
 

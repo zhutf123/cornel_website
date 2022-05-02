@@ -4,20 +4,23 @@
 package com.demai.cornel.reqParam;
 
 import com.demai.cornel.reqParam.base.BaseQueryParam;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
-import java.io.Serializable;
 
 /**
  * Create By tfzhu  2022/5/1  3:14 PM
  *
  * @author tfzhu
  */
-@Data @NoArgsConstructor @AllArgsConstructor @Builder public class QueryTeleplayVideoParam extends BaseQueryParam {
+@Data @NoArgsConstructor @AllArgsConstructor @Builder public class QueryTeleplayVideoBrowseDataParam extends BaseQueryParam {
 
-    private Long teleplayId;
+    @NotNull
+    private Long videoId;
+
+    private String startDate;
+
+    private String endDate;
 }

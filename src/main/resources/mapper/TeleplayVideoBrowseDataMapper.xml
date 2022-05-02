@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demai.cornel.dao.TeleplayVideoBrowseDataDao">
+    <resultMap type="com.demai.cornel.model.TeleplayVideoBrowseData" id="teleplayVideoBrowseDataResultMap">
+        <id column="id" property="id" />
+        <result column="video_id" property="videoId" />
+        <result column="teleplay_id" property="teleplayId" />
+        <result column="follow_num" property="followNum" />
+        <result column="all_follow_num" property="allFollowNum" />
+        <result column="play_num" property="playNum" />
+        <result column="all_play_num" property="allPlayNum" />
+        <result column="like_num" property="likeNum" />
+        <result column="all_like_num" property="allLikeNum" />
+        <result column="share_num" property="shareNum" />
+        <result column="all_share_num" property="allShareNum" />
+        <result column="comment_num" property="commentNum" />
+        <result column="all_comment_num" property="allCommentNum" />
+        <result column="use_day" property="useDay" />
+        <result column="ext_info" property="extInfo" />
+        <result column="operate_time" property="operateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <sql id="main_column">
+        id,
+        video_id,
+        teleplay_id,
+        follow_num,
+        all_follow_num,
+        play_num,
+        all_play_num,
+        like_num,
+        all_like_num,
+        share_num,
+        all_share_num,
+        comment_num,
+        all_comment_num,
+        use_day,
+        ext_info,
+        operate_time,
+        create_time
+    </sql>
+
+    <update id="update" parameterType="com.demai.cornel.model.TeleplayVideoBrowseData">
+        update teleplay_video_browse_data
+        <trim prefix="set" suffixOverrides=",">
+            <if test="videoId != null"> video_id = #{videoId},</if>
+            <if test="teleplayId != null"> teleplay_id = #{teleplayId},</if>
+            <if test="followNum != null"> follow_num = #{followNum},</if>
+            <if test="allFollowNum != null"> all_follow_num = #{allFollowNum},</if>
+            <if test="playNum != null"> play_num = #{playNum},</if>
+            <if test="allPlayNum != null"> all_play_num = #{allPlayNum},</if>
+            <if test="likeNum != null"> like_num = #{likeNum},</if>
+            <if test="allLikeNum != null"> all_like_num = #{allLikeNum},</if>
+            <if test="shareNum != null"> share_num = #{shareNum},</if>
+            <if test="allShareNum != null"> all_share_num = #{allShareNum},</if>
+            <if test="commentNum != null"> comment_num = #{commentNum},</if>
+            <if test="allCommentNum != null"> all_comment_num = #{allCommentNum},</if>
+            <if test="useDay != null"> use_day = #{useDay},</if>
+            <if test="extInfo != null"> ext_info = #{extInfo},</if>
+            <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="com.demai.cornel.model.TeleplayVideoBrowseData" useGeneratedKeys="true" keyProperty="id" >
+        insert into teleplay_video_browse_data(
+        <trim suffixOverrides=",">
+            <if test="videoId != null"> video_id ,</if>
+            <if test="teleplayId != null"> teleplay_id ,</if>
+            <if test="followNum != null"> follow_num ,</if>
+            <if test="allFollowNum != null"> all_follow_num ,</if>
+            <if test="playNum != null"> play_num ,</if>
+            <if test="allPlayNum != null"> all_play_num ,</if>
+            <if test="likeNum != null"> like_num ,</if>
+            <if test="allLikeNum != null"> all_like_num ,</if>
+            <if test="shareNum != null"> share_num ,</if>
+            <if test="allShareNum != null"> all_share_num ,</if>
+            <if test="commentNum != null"> comment_num ,</if>
+            <if test="allCommentNum != null"> all_comment_num ,</if>
+            <if test="useDay != null"> use_day ,</if>
+            <if test="extInfo != null"> ext_info ,</if>
+            <if test="operateTime != null"> operate_time ,</if>
+            <if test="createTime != null"> create_time ,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="videoId != null"> #{videoId} ,</if>
+            <if test="teleplayId != null"> #{teleplayId} ,</if>
+            <if test="followNum != null"> #{followNum} ,</if>
+            <if test="allFollowNum != null"> #{allFollowNum} ,</if>
+            <if test="playNum != null"> #{playNum} ,</if>
+            <if test="allPlayNum != null"> #{allPlayNum} ,</if>
+            <if test="likeNum != null"> #{likeNum} ,</if>
+            <if test="allLikeNum != null"> #{allLikeNum} ,</if>
+            <if test="shareNum != null"> #{shareNum} ,</if>
+            <if test="allShareNum != null"> #{allShareNum} ,</if>
+            <if test="commentNum != null"> #{commentNum} ,</if>
+            <if test="allCommentNum != null"> #{allCommentNum} ,</if>
+            <if test="useDay != null"> #{useDay} ,</if>
+            <if test="extInfo != null"> #{extInfo} ,</if>
+            <if test="operateTime != null"> #{operateTime} ,</if>
+            <if test="createTime != null"> #{createTime} ,</if>
+        </trim>
+        )
+    </insert>
+
+
+    <select id="getTeleplayVideoBrowseDataList" parameterType="com.demai.cornel.reqParam.QueryTeleplayVideoBrowseDataParam"
+            resultMap="teleplayVideoBrowseDataResultMap">
+        select
+        <include refid="main_column"/>
+        from teleplay_video_browse_data 
+        <where>
+            video_id=#{videoId}
+            <if test="startDate != null">
+                and <![CDATA[ use_day >= #{startDate} ]]>
+            </if>
+            <if test="endDate !=null">
+                and <![CDATA[ use_day <= #{endDate} ]]>
+            </if>
+        </where>
+        order by use_day desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+
+    <select id="getTeleplayVideoBrowseDataAllNum" parameterType="com.demai.cornel.reqParam.QueryTeleplayVideoBrowseDataParam"
+            resultType="int">
+        select
+         count(1)
+        from teleplay_video_browse_data
+        <where>
+            video_id=#{videoId}
+            <if test="startDate != null">
+                and <![CDATA[ use_day >= #{startDate} ]]>
+            </if>
+            <if test="endDate !=null">
+                and <![CDATA[ use_day <= #{endDate} ]]>
+            </if>
+        </where>
+    </select>
+
+</mapper>

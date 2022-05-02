@@ -121,8 +121,8 @@ COMMENT
 ON COLUMN teleplay_video.title IS '剧集名称';
 
 
-DROP TABLE IF EXISTS teleplay_video_follow_detail;
-CREATE TABLE teleplay_video_follow_detail
+DROP TABLE IF EXISTS teleplay_video_browse_data;
+CREATE TABLE teleplay_video_browse_data
 (
     id           serial PRIMARY KEY,
     video_id   bigint,

@@ -7,13 +7,16 @@ import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
+import com.demai.cornel.model.TeleplayVideoBrowseData;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
+import com.demai.cornel.reqParam.QueryTeleplayVideoBrowseDataParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
 import com.demai.cornel.service.TeleplayService;
+import com.demai.cornel.service.TeleplayVideoBrowseDataService;
 import com.demai.cornel.service.TeleplayVideoService;
 import com.demai.cornel.vo.JsonListResult;
 import com.demai.cornel.vo.JsonResult;
@@ -39,6 +42,7 @@ import java.util.List;
 
     @Resource private TeleplayService teleplayService;
     @Resource private TeleplayVideoService teleplayVideoService;
+    @Resource private TeleplayVideoBrowseDataService teleplayVideoBrowseDataService;
 
     /**
      * 查询剧集list
@@ -52,13 +56,13 @@ import java.util.List;
             Integer allNum = teleplayService.getTeleplayAllNum(param);
             return JsonListResult.success(teleplayList,allNum);
         } catch (Exception e) {
-            log.error("用户登录异常！", e);
+            log.error("获取剧集list异常！", e);
         }
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
     /**
-     * 保存、编辑剧集list
+     * 保存、编辑剧集
      * @return
      */
     @RequestMapping(value = "/operateTeleplay.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
@@ -68,7 +72,7 @@ import java.util.List;
             teleplayService.operateTeleplay(param);
             return JsonResult.success("success");
         } catch (Exception e) {
-            log.error("用户登录异常！", e);
+            log.error("添加、修改剧集信息异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
@@ -89,7 +93,7 @@ import java.util.List;
         } catch (DuplicateKeyException e) {
             return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
         } catch (Exception e) {
-            log.error("添加频道信息异常！", e);
+            log.error("添加、修改频道信息异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
@@ -153,12 +157,12 @@ import java.util.List;
     public JsonListResult teleplayVideoList(
             @RequestBody QueryTeleplayVideoParam param, HttpServletResponse response) {
         try {
-            Preconditions.checkNotNull(param);
+            Preconditions.checkNotNull(param.getTeleplayId());
             List<TeleplayVideo> teleplayVideoList = teleplayVideoService.getTeleplayVideoList(param);
             Integer allNum = teleplayVideoService.getTeleplayVideoAllNum(param);
             return JsonListResult.success(teleplayVideoList, allNum);
         } catch (Exception e) {
-            log.error("用户登录异常！", e);
+            log.error("获取子剧集list！", e);
         }
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
@@ -179,6 +183,26 @@ import java.util.List;
             log.error("添加频道信息异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /***
+     * 添加/编辑子剧集
+     * @param param
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/teleplayVideoDetail.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonListResult teleplayVideoDetail(
+            @RequestBody QueryTeleplayVideoBrowseDataParam param, HttpServletResponse response) {
+        try {
+            Preconditions.checkNotNull(param.getVideoId());
+            List<TeleplayVideoBrowseData> teleplayVideoBrowseDataList = teleplayVideoBrowseDataService
+                    .getTeleplayVideoBrowseDataList(param);
+            Integer allNum = teleplayVideoBrowseDataService.getTeleplayVideoBrowseDataAllNum(param);
+            return JsonListResult.success(teleplayVideoBrowseDataList, allNum);
+        } catch (Exception e) {
+            log.error("子剧集详情数据异常！", e);
+        }
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
 }
