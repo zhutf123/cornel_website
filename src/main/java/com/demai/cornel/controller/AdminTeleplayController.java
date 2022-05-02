@@ -138,7 +138,7 @@ import java.util.List;
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
-    
+
     /**
      * 查询剧集list
      * @return
@@ -166,9 +166,7 @@ import java.util.List;
         try {
             teleplayVideoService.operateTeleplayVideo(param);
             return JsonResult.success("success");
-        } catch (DuplicateKeyException e) {
-            return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
-        } catch (Exception e) {
+        }  catch (Exception e) {
             log.error("添加频道信息异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
