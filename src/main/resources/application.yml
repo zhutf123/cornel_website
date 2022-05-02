@@ -19,7 +19,7 @@ spring:
       use-suffix-pattern: true
       use-registered-suffix-pattern: true
     contentnegotiation:
-      favor-path-extension: true
+      favor-path-extension: false
       parameter-name: format
   sleuth:
     sampler:

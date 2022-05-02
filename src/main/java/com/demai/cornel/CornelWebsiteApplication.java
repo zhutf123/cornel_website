@@ -3,21 +3,15 @@
  */
 package com.demai.cornel;
 
-import javax.servlet.Servlet;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableAsync;
-
-import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 
 /**
  * Create By zhutf 19-9-30 下午5:37
@@ -33,11 +27,11 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 //@ImportResource("classpath:spring/dubbo-client.xml")
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
-public class CornelBackendApplication extends SpringBootServletInitializer {
+public class CornelWebsiteApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(CornelBackendApplication.class);
+        return application.sources(CornelWebsiteApplication.class);
     }
 
 
