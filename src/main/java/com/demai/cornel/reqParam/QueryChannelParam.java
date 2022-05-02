@@ -16,7 +16,8 @@ import java.io.Serializable;
  *
  * @author tfzhu
  */
-@Data @NoArgsConstructor @AllArgsConstructor @Builder public class QueryChannelParam extends BaseQueryParam {
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
+public class QueryChannelParam extends BaseQueryParam {
 
     private Long id;
     private String name;

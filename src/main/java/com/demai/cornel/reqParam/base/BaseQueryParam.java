@@ -15,7 +15,7 @@ import java.io.Serializable;
  *
  * @author tfzhu
  */
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
 public class BaseQueryParam implements Serializable {
     private Integer pageSize;
     private Integer pageNum = 1;
