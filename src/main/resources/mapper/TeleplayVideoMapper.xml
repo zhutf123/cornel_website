@@ -177,7 +177,7 @@
         <where>
             1=1
             <if test="teleplayId != null">
-                and v.teleplay_id=#{teleplayId}
+                and teleplay_id=#{teleplayId}
             </if>
         </where>
     </select>

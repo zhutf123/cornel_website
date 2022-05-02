@@ -280,22 +280,22 @@
         <where>
             1=1
             <if test="id != null">
-                and t.id=#{id}
+                and id=#{id}
             </if>
             <if test="title !=null">
-                and t.title ~ #{title}
+                and title ~ #{title}
             </if>
 
             <if test="status !=null">
-                and t.status = #{status}
+                and status = #{status}
             </if>
 
             <if test="channel !=null">
-                and <![CDATA[ t.channel @> array[#{channel}] ]]>
+                and <![CDATA[ channel @> array[#{channel}] ]]>
             </if>
 
             <if test="vip !=null">
-                t.vip =  #{vip}
+                vip =  #{vip}
             </if>
         </where>
     </select>
