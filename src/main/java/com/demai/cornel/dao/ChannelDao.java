@@ -27,6 +27,6 @@ public interface ChannelDao {
 
     List<Channel> queryAllOnlineChannel();
 
-    List<Channel> suggestChannel(@Param("name") String name);
+    List<Channel> suggestChannel(@Param("name") String name,@Param("type") Integer type);
 
 }
