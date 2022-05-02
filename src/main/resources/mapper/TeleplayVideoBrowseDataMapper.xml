@@ -16,6 +16,8 @@
         <result column="all_share_num" property="allShareNum" />
         <result column="comment_num" property="commentNum" />
         <result column="all_comment_num" property="allCommentNum" />
+        <result column="play_time" property="playTime" />
+        <result column="all_play_time" property="allPlayTime" />
         <result column="use_day" property="useDay" />
         <result column="ext_info" property="extInfo" />
         <result column="operate_time" property="operateTime" />
@@ -36,6 +38,8 @@
         all_share_num,
         comment_num,
         all_comment_num,
+        play_time,
+        all_play_time,
         use_day,
         ext_info,
         operate_time,
@@ -57,6 +61,8 @@
             <if test="allShareNum != null"> all_share_num = #{allShareNum},</if>
             <if test="commentNum != null"> comment_num = #{commentNum},</if>
             <if test="allCommentNum != null"> all_comment_num = #{allCommentNum},</if>
+            <if test="playTime != null"> play_time = #{playTime},</if>
+            <if test="allPlayTime != null"> all_play_time = #{allPlayTime},</if>
             <if test="useDay != null"> use_day = #{useDay},</if>
             <if test="extInfo != null"> ext_info = #{extInfo},</if>
             <if test="operateTime != null"> operate_time = #{operateTime},</if>
@@ -80,6 +86,8 @@
             <if test="allShareNum != null"> all_share_num ,</if>
             <if test="commentNum != null"> comment_num ,</if>
             <if test="allCommentNum != null"> all_comment_num ,</if>
+            <if test="playTime != null"> play_time,</if>
+            <if test="allPlayTime != null"> all_play_time,</if>
             <if test="useDay != null"> use_day ,</if>
             <if test="extInfo != null"> ext_info ,</if>
             <if test="operateTime != null"> operate_time ,</if>
@@ -99,6 +107,8 @@
             <if test="allShareNum != null"> #{allShareNum} ,</if>
             <if test="commentNum != null"> #{commentNum} ,</if>
             <if test="allCommentNum != null"> #{allCommentNum} ,</if>
+            <if test="playTime != null"> #{playTime},</if>
+            <if test="allPlayTime != null"> #{allPlayTime},</if>
             <if test="useDay != null"> #{useDay} ,</if>
             <if test="extInfo != null"> #{extInfo} ,</if>
             <if test="operateTime != null"> #{operateTime} ,</if>

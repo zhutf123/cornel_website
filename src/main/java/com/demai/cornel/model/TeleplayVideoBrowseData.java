@@ -33,6 +33,8 @@ import java.util.Map;
     private Integer allShareNum;
     private Integer commentNum;
     private Integer allCommentNum;
+    private Long playTime;
+    private Long allPlayTime;
     private String useDay;
     private Map<String, String> extInfo;
     private Date operateTime;

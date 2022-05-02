@@ -137,6 +137,8 @@ CREATE TABLE teleplay_video_browse_data
     all_share_num    integer default 0,
     comment_num  integer default 0,
     all_comment_num  integer default 0,
+    play_time  bigint default 0,
+    all_play_time  bigint default 0,
     use_day varchar(256),
     ext_info     hstore,
     operate_time timestamptz(6) default now(),
