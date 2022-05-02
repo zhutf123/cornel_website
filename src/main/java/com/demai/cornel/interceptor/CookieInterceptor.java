@@ -56,12 +56,16 @@ import static com.demai.cornel.util.CookieAuthUtils.KEY_USER_NAME;
 
     @Override public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
             Object o, ModelAndView modelAndView) throws Exception {
+        log.info("cookieInterceptor prepare");
 
     }
 
     @Override public void afterCompletion(HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
         UserHolder.remove();
+
+        log.info("cookieInterceptor end");
+
     }
 
 }
