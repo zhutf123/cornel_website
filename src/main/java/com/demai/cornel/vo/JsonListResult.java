@@ -106,7 +106,7 @@ public class JsonListResult<DATATYPE> implements Serializable {
     }
 
     public static JsonListResult success(Object object,Integer allNum) {
-        return new JsonListResult<>(object);
+        return new JsonListResult<>(object, allNum);
     }
 
     public static JsonListResult successStatus(Integer status) {
