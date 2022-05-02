@@ -56,6 +56,12 @@ public class Teleplay implements Serializable {
     private List<String> channelDesc;
 
 
+    public void setStatus(Integer status) {
+        this.status = status;
+        this.statusDesc = TeleplayStatusEnum.getTeleplayStatusEnum(status, TeleplayStatusEnum.ERROR_CODE)
+                .getExpr();
+    }
+
     @AllArgsConstructor
     @NoArgsConstructor
     public static enum TeleplayStatusEnum implements IEmus {

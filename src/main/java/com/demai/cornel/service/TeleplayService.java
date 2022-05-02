@@ -74,8 +74,6 @@ import java.util.stream.Collectors;
                 Map<Long, String> channelMap = channelList.stream()
                         .collect(Collectors.toMap(Channel::getId, Channel::getName));
                 teleplayList.forEach(t -> {
-                    t.setStatusDesc(Teleplay.TeleplayStatusEnum
-                            .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
                     if (CollectionUtils.isNotEmpty(t.getChannel())){
                         List<String> channelNames = Lists.newArrayList();
                         t.getChannel().stream().forEach(c ->{
@@ -101,10 +99,6 @@ import java.util.stream.Collectors;
         try {
             List<Channel> channelList = channelDao.queryChannelList(param);
             if (CollectionUtils.isNotEmpty(channelList)) {
-                channelList.forEach(t -> {
-                    t.setStatusDesc(Teleplay.TeleplayStatusEnum
-                            .getTeleplayStatusEnum(t.getStatus(), Teleplay.TeleplayStatusEnum.ERROR_CODE).getExpr());
-                });
                 return channelList;
             }
         } catch (Exception e) {

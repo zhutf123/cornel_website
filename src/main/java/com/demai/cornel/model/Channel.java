@@ -42,7 +42,11 @@ public class Channel implements Serializable {
     /**==========for admin,user show property=============**/
     private String statusDesc;
     private List<String> channelDesc;
-    
+
+    public void setStatus(Integer status) {
+        this.status = status;
+        this.statusDesc = ChannelStatusEnum.getChannelStatusEnum(status, ChannelStatusEnum.ERROR_CODE).getExpr();
+    }
 
     @AllArgsConstructor
     @NoArgsConstructor

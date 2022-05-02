@@ -12,6 +12,7 @@ import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
+import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
@@ -44,6 +45,40 @@ import java.util.stream.Collectors;
             log.error("查询剧集list异常", e);
         }
         return Lists.newArrayList();
+    }
+
+
+    public void operateTeleplayVideo(OperateTeleplayVideoParam param) throws DuplicateKeyException {
+        try {
+            TeleplayVideo teleplayVideo = TeleplayVideo.builder()
+                    .id(param.getId())
+                    .title(param.getTitle())
+                    .mainImage(param.getMainImage())
+                    .mainSource(param.getMainSource())
+                    .videoSource(param.getVideoSource())
+                    .videoUrl(param.getVideoUrl())
+                    .videoTime(param.getVideoTime())
+                    .vip(param.getVip())
+                    .recommend(param.getRecommend())
+                    .status(TeleplayVideo.TeleplayVideoStatusEnum.getTeleplayVideoStatusEnum(param.getStatus(), null)
+                            != null ? param.getStatus() : null)
+                    
+                    .operator(Long.parseLong(UserHolder.getValue("uid")))
+                    .operatorName(UserHolder.getValue("name"))
+                    .build();
+            if (param.getId() != null) {
+                if (param.getStatus() == TeleplayVideo.TeleplayVideoStatusEnum.ONLINE.getValue()) {
+                    teleplayVideo.setOperateTime(DateUtils.now());
+                }
+                teleplayVideoDao.update(teleplayVideo);
+            } else {
+                teleplayVideoDao.save(teleplayVideo);
+            }
+        } catch (DuplicateKeyException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error("保存频道信息错误", e);
+        }
     }
 
 }

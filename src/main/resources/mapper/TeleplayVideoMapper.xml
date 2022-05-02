@@ -85,8 +85,13 @@
             <if test="seq != null"> seq = #{seq},</if>
             <if test="videoTime != null"> video_time = #{videoTime},</if>
             <if test="vip != null"> vip = #{vip},</if>
-            <if test="status != null"> status = #{status},</if>
             <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="status != null">
+                status = #{status},
+                <if test="status = 2">
+                    operator_name = null,
+                </if>
+            </if>
             <if test="operator != null"> operator = #{operator},</if>
             <if test="operatorName != null"> operator_name = #{operatorName},</if>
             <if test="recommend != null"> recommend = #{recommend},</if>

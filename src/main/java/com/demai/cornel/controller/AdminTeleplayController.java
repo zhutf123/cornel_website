@@ -8,6 +8,7 @@ import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.reqParam.OperateChannelParam;
+import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
@@ -150,6 +151,25 @@ import java.util.List;
             return JsonResult.success(teleplayVideoList);
         } catch (Exception e) {
             log.error("用户登录异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /***
+     * 添加/编辑子剧集
+     * @param param
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/operateTeleplayVideo.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult operateTeleplayVideo(
+            @RequestBody OperateTeleplayVideoParam param, HttpServletResponse response) {
+        try {
+            teleplayVideoService.operateTeleplayVideo(param);
+            return JsonResult.success("success");
+        } catch (DuplicateKeyException e) {
+            return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
+        } catch (Exception e) {
+            log.error("添加频道信息异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
