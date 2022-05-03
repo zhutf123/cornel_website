@@ -156,6 +156,31 @@ ON COLUMN user_info.role IS '';
 insert into user_info(name,passwd,role) values('test','e10adc3949ba59abbe56e057f20f883e',2);
 
 
+DROP TABLE IF EXISTS user_pay_info;
+CREATE TABLE user_pay_info
+(
+    id           serial PRIMARY KEY,
+    user_id   bigint,
+    product_id  bigint,
+    product_name varchar(256),
+    money      numeric(10, 2),
+    pay_time  varchar(256),
+    recommend    integer default 0,
+    top          integer default 0,
+    ext_info     hstore,
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+COMMENT
+ON COLUMN teleplay.title IS '标题电视剧名称';
+COMMENT
+ON COLUMN teleplay.channel IS '频道';
+
+
+
+
 DROP TABLE IF EXISTS teleplay;
 CREATE TABLE teleplay
 (

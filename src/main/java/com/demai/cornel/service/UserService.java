@@ -24,6 +24,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -139,7 +140,12 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
     }
 
     public List<UserInfo> getAllUserInfoList(QueryUserParam param){
-        return userInfoDao.getAllUserInfoList(param);
+        List<UserInfo> userInfos =  userInfoDao.getAllUserInfoList(param);
+        if (CollectionUtils.isNotEmpty(userInfos)){
+            userInfos.stream().forEach(user ->{
+                user.setAllPayMoney(new BigDecimal(200));
+            });
+        }
     }
 
     public Integer getAllUserInfoNum(QueryUserParam param){

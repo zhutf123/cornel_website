@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,7 @@ public class UserInfo implements Serializable {
 
     /**==========for admin,user show property=============**/
     private String statusDesc;
+    private BigDecimal allPayMoney;
 
 
     public void setStatus(Integer status) {
