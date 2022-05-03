@@ -14,11 +14,10 @@ import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.util.DateUtils;
-import org.apache.commons.collections.map.MultiValueMap;
-import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +37,11 @@ import java.util.stream.Collectors;
     @Resource private ChannelDao channelDao;
     @Resource private TeleplayVideoDao teleplayVideoDao;
 
-
+    /***
+     * 添加、编辑剧集
+     * @param param
+     * @throws DuplicateKeyException
+     */
     public void operateTeleplay(OperateTeleplayParam param) throws DuplicateKeyException {
         try {
             Teleplay teleplay = Teleplay.builder()

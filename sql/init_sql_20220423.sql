@@ -336,6 +336,7 @@ CREATE TABLE banner_info
     title        text,
     depict     text,
     type          integer default 1,
+    seq          integer default 0,
     status       integer default 1,
     operate_time timestamptz(6) default now(),
     operator     bigint,
