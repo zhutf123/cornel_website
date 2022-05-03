@@ -9,13 +9,19 @@
             </el-form-item>
             <el-form-item label="审核状态">
                 <el-select v-model="form.status">
-                    <el-option label="已审核" :value="1"/>
+                    <el-option label="已上架" :value="1"/>
+                    <el-option label="未上架" :value="0"/>
                 </el-select>
             </el-form-item>
             <el-form-item label="频道类型">
-                <el-select v-model="form.channel">
-                    <el-option label="已审核" value="1" />
-                </el-select>
+                <el-autocomplete
+                    class="inline-input"
+                    value-key="name"
+                    :fetch-suggestions="queryChannel"
+                    placeholder="请输入频道"
+                    @select="handleSelectChannel('form', $events)"
+                    :trigger-on-focus="false"
+                ></el-autocomplete>
             </el-form-item>
             <el-form-item label="VIP剧集">
                 <el-select v-model="form.vip">
@@ -23,7 +29,7 @@
                     <el-option label="否" :value="0" />
                 </el-select>
             </el-form-item>
-            <el-button type="primary" @click="search">查询</el-button>
+            <el-button type="primary" @click="search({pageNum: 1})">查询</el-button>
             <el-button @click="reset">清空</el-button>
             <el-button @click="exportData">导出excel</el-button>
         </el-form>
@@ -113,7 +119,7 @@
                     >修改</el-button>
                     <el-button
                         type="text"
-                        @click="preview(scope.$index, scope.row)"
+                        @click="openSubEpisode(scope.$index, scope.row)"
                     >详细数据</el-button>
                 </template>
             </el-table-column>
@@ -142,14 +148,29 @@
                             <el-input v-model="editingData.thumb" />
                         </el-col>
                         <el-col :span="8" :offset="1">
-                            <el-upload>
-                                <el-button size="small" type="primary">本地上传</el-button>
-                            </el-upload>
+                            <uploader
+                                :onSuccess="onUploadThumb"
+                            />
                         </el-col>
                     </el-row>
                 </el-form-item>
                 <el-form-item label="频道">
-                    <el-input v-model="editingData.desc" />
+                    <el-tag
+                        v-for="tag in editingData.channelDesc"
+                        :key="tag"
+                        size="mini"
+                        closable
+                        @close="handleCloseChannelTag(tag)"
+                    >{{tag}}</el-tag>
+                    <el-autocomplete
+                        class="inline-input"
+                        value-key="name"
+                        size="mini"
+                        :fetch-suggestions="queryChannel"
+                        placeholder="请输入频道"
+                        @select="handleSelectChannel('editingData', $events)"
+                        :trigger-on-focus="false"
+                    ></el-autocomplete>
                 </el-form-item>
                 <el-form-item label="VIP剧集">
                     <el-select v-model="editingData.status">
@@ -158,10 +179,13 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="推荐首页">
-                    <el-input v-model="editingData.recommend" />
+                    <el-input-number v-model="editingData.recommend"
+                        :max="10"
+                        :min="0"
+                    />
                 </el-form-item>
                 <el-form-item label="频道置顶">
-                    <el-input v-model="editingData.top" />
+                    <el-input type="number" v-model="editingData.top" />
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -173,12 +197,12 @@
 </template>
 
 <script>
-import './index.scss';
-
-import {getEpisodeList} from '../../apis';
+import {getEpisodeList, suggestChannel, updateEpisode} from '../../apis';
 import {vipFormatter} from '../../utils/formatter';
+import Uploader from '../../components/Uploader.vue';
 
 export default {
+  components: { Uploader },
     name: 'episodes',
     data() {
         return {
@@ -203,7 +227,10 @@ export default {
             this.form.pageNum = pageNum;
             this.search();
         },
-        search() {
+        search(data) {
+            if (data && data.pageNum) {
+                this.form.pageNum = data.pageNum;
+            }
             getEpisodeList({
                 pageSize: 10,
                 pageNum: 1
@@ -212,7 +239,7 @@ export default {
                     this.list = res.data;
                     this.total = res.allNum;
                 }
-            })
+            });
         },
         reset() {
             this.$refs.form.reset();
@@ -224,10 +251,45 @@ export default {
             this.editingData = data;
         },
         onConfirmEdit() {
+            updateEpisode(this.editingData).then(res => {
+                if (res.status === 0) {
+                    this.$message.success(res.msg || '编辑成功');
+                } else if (res.msg) {
+                    this.$message.error(res.msg);
+                }
+            });
+        },
+        openSubEpisode(index, data) {
 
         },
-        preview(index, data) {
-
+        onUploadThumb(data) {
+            console.log(data);
+            this.editingData.mainImage = data.url;
+            this.editingData.sourceId = data.sourceId;
+        },
+        queryChannel(input, cb) {
+            suggestChannel(input).then(res => {
+                cb(res.data);
+            })
+        },
+        handleSelectChannel(type, item) {
+            if (type === 'form') {
+                this.form.channel = item.id;
+            } else {
+                const index = this.editingData.channel.indexOf(item.id);
+                if (index === -1) {
+                    this.editingData.channel.push(item.id);
+                    this.editingData.channelDesc.push(item.name);
+                } else {
+                    Vue.delete(this.editingData.channel, index);
+                    Vue.delete(this.editingData.channelDesc, index);
+                }
+            }
+        },
+        handleCloseChannelTag(tag) {
+            const index = this.editingData.channelDesc.indexOf(tag);
+            Vue.delete(this.editingData.channel, index);
+            Vue.delete(this.editingData.channelDesc, index);
         }
     }
 }

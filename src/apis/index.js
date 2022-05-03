@@ -18,20 +18,25 @@ export function login(params) {
     return axios.post('/admin/login.json', params);
 }
 
-/**
-private Integer id;
-private Boolean vip;
-private String channel;
-private Integer status;
-private String title;
-private Integer pageSize;
-private Integer pageNum;
-private Integer offSet; 
-*/
+// 剧集接口
 export function getEpisodeList(params) {
     return axios.post('/admin/teleplayList.json', params);
 }
+export function updateEpisode(params) {
+    return axios.post('/admin/operateTeleplay.json', params);
+}
+export function getSubEpisodeList(params) {
+    return axios.post('/admin/teleplayVideoList.json', params);
+}
+export function getSubEpisodeDetail(params) {
+    return axios.post('/admin/teleplayVideoDetail.json', params);
+}
+export function updateSubEpisode(params) {
+    return axios.post('/admin/operateTeleplayVideo.json', params);
+}
 
+
+// 频道接口
 export function getChannelList(params) {
     return axios.post('/admin/channelList.json', params);
 }
@@ -40,4 +45,7 @@ export function delChannel(channelId) {
 }
 export function updateChannel(params) {
     return axios.post('/admin/operateChannel.json', params);
+}
+export function suggestChannel(input) {
+    return axios.get(`/admin/suggestChannel.json?name=${input}`);
 }
