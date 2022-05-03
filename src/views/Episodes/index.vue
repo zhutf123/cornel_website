@@ -175,7 +175,7 @@
 <script>
 import './index.scss';
 
-import {getEpisodesList} from '../../apis';
+import {getEpisodeList} from '../../apis';
 import {vipFormatter} from '../../utils/formatter';
 
 export default {
@@ -204,7 +204,7 @@ export default {
             this.search();
         },
         search() {
-            getEpisodesList({
+            getEpisodeList({
                 pageSize: 10,
                 pageNum: 1
             }).then(res => {

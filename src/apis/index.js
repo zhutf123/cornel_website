@@ -28,6 +28,16 @@ private Integer pageSize;
 private Integer pageNum;
 private Integer offSet; 
 */
-export function getEpisodesList(params) {
+export function getEpisodeList(params) {
     return axios.post('/admin/teleplayList.json', params);
+}
+
+export function getChannelList(params) {
+    return axios.post('/admin/channelList.json', params);
+}
+export function delChannel(channelId) {
+    return axios.get(`/admin/delChannel.json?id=${channelId}`);
+}
+export function updateChannel(params) {
+    return axios.post('/admin/operateChannel.json', params);
 }
