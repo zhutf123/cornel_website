@@ -82,14 +82,13 @@ import java.util.stream.Collectors;
         if (CollectionUtils.isNotEmpty(teleplayList)) {
             List<TeleplayVideo> videoList = teleplayVideoDao.queryTeleplayVideoByTeleplayIds(
                     teleplayList.stream().map(Teleplay::getId).collect(Collectors.toList()));
-            ArrayListValuedHashMap<Long,TeleplayVideo> videos = new ArrayListValuedHashMap<Long,TeleplayVideo>();
-            if (CollectionUtils.isNotEmpty(videoList)){
-                videoList.stream().forEach(v ->{
-                    videos.put(v.getTeleplayId(),v);
+            ArrayListValuedHashMap<Long, TeleplayVideo> videos = new ArrayListValuedHashMap<Long, TeleplayVideo>();
+            if (CollectionUtils.isNotEmpty(videoList)) {
+                videoList.stream().forEach(v -> {
+                    videos.put(v.getTeleplayId(), v);
                 });
             }
-
-            teleplayList.stream().forEach(t ->{
+            teleplayList.stream().forEach(t -> {
                 List<TeleplayVideo> vs = videos.get(t.getId());
                 if (CollectionUtils.isNotEmpty(vs)) {
                     vs.sort((a, b) -> a.getSeq().compareTo(b.getSeq()));
@@ -102,33 +101,34 @@ import java.util.stream.Collectors;
                             .build();
                 }
             });
+        }
 
         return resp;
     }
 
-    public List<Teleplay> getTeleplayList(QueryTeleplayParam param) {
-        try {
-            List<Teleplay> teleplayList = teleplayDao.queryTeleplayList(param);
-            if (CollectionUtils.isNotEmpty(teleplayList)) {
-                List<Channel> channelList = channelDao.queryAllOnlineChannel();
-                Map<Long, String> channelMap = channelList.stream()
-                        .collect(Collectors.toMap(Channel::getId, Channel::getName));
-                teleplayList.forEach(t -> {
-                    if (CollectionUtils.isNotEmpty(t.getChannel())){
-                        List<String> channelNames = Lists.newArrayList();
-                        t.getChannel().stream().forEach(c ->{
-                            channelNames.add(channelMap.get(Long.parseLong(c)));
-                        });
-                        t.setChannelDesc(channelNames);
-                    }
-                });
-                return teleplayList;
+        public List<Teleplay> getTeleplayList(QueryTeleplayParam param) {
+            try {
+                List<Teleplay> teleplayList = teleplayDao.queryTeleplayList(param);
+                if (CollectionUtils.isNotEmpty(teleplayList)) {
+                    List<Channel> channelList = channelDao.queryAllOnlineChannel();
+                    Map<Long, String> channelMap = channelList.stream()
+                            .collect(Collectors.toMap(Channel::getId, Channel::getName));
+                    teleplayList.forEach(t -> {
+                        if (CollectionUtils.isNotEmpty(t.getChannel())){
+                            List<String> channelNames = Lists.newArrayList();
+                            t.getChannel().stream().forEach(c ->{
+                                channelNames.add(channelMap.get(Long.parseLong(c)));
+                            });
+                            t.setChannelDesc(channelNames);
+                        }
+                    });
+                    return teleplayList;
+                }
+            } catch (Exception e) {
+                log.error("查询剧集list异常", e);
             }
-        } catch (Exception e) {
-            log.error("查询剧集list异常", e);
+            return Lists.newArrayList();
         }
-        return Lists.newArrayList();
-    }
 
     public Integer getTeleplayAllNum(QueryTeleplayParam param) {
         try {
