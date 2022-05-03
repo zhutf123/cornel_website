@@ -193,16 +193,15 @@
                 <el-button type="primary" @click="onConfirmEdit">提交</el-button>
             </span>
         </el-dialog>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 import {getEpisodeList, suggestChannel, updateEpisode} from '../../apis';
 import {vipFormatter} from '../../utils/formatter';
-import Uploader from '../../components/Uploader.vue';
 
 export default {
-  components: { Uploader },
     name: 'episodes',
     data() {
         return {
@@ -218,7 +217,8 @@ export default {
             },
             list: [],
             total: 0,
-            editingData: null
+            editingData: null,
+            subParentData: null
         };
     },
     methods: {
@@ -260,7 +260,12 @@ export default {
             });
         },
         openSubEpisode(index, data) {
-
+            this.$router.push({
+                name: 'subList',
+                params: {
+                    tId: data.teleplayId
+                }
+            });
         },
         onUploadThumb(data) {
             console.log(data);

@@ -46,6 +46,7 @@
 import './reset.scss';
 import './app.scss';
 
+import {ENTRIES} from './utils/constant';
 import Uploader from './components/Uploader.vue';
 export default {
   name: 'app',
@@ -55,27 +56,7 @@ export default {
   data() {
     return {
       collapse: ['manage'],
-      entries: [{
-        path: '/episodes',
-        type: 'manage',
-        name: '剧情管理'
-      }, {
-        path: '/comments',
-        type: 'manage',
-        name: '评论管理'
-      }, {
-        path: '/channels',
-        type: 'manage',
-        name: '频道管理'
-      }, {
-        path: '/users',
-        type: 'manage',
-        name: '用户管理'
-      }, {
-        path: '/contentAnalyse',
-        type: 'data',
-        name: '内容分析'
-      }],
+      entries: ENTRIES,
       contentTitle: '',
       currentPath: ''
     };
