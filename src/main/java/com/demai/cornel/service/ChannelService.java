@@ -178,4 +178,17 @@ import java.util.stream.Collectors;
         }
     }
 
+    /**
+     * 删除聚合标签
+     * @param id
+     */
+    public void delChannelGroupInfo(Long id) {
+        ChannelGroup channel = ChannelGroup.builder()
+                .id(id)
+                .status(Channel.ChannelStatusEnum.DELETE.getValue())
+                .operator(Long.parseLong(UserHolder.getValue("uid")))
+                .operatorName(UserHolder.getValue("name")).build();
+        channelDao.updateChannelGroup(channel);
+    }
+
 }

@@ -243,4 +243,23 @@ import java.util.List;
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+
+    /***
+     * 添加/编辑频道
+     * @param id
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/delChannelGroup.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult delChannelGroup(@RequestParam Long id, HttpServletResponse response) {
+        try {
+            Preconditions.checkNotNull(id);
+            channelService.delChannelGroupInfo(id);
+            return JsonResult.success("success");
+        } catch (Exception e) {
+            log.error("删除聚合标签异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
 }

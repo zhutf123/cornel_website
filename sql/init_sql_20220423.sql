@@ -185,7 +185,7 @@ ON COLUMN channel.name IS '标签名称';
 create unique index idx_unique_name_type on channel(name,type);
 
 
-DROP TABLE IF EXISTS channel;
+DROP TABLE IF EXISTS channel_group;
 CREATE TABLE channel_group
 (
     id            serial PRIMARY KEY,
