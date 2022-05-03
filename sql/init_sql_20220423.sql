@@ -179,6 +179,7 @@ ON COLUMN user_pay_info.money IS '支付金额';
 COMMENT
 ON COLUMN user_pay_info.status IS '0 待支付 1 已支付';
 
+insert into user_pay_info(user_id,product_id,order_id,product_name,money,status,pay_time,create_time) values(2,1,1,'测试产品',95.00,1,now(),now());
 
 
 DROP TABLE IF EXISTS teleplay;

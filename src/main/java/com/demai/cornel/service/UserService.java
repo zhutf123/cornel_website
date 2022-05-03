@@ -142,11 +142,26 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         return result;
     }
 
+    /***
+     * 获取用户支付list
+     * @param userId
+     * @return
+     */
+    public List<UserPayInfo> getUserPayInfoListByUserId(Long userId) {
+        List<UserPayInfo> userPayInfos = userPayInfoDao.getUserPayInfoList(userId);
+        return userPayInfos;
+    }
+
+    /***
+     * 获取用户list
+     * @param param
+     * @return
+     */
     public List<UserInfo> getAllUserInfoList(QueryUserParam param){
         List<UserInfo> userInfos =  userInfoDao.getAllUserInfoList(param);
         if (CollectionUtils.isNotEmpty(userInfos)){
             userInfos.stream().forEach(user ->{
-                List<UserPayInfo> userPayInfos = userPayInfoDao.getUserPayInfoList(user.getId());
+                List<UserPayInfo> userPayInfos = getUserPayInfoListByUserId(user.getId());
                 final BigDecimal[] money = { new BigDecimal(0) };
                 if (CollectionUtils.isNotEmpty(userPayInfos)) {
                     userPayInfos.stream().forEach(u -> money[0] = money[0].add(u.getMoney()));
