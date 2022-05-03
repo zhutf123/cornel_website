@@ -45,8 +45,13 @@
 <script>
 import './reset.scss';
 import './app.scss';
+
+import Uploader from './components/Uploader.vue';
 export default {
   name: 'app',
+  components: {
+      Uploader
+  },
   data() {
     return {
       collapse: ['manage'],
@@ -84,19 +89,22 @@ export default {
     }
   },
   mounted() {
-    const {path} = this.$route;
-    let currentPath;
-    if (!path || path === '/') {
-      currentPath = this.manageEntries[0];
-    } else {
-      currentPath = this.entries.find(item => item.path === path);
-    }
-    if (currentPath) {
-      this.collapse = [currentPath.type];
-      this.goto(currentPath);
-    }
+    this.initPath();
   },
   methods: {
+    initPath() {
+      const {path} = this.$route;
+      let currentPath;
+      if (!path || path === '/') {
+        currentPath = this.manageEntries[0];
+      } else {
+        currentPath = this.entries.find(item => item.path === path);
+      }
+      if (currentPath) {
+        this.collapse = [currentPath.type];
+        this.goto(currentPath);
+      }
+    },
     goto(item) {
       this.currentPath = item;
       this.$router.push(item.path);

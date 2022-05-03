@@ -9,16 +9,19 @@
             </el-form-item>
             <el-form-item label="审核状态">
                 <el-select v-model="form.status">
-                    <el-option label="已审核" value="1"/>
+                    <el-option label="已审核" :value="1"/>
                 </el-select>
             </el-form-item>
             <el-form-item label="频道类型">
-                <el-select v-model="form.type">
+                <el-select v-model="form.channel">
                     <el-option label="已审核" value="1" />
                 </el-select>
             </el-form-item>
             <el-form-item label="VIP剧集">
-                <el-input v-model="form.id" />
+                <el-select v-model="form.vip">
+                    <el-option label="是" :value="1" />
+                    <el-option label="否" :value="0" />
+                </el-select>
             </el-form-item>
             <el-button type="primary" @click="search">查询</el-button>
             <el-button @click="reset">清空</el-button>
@@ -29,51 +32,75 @@
         >
             <el-table-column
                 label="封面"
-            ></el-table-column>
+            >
+                <template slot-scope="scope">
+                    <img class="thumb" :src="scope.row.mainImage" />
+                </template>
+            </el-table-column>
             <el-table-column
                 label="标题"
+                prop="title"
             ></el-table-column>
             <el-table-column
                 label="描述"
+                prop="depict"
             ></el-table-column>
             <el-table-column
                 label="剧集"
             ></el-table-column>
             <el-table-column
                 label="频道"
-            ></el-table-column>
+            >
+                <template slot-scope="scope">
+                    <el-tag
+                        v-for="channel in scope.row.channelDesc"
+                        :key="channel"
+                    >{{channel}}</el-tag>
+                </template>
+            </el-table-column>
             <el-table-column
                 label="VIP剧集"
+                prop="vip"
+                :formatter="vipFormatter"
             ></el-table-column>
             <el-table-column
                 label="审核状态"
+                prop="statusDesc"
             ></el-table-column>
             <el-table-column
                 label="发布时间"
+                prop="createTime"
             ></el-table-column>
             <el-table-column
                 label="发布者"
+                prop="operatorName"
             ></el-table-column>
             <el-table-column
                 label="追剧数"
+                prop="followNum"
             ></el-table-column>
             <el-table-column
                 label="播放量"
+                prop="playNum"
             ></el-table-column>
             <el-table-column
                 label="点赞量"
+                prop="likeNum"
             ></el-table-column>
             <el-table-column
                 label="转发量"
+                prop="shareNum"
             ></el-table-column>
-            <el-table-column
+            <!-- <el-table-column
                 label="评论数"
-            ></el-table-column>
+            ></el-table-column> -->
             <el-table-column
                 label="是否推荐到首页"
+                prop="recommend"
             ></el-table-column>
             <el-table-column
                 label="置顶操作"
+                prop="top"
             ></el-table-column>
             <el-table-column
                 label="操作"
@@ -95,6 +122,7 @@
             background
             layout="prev, pager, next"
             :total="total"
+            @current-change="onPageChange"
         >
         </el-pagination>
 
@@ -146,12 +174,23 @@
 
 <script>
 import './index.scss';
+
+import {getEpisodesList} from '../../apis';
+import {vipFormatter} from '../../utils/formatter';
+
 export default {
     name: 'episodes',
     data() {
         return {
             form: {
-                id: ''
+                id: '',
+                vip: 0,
+                channel: '',
+                status: '',
+                title: '',
+                pageSize: 10,
+                pageNum: 1,
+                offset: 0
             },
             list: [],
             total: 0,
@@ -159,8 +198,21 @@ export default {
         };
     },
     methods: {
+        vipFormatter,
+        onPageChange(pageNum) {
+            this.form.pageNum = pageNum;
+            this.search();
+        },
         search() {
-
+            getEpisodesList({
+                pageSize: 10,
+                pageNum: 1
+            }).then(res => {
+                if (res.status === 0) {
+                    this.list = res.data;
+                    this.total = res.allNum;
+                }
+            })
         },
         reset() {
             this.$refs.form.reset();

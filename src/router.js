@@ -4,8 +4,13 @@ import Channels from './views/Channels/index.vue';
 import Comments from './views/Comments/index.vue';
 import Episodes from './views/Episodes/index.vue';
 import Users from './views/Users/index.vue';
+import Login from './views/Login/index.vue';
 
-const routes = [{
+const routes = [
+    {
+        path: '/login',
+        component: Login
+    }, {
         path: '/channels',
         component: Channels
     }, {
@@ -17,6 +22,7 @@ const routes = [{
     }, {
         path: '/users',
         component: Users
-}];
+    }
+];
 
 export default new VueRouter({routes});
