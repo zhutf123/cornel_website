@@ -29,23 +29,23 @@
     </resultMap>
 
     <sql id="main_column">
-        id,
-        teleplay_id,
-        main_image,
-        main_source,
-        video_url,
-        video_source,
-        title,
-        seq,
-        video_time,
-        vip,
-        status,
-        operate_time,
-        operator,
-        operator_name,
-        recommend,
-        ext_info,
-        create_time
+        v.id,
+        v.teleplay_id,
+        v.main_image,
+        v.main_source,
+        v.video_url,
+        v.video_source,
+        v.title,
+        v.seq,
+        v.video_time,
+        v.vip,
+        v.status,
+        v.operate_time,
+        v.operator,
+        v.operator_name,
+        v.recommend,
+        v.ext_info,
+        v.create_time
     </sql>
 
     <sql id="query_list_column">
@@ -183,7 +183,7 @@
 
     <select id="queryTeleplayVideoByTeleplayIds" parameterType="list" resultMap="teleplayVideoResultMap">
         select
-        <include refid="query_list_column"/>
+        <include refid="main_column"/>
         from teleplay_video v left join teleplay t
         on v.teleplay_id=t.id
         where v.status=1
