@@ -5,8 +5,10 @@ package com.demai.cornel.dao;
 
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.UserInfo;
+import com.demai.cornel.reqParam.QueryUserParam;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,4 +30,8 @@ public interface UserInfoDao {
     UserInfo getUserInfoNoDriverByPhone(@Param("phone") String phone);
 
     int updateUserOpenIdByUid(@Param("openId") String openId, @Param("userId") Long userId);
+
+    List<UserInfo> getAllUserInfoList(QueryUserParam param);
+
+    Integer getAllUserInfoNum(QueryUserParam param);
 }

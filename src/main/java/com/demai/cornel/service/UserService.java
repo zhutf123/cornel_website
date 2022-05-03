@@ -7,6 +7,7 @@ import com.demai.cornel.dao.UserRoleInfoDao;
 import com.demai.cornel.model.RoleInfo;
 import com.demai.cornel.model.UserInfo;
 import com.demai.cornel.model.UserRoleInfo;
+import com.demai.cornel.reqParam.QueryUserParam;
 import com.demai.cornel.reqParam.UserAddParam;
 import com.demai.cornel.reqParam.UserRegisterParam;
 import com.demai.cornel.util.CookieAuthUtils;
@@ -136,4 +137,13 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         }
         return result;
     }
+
+    public List<UserInfo> getAllUserInfoList(QueryUserParam param){
+        return userInfoDao.getAllUserInfoList(param);
+    }
+
+    public Integer getAllUserInfoNum(QueryUserParam param){
+        return userInfoDao.getAllUserInfoNum(param);
+    }
+
 }

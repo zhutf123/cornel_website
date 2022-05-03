@@ -1,3 +1,100 @@
+
+
+DROP TABLE IF EXISTS acl_info;
+CREATE TABLE acl_info
+(
+    id           serial PRIMARY KEY,
+    name         varchar(40),
+    code         varchar(40),
+    url          varchar(256),
+    module       integer,
+    status       integer default 1,
+    ext_info     hstore,
+    create_time  timestamptz(6) default now(),
+    operate_time timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+COMMENT
+ON COLUMN acl_info.name IS '名称';
+COMMENT
+ON COLUMN acl_info.code IS '标记';
+COMMENT
+ON COLUMN acl_info.url IS '链接';
+COMMENT
+ON COLUMN acl_info.module IS '模块类型 1 菜单 2按钮';
+COMMENT
+ON COLUMN acl_info.status IS '1 有效  2 无效';
+
+
+DROP TABLE IF EXISTS role_info;
+CREATE TABLE role_info
+(
+    id           serial PRIMARY KEY,
+    name         varchar(40),
+    status       integer default 1,
+    ext_info     hstore,
+    acl_code     varchar(40),
+    create_time  timestamptz(6) default now(),
+    operate_time timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+COMMENT
+ON COLUMN role_info.name IS '角色名称';
+COMMENT
+ON COLUMN role_info.status IS '1 有效  2 无效';
+COMMENT
+ON COLUMN role_info.acl_code IS '角色对应的权限';
+COMMENT
+ON COLUMN role_info.role_id IS '角色id';
+
+insert into role_info(name,acl_code) values('user','user');
+insert into role_info(name,acl_code) values('sys-user','sys-user');
+
+
+DROP TABLE IF EXISTS user_role_info;
+CREATE TABLE user_role_info
+(
+    id           serial PRIMARY KEY,
+    user_id      bigint,
+    role_id      bigint,
+    status       integer default 1,
+    ext_info     hstore,
+    create_time  timestamptz(6) default now(),
+    operate_time timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+COMMENT
+ON COLUMN user_role_info.user_id IS '用户id';
+COMMENT
+ON COLUMN user_role_info.role IS '角色id';
+COMMENT
+ON COLUMN user_role_info.status IS '1 有效  2 无效';
+
+
+DROP TABLE IF EXISTS user_acl_info;
+CREATE TABLE user_acl_info
+(
+    id           serial PRIMARY KEY,
+    user_id      bigint,
+    acl_code     bigint,
+    status       integer default 1,
+    ext_info     hstore,
+    create_time  timestamptz(6) default now(),
+    operate_time timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+COMMENT
+ON COLUMN user_acl_info.user_id IS '用户id';
+COMMENT
+ON COLUMN user_acl_info.acl_id IS '权限id';
+COMMENT
+ON COLUMN user_acl_info.status IS '1 有效  2 无效';
+
+
 DROP TABLE IF EXISTS user_info;
 CREATE TABLE user_info
 (
@@ -74,11 +171,6 @@ CREATE TABLE teleplay
     operate_time timestamptz(6) default now(),
     operator     bigint,
     operator_name varchar(256),
-    follow_num   integer default 0,
-    play_num     integer default 0,
-    like_num     integer default 0,
-    share_num    integer default 0,
-    comment_num  integer default 0,
     recommend    integer default 0,
     top          integer default 0,
     ext_info     hstore,
@@ -206,99 +298,63 @@ COMMENT
 ON COLUMN channel_group.name IS '聚合标签名称';
 
 
-
-
-DROP TABLE IF EXISTS acl_info;
-CREATE TABLE acl_info
+DROP TABLE IF EXISTS banner_info;
+CREATE TABLE banner_info
 (
     id           serial PRIMARY KEY,
-    name         varchar(40),
-    code         varchar(40),
-    url          varchar(256),
-    module       integer,
+    main_image   varchar(256),
+    main_source   varchar(256),
+    video_url   varchar(256),
+    video_source   varchar(256),
+    video_id   bigint,
+    title        text,
+    depict     text,
+    type          integer default 1,
     status       integer default 1,
+    operate_time timestamptz(6) default now(),
+    operator     bigint,
+    operator_name varchar(256),
     ext_info     hstore,
-    create_time  timestamptz(6) default now(),
-    operate_time timestamptz(6) default now()
+    create_time  timestamptz(6) default now()
 )
     WITH (OIDS = FALSE)
 ;
-COMMENT
-ON COLUMN acl_info.name IS '名称';
-COMMENT
-ON COLUMN acl_info.code IS '标记';
-COMMENT
-ON COLUMN acl_info.url IS '链接';
-COMMENT
-ON COLUMN acl_info.module IS '模块类型 1 菜单 2按钮';
-COMMENT
-ON COLUMN acl_info.status IS '1 有效  2 无效';
+
+COMMENT ON COLUMN banner_info.title IS '标题';
+COMMENT ON COLUMN banner_info.type IS '1剧集 2广告';
 
 
-DROP TABLE IF EXISTS role_info;
-CREATE TABLE role_info
+DROP TABLE IF EXISTS comment_info;
+CREATE TABLE comment_info
 (
     id           serial PRIMARY KEY,
-    name         varchar(40),
-    status       integer default 1,
+    content   varchar(256),
+    user_id   varchar(256),
+    video_id   bigint,
+    parent_path text,
+    top,   integer default 0,
+    reply_num,   integer default 0,
+    like_num,   integer default 0,
+    bullet_chat       integer default 2,
+    weight        integer,
+    status      integer default 1,
+    system_status       integer default 0,
+    operator_status       integer default 0,
+    operator     bigint,
+    operator_name varchar(256),
     ext_info     hstore,
-    acl_code     varchar(40),
-    create_time  timestamptz(6) default now(),
-    operate_time timestamptz(6) default now()
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
 )
     WITH (OIDS = FALSE)
 ;
-COMMENT
-ON COLUMN role_info.name IS '角色名称';
-COMMENT
-ON COLUMN role_info.status IS '1 有效  2 无效';
-COMMENT
-ON COLUMN role_info.acl_code IS '角色对应的权限';
-COMMENT
-ON COLUMN role_info.role_id IS '角色id';
 
-insert into role_info(name,acl_code) values('user','user');
-insert into role_info(name,acl_code) values('sys-user','sys-user');
+COMMENT ON COLUMN comment_info.parent_path IS '被回复的id 从根结点开始 如：1.10.100';
+COMMENT ON COLUMN banner_info.status IS '品论状态 1通过 4 删除';
+COMMENT ON COLUMN banner_info.bullet_chat IS '1作为弹幕，2不在弹幕出现';
+COMMENT ON COLUMN banner_info.system_status IS '0 系统待审核 1审核通过 2 审核不通过';
+COMMENT ON COLUMN banner_info.operator_status IS '0 人工待审核 1审核通过 2 审核不通过';
 
 
-DROP TABLE IF EXISTS user_role_info;
-CREATE TABLE user_role_info
-(
-    id           serial PRIMARY KEY,
-    user_id      bigint,
-    role_id      bigint,
-    status       integer default 1,
-    ext_info     hstore,
-    create_time  timestamptz(6) default now(),
-    operate_time timestamptz(6) default now()
-)
-    WITH (OIDS = FALSE)
-;
-COMMENT
-ON COLUMN user_role_info.user_id IS '用户id';
-COMMENT
-ON COLUMN user_role_info.role IS '角色id';
-COMMENT
-ON COLUMN user_role_info.status IS '1 有效  2 无效';
 
-
-DROP TABLE IF EXISTS user_acl_info;
-CREATE TABLE user_acl_info
-(
-    id           serial PRIMARY KEY,
-    user_id      bigint,
-    acl_code     bigint,
-    status       integer default 1,
-    ext_info     hstore,
-    create_time  timestamptz(6) default now(),
-    operate_time timestamptz(6) default now()
-)
-    WITH (OIDS = FALSE)
-;
-COMMENT
-ON COLUMN user_acl_info.user_id IS '用户id';
-COMMENT
-ON COLUMN user_acl_info.acl_id IS '权限id';
-COMMENT
-ON COLUMN user_acl_info.status IS '1 有效  2 无效';
 

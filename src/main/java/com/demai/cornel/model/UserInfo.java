@@ -3,13 +3,18 @@
  */
 package com.demai.cornel.model;
 
+import com.demai.cornel.dmEnum.IEmus;
+import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,4 +49,51 @@ public class UserInfo implements Serializable {
     private Date createTime;
     private Date operateTime;
     private Integer role;
+
+
+    /**==========for admin,user show property=============**/
+    private String statusDesc;
+
+
+    public void setStatus(Integer status) {
+        this.status = status;
+        this.statusDesc = UserInfoStatusEnum.getUserInfoStatusEnum(status, UserInfoStatusEnum.ERROR_CODE)
+                .getExpr();
+    }
+
+
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static enum UserInfoStatusEnum implements IEmus {
+
+        ERROR_CODE(-1, "未知"),
+        ONLINE(1, "在线"),
+        AUDITING(3, "审核中"),
+        OFFLINE(2, "拉黑");
+
+        @Setter @Getter
+        private int value;
+        @Setter @Getter
+        private String expr;
+
+        private static Map<Integer, UserInfoStatusEnum> userInfoStatusEnumMap;
+        static {
+            userInfoStatusEnumMap = Maps.newHashMap();
+            for (UserInfoStatusEnum code : UserInfoStatusEnum.values()) {
+                userInfoStatusEnumMap.put(code.getValue(), code);
+            }
+        }
+
+        public static UserInfoStatusEnum getUserInfoStatusEnum(Integer value, UserInfoStatusEnum def) {
+            UserInfoStatusEnum p = userInfoStatusEnumMap.get(value);
+            if (null != p) {
+                return p;
+            } else {
+                return def;
+            }
+        }
+
+    }
+
 }
