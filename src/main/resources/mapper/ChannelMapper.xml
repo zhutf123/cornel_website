@@ -237,8 +237,8 @@
         <if test="name !=null">
             and name ~ #{name}
         </if>
-        <if test="type !=null">
-            and type = #{type}
+        <if test="recommend !=null">
+            and recommend=#{recommend}
         </if>
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
@@ -248,7 +248,7 @@
             resultType="int">
         select
         count(1)
-        from channel
+        from channel_group
         where status!=4
         <if test="status !=null">
             and status=#{status}
@@ -256,8 +256,8 @@
         <if test="name !=null">
             and name ~ #{name}
         </if>
-        <if test="type !=null">
-            and type = #{type}
+        <if test="recommend !=null">
+            and recommend=#{recommend}
         </if>
     </select>
 
