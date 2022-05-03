@@ -299,5 +299,14 @@
             </if>
         </where>
     </select>
+
+    <select id="suggestTeleplay" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
+            resultMap="teleplayResultMap">
+        select
+        <include refid="main_column"/>
+        from teleplay
+        where status = 1
+        and title ~ #{name}
+    </select>
     
 </mapper>

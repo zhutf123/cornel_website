@@ -222,7 +222,6 @@
         <if test="type !=null">
             and type=#{type}
         </if>
-
     </select>
 
     <select id="queryChannelGroupList" parameterType="com.demai.cornel.reqParam.QueryChannelGroupParam"

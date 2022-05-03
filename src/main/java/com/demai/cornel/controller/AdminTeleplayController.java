@@ -3,6 +3,7 @@
  */
 package com.demai.cornel.controller;
 
+import com.demai.cornel.Resp.SuggestTeleplayResp;
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.ChannelGroup;
@@ -77,6 +78,22 @@ import java.util.List;
             return JsonResult.success("success");
         } catch (Exception e) {
             log.error("添加、修改剧集信息异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /**
+     * 查询频道list
+     * @return
+     */
+    @RequestMapping(value = "/suggestTeleplay.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @ResponseBody public JsonResult suggestTeleplay(@RequestParam("name")String name,@RequestParam(value = "type", required = false)Integer type, HttpServletResponse response) {
+        try {
+            Preconditions.checkNotNull(name);
+            List<SuggestTeleplayResp> channelList = teleplayService.suggestTeleplay(name);
+            return JsonResult.success(channelList);
+        } catch (Exception e) {
+            log.error("获取频道list异常！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }

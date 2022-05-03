@@ -5,6 +5,7 @@ package com.demai.cornel.dao;
 
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,5 +22,7 @@ public interface TeleplayVideoDao {
     List<TeleplayVideo> queryTeleplayVideoList(QueryTeleplayVideoParam param);
 
     Integer queryTeleplayVideoAllNum(QueryTeleplayVideoParam param);
+
+    List<TeleplayVideo> queryTeleplayVideoByTeleplayIds(@Param("teleplayIds")List<Long> teleplayIds);
 
 }
