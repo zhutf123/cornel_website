@@ -92,13 +92,13 @@ import java.util.stream.Collectors;
                 List<TeleplayVideo> vs = videos.get(t.getId());
                 if (CollectionUtils.isNotEmpty(vs)) {
                     vs.sort((a, b) -> a.getSeq().compareTo(b.getSeq()));
-                    SuggestTeleplayResp.builder()
+                    resp.add(SuggestTeleplayResp.builder()
                             .depict(t.getDepict())
                             .mainSource(t.getMainSource())
                             .mainImage(t.getMainImage())
                             .title(t.getTitle())
                             .videoList(vs)
-                            .build();
+                            .build());
                 }
             });
         }
