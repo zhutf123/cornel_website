@@ -260,6 +260,12 @@
             and recommend=#{recommend}
         </if>
     </select>
+    
+    <update id="removeChildChannel">
+        update channel_group set
+                channel = array_diff(channel,array[#{channelId}]::varchar[])
+        where id=#{groupId}
+    </update>
 
     
 </mapper>

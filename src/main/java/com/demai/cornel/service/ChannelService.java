@@ -4,17 +4,13 @@
 package com.demai.cornel.service;
 
 import com.demai.cornel.dao.ChannelDao;
-import com.demai.cornel.dao.TeleplayDao;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.ChannelGroup;
-import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.OperateChannelGroupParam;
 import com.demai.cornel.reqParam.OperateChannelParam;
-import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryChannelGroupParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
-import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.util.DateUtils;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -189,6 +184,15 @@ import java.util.stream.Collectors;
                 .operator(Long.parseLong(UserHolder.getValue("uid")))
                 .operatorName(UserHolder.getValue("name")).build();
         channelDao.updateChannelGroup(channel);
+    }
+
+
+    /**
+     * 移除聚合标签子项
+     * @param id
+     */
+    public void removeChildChannel(Long groupId, Long channelId) {
+        channelDao.removeChildChannel(groupId,channelId);
     }
 
 }

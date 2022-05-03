@@ -40,4 +40,6 @@ public interface ChannelDao {
     List<ChannelGroup> queryChannelGroupList(QueryChannelGroupParam param);
 
     Integer queryChannelGroupAllNum(QueryChannelGroupParam param);
+
+    void removeChildChannel(@Param("groupId") Long groupId, @Param("channelId") Long channelId);
 }
