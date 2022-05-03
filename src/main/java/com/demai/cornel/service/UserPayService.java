@@ -3,11 +3,9 @@ package com.demai.cornel.service;
 import com.demai.cornel.Resp.UserAddUserResp;
 import com.demai.cornel.constant.ConfigProperties;
 import com.demai.cornel.dao.UserInfoDao;
-import com.demai.cornel.dao.UserPayInfoDao;
 import com.demai.cornel.dao.UserRoleInfoDao;
 import com.demai.cornel.model.RoleInfo;
 import com.demai.cornel.model.UserInfo;
-import com.demai.cornel.model.UserPayInfo;
 import com.demai.cornel.model.UserRoleInfo;
 import com.demai.cornel.reqParam.QueryUserParam;
 import com.demai.cornel.reqParam.UserAddParam;
@@ -36,12 +34,11 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
  * @Author binz.zhang
  * @Date: 2020-01-07    13:11
  */
-@Service @Slf4j public class UserService {
+@Service @Slf4j public class UserPayService {
 
     @Resource private UserInfoDao userInfoDao;
     @Resource private UserRoleInfoDao userRoleInfoDao;
     @Resource private ConfigProperties configProperties;
-    @Resource private UserPayInfoDao userPayInfoDao;
 
     //todo 这一块更新需要补全
     public UserAddUserResp updateUserInfo(UserAddParam userAddReq) {
@@ -146,14 +143,7 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         List<UserInfo> userInfos =  userInfoDao.getAllUserInfoList(param);
         if (CollectionUtils.isNotEmpty(userInfos)){
             userInfos.stream().forEach(user ->{
-                List<UserPayInfo> userPayInfos = userPayInfoDao.getUserPayInfoList(user.getId());
-                final BigDecimal[] money = { new BigDecimal(0) };
-                if (CollectionUtils.isNotEmpty(userPayInfos)) {
-                    userPayInfos.stream().forEach(u -> money[0] = money[0].add(u.getMoney()));
-                    user.setAllPayMoney(new BigDecimal(200));
-                }
-                user.setAllPayMoney(money[0]);
-
+                user.setAllPayMoney(new BigDecimal(200));
             });
         }
         return userInfos;

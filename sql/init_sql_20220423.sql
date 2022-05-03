@@ -162,22 +162,22 @@ CREATE TABLE user_pay_info
     id           serial PRIMARY KEY,
     user_id   bigint,
     product_id  bigint,
+    order_id bigint,
     product_name varchar(256),
     money      numeric(10, 2),
-    pay_time  varchar(256),
-    recommend    integer default 0,
-    top          integer default 0,
+    status          integer default 0,
+    pay_time  timestamptz(6),
     ext_info     hstore,
     create_time  timestamptz(6) default now()
 )
     WITH (OIDS = FALSE)
 ;
-
 COMMENT
-ON COLUMN teleplay.title IS '标题电视剧名称';
+ON COLUMN user_pay_info.product_name IS '产品标题';
 COMMENT
-ON COLUMN teleplay.channel IS '频道';
-
+ON COLUMN user_pay_info.money IS '支付金额';
+COMMENT
+ON COLUMN user_pay_info.status IS '0 待支付 1 已支付';
 
 
 
