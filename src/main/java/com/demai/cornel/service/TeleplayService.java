@@ -8,10 +8,8 @@ import com.demai.cornel.dao.TeleplayDao;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
-import com.demai.cornel.reqParam.OperateChannelParam;
-import com.demai.cornel.reqParam.QueryChannelParam;
-import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
+import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.util.DateUtils;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -97,85 +95,6 @@ import java.util.stream.Collectors;
             log.error("查询剧集list异常", e);
         }
         return 0;
-    }
-
-    /***
-     * 获取频道list
-     * @param param
-     * @return
-     */
-    public List<Channel> getChannelList(QueryChannelParam param) {
-        try {
-            List<Channel> channelList = channelDao.queryChannelList(param);
-            if (CollectionUtils.isNotEmpty(channelList)) {
-                return channelList;
-            }
-        } catch (Exception e) {
-            log.error("查询频道list异常", e);
-        }
-        return Lists.newArrayList();
-    }
-
-    /***
-     * 获取频道list
-     * @param param
-     * @return
-     */
-    public Integer getChannelAllNum(QueryChannelParam param) {
-        try {
-            return  channelDao.queryChannelAllNum(param);
-        } catch (Exception e) {
-            log.error("查询频道list异常", e);
-        }
-        return 0;
-    }
-
-    public void operateChannel(OperateChannelParam param) throws DuplicateKeyException {
-        try {
-            Channel channel = Channel.builder()
-                    .id(param.getId())
-                    .name(param.getName())
-                    .weight(param.getWeight())
-                    .type(param.getType())
-                    .status(Channel.ChannelStatusEnum.getChannelStatusEnum(param.getStatus(), null) != null ?
-                            param.getStatus() :
-                            null)
-                    .operator(Long.parseLong(UserHolder.getValue("uid")))
-                    .operatorName(UserHolder.getValue("name"))
-                    .build();
-            if (param.getId() != null) {
-                channel.setOperateTime(DateUtils.now());
-                channelDao.update(channel);
-            } else {
-                channelDao.save(channel);
-            }
-        } catch (DuplicateKeyException e) {
-            throw e;
-        } catch (Exception e) {
-            log.error("保存频道信息错误", e);
-        }
-    }
-
-    /**
-     * 删除频道信息
-     * @param id
-     */
-    public void delChannelInfo(Long id) {
-        Channel channel = Channel.builder().id(id).status(Channel.ChannelStatusEnum.DELETE.getValue())
-                .operator(Long.parseLong(UserHolder.getValue("uid"))).operatorName(UserHolder.getValue("name")).build();
-        channelDao.update(channel);
-    }
-
-    public List<Channel> suggestChannel(String name,Integer type) {
-        try {
-            List<Channel> channelList = channelDao.suggestChannel(name, type);
-            if (CollectionUtils.isNotEmpty(channelList)) {
-                return channelList;
-            }
-        } catch (Exception e) {
-            log.error("查询频道list异常", e);
-        }
-        return Lists.newArrayList();
     }
 
 }

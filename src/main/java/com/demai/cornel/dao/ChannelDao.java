@@ -4,6 +4,8 @@
 package com.demai.cornel.dao;
 
 import com.demai.cornel.model.Channel;
+import com.demai.cornel.model.ChannelGroup;
+import com.demai.cornel.reqParam.QueryChannelGroupParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,7 +21,13 @@ public interface ChannelDao {
 
     void save(Channel channel);
 
+    void updateChannelGroup(ChannelGroup channel);
+
+    void saveChannelGroup(ChannelGroup channel);
+
     List<Channel> queryChannelList(QueryChannelParam param);
+
+    List<Channel> queryChannelByIds(@Param("ids")List<Long> ids);
 
     Integer queryChannelAllNum(QueryChannelParam param);
 
@@ -29,4 +37,7 @@ public interface ChannelDao {
 
     List<Channel> suggestChannel(@Param("name") String name,@Param("type") Integer type);
 
+    List<ChannelGroup> queryChannelGroupList(QueryChannelGroupParam param);
+
+    Integer queryChannelGroupAllNum(QueryChannelGroupParam param);
 }

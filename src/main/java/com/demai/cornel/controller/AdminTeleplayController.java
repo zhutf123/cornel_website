@@ -5,16 +5,19 @@ package com.demai.cornel.controller;
 
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Channel;
+import com.demai.cornel.model.ChannelGroup;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.model.TeleplayVideoBrowseData;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
+import com.demai.cornel.reqParam.QueryChannelGroupParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoBrowseDataParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
+import com.demai.cornel.service.ChannelService;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.service.TeleplayVideoBrowseDataService;
 import com.demai.cornel.service.TeleplayVideoService;
@@ -43,6 +46,7 @@ import java.util.List;
     @Resource private TeleplayService teleplayService;
     @Resource private TeleplayVideoService teleplayVideoService;
     @Resource private TeleplayVideoBrowseDataService teleplayVideoBrowseDataService;
+    @Resource private ChannelService channelService;
 
     /**
      * 查询剧集list
@@ -77,7 +81,6 @@ import java.util.List;
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
-
     /***
      * 添加/编辑频道
      * @param param
@@ -88,7 +91,7 @@ import java.util.List;
     public JsonResult operateChannel(
             @RequestBody OperateChannelParam param, HttpServletResponse response) {
         try {
-            teleplayService.operateChannel(param);
+            channelService.operateChannel(param);
             return JsonResult.success("success");
         } catch (DuplicateKeyException e) {
             return JsonResult.error(String.format("%s已存在,不可重复添加", param.getName()));
@@ -106,8 +109,8 @@ import java.util.List;
     @ResponseBody public JsonListResult channelList(
             @RequestBody QueryChannelParam param, HttpServletResponse response) {
         try {
-            List<Channel> channelList = teleplayService.getChannelList(param);
-            Integer allNum = teleplayService.getChannelAllNum(param);
+            List<Channel> channelList = channelService.getChannelList(param);
+            Integer allNum = channelService.getChannelAllNum(param);
             return JsonListResult.success(channelList,allNum);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);
@@ -123,7 +126,7 @@ import java.util.List;
     @ResponseBody public JsonResult suggestChannel(@RequestParam("name")String name,@RequestParam(value = "type", required = false)Integer type, HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(name);
-            List<Channel> channelList = teleplayService.suggestChannel(name, type);
+            List<Channel> channelList = channelService.suggestChannel(name, type);
             return JsonResult.success(channelList);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);
@@ -141,7 +144,7 @@ import java.util.List;
     public JsonResult delChannel(@RequestParam Long id, HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(id);
-            teleplayService.delChannelInfo(id);
+            channelService.delChannelInfo(id);
             return JsonResult.success("success");
         } catch (Exception e) {
             log.error("删除频道异常！", e);
@@ -201,6 +204,23 @@ import java.util.List;
             return JsonListResult.success(teleplayVideoBrowseDataList, allNum);
         } catch (Exception e) {
             log.error("子剧集详情数据异常！", e);
+        }
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /**
+     * 查询聚合频道list
+     * @return
+     */
+    @RequestMapping(value = "/channeGrouplList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody public JsonListResult channeGrouplList(
+            @RequestBody QueryChannelGroupParam param, HttpServletResponse response) {
+        try {
+            List<ChannelGroup> channelList = channelService.getChannelGroupList(param);
+            Integer allNum = channelService.getChannelGroupAllNum(param);
+            return JsonListResult.success(channelList,allNum);
+        } catch (Exception e) {
+            log.error("获取频道list异常！", e);
         }
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }

@@ -148,7 +148,6 @@ CREATE TABLE teleplay_video_browse_data
 ;
 
 
-
 DROP TABLE IF EXISTS teleplay_video;
 CREATE TABLE video_user_play_info
 (
@@ -191,8 +190,8 @@ CREATE TABLE channel_group
 (
     id            serial PRIMARY KEY,
     name          varchar(256),
-    type          integer,
-    weight        integer,
+    channel      varchar(40)[],
+    recommend    integer default 0,
     status        integer default 1,
     operate_time  timestamptz(6) default now(),
     operator      bigint,

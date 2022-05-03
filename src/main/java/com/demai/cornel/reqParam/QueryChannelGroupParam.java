@@ -15,11 +15,10 @@ import lombok.NoArgsConstructor;
  * @author tfzhu
  */
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
-public class QueryChannelParam extends BaseQueryParam {
+public class QueryChannelGroupParam extends BaseQueryParam {
 
-    private Long id;
     private String name;
-    private Integer type;
+    private Integer recommend;
     private Integer status;
 
 }

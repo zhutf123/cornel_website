@@ -15,11 +15,37 @@
         <result column="create_time" property="createTime" />
     </resultMap>
 
+    <resultMap type="com.demai.cornel.model.ChannelGroup" id="channelGroupResultMap">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="recommend" property="recommend" />
+        <result column="channel" property="channel" typeHandler="com.demai.cornel.databaseHandler.ArrayStringListTypeHandler"/>
+        <result column="status" property="status" />
+        <result column="operate_time" property="operateTime" />
+        <result column="operator" property="operator" />
+        <result column="operator_name" property="operatorName" />
+        <result column="ext_info" property="extInfo" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
     <sql id="main_column">
         id,
         name,
         type,
         weight,
+        status,
+        operate_time,
+        operator,
+        operator_name,
+        ext_info,
+        create_time
+    </sql>
+
+    <sql id="group_main_column">
+        id,
+        name,
+        recommend,
+        channel,
         status,
         operate_time,
         operator,
@@ -72,6 +98,56 @@
         )
     </insert>
 
+    <update id="updateChannelGroup" parameterType="com.demai.cornel.model.ChannelGroup">
+        update channel_group
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null"> name = #{name},</if>
+            <if test="recommend != null"> recommend = #{recommend},</if>
+            <if test="channel != null">
+                channel = #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},
+            </if>
+            <if test="status != null"> status = #{status},</if>
+            <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="operator != null"> operator = #{operator},</if>
+            <if test="operatorName != null"> operator_name = #{operatorName},</if>
+            <if test="extInfo != null"> ext_info = #{extInfo},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="saveChannelGroup" parameterType="com.demai.cornel.model.ChannelGroup" useGeneratedKeys="true" keyProperty="id" >
+        insert into channel_group(
+        <trim suffixOverrides=",">
+            <if test="name != null"> name ,</if>
+            <if test="recommend != null"> recommend ,</if>
+            <if test="channel != null">
+                channel,
+            </if>
+            <if test="status != null"> status ,</if>
+            <if test="operateTime != null"> operate_time ,</if>
+            <if test="operator != null"> operator ,</if>
+            <if test="operatorName != null"> operator_name ,</if>
+            <if test="extInfo != null"> ext_info ,</if>
+            <if test="createTime != null"> create_time ,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="name != null"> #{name} ,</if>
+            <if test="recommend != null"> #{recommend} ,</if>
+            <if test="channel != null">
+                #{channel,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},
+            </if>
+            <if test="status != null"> #{status} ,</if>
+            <if test="operateTime != null"> #{operateTime} ,</if>
+            <if test="operator != null"> #{operator} ,</if>
+            <if test="operatorName != null"> #{operatorName} ,</if>
+            <if test="extInfo != null"> #{extInfo} ,</if>
+            <if test="createTime != null"> #{createTime} ,</if>
+        </trim>
+        )
+    </insert>
+
     <select id="queryChannelList" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
             resultMap="channelResultMap">
         select
@@ -88,6 +164,18 @@
             and type = #{type}
         </if>
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="queryChannelByIds" parameterType="list"
+            resultMap="channelResultMap">
+        select
+        <include refid="main_column"/>
+        from channel
+        where status!=4
+        and id in
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
 
@@ -135,6 +223,42 @@
             and type=#{type}
         </if>
 
+    </select>
+
+    <select id="queryChannelGroupList" parameterType="com.demai.cornel.reqParam.QueryChannelGroupParam"
+            resultMap="channelGroupResultMap">
+        select
+        <include refid="main_column"/>
+        from channel_group
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
+        <if test="name !=null">
+            and name ~ #{name}
+        </if>
+        <if test="type !=null">
+            and type = #{type}
+        </if>
+        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+
+    <select id="queryChannelGroupAllNum" parameterType="com.demai.cornel.reqParam.QueryChannelGroupParam"
+            resultType="int">
+        select
+        count(1)
+        from channel
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
+        <if test="name !=null">
+            and name ~ #{name}
+        </if>
+        <if test="type !=null">
+            and type = #{type}
+        </if>
     </select>
 
     
