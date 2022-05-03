@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Create By tfzhu  2022/5/1  4:23 PM
@@ -20,13 +21,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Builder
-public class OperateChannelParam implements Serializable {
+public class OperateChannelGroupParam implements Serializable {
     @NotNull
     private String name;
     @NotNull
-    private Integer type;
-    private Integer weight;
+    private Integer recommend;
+    List<String> channel;
     private Integer status;
+
     private Long id;
+
 
 }

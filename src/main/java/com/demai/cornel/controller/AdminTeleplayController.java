@@ -17,6 +17,7 @@ import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoBrowseDataParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
+import com.demai.cornel.reqParam.OperateChannelGroupParam;
 import com.demai.cornel.service.ChannelService;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.service.TeleplayVideoBrowseDataService;
@@ -212,8 +213,8 @@ import java.util.List;
      * 查询聚合频道list
      * @return
      */
-    @RequestMapping(value = "/channeGrouplList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    @ResponseBody public JsonListResult channeGrouplList(
+    @RequestMapping(value = "/channelGroupList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody public JsonListResult channelGroupList(
             @RequestBody QueryChannelGroupParam param, HttpServletResponse response) {
         try {
             List<ChannelGroup> channelList = channelService.getChannelGroupList(param);
@@ -223,6 +224,23 @@ import java.util.List;
             log.error("获取频道list异常！", e);
         }
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /**
+     * 查询聚合标签添加、编辑
+     *
+     * @return
+     */
+    @RequestMapping(value = "/operateChannelGroup.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult operateChannelGroup(
+            @RequestBody OperateChannelGroupParam param, HttpServletResponse response) {
+        try {
+            Preconditions.checkNotNull(param);
+            channelService.operateChannelGroup(param);
+            return JsonResult.success("success");
+        } catch (Exception e) {
+            log.error("添加频道信息异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
 }

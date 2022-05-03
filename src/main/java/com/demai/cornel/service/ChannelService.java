@@ -9,6 +9,7 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.ChannelGroup;
 import com.demai.cornel.model.Teleplay;
+import com.demai.cornel.reqParam.OperateChannelGroupParam;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryChannelGroupParam;
@@ -87,9 +88,7 @@ import java.util.stream.Collectors;
             }
         } catch (DuplicateKeyException e) {
             throw e;
-        } catch (Exception e) {
-            log.error("保存频道信息错误", e);
-        }
+        } 
     }
 
     /**
@@ -153,6 +152,30 @@ import java.util.stream.Collectors;
             log.error("查询频道list异常", e);
         }
         return 0;
+    }
+
+    /***
+     * 获取聚合频道list
+     * @param param
+     * @return
+     */
+    public void operateChannelGroup(OperateChannelGroupParam param) {
+        ChannelGroup channelGroup = ChannelGroup.builder().
+                id(param.getId())
+                .name(param.getName())
+                .recommend(param.getRecommend())
+                .channel(param.getChannel())
+                .status(Channel.ChannelStatusEnum.getChannelStatusEnum(param.getStatus(), null) != null ?
+                        param.getStatus() :
+                        null)
+                .operator(Long.parseLong(UserHolder.getValue("uid")))
+                .operatorName(UserHolder.getValue("name")).build();
+        if (param.getId() != null) {
+            channelGroup.setOperateTime(DateUtils.now());
+            channelDao.updateChannelGroup(channelGroup);
+        } else {
+            channelDao.saveChannelGroup(channelGroup);
+        }
     }
 
 }
