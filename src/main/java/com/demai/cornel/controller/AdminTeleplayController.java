@@ -9,15 +9,15 @@ import com.demai.cornel.model.ChannelGroup;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.model.TeleplayVideoBrowseData;
+import com.demai.cornel.reqParam.OperateChannelGroupParam;
 import com.demai.cornel.reqParam.OperateChannelParam;
+import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryChannelGroupParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
-import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoBrowseDataParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
-import com.demai.cornel.reqParam.OperateChannelGroupParam;
 import com.demai.cornel.service.ChannelService;
 import com.demai.cornel.service.TeleplayService;
 import com.demai.cornel.service.TeleplayVideoBrowseDataService;
@@ -36,7 +36,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.List;
 
 /**

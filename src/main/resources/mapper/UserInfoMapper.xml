@@ -298,10 +298,15 @@
 
     <select id="getAllUserInfoNum" parameterType="com.demai.cornel.reqParam.QueryUserParam" resultType="int">
         SELECT
-        <include refid="main_column"/>
+            count(1)
         from user_info
-        where status=1 and mobile = #{phone} and role !=1
-        limit 1
+        where role =1
+        <if test="name !=null">
+            and nick_name ~#{name}
+        </if>
+        <if test="vip !=null">
+            and vip =#{vip}
+        </if>
     </select>
 
 </mapper>
