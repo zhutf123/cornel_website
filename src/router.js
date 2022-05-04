@@ -22,7 +22,7 @@ const routes = [
         path: '/episodes',
         component: Episodes,
         children: [{
-            path: 'SubList',
+            path: 'subList',
             component: SubEpisodeList
         }, {
             path: 'subDetail',

@@ -1,7 +1,8 @@
 import axios from "axios";
 import router from '../router';
 
-axios.interceptors.response.use(function({data: res}) {
+axios.interceptors.response.use(function(resp) {
+    const res = resp.data;
     if (res.status === 1000) {
         if (res.msg) {
             window.Vue.prototype.$message.error(res.msg);

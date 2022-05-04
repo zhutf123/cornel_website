@@ -79,10 +79,11 @@
 <script>
 import './sub.scss';
 import {getSubEpisodeList} from '../../apis';
-import {vipFormatter} from '../../utils/formatter';
+import {methodsMixins} from '../../utils/mixins';
 
 export default {
     name: 'sub-episode-list',
+    mixins: [methodsMixins],
     data() {
         return {
             form: {
@@ -95,11 +96,11 @@ export default {
         };
     },
     mounted() {
-        const {tId} = this.$router.query;
+        const {tId} = this.$route.query;
         this.form.teleplayId = tId;
+        this.search();
     },
     methods: {
-        vipFormatter,
         onPageChange(pageNum) {
             this.form.pageNum = pageNum;
             this.search();
@@ -114,9 +115,18 @@ export default {
         },
         openSubEpisodeDetail(index, data) {
             this.$router.push({
-                name: 'subList',
-                params: {
+                path: '/episodes/subList',
+                query: {
                     videoId: data.id
+                }
+            });
+        },
+        gotoPublish() {
+            const {tId} = this.$route.query;
+            this.$router.push({
+                path: '/publish',
+                query: {
+                    tId
                 }
             });
         }

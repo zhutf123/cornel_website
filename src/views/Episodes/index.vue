@@ -17,6 +17,7 @@
                 <el-autocomplete
                     class="inline-input"
                     value-key="name"
+                    v-model="searchChannel"
                     :fetch-suggestions="queryChannel"
                     placeholder="请输入频道"
                     @select="handleSelectChannel('form', $events)"
@@ -76,6 +77,7 @@
             <el-table-column
                 label="发布时间"
                 prop="createTime"
+                width="90px"
             ></el-table-column>
             <el-table-column
                 label="发布者"
@@ -113,14 +115,18 @@
                 fixed="right"
             >
                 <template slot-scope="scope">
-                    <el-button
-                        type="text"
-                        @click="edit(scope.$index, scope.row)"
-                    >修改</el-button>
-                    <el-button
-                        type="text"
-                        @click="openSubEpisode(scope.$index, scope.row)"
-                    >详细数据</el-button>
+                    <div>
+                        <el-button
+                            type="text"
+                            @click="edit(scope.$index, scope.row)"
+                        >修改</el-button>
+                    </div>
+                    <div>
+                        <el-button
+                            type="text"
+                            @click="openSubEpisode(scope.$index, scope.row)"
+                        >详细数据</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -133,21 +139,21 @@
         </el-pagination>
 
         <el-dialog title="编辑剧集"
-            v-if="editingData"
+            :visible.sync="editingDialog"
         >
-            <el-form ref="editingForm" :model="editingData">
+            <el-form ref="editingForm" :model="editingData" v-if="editingData">
                 <el-form-item label="标题">
                     <el-input v-model="editingData.title" />
                 </el-form-item>
                 <el-form-item label="描述">
-                    <el-input type="textarea" :rows="4" v-model="editingData.desc" />
+                    <el-input type="textarea" :rows="4" v-model="editingData.depict" />
                 </el-form-item>
                 <el-form-item label="封面">
                     <el-row>
                         <el-col :span="15">
-                            <el-input v-model="editingData.thumb" />
+                            <el-input v-model="editingData.mainImage" />
                         </el-col>
-                        <el-col :span="8" :offset="1">
+                        <el-col :span="4" :offset="1">
                             <uploader
                                 :onSuccess="onUploadThumb"
                             />
@@ -164,6 +170,7 @@
                     >{{tag}}</el-tag>
                     <el-autocomplete
                         class="inline-input"
+                        v-model="dialogChannel"
                         value-key="name"
                         size="mini"
                         :fetch-suggestions="queryChannel"
@@ -199,30 +206,44 @@
 
 <script>
 import {getEpisodeList, suggestChannel, updateEpisode} from '../../apis';
-import {vipFormatter} from '../../utils/formatter';
+import { methodsMixins } from '../../utils/mixins';
+import Uploader from '../../components/Uploader.vue';
 
 export default {
     name: 'episodes',
+    mixins: [methodsMixins],
+    components: {
+        Uploader
+    },
+    computed: {
+        editingDialog() {
+            console.log(4444)
+            return !!this.editingData;
+        }
+    },
     data() {
         return {
             form: {
-                id: '',
-                vip: 0,
-                channel: '',
-                status: '',
-                title: '',
+                id: void 0,
+                vip: void 0,
+                channel: void 0,
+                status: void 0,
+                title: void 0,
                 pageSize: 10,
-                pageNum: 1,
-                offset: 0
+                pageNum: 1
             },
             list: [],
             total: 0,
+            searchChannel: '',
+            dialogChannel: '',
             editingData: null,
             subParentData: null
         };
     },
+    mounted() {
+        this.search();
+    },
     methods: {
-        vipFormatter,
         onPageChange(pageNum) {
             this.form.pageNum = pageNum;
             this.search();
@@ -231,10 +252,7 @@ export default {
             if (data && data.pageNum) {
                 this.form.pageNum = data.pageNum;
             }
-            getEpisodeList({
-                pageSize: 10,
-                pageNum: 1
-            }).then(res => {
+            getEpisodeList(this.form).then(res => {
                 if (res.status === 0) {
                     this.list = res.data;
                     this.total = res.allNum;
@@ -242,18 +260,20 @@ export default {
             });
         },
         reset() {
-            this.$refs.form.reset();
+            this.$refs.form.resetFields();
         },
         exportData() {
 
         },
         edit(index, data) {
             this.editingData = data;
+            console.log(data)
         },
         onConfirmEdit() {
             updateEpisode(this.editingData).then(res => {
                 if (res.status === 0) {
                     this.$message.success(res.msg || '编辑成功');
+                    this.editingData = null;
                 } else if (res.msg) {
                     this.$message.error(res.msg);
                 }
@@ -261,14 +281,18 @@ export default {
         },
         openSubEpisode(index, data) {
             this.$router.push({
-                name: 'subList',
-                params: {
-                    tId: data.teleplayId
+                path: '/episodes/subList',
+                query: {
+                    tId: data.id
                 }
             });
         },
-        onUploadThumb(data) {
-            console.log(data);
+        onUploadThumb(res) {
+            const {data, status, msg} = res;
+            if (status !== 0) {
+                this.$$message.error(msg);
+                return;
+            }
             this.editingData.mainImage = data.url;
             this.editingData.sourceId = data.sourceId;
         },

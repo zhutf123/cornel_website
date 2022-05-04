@@ -44,6 +44,7 @@
 
 <script>
 import './reset.scss';
+import './common.scss';
 import './app.scss';
 
 import {ENTRIES} from './utils/constant';

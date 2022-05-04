@@ -57,10 +57,11 @@
 <script>
 import './sub.scss';
 import {getSubEpisodeDetail} from '../../apis';
-import {vipFormatter} from '../../utils/formatter';
+import { methodsMixins } from '../../utils/mixins';
 
 export default {
     name: 'sub-episode-detail',
+    mixins: [methodsMixins],
     data() {
         return {
             form: {
@@ -71,11 +72,10 @@ export default {
             total: 0
         };
     },
+    mounted() {
+        this.search();
+    },
     methods: {
-        vipFormatter,
-        goBack() {
-            this.$router.back();
-        },
         onPageChange(pageNum) {
             this.form.pageNum = pageNum;
             this.search();
