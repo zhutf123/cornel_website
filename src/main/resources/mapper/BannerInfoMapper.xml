@@ -101,4 +101,19 @@
         </trim>
         )
     </insert>
+    <select id="getBannerInfoList" parameterType="com.demai.cornel.reqParam.QueryBannerInfoParam"
+        resultMap="bannerInfoResultMap">
+        select
+            <include refid="main_column"/>
+        from banner_info
+        order by status,seq desc
+        offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="getBannerInfoAllNum" parameterType="com.demai.cornel.reqParam.QueryBannerInfoParam"
+            resultType="int">
+        select
+            count(1)
+        from banner_info
+    </select>
 </mapper>

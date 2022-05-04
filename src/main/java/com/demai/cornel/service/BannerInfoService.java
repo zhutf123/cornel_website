@@ -3,14 +3,15 @@ package com.demai.cornel.service;
 import com.demai.cornel.dao.BannerInfoDao;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.BannerInfo;
-import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.OperateBannerInfoParam;
+import com.demai.cornel.reqParam.QueryBannerInfoParam;
 import com.demai.cornel.util.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,22 +27,6 @@ import java.util.Map;
      * 添加、编辑广告位
      * @param param
      */
-
-    private String mainImage;
-    private String mainSource;
-    private String videoUrl;
-    private String videoSource;
-    private Long videoId;
-    private String title;
-    private String depict;
-    private Integer type;
-    private Integer status;
-    private Date operateTime;
-    private Long operator;
-    private String operatorName;
-    private Map<String, String> extInfo;
-    private Date createTime;
-
     public void operateBannerInfo(OperateBannerInfoParam param) {
         BannerInfo bannerInfo = BannerInfo.builder().
                 id(param.getId())
@@ -65,6 +50,15 @@ import java.util.Map;
         } else {
             bannerInfoDao.save(bannerInfo);
         }
+    }
+
+    public List<BannerInfo> getBannerInfoList(QueryBannerInfoParam param){
+        return bannerInfoDao.getBannerInfoList(param);
+    }
+
+
+    public Integer getBannerInfoAllNum(QueryBannerInfoParam param){
+        return bannerInfoDao.getBannerInfoAllNum(param);
     }
 
 }

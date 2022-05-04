@@ -6,6 +6,7 @@ package com.demai.cornel.dao;
 import com.demai.cornel.model.BannerInfo;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.ChannelGroup;
+import com.demai.cornel.reqParam.QueryBannerInfoParam;
 import com.demai.cornel.reqParam.QueryChannelGroupParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import org.apache.ibatis.annotations.Param;
@@ -21,5 +22,9 @@ public interface BannerInfoDao {
     void update(BannerInfo bannerInfo);
 
     void save(BannerInfo bannerInfo);
+
+    List<BannerInfo> getBannerInfoList(@Param("param") QueryBannerInfoParam param);
+
+    Integer getBannerInfoAllNum(@Param("param") QueryBannerInfoParam param);
 
 }
