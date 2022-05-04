@@ -21,15 +21,13 @@ import java.io.Serializable;
 @Builder
 public class OperateCommentInfoParam implements Serializable {
     private Long id;
-    private String mainImage;
-    private String mainSource;
-    private String videoUrl;
-    private String videoSource;
+    private Long teleplayId;
     private Long videoId;
     private String title;
     private String depict;
-    private Integer type;
+    private String content;
     private Integer status;
-    private Integer seq;
+    private String path;
+    private Integer level;
 
 }
