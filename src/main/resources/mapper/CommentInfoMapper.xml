@@ -204,7 +204,6 @@
             </if>
 
         </where>
-        order by t.operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} 
     </select>
 
 </mapper>
