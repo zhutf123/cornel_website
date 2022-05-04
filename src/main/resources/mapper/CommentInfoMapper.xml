@@ -154,20 +154,19 @@
             c.user_id=u.id
             and c.teleplay_id=t.id
             and c.video_id=tv.id
-            c.status=1
             and u.status=1
             and t.status=1
             and tv.status=1
             <if test="status !=null">
-                and t.status = #{status}
+                and c.status = #{status}
             </if>
             <if test="nickName !=null">
-                and user_id in
+                and c.user_id in
                 (select id from user_info where nick_name ~#{nickName} and status=1)
             </if>
 
             <if test="name !=null">
-                and teleplay_id in
+                and c.teleplay_id in
                 (select id from teleplay
                 where title ~#{name} and
                       status=1)
@@ -186,12 +185,11 @@
             c.user_id=u.id
             and c.teleplay_id=t.id
             and c.video_id=tv.id
-            c.status=1
             and u.status=1
             and t.status=1
             and tv.status=1
             <if test="status !=null">
-                and t.status = #{status}
+                and c.status = #{status}
             </if>
             <if test="nickName !=null">
                 and user_id in
