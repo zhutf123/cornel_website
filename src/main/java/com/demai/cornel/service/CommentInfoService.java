@@ -8,6 +8,7 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.BannerInfo;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.CommentInfo;
+import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateCommentInfoParam;
 import com.demai.cornel.reqParam.QueryBannerInfoParam;
@@ -32,11 +33,28 @@ public class CommentInfoService {
     private CommentInfoDao commentInfoDao;
 
     public void operateCommentInfo(OperateCommentInfoParam param) throws DuplicateKeyException {
-        try {
-            
-        } catch (DuplicateKeyException e) {
-            throw e;
-        }
+            CommentInfo commentInfo = CommentInfo.builder()
+                    .id(param.getId())
+                    .content(param.getContent())
+                    .id(param.getId())
+                    .teleplayId(param.getTeleplayId())
+                    .videoId(param.getVideoId())
+                    .bulletChat(param.getBulletChat())
+                    .status(CommentInfo.CommentInfoStatusEnum.getCommentStatusEnum(param.getStatus(), CommentInfo.CommentInfoStatusEnum.ERROR_CODE) != null ?
+                            param.getStatus() :
+                            null)
+                    .parentPath(param.getPath())
+                    .operator(Long.parseLong(UserHolder.getValue("uid")))
+                    .operatorName(UserHolder.getValue("name"))
+                    .build();
+            if (param.getId() != null) {
+                commentInfo.setOperateTime(DateUtils.now());
+                commentInfoDao.update(commentInfo);
+            } else {
+                commentInfo.setUserId(Long.parseLong(UserHolder.getValue("uid")));
+                commentInfo.setLevel(param.getLevel() + 1);
+                commentInfoDao.save(commentInfo);
+            }
     }
 
     public List<CommentInfo> getCommentInfoList(QueryCommentInfoParam param){

@@ -27,6 +27,7 @@ public class OperateCommentInfoParam implements Serializable {
     private String depict;
     private String content;
     private Integer status;
+    private Integer bulletChat;
     private String path;
     private Integer level;
 

@@ -356,7 +356,7 @@ CREATE TABLE comment_info
 (
     id           serial PRIMARY KEY,
     content   varchar(256),
-    user_id   varchar(256),
+    user_id   bigint,
     teleplay_id   bigint,
     video_id   bigint,
     parent_path text,
