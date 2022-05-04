@@ -1,88 +1,85 @@
 <template>
-    <div class="m-sub-episodes">
-        <div class="sub-main">
-            <el-page-header
-                @back="goBack"
+    <panel>
+        <template slot="header">
+            <span class="name"></span>
+            <el-button
+                size="mini"
+                type="primary"
+                @click="gotoPublish"
+            >发布</el-button>
+        </template>
+        <el-table
+            :data="list"
+        >
+            <el-table-column
+                label="剧集"
+                prop="title"
+            ></el-table-column>
+            <el-table-column
+                label="封面"
             >
-                <template slot="content">
-                    <span class="name"></span>
-                    <el-button
-                        size="mini"
-                        type="primary"
-                        @click="gotoPublish"
-                    >发布</el-button>
+                <template slot-scope="scope">
+                    <img class="thumb" :src="scope.row.mainImage" />
                 </template>
-            </el-page-header>
-            <el-table
-                :data="list"
+            </el-table-column>
+            <el-table-column
+                label="VIP剧集"
+                prop="vip"
+                :formatter="vipFormatter"
+            ></el-table-column>
+            <el-table-column
+                label="发布时间"
+                prop="createTime"
+            ></el-table-column>
+            <el-table-column
+                label="追剧数"
+                prop="followNum"
+            ></el-table-column>
+            <el-table-column
+                label="播放量"
+                prop="playNum"
+            ></el-table-column>
+            <el-table-column
+                label="点赞量"
+                prop="likeNum"
+            ></el-table-column>
+            <el-table-column
+                label="转发量"
+                prop="shareNum"
+            ></el-table-column>
+            <el-table-column
+                label="操作"
+                fixed="right"
             >
-                <el-table-column
-                    label="剧集"
-                    prop="title"
-                ></el-table-column>
-                <el-table-column
-                    label="封面"
-                >
-                    <template slot-scope="scope">
-                        <img class="thumb" :src="scope.row.mainImage" />
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    label="VIP剧集"
-                    prop="vip"
-                    :formatter="vipFormatter"
-                ></el-table-column>
-                <el-table-column
-                    label="发布时间"
-                    prop="createTime"
-                ></el-table-column>
-                <el-table-column
-                    label="追剧数"
-                    prop="followNum"
-                ></el-table-column>
-                <el-table-column
-                    label="播放量"
-                    prop="playNum"
-                ></el-table-column>
-                <el-table-column
-                    label="点赞量"
-                    prop="likeNum"
-                ></el-table-column>
-                <el-table-column
-                    label="转发量"
-                    prop="shareNum"
-                ></el-table-column>
-                <el-table-column
-                    label="操作"
-                    fixed="right"
-                >
-                    <template slot-scope="scope">
-                        <el-button
-                            type="text"
-                            @click="openSubEpisodeDetail(scope.$index, scope.row)"
-                        >详细数据</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <el-pagination
-                background
-                layout="prev, pager, next"
-                :total="total"
-                @current-change="onPageChange"
-            >
-            </el-pagination>
-        </div>
+                <template slot-scope="scope">
+                    <el-button
+                        type="text"
+                        @click="openSubEpisodeDetail(scope.$index, scope.row)"
+                    >详细数据</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="total"
+            @current-change="onPageChange"
+        >
+        </el-pagination>
         <router-view />
-    </div>
+    </panel>
 </template>
 
 <script>
-import './sub.scss';
 import {getSubEpisodeList} from '../../apis';
 import {methodsMixins} from '../../utils/mixins';
+import Panel from '../../components/Panel.vue';
 
 export default {
     name: 'sub-episode-list',
+    components: {
+        Panel
+    },
     mixins: [methodsMixins],
     data() {
         return {
@@ -115,7 +112,7 @@ export default {
         },
         openSubEpisodeDetail(index, data) {
             this.$router.push({
-                path: '/episodes/subList',
+                path: '/episodes/subDetail',
                 query: {
                     videoId: data.id
                 }

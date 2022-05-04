@@ -83,10 +83,10 @@ export function offlineTag({groupId, channelId}) {
 }
 
 // 广告系统接口
-export function getAdList(params) {
+export function getBannerList(params) {
     return axios.post('/admin/bannerList.json', params);
 }
-export function updateAd(params) {
+export function updateBanner(params) {
     return axios.post('/admin/operateBannerInfo.json', params);
 }
 

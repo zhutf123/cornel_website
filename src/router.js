@@ -6,8 +6,10 @@ import Episodes from './views/Episodes/index.vue';
 import SubEpisodeList from './views/Episodes/subList.vue';
 import SubEpisodeDetail from './views/Episodes/subDetail.vue';
 import Users from './views/Users/index.vue';
+import UserDetail from './views/Users/detail.vue';
 import Login from './views/Login/index.vue';
 import Tags from './views/Tags/index.vue';
+import Banner from './views/Banners/index.vue';
 
 const routes = [
     {
@@ -31,10 +33,17 @@ const routes = [
         }]
     }, {
         path: '/users',
-        component: Users
+        component: Users,
+        children: [{
+            path: 'detail',
+            component: UserDetail
+        }]
     }, {
         path: '/tags',
         component: Tags
+    }, {
+        path: '/banners',
+        component: Banner
     }
 ];
 

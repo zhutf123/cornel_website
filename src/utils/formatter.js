@@ -22,3 +22,17 @@ export function recommendFormatter(row) {
     }
     return '否';
 }
+
+export function bannerTypeFormatter(row) {
+    if (row.type === 1) {
+        return '剧集';
+    }
+    return '广告';
+}
+
+export function genderFormatter(row) {
+    if (row.gender === 0) {
+        return '男';
+    }
+    return '女';
+}

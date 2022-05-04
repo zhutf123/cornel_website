@@ -40,7 +40,18 @@ export default {
         queryChannel(input, cb) {
             switch(this.type) {
                 case 'episode':
-                    suggestEpisode(input).then(res => cb(res.data));
+                    suggestEpisode(input).then(res => {
+                        if (res.data) {
+                            const data = res.data.reduce((res, item) => {
+                                const {title, videoList} = item;
+                                videoList.forEach(item => {
+                                    item.title = title + '-' + item.title;
+                                });
+                                return res.concat(videoList);
+                            }, []);
+                            cb(data);
+                        }
+                    });
                     break;
                 default:
                     suggestChannel(input).then(res => cb(res.data));

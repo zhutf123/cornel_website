@@ -20,6 +20,11 @@ export const ENTRIES = [
         name: '聚合标签'
     },
     {
+        path: '/banners',
+        type: 'manage',
+        name: '广告系统'
+    },
+    {
         path: '/users',
         type: 'manage',
         name: '用户管理'
