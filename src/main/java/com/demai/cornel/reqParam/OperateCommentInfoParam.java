@@ -23,8 +23,6 @@ public class OperateCommentInfoParam implements Serializable {
     private Long id;
     private Long teleplayId;
     private Long videoId;
-    private String title;
-    private String depict;
     private String content;
     private Integer status;
     private Integer bulletChat;

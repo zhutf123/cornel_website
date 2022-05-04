@@ -380,10 +380,10 @@ CREATE TABLE comment_info
 
 COMMENT ON COLUMN comment_info.level IS '评论的级别，主评1 主评的回复 2  主评的回复的回复 3 以此类推';
 COMMENT ON COLUMN comment_info.parent_path IS '被回复的id 从根结点开始 如：1.10.100';
-COMMENT ON COLUMN banner_info.status IS '品论状态 1通过 4 删除';
-COMMENT ON COLUMN banner_info.bullet_chat IS '1作为弹幕，2不在弹幕出现';
-COMMENT ON COLUMN banner_info.system_status IS '0 系统待审核 1审核通过 2 审核不通过';
-COMMENT ON COLUMN banner_info.operator_status IS '0 人工待审核 1审核通过 2 审核不通过';
+COMMENT ON COLUMN comment_info.status IS '品论状态 1通过 4 删除';
+COMMENT ON COLUMN comment_info.bullet_chat IS '1作为弹幕，2不在弹幕出现';
+COMMENT ON COLUMN comment_info.system_status IS '0 系统待审核 1审核通过 2 审核不通过';
+COMMENT ON COLUMN comment_info.operator_status IS '0 人工待审核 1审核通过 2 审核不通过';
 
 
 

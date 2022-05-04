@@ -10,9 +10,7 @@
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/init_sql_20220423.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/init_sql_20220423.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/CommentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/CommentInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/OperateCommentInfoParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/OperateCommentInfoParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/CommentInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/CommentInfoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +212,7 @@
       <workItem from="1615435699508" duration="2034000" />
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
-      <workItem from="1651224811459" duration="133465000" />
+      <workItem from="1651224811459" duration="135531000" />
     </task>
     <servers />
   </component>
