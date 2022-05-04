@@ -8,7 +8,10 @@
     >
         <el-button size="small" type="primary" v-if="type === 'button'">本地上传</el-button>
         <template v-else-if="type === 'avatar'">
-            <img v-if="data.url" :src="data.url" class="avatar" />
+            <div v-if="data.url">
+                <img v-if="sourceType === 'pic'" :src="data.url" class="avatar" />
+                <video controls :src="data.url" v-else />
+            </div>
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </template>
     </el-upload>

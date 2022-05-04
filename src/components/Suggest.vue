@@ -1,12 +1,24 @@
 <template>
-    <el-autocomplete
-        :value-key="valueKey"
-        v-model="input"
-        :fetch-suggestions="queryChannel"
-        placeholder="请输入频道"
-        @select="onSelect"
-        :trigger-on-focus="false"
-    ></el-autocomplete>
+    <div>
+        <el-select
+            v-model="input"
+            :multiple="multiple"
+            remote
+            filterable
+            :remote-method="queryChannel"
+            :loading="loading"
+            :placeholder="placeholder"
+            @change="onChange"
+        >
+            <el-option
+                v-for="(item, index) in options"
+                :key="item.id"
+                :label="item[valueKey]"
+                :value="index"
+            >
+            </el-option>
+        </el-select>
+    </div>
 </template>
 
 <script>
@@ -22,9 +34,13 @@ export default {
             type: String,
             default: 'name'
         },
-        fetch: {
-            type: Function,
-            default: () => {}
+        multiple: {
+            type: Boolean,
+            default: true
+        },
+        placeholder: {
+            type: String,
+            default: ''
         },
         onSelect: {
             type: Function,
@@ -33,11 +49,22 @@ export default {
     },
     data() {
         return {
+            loading: false,
+            options: [],
             input: ''
         };
     },
     methods: {
-        queryChannel(input, cb) {
+        onChange(data) {
+            const selected = data.map(i => this.cacheOptions[i]);
+            this.onSelect(selected);
+        },
+        queryChannel(input) {
+            if (!input) {
+                this.options = [];
+                return;
+            }
+            this.loading = true;
             switch(this.type) {
                 case 'episode':
                     suggestEpisode(input).then(res => {
@@ -49,12 +76,19 @@ export default {
                                 });
                                 return res.concat(videoList);
                             }, []);
-                            cb(data);
+
+                            this.cacheOptions = data;
+                            this.options = data;
+                            this.loading = false;
                         }
                     });
                     break;
                 default:
-                    suggestChannel(input).then(res => cb(res.data));
+                    suggestChannel(input).then(res => {
+                        this.cacheOptions = data;
+                        this.options = res.data;
+                        this.loading = false;
+                    });
             }
         }
     }

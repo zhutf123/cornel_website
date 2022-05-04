@@ -10,9 +10,13 @@ import UserDetail from './views/Users/detail.vue';
 import Login from './views/Login/index.vue';
 import Tags from './views/Tags/index.vue';
 import Banner from './views/Banners/index.vue';
+import Publish from './views/Publish/index.vue';
 
 const routes = [
     {
+        path: '/publish',
+        component: Publish
+    }, {
         path: '/login',
         component: Login
     }, {

@@ -1,5 +1,9 @@
 export const ENTRIES = [
     {
+        path: '/publish',
+        name: '发布'
+    },
+    {
         path: '/episodes',
         type: 'manage',
         name: '剧情管理'

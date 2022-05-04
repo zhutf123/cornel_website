@@ -164,8 +164,6 @@
 </template>
 
 <script>
-import './index.scss';
-
 import {CHANNEL_TAGS} from '../../utils/constant';
 import { getBannerList, updateBanner } from '../../apis';
 import Suggest from '../../components/Suggest.vue';
