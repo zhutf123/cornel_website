@@ -35,6 +35,7 @@
         
         <el-table
             :data="list"
+            row-key="id"
         >
             <el-table-column type="expand">
                 <template slot-scope="scope">
@@ -52,6 +53,13 @@
                             label=""
                             prop="statusDesc"
                         >
+                            <template slot-scope="{row, $index}">
+                                {{row.statusDesc}}
+                                |
+                                <el-button type="text" :disabled="row.status === 2"
+                                    @click="offlineSubTag('offline', scope.row.id, row, scope.$index, $index)"
+                                >下架</el-button>
+                            </template>
                         </el-table-column>
                         <el-table-column
                             label=""
@@ -177,7 +185,7 @@
 import './index.scss';
 
 import {CHANNEL_TAGS} from '../../utils/constant';
-import { delTag, getTagsList, updateTag } from '../../apis';
+import { delTag, getTagsList, updateTag, offlineTag } from '../../apis';
 import Suggest from '../../components/Suggest.vue';
 import { methodsMixins } from '../../utils/mixins';
 
@@ -272,6 +280,16 @@ export default {
                         this.$message.error(res.msg);
                     }
                 });
+            });
+        },
+        offlineSubTag(type, groupId, data, pIndex, index) {
+            const {id: channelId} = data;
+
+            offlineTag({groupId, channelId}).then(res => {
+                if (res.status === 0) {
+                    this.$message.success(res.msg);
+                    Vue.delete(this.list[pIndex].channelList, index);
+                }
             });
         }
     }
