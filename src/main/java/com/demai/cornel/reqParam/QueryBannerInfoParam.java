@@ -16,4 +16,23 @@ import lombok.NoArgsConstructor;
  */
 @Data public class QueryBannerInfoParam extends BaseQueryParam {
 
+    private Integer pageSize;
+    private Integer pageNum = 1;
+    private Integer offSet;
+
+    public void setPageSize(Integer pageSize) {
+        if (pageSize == null || pageSize == 0) {
+            pageSize = 10;
+        }
+        this.pageSize = pageSize;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        if (pageNum == null || pageNum == 0) {
+            pageNum = 1;
+        }
+        this.pageNum = pageNum;
+        this.offSet = (this.pageNum - 1) * this.pageSize;
+    }
+
 }
