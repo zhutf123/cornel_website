@@ -23,8 +23,8 @@ public interface BannerInfoDao {
 
     void save(BannerInfo bannerInfo);
 
-    List<BannerInfo> getBannerInfoList(@Param("param") QueryBannerInfoParam param);
+    List<BannerInfo> getBannerInfoList(QueryBannerInfoParam param);
 
-    Integer getBannerInfoAllNum(@Param("param") QueryBannerInfoParam param);
+    Integer getBannerInfoAllNum(QueryBannerInfoParam param);
 
 }
