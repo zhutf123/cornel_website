@@ -362,7 +362,7 @@ CREATE TABLE comment_info
     parent_path text,
     level   integer default 0,
     top   integer default 0,
-    reply_nu   integer default 0,
+    reply_num   integer default 0,
     like_num   integer default 0,
     bullet_chat       integer default 2,
     weight        integer,
