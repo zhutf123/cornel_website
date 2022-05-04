@@ -80,14 +80,16 @@
             background
             layout="prev, pager, next"
             :total="total"
-            @current-change="onPageChange"
+            @current-change="search"
         >
         </el-pagination>
 
         <el-dialog :title="dialogTitle"
-            v-if="editingData"
+            :visible.sync="showDialog"
+            :show-close="false"
+            :close-on-click-modal="false"
         >
-            <el-form ref="editingForm" :model="editingData">
+            <el-form ref="editingForm" :model="editingData" v-if="editingData">
                 <el-form-item label="频道名称">
                     <el-input v-model="editingData.name" />
                 </el-form-item>
@@ -132,7 +134,7 @@ export default {
             form: {
                 name: '',
                 type: '',
-                weight: 0,
+                weight: '',
                 status: '',
                 pageSize: 10,
                 pageNum: 1
@@ -142,22 +144,24 @@ export default {
             editingData: null
         };
     },
+    computed: {
+        showDialog() {
+            return !!this.editingData;
+        }
+    },
+    mounted() {
+        this.search();
+    },
     methods: {
         channelTagFormatter,
-        onPageChange(pageNum) {
+        search(pageNum = 1) {
             this.form.pageNum = pageNum;
-            this.search();
-        },
-        search() {
-            getChannelList({
-                pageSize: 10,
-                pageNum: 1
-            }).then(res => {
+            getChannelList(this.form).then(res => {
                 if (res.status === 0) {
                     this.list = res.data;
                     this.total = res.allNum;
                 }
-            })
+            });
         },
         exportData() {
 
@@ -186,6 +190,7 @@ export default {
                 if (res.status === 0) {
                     this.$message.success(res.msg);
                     this.editingData = null;
+                    this.search(this.form.pageNum);
                 } else if (res.msg) {
                     this.$message.error(res.msg);
                 }
@@ -195,7 +200,7 @@ export default {
             delChannel(data.id).then(res => {
                 if (res.status === 0) {
                     this.$message.success(res.msg || '删除成功');
-                    this.search();
+                    this.search(this.form.pageNum);
                 }
             });
         }

@@ -7,6 +7,7 @@ import SubEpisodeList from './views/Episodes/subList.vue';
 import SubEpisodeDetail from './views/Episodes/subDetail.vue';
 import Users from './views/Users/index.vue';
 import Login from './views/Login/index.vue';
+import Tags from './views/Tags/index.vue';
 
 const routes = [
     {
@@ -31,6 +32,9 @@ const routes = [
     }, {
         path: '/users',
         component: Users
+    }, {
+        path: '/tags',
+        component: Tags
     }
 ];
 

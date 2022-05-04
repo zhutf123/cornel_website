@@ -8,3 +8,17 @@ export function channelTagFormatter(row) {
     }
     return '';
 }
+
+export function vipFormatter(row) {
+    if (row.vip === 1) {
+        return '是';
+    }
+    return '否';
+}
+
+export function recommendFormatter(row) {
+    if (row.recommend === 1) {
+        return '是';
+    }
+    return '否';
+}

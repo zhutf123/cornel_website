@@ -1,0 +1,22 @@
+.m-tags {
+    .subTable {
+        .el-table__header-wrapper {
+            display: none;
+        }
+        .el-table__cell {
+            border-bottom: 0;
+
+            &:nth-of-type(2) {
+                text-align: center;
+            }
+        }
+    }
+    .expanded {
+        .el-table__cell {
+            border-bottom: 0;
+        }
+    }
+    .el-table__expanded-cell {
+        border: 0;
+    }
+}

@@ -140,6 +140,8 @@
 
         <el-dialog title="编辑剧集"
             :visible.sync="editingDialog"
+            :show-close="false"
+            :close-on-click-modal="false"
         >
             <el-form ref="editingForm" :model="editingData" v-if="editingData">
                 <el-form-item label="标题">
@@ -217,18 +219,17 @@ export default {
     },
     computed: {
         editingDialog() {
-            console.log(4444)
             return !!this.editingData;
         }
     },
     data() {
         return {
             form: {
-                id: void 0,
-                vip: void 0,
-                channel: void 0,
-                status: void 0,
-                title: void 0,
+                id: '',
+                vip: '',
+                channel: '',
+                status: '',
+                title: '',
                 pageSize: 10,
                 pageNum: 1
             },
@@ -309,9 +310,6 @@ export default {
                 if (index === -1) {
                     this.editingData.channel.push(item.id);
                     this.editingData.channelDesc.push(item.name);
-                } else {
-                    Vue.delete(this.editingData.channel, index);
-                    Vue.delete(this.editingData.channelDesc, index);
                 }
             }
         },

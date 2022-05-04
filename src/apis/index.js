@@ -1,6 +1,20 @@
 import axios from "axios";
 import router from '../router';
 
+axios.interceptors.request.use(function(config) {
+    if (config.data) {
+        const data = config.data;
+        const newData = {};
+        Object.keys(data).map(key => {
+            if (data[key] !== '') {
+                newData[key] = data[key];
+            }
+        });
+        config.data = newData;
+    }
+
+    return config;
+});
 axios.interceptors.response.use(function(resp) {
     const res = resp.data;
     if (res.status === 1000) {
@@ -35,6 +49,9 @@ export function getSubEpisodeDetail(params) {
 export function updateSubEpisode(params) {
     return axios.post('/admin/operateTeleplayVideo.json', params);
 }
+export function suggestEpisode(input) {
+    return axios.get(`/admin/suggestTeleplay.json?name=${input}`);
+}
 
 
 // 频道接口
@@ -49,4 +66,34 @@ export function updateChannel(params) {
 }
 export function suggestChannel(input) {
     return axios.get(`/admin/suggestChannel.json?name=${input}`);
+}
+
+// 聚合标签接口
+export function getTagsList(params) {
+    return axios.post('/admin/channelGroupList.json', params);
+}
+export function updateTag(params) {
+    return axios.post('/admin/operateChannelGroup.json', params);
+}
+export function delTag(id) {
+    return axios.get(`/admin/delChannelGroup.json?id=${id}`);
+}
+export function offlineTag({groupId, channelId}) {
+    return axios.get(`/admin/removeChildChannel.json?groupId=${groupId}&channelId=${channelId}`)
+}
+
+// 广告系统接口
+export function getAdList(params) {
+    return axios.post('/admin/bannerList.json', params);
+}
+export function updateAd(params) {
+    return axios.post('/admin/operateBannerInfo.json', params);
+}
+
+// 用户接口
+export function getUserList(params) {
+    return axios.post('/admin/userList.json', params);
+}
+export function getUserPayList(userId) {
+    return axios.get(`/admin/queryUserPayList.json?userId=${userId}`);
 }

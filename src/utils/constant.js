@@ -15,6 +15,11 @@ export const ENTRIES = [
         name: '频道管理'
     },
     {
+        path: '/tags',
+        type: 'manage',
+        name: '聚合标签'
+    },
+    {
         path: '/users',
         type: 'manage',
         name: '用户管理'
