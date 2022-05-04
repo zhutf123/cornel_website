@@ -1,18 +1,22 @@
-CREATE TABLE banner_info
+CREATE TABLE comment_info
 (
     id           serial PRIMARY KEY,
-    main_image   varchar(256),
-    main_source   varchar(256),
-    video_url   varchar(256),
-    video_source   varchar(256),
+    content   varchar(256),
+    user_id   varchar(256),
     video_id   bigint,
-    title        text,
-    depict     text,
-    type          integer default 1,
-    status       integer default 1,
-    operate_time timestamptz(6) default now(),
+    parent_path text,
+    level   integer default 0,
+    top   integer default 0,
+    reply_num,   integer default 0,
+    like_num,   integer default 0,
+    bullet_chat       integer default 2,
+    weight        integer,
+    status      integer default 1,
+    system_status       integer default 0,
+    operator_status       integer default 0,
     operator     bigint,
     operator_name varchar(256),
     ext_info     hstore,
+    operate_time timestamptz(6) default now(),
     create_time  timestamptz(6) default now()
 )

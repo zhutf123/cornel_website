@@ -357,11 +357,13 @@ CREATE TABLE comment_info
     id           serial PRIMARY KEY,
     content   varchar(256),
     user_id   varchar(256),
+    teleplay_id   bigint,
     video_id   bigint,
     parent_path text,
-    top,   integer default 0,
-    reply_num,   integer default 0,
-    like_num,   integer default 0,
+    level   integer default 0,
+    top   integer default 0,
+    reply_nu   integer default 0,
+    like_num   integer default 0,
     bullet_chat       integer default 2,
     weight        integer,
     status      integer default 1,
@@ -376,6 +378,7 @@ CREATE TABLE comment_info
     WITH (OIDS = FALSE)
 ;
 
+COMMENT ON COLUMN comment_info.level IS '评论的级别，主评1 主评的回复 2  主评的回复的回复 3 以此类推';
 COMMENT ON COLUMN comment_info.parent_path IS '被回复的id 从根结点开始 如：1.10.100';
 COMMENT ON COLUMN banner_info.status IS '品论状态 1通过 4 删除';
 COMMENT ON COLUMN banner_info.bullet_chat IS '1作为弹幕，2不在弹幕出现';

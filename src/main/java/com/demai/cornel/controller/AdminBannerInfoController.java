@@ -29,7 +29,7 @@ import java.util.List;
  * @Author tfzhu
  * @Date: 2020-01-07    22:19
  */
-@Controller @RequestMapping("/admin") @Slf4j public class AdminBannerController {
+@Controller @RequestMapping("/admin") @Slf4j public class AdminBannerInfoController {
 
     @Resource BannerInfoService bannerService;
 

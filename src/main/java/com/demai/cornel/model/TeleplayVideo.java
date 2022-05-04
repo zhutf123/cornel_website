@@ -64,10 +64,10 @@ public class TeleplayVideo implements Serializable {
     @AllArgsConstructor
     @NoArgsConstructor
     public static enum TeleplayVideoStatusEnum implements IEmus {
-
         ERROR_CODE(-1, "未知"),
-        ONLINE(1, "发布"),
-        OFFLINE(2, "待发布");
+        ONLINE(1, "在线"),
+        AUDITING(3, "审核中"),
+        OFFLINE(2, "下线");
 
         @Setter @Getter
         private int value;
