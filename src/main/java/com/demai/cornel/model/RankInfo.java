@@ -32,7 +32,6 @@ public class RankInfo implements Serializable {
     private Long id ;
     private String name ;
     private Integer weight ;
-    private List<String> teleplayId ;
     private Integer status ;
     private Long operator ;
     private String operatorName ;

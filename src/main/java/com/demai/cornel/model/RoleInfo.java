@@ -4,6 +4,7 @@
 package com.demai.cornel.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class RoleInfo implements Serializable {
     private static final long serialVersionUID = -8784176082403415679L;
     private Long id;

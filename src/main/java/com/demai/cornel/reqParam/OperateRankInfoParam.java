@@ -26,7 +26,5 @@ public class OperateRankInfoParam implements Serializable {
     private Integer weight;
     private Integer status;
 
-    private List<String> teleplayId;
-
 
 }

@@ -8,6 +8,7 @@ import com.demai.cornel.dao.TeleplayDao;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.BannerInfo;
 import com.demai.cornel.model.RankInfo;
+import com.demai.cornel.model.RankInfoExt;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.OperateRankInfoParam;
 import com.demai.cornel.reqParam.QueryRankInfoParam;
@@ -39,7 +40,6 @@ import java.util.stream.Collectors;
     public void operateRankInfo(OperateRankInfoParam param) {
         RankInfo bannerInfo = RankInfo.builder().
                 id(param.getId())
-                .teleplayId(param.getTeleplayId())
                 .name(param.getName())
                 .weight(param.getWeight())
                 .status(BannerInfo.BannerInfoStatusEnum.getBannerInfoStatusEnum(param.getStatus(), null) != null ?
@@ -60,11 +60,10 @@ import java.util.stream.Collectors;
         List<RankInfo> rankInfos =  rankInfoDao.getRankInfoList(param);
         if (CollectionUtils.isNotEmpty(rankInfos)) {
             rankInfos.stream().forEach(r ->{
-                List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByIds(
-                        r.getTeleplayId().stream().map(t -> Long.parseLong(t)).collect(Collectors.toList()));
+                List<RankInfoExt> teleplayList = rankInfoDao.getRankInfoExtList(r.getId());
                 StringBuilder sb = new StringBuilder();
                 teleplayList.stream().forEach(t ->{
-                    sb.append(t.getTitle()).append(",");
+                    sb.append(t.getTeleplayName()).append(",");
                 });
                 r.setTeleplayNames(sb.toString());
             });

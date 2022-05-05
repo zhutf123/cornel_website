@@ -392,7 +392,6 @@ CREATE TABLE rank_info
     id           serial PRIMARY KEY,
     name   varchar(256),
     weight        integer,
-    teleplay_id      varchar(40)[],
     status      integer default 1,
     operator     bigint,
     operator_name varchar(256),
@@ -405,3 +404,22 @@ CREATE TABLE rank_info
 
 COMMENT ON COLUMN rank_info.name IS '榜单名称';
 
+
+DROP TABLE IF EXISTS rank_info_ext;
+CREATE TABLE rank_info_ext
+(
+    id           serial PRIMARY KEY,
+    weight        integer,
+    teleplay_id     bigint,
+    rank_info_id     bigint,
+    status      integer default 1,
+    operator     bigint,
+    operator_name varchar(256),
+    ext_info     hstore,
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+COMMENT ON COLUMN rank_info_ext.weight IS '权重';

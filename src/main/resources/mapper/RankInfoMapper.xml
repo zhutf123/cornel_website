@@ -6,7 +6,19 @@
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="weight" property="weight" />
-        <result column="teleplay_id" property="teleplayId" typeHandler="com.demai.cornel.databaseHandler.ArrayStringListTypeHandler" />
+        <result column="status" property="status" />
+        <result column="operator" property="operator" />
+        <result column="operator_name" property="operatorName" />
+        <result column="ext_info" property="extInfo" />
+        <result column="operate_time" property="operateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <resultMap type="com.demai.cornel.model.RankInfoExt" id="rankInfoExtResultMap">
+        <id column="id" property="id" />
+        <result column="weight" property="weight" />
+        <result column="teleplay_id" property="teleplayId" />
+        <result column="rank_info" property="rankInfo" />
         <result column="status" property="status" />
         <result column="operator" property="operator" />
         <result column="operator_name" property="operatorName" />
@@ -19,7 +31,19 @@
         id,
         name,
         weight,
+        status,
+        operator,
+        operator_name,
+        ext_info,
+        operate_time,
+        create_time
+    </sql>
+
+    <sql id="main_rankInfoExt_column">
+        id,
+        weight,
         teleplay_id,
+        rank_info_id,
         status,
         operator,
         operator_name,
@@ -33,7 +57,6 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="name != null"> name = #{name},</if>
             <if test="weight != null"> weight = #{weight},</if>
-            <if test="teleplayId != null"> teleplay_id = #{teleplayId,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler},</if>
             <if test="status != null"> status = #{status},</if>
             <if test="operator != null"> operator = #{operator},</if>
             <if test="operatorName != null"> operator_name = #{operatorName},</if>
@@ -49,7 +72,6 @@
         <trim suffixOverrides=",">
             <if test="name != null"> name ,</if>
             <if test="weight != null"> weight ,</if>
-            <if test="teleplayId != null"> teleplay_id ,</if>
             <if test="status != null"> status ,</if>
             <if test="operator != null"> operator ,</if>
             <if test="operatorName != null"> operator_name ,</if>
@@ -61,7 +83,6 @@
         <trim suffixOverrides=",">
             <if test="name != null"> #{name} ,</if>
             <if test="weight != null"> #{weight} ,</if>
-            <if test="teleplayId != null"> #{teleplayId,jdbcType=ARRAY,javaType=java.util.List,typeHandler=com.demai.cornel.databaseHandler.ArrayStringListTypeHandler} ,</if>
             <if test="status != null"> #{status} ,</if>
             <if test="operator != null"> #{operator} ,</if>
             <if test="operatorName != null"> #{operatorName} ,</if>
@@ -98,6 +119,63 @@
         <if test="name !=null">
             and name ~ #{name}
         </if>
+    </select>
+
+
+    <update id="updateRankInfoExt" parameterType="com.demai.cornel.model.RankInfoExt">
+        update rank_info_ext
+        <trim prefix="set" suffixOverrides=",">
+            <if test="weight != null"> weight = #{weight},</if>
+            <if test="teleplayId != null"> teleplay_id = #{teleplayId},</if>
+            <if test="rankInfoId != null"> rank_info_id = #{rankInfoId},</if>
+            <if test="status != null"> status = #{status},</if>
+            <if test="operator != null"> operator = #{operator},</if>
+            <if test="operatorName != null"> operator_name = #{operatorName},</if>
+            <if test="extInfo != null"> ext_info = #{extInfo},</if>
+            <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="saveRankInfoExt" parameterType="com.demai.cornel.model.RankInfoExt" useGeneratedKeys="true" keyProperty="id" >
+        insert into rank_info_ext(
+        <trim suffixOverrides=",">
+            <if test="weight != null"> weight ,</if>
+            <if test="teleplayId != null"> teleplay_id ,</if>
+            <if test="rankInfoId != null"> rank_info_id ,</if>
+            <if test="status != null"> status ,</if>
+            <if test="operator != null"> operator ,</if>
+            <if test="operatorName != null"> operator_name ,</if>
+            <if test="extInfo != null"> ext_info ,</if>
+            <if test="operateTime != null"> operate_time ,</if>
+            <if test="createTime != null"> create_time ,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="weight != null"> #{weight} ,</if>
+            <if test="teleplayId != null"> #{teleplayId} ,</if>
+            <if test="rankInfoId != null"> #{rankInfoId} ,</if>
+            <if test="status != null"> #{status} ,</if>
+            <if test="operator != null"> #{operator} ,</if>
+            <if test="operatorName != null"> #{operatorName} ,</if>
+            <if test="extInfo != null"> #{extInfo} ,</if>
+            <if test="operateTime != null"> #{operateTime} ,</if>
+            <if test="createTime != null"> #{createTime} ,</if>
+        </trim>
+        )
+    </insert>
+
+    <select id="getRankInfoExtList" parameterType="long" resultType="com.demai.cornel.model.RankInfoExt">
+        select
+            e.id,
+            e.rank_info_id as rankInfoId,
+            t.title as teleplayName;
+        from rank_info_ext e,teleplay t
+        where e.rank_info_id=#{rankInfoId}
+        and e.status=1
+        and t.status=1
+        and e.teleplay_id=t.id
     </select>
     
 </mapper>
