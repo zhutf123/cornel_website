@@ -8,7 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminRankInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/RankInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/RankInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/OperateRankInfoParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/QueryRankInfoParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/RankInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/RankInfoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/init_sql_20220423.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/init_sql_20220423.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/auth.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/auth.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -64,6 +73,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
@@ -77,9 +87,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.demai.cornel.reqParam" />
       <recent name="com.demai.cornel.controller" />
-      <recent name="com.demai.cornel.dao" />
-      <recent name="com.demai.cornel.model" />
       <recent name="com.demai.cornel.service" />
+      <recent name="com.demai.cornel.model" />
+      <recent name="com.demai.cornel.dao" />
     </key>
   </component>
   <component name="RunManager" selected="Application.GenJavaCode4Pg">
@@ -147,6 +157,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GenJavaCode4Pg" />
@@ -198,6 +219,7 @@
       <workItem from="1650660200475" duration="392000" />
       <workItem from="1650660721981" duration="5196000" />
       <workItem from="1651224811459" duration="137404000" />
+      <workItem from="1651784830981" duration="2534000" />
     </task>
     <servers />
   </component>
