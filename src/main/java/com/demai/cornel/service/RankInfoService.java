@@ -83,6 +83,7 @@ import java.util.List;
                         param.getStatus() :
                         null)
                 .teleplayId(param.getTeleplayId())
+                .rankInfoId(param.getRankInfoId())
                 .operator(Long.parseLong(UserHolder.getValue("uid")))
                 .operatorName(UserHolder.getValue("name")).build();
         if (param.getId() != null) {

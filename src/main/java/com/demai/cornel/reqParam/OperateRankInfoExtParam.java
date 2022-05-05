@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class OperateRankInfoExtParam implements Serializable {
 
     private Long id;
-    private Long rankId;
+    private Long rankInfoId;
     private Long teleplayId;
     private Integer status;
     private Integer weight;
