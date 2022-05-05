@@ -64,7 +64,7 @@ import java.util.stream.Collectors;
                         r.getTeleplayId().stream().map(t -> Long.parseLong(t)).collect(Collectors.toList()));
                 StringBuilder sb = new StringBuilder();
                 teleplayList.stream().forEach(t ->{
-                    sb.append(t.getTitle());
+                    sb.append(t.getTitle()).append(",");
                 });
                 r.setTeleplayNames(sb.toString());
             });
