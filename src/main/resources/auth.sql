@@ -1,19 +1,10 @@
-CREATE TABLE comment_info
+CREATE TABLE rank_info
 (
     id           serial PRIMARY KEY,
-    content   varchar(256),
-    user_id   varchar(256),
-    video_id   bigint,
-    parent_path text,
-    level   integer default 0,
-    top   integer default 0,
-    reply_num,   integer default 0,
-    like_num,   integer default 0,
-    bullet_chat       integer default 2,
+    name   varchar(256),
     weight        integer,
+    teleplay_id      varchar(40)[],
     status      integer default 1,
-    system_status       integer default 0,
-    operator_status       integer default 0,
     operator     bigint,
     operator_name varchar(256),
     ext_info     hstore,

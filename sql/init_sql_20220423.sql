@@ -386,5 +386,22 @@ COMMENT ON COLUMN comment_info.system_status IS '0 系统待审核 1审核通过
 COMMENT ON COLUMN comment_info.operator_status IS '0 人工待审核 1审核通过 2 审核不通过';
 
 
+DROP TABLE IF EXISTS rank_info;
+CREATE TABLE rank_info
+(
+    id           serial PRIMARY KEY,
+    name   varchar(256),
+    weight        integer,
+    teleplay_id      varchar(40)[],
+    status      integer default 1,
+    operator     bigint,
+    operator_name varchar(256),
+    ext_info     hstore,
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
 
+COMMENT ON COLUMN rank_info.name IS '榜单名称';
 
