@@ -4,6 +4,7 @@ import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.BannerInfo;
 import com.demai.cornel.model.RankInfo;
 import com.demai.cornel.reqParam.OperateBannerInfoParam;
+import com.demai.cornel.reqParam.OperateRankInfoExtParam;
 import com.demai.cornel.reqParam.OperateRankInfoParam;
 import com.demai.cornel.reqParam.QueryBannerInfoParam;
 import com.demai.cornel.reqParam.QueryRankInfoParam;
@@ -64,5 +65,23 @@ import java.util.List;
         }
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
+
+
+    /**
+     * 保存、编辑排行榜
+     * @return
+     */
+    @RequestMapping(value = "/operateRankInfoVideo.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult operateRankInfoVideo(
+            @RequestBody OperateRankInfoExtParam param, HttpServletResponse response) {
+        try {
+            rankInfoService.operateRankInfoVideo(param);
+            return JsonResult.success("success");
+        } catch (Exception e) {
+            log.error("添加、修改剧集信息异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
 
 }

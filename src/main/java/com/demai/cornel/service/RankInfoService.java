@@ -10,6 +10,7 @@ import com.demai.cornel.model.BannerInfo;
 import com.demai.cornel.model.RankInfo;
 import com.demai.cornel.model.RankInfoExt;
 import com.demai.cornel.model.Teleplay;
+import com.demai.cornel.reqParam.OperateRankInfoExtParam;
 import com.demai.cornel.reqParam.OperateRankInfoParam;
 import com.demai.cornel.reqParam.QueryRankInfoParam;
 import com.demai.cornel.util.DateUtils;
@@ -30,7 +31,6 @@ import java.util.stream.Collectors;
 
     @Resource private RankInfoDao rankInfoDao;
     @Resource private TeleplayDao teleplayDao;
-
 
 
     /***
@@ -75,5 +75,26 @@ import java.util.stream.Collectors;
         return rankInfoDao.getRankInfoAllNum(param);
     }
 
+    /***
+     * 新增、编辑排行版剧集
+     * @param param
+     */
+    public void operateRankInfoVideo(OperateRankInfoExtParam param){
+        RankInfoExt bannerInfo = RankInfoExt.builder().
+                id(param.getId())
+                .weight(param.getWeight())
+                .status(RankInfoExt.BannerInfoExtStatusEnum.getBannerInfoExtStatusEnum(param.getStatus(), null) != null ?
+                        param.getStatus() :
+                        null)
+                .teleplayId(param.getTeleplayId())
+                .operator(Long.parseLong(UserHolder.getValue("uid")))
+                .operatorName(UserHolder.getValue("name")).build();
+        if (param.getId() != null) {
+            bannerInfo.setOperateTime(DateUtils.now());
+            rankInfoDao.updateRankInfoExt(bannerInfo);
+        } else {
+            rankInfoDao.saveRankInfoExt(bannerInfo);
+        }
+    }
 
 }
