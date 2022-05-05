@@ -13,10 +13,12 @@ import com.demai.cornel.service.RankInfoService;
 import com.demai.cornel.vo.JsonListResult;
 import com.demai.cornel.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -76,6 +78,22 @@ import java.util.List;
             @RequestBody OperateRankInfoExtParam param, HttpServletResponse response) {
         try {
             rankInfoService.operateRankInfoVideo(param);
+            return JsonResult.success("success");
+        } catch (Exception e) {
+            log.error("添加、修改剧集信息异常！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+    /**
+     * 保存、编辑排行榜
+     * @return
+     */
+    @RequestMapping(value = "/getRankInfoVideo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult getRankInfoVideo(
+            @RequestParam Long rankInfoId, HttpServletResponse response) {
+        try {
+            rankInfoService.getRankInfoVideoById(rankInfoId);
             return JsonResult.success("success");
         } catch (Exception e) {
             log.error("添加、修改剧集信息异常！", e);
