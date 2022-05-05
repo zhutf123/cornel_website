@@ -170,7 +170,7 @@
         select
             e.id,
             e.rank_info_id as rankInfoId,
-            t.title as teleplayName;
+            t.title as teleplayName
         from rank_info_ext e,teleplay t
         where e.rank_info_id=#{rankInfoId}
         and e.status=1
