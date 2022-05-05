@@ -308,5 +308,16 @@
         where status = 1
         and title ~ #{name}
     </select>
+
+    <select id="queryTeleplayListByIds" parameterType="list" resultMap="teleplayResultMap">
+        select
+        <include refid="main_column"/>
+        from teleplay
+        where status = 1
+        and id in
+        <foreach collection="teleplayIds" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
     
 </mapper>

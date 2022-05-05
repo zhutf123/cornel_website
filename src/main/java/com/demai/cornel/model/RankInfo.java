@@ -42,7 +42,7 @@ public class RankInfo implements Serializable {
 
     /**==========for admin,user show property=============**/
     private String statusDesc;
-    private List<String> teleplayNames;
+    private String teleplayNames;
 
 
     public void setStatus(Integer status) {

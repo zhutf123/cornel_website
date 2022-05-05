@@ -14,5 +14,6 @@ import lombok.Data;
 @Data public class QueryRankInfoParam extends BaseQueryParam {
     
     private String name;
+    private Integer status;
 
 }

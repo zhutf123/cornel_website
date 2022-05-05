@@ -22,6 +22,8 @@ public interface TeleplayDao {
 
     List<Teleplay> queryTeleplayList(QueryTeleplayParam param);
 
+    List<Teleplay> queryTeleplayListByIds(@Param("teleplayIds")List<Long> teleplayIds);
+
     Integer queryTeleplayAllNum(QueryTeleplayParam param);
 
     List<Teleplay> suggestTeleplay(@Param("name") String name);

@@ -71,5 +71,33 @@
         </trim>
         )
     </insert>
+
+    <select id="getRankInfoList" parameterType="com.demai.cornel.reqParam.QueryRankInfoParam"
+            resultMap="rankInfoResultMap">
+        select
+        <include refid="main_column"/>
+        from rank_info
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
+        <if test="name !=null">
+            and name ~ #{name}
+        </if>
+    </select>
+
+    <select id="getRankInfoAllNum" parameterType="com.demai.cornel.reqParam.QueryRankInfoParam"
+    resultType="int">
+        select
+        count(1)
+        from rank_info
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
+        <if test="name !=null">
+            and name ~ #{name}
+        </if>
+    </select>
     
 </mapper>
