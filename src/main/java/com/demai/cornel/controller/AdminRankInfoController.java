@@ -93,8 +93,7 @@ import java.util.List;
     public JsonResult getRankInfoVideo(
             @RequestParam Long rankInfoId, HttpServletResponse response) {
         try {
-            rankInfoService.getRankInfoVideoById(rankInfoId);
-            return JsonResult.success("success");
+            return JsonResult.success(rankInfoService.getRankInfoVideoById(rankInfoId));
         } catch (Exception e) {
             log.error("添加、修改剧集信息异常！", e);
         }
