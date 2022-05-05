@@ -1,9 +1,9 @@
-CREATE TABLE rank_info
+CREATE TABLE rank_info_ext
 (
     id           serial PRIMARY KEY,
-    name   varchar(256),
     weight        integer,
-    teleplay_id      varchar(40)[],
+    teleplay_id     bigint,
+    rank_info     bigint,
     status      integer default 1,
     operator     bigint,
     operator_name varchar(256),
