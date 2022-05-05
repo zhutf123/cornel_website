@@ -9,7 +9,6 @@ import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.BannerInfo;
 import com.demai.cornel.model.RankInfo;
 import com.demai.cornel.model.RankInfoExt;
-import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.OperateRankInfoExtParam;
 import com.demai.cornel.reqParam.OperateRankInfoParam;
 import com.demai.cornel.reqParam.QueryRankInfoParam;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Create By tfzhu  2022/5/1  3:16 PM
@@ -30,8 +28,6 @@ import java.util.stream.Collectors;
 @Service @Slf4j public class RankInfoService {
 
     @Resource private RankInfoDao rankInfoDao;
-    @Resource private TeleplayDao teleplayDao;
-
 
     /***
      * 添加、编辑排行榜
@@ -95,6 +91,15 @@ import java.util.stream.Collectors;
         } else {
             rankInfoDao.saveRankInfoExt(bannerInfo);
         }
+    }
+
+
+    /***
+     * 获取排行榜剧集
+     * @param rankInfoId
+     */
+    public List<RankInfoExt> getRankInfoVideoById(Long rankInfoId) {
+        return rankInfoDao.getRankInfoExtList(rankInfoId);
     }
 
 }
