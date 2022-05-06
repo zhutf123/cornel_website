@@ -106,6 +106,10 @@
         select
             <include refid="main_column"/>
         from banner_info
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
         order by status,seq desc
         offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
@@ -115,5 +119,9 @@
         select
             count(1)
         from banner_info
+        where status!=4
+        <if test="status !=null">
+            and status=#{status}
+        </if>
     </select>
 </mapper>
