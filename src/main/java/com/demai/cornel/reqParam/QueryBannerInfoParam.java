@@ -14,6 +14,11 @@ import lombok.NoArgsConstructor;
  *
  * @author tfzhu
  */
-@Data public class QueryBannerInfoParam extends BaseQueryParam {
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class QueryBannerInfoParam extends BaseQueryParam {
 
+    private Integer status;
 }

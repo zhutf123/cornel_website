@@ -59,4 +59,12 @@ import java.util.List;
         return bannerInfoDao.getBannerInfoAllNum(param);
     }
 
+
+    public List<BannerInfo> getBannerInfoListForUser(){
+        QueryBannerInfoParam  param = QueryBannerInfoParam.builder()
+                .status(BannerInfo.BannerInfoStatusEnum.ONLINE.getValue())
+                .build();
+        return bannerInfoDao.getBannerInfoList(param);
+    }
+
 }
