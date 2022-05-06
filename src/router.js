@@ -11,6 +11,8 @@ import Login from './views/Login/index.vue';
 import Tags from './views/Tags/index.vue';
 import Banner from './views/Banners/index.vue';
 import Publish from './views/Publish/index.vue';
+import Rank from './views/Rank/index.vue';
+import RankDetail from './views/Rank/detail.vue';
 
 const routes = [
     {
@@ -48,6 +50,13 @@ const routes = [
     }, {
         path: '/banners',
         component: Banner
+    }, {
+        path: '/rank',
+        component: Rank,
+        children: [{
+            path: 'detail',
+            component: RankDetail
+        }]
     }
 ];
 

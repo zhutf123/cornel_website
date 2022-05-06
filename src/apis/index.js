@@ -97,3 +97,17 @@ export function getUserList(params) {
 export function getUserPayList(userId) {
     return axios.get(`/admin/queryUserPayList.json?userId=${userId}`);
 }
+
+// 排行榜接口
+export function getRankList(params) {
+    return axios.post('/admin/rankInfoList.json', params);
+}
+export function updateRank(params) {
+    return axios.post('/admin/operateRankInfo.json', params);
+}
+export function getRankDetail(rankId) {
+    return axios.get(`/admin/getRankInfoVideo.json?rankInfoId=${rankId}`);
+}
+export function updateRankVideoInfo(params) {
+    return axios.post('/admin/operateRankInfoVideo.json', params);
+}

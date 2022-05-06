@@ -30,6 +30,10 @@ export default {
             type: String,
             default: 'channel'
         },
+        displayValue: {
+            type: String,
+            default: ''
+        },
         valueKey: {
             type: String,
             default: 'name'
@@ -51,11 +55,15 @@ export default {
         return {
             loading: false,
             options: [],
-            input: ''
+            input: this.displayValue
         };
     },
     methods: {
         onChange(data) {
+            if (!this.multiple) {
+                this.onSelect(this.cacheOptions[data]);
+                return;
+            }
             const selected = data.map(i => this.cacheOptions[i]);
             this.onSelect(selected);
         },

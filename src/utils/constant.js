@@ -24,6 +24,11 @@ export const ENTRIES = [
         name: '聚合标签'
     },
     {
+        path: '/rank',
+        type: 'manage',
+        name: '排行榜'
+    },
+    {
         path: '/banners',
         type: 'manage',
         name: '广告系统'
