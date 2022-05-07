@@ -11,8 +11,6 @@
     font-weight: 500;
 }
 
-.m-follow {
-}
 .noresult {
     width: 100%;
 }

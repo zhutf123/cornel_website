@@ -1,0 +1,24 @@
+.title {
+    padding: 15px 12px;
+}
+.title-ico {
+    width: 26rpx;
+    height: 24rpx;
+}
+.title-txt {
+    margin-left: 5px;
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.list {
+    padding: 0 12px 40px 17px;
+}
+.time {
+    margin-bottom: 9px;
+    line-height: 17px;
+}
+.time-txt {
+    font-size: 12px;
+    color: #8c8c8c;
+}

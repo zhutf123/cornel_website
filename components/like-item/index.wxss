@@ -12,10 +12,6 @@
 }
 .list-item .desc-txt {
     overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
 }
 .list-item .btns {
     margin-top: 5px;

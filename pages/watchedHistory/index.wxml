@@ -1,0 +1,17 @@
+<view class="container g-flexbox-column">
+    <scroll-view class="flex" scroll-y="true">
+        <view class="title g-flexbox">
+            <image class="title-ico" src="/assets/images/t1.png" />
+            <text class="title-txt">最近观看</text>
+        </view>
+        <view class="list">
+            <view class="time">
+                <text class="time-txt">昨天</text>
+            </view>
+            <watched-history-item
+                bind:onClick="clickWatched"
+            />
+        </view>
+    </scroll-view>
+    <dialog  />
+</view>

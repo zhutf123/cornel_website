@@ -1,0 +1,22 @@
+<view class="list-item g-flexbox" bindtap="onClick">
+    <view class="pic">
+        <image
+            class="pic-bg"
+            src="/assets/images/thumb.png"
+            mode="cover"
+        />
+    </view>
+    <view class="flex info">
+        <view class="info-tit g-flexbox">
+            <text class="flex info-tit-txt">暗夜制裁者</text>
+        </view>
+        <view class="desc">
+            <text class="desc-txt clamp3">暴发户去足浴店洗脚，一眼相中漂亮洗脚妹，仗着有钱优势对妹子动手动脚，谁知惹下大祸！</text>
+        </view>
+        <view class="episode g-flexbox">
+            <image class="episode-ico" src="/assets/images/t2.png" />
+            <text class="episode-txt">观看第2集</text>
+        </view>
+    </view>
+    <image class="follow-btn" src="/assets/images/btn3.png" />
+</view>

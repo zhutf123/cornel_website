@@ -1,6 +1,7 @@
 {
     "pages":[
         "pages/follow/index",
+        "pages/watchedHistory/index",
         "pages/films/index",
         "pages/recommend/index",
         "pages/mine/index"
@@ -43,6 +44,7 @@
         "list-item": "/components/list-item/index",
         "like-item": "/components/like-item/index",
         "dialog": "/components/dialog/index",
-        "watched-item": "/components/watched-item/index"
+        "watched-item": "/components/watched-item/index",
+        "watched-history-item": "/components/watched-history-item/index"
     }
 }

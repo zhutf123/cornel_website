@@ -1,0 +1,28 @@
+@import '/assets/styles/list-item.wxss';
+
+.list-item .pic {
+    width: 74px;
+    height: 103px;
+}
+.list-item .info-tit {
+    padding-top: 7px;
+}
+.follow-btn {
+    margin-left: 48rpx;
+    margin-top: 7px;
+    width: 106rpx;
+    height: 52rpx;
+}
+.episode {
+    margin-top: 5px;
+    line-height: 26rpx;
+}
+.episode-ico {
+    width: 30rpx;
+    height: 30rpx;
+}
+.episode-txt {
+    margin-left: 5px;
+    font-size: 11px;
+    color: #8c8c8c;
+}

@@ -1,5 +1,3 @@
-import route from '../../utils/route';
-
 const app = getApp()
 
 Page({
@@ -9,6 +7,6 @@ Page({
     onLoad() {
     },
     clickWatched(e) {
-        route.go('watchedHistory');
+        console.log(e.target);
     }
 })
