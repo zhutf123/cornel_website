@@ -1,0 +1,26 @@
+<view class="list-item g-flexbox" bindtap="onClick">
+    <view class="pic">
+        <image
+            class="pic-bg"
+            src="/assets/images/thumb.png"
+            mode="cover"
+        />
+    </view>
+    <view class="flex info">
+        <view class="info-tit g-flexbox">
+            <text class="flex info-tit-txt">暗夜制裁者</text>
+            <image class="info-more" src="/assets/images/more.png" />
+        </view>
+        <view class="tags">
+            <view class="tag tag-r">
+                <text class="tag-txt">热播top2</text>
+            </view>
+            <view class="tag">
+                <text class="tag-txt">情感</text>
+            </view>
+        </view>
+        <view class="desc">
+            <text class="desc-txt">暴发户去足浴店洗脚，一眼相中漂亮洗脚妹，仗着有钱优势对妹子动手动脚，谁知惹下大祸！</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,18 @@
+<view class="m-dialog g-flexbox-column" wx:if="{{show}}">
+    <view class="main">
+        <view class="tit">
+            <text class="tit-txt">{{title}}</text>
+        </view>
+        <view class="cont">
+            <text class="cont-txt">{{content}}</text>
+        </view>
+        <view class="opts g-flexbox">
+            <view class="btn flex">
+                <text class="btn-txt">{{cancelText}}</text>
+            </view>
+            <view class="btn flex btn-confirm">
+                <text class="btn-txt">{{confirmText}}</text>
+            </view>
+        </view>
+    </view>
+</view>

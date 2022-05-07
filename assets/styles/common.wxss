@@ -1,0 +1,16 @@
+page,
+.container {
+    height: 100%;
+}
+.g-flexbox,
+.g-flexbox-column {
+    display: flex;
+    align-items: center;
+}
+.g-flexbox-column {
+    flex-direction: column;
+}
+.flex {
+    flex: 1;
+    overflow: auto;
+}

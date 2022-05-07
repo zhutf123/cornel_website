@@ -1,0 +1,45 @@
+.title {
+    padding: 15px 12px;
+}
+.title-ico {
+    width: 26rpx;
+    height: 24rpx;
+}
+.title-txt {
+    margin-left: 5px;
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.m-follow {
+}
+.noresult {
+    width: 100%;
+}
+.follow-empty {
+    position: relative;
+    z-index: -1;
+    margin-top: -44px;
+}
+.empty-main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 52%;
+    text-align: center;
+    color: #8c8c8c;
+}
+.empty-main .btn {
+    margin-top: 10px;
+    width: 168rpx;
+    height: 60rpx;
+}
+.empty-main .desc {
+    font-size: 14px;
+}
+.empty-main .desc-tip {
+    font-size: 11px;
+}
+.follow-list {
+    padding: 0 12px;
+}

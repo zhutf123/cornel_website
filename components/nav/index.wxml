@@ -1,0 +1,6 @@
+<view class="nav" style="padding-top: {{safeareaTop}}px;">
+    <view class="nav-main g-flexbox">
+        <image class="nav-logo" src="/assets/images/logo.png" />
+        <text class="nav-txt">{{title}}</text>
+    </view>
+</view>

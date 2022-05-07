@@ -1,0 +1,44 @@
+<view class="container g-flexbox-column">
+    <nav title="蜂巢追剧" />
+    <scroll-view class="flex" scroll-y="true">
+        <view class="m-watched">
+            <view class="title g-flexbox">
+                <image class="title-ico" src="/assets/images/t1.png" />
+                <text class="title-txt">最近观看</text>
+            </view>
+            <view class="watched-list">
+                <watched-item
+                    more="true"
+                    bind:onClick="clickWatched"
+                />
+            </view>
+        </view>
+        <view class="m-follow">
+            <view class="title g-flexbox">
+                <image class="title-ico" src="/assets/images/play1.png" />
+                <text class="title-txt">我的追剧</text>
+            </view>
+            <view class="follow-empty">
+                <image class="noresult" src="/assets/images/noresult.png" />
+                <view class="empty-main g-flexbox-column">
+                    <text class="desc">暂无追剧</text>
+                    <text class="desc-tip">追剧后，热门剧集会在这里显示</text>
+                    <image class="btn" src="/assets/images/btn1.png" />
+                </view>
+            </view>
+            <view class="follow-list">
+                <list-item />
+            </view>
+        </view>
+        <view class="m-like">
+            <view class="title g-flexbox">
+                <image class="title-ico" src="/assets/images/play1.png" />
+                <text class="title-txt">你可能感兴趣的剧</text>
+            </view>
+            <view class="follow-list">
+                <like-item />
+            </view>
+        </view>
+    </scroll-view>
+    <dialog  />
+</view>

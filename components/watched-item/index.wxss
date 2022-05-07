@@ -1,0 +1,48 @@
+@import '/assets/styles/common.wxss';
+
+.watched-item {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 7px;
+    width: 111px;
+}
+.watched-item .pic {
+    width: 111px;
+    height: 155px;
+    border-radius: 8rpx;
+    overflow: hidden;
+}
+.watched-item .pic-bg {
+    width: 100%;
+    height: 100%;
+}
+.watched-item .name {
+    margin-top: 9px;
+    line-height: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.watched-item .desc {
+    margin-top: 2px;
+    line-height: 16px;
+}
+.watched-item .desc-txt {
+    font-size: 11px;
+    color: #8c8c8c;
+}
+
+.watched-item .more {
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .5);
+}
+.watched-item .pic-ico {
+    width: 20rpx;
+    height: 6px;
+}
+.watched-item .desc {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #c1c1c1;
+}

@@ -1,0 +1,23 @@
+<view class="watched-item" bindtap="onClick">
+    <view class="pic">
+        <view class="pic-bg more g-flexbox-column"
+            wx:if="more"
+        >
+            <image class="pic-ico" src="/assets/images/more.png" />
+            <text class="desc">更多记录</text>
+        </view>
+        <image
+            wx:else
+            class="pic-bg"
+            src="/assets/images/thumb.png"
+            mode="cover"
+        />
+
+    </view>
+    <view class="name">
+        <text class="name-txt">暗夜制裁者</text>
+    </view>
+    <view class="desc">
+        <text class="desc-txt">更新至第23集</text>
+    </view>
+</view>

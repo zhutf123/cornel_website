@@ -1,0 +1,33 @@
+@import '/assets/styles/list-item.wxss';
+
+.list-item .play-ico {
+    width: 25rpx;
+    height: 25rpx;
+}
+.list-item .play-num {
+    margin-left: 3px;
+    font-size: 10px;
+    font-weight: 200;
+    color: #8c8c8c;
+}
+.list-item .desc-txt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+}
+.list-item .btns {
+    margin-top: 5px;
+}
+.list-item .btn {
+    margin-right: 6px;
+}
+.list-item .btn-follow {
+    width: 106rpx;
+    height: 52rpx
+}
+.list-item .btn-watch {
+    width: 148rpx;
+    height: 52rpx
+}

@@ -1,16 +1,48 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
-  },
-  "sitemapLocation": "sitemap.json",
-  "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
-  }
+    "pages":[
+        "pages/follow/index",
+        "pages/films/index",
+        "pages/recommend/index",
+        "pages/mine/index"
+    ],
+    "tabBar": {
+        "color": "#212121",
+        "selectedColor": "#FACA32",
+        "list": [{
+            "pagePath": "pages/follow/index",
+            "text": "追剧",
+            "iconPath": "/assets/images/film.png",
+            "selectedIconPath": ""
+        }, {
+            "pagePath": "pages/films/index",
+            "text": "小剧场",
+            "iconPath": "/assets/images/camera.png",
+            "selectedIconPath": ""
+        }, {
+            "pagePath": "pages/recommend/index",
+            "text": "推荐",
+            "iconPath": "/assets/images/play3.png",
+            "selectedIconPath": ""
+        }, {
+            "pagePath": "pages/mine/index",
+            "text": "我的",
+            "iconPath": "/assets/images/mine.png",
+            "selectedIconPath": ""
+        }]
+    },
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "蜂巢小程序",
+        "navigationBarTextStyle":"black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "usingComponents": {
+        "van-button": "@vant/weapp/button/index",
+        "nav": "/components/nav/index",
+        "list-item": "/components/list-item/index",
+        "like-item": "/components/like-item/index",
+        "dialog": "/components/dialog/index",
+        "watched-item": "/components/watched-item/index"
+    }
 }
