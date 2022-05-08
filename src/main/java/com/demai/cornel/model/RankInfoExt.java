@@ -41,6 +41,9 @@ public class RankInfoExt implements Serializable {
 
     /**==========for admin,user show property=============**/
     private String teleplayName;
+    
+    private String mainImage;
+    private String mainSource;
 
 
     @AllArgsConstructor

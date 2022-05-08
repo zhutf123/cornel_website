@@ -178,5 +178,30 @@
         and e.teleplay_id=t.id
         order by e.weight desc
     </select>
+
+    <select id="getRankInfoListForUser" resultMap="rankInfoResultMap">
+        select
+        <include refid="main_column"/>
+        from rank_info
+        where status=1
+        order by weight desc
+    </select>
+
+    <select id="getRankInfoExtInfo" parameterType="long" resultType="com.demai.cornel.model.RankInfoExt">
+        select
+                e.id,
+                e.rank_info_id as rankInfoId,
+                t.title as teleplayName,
+                t.main_image as mainImage,
+                t.main_source as mainSource,
+                t.id as teleplayId
+        from rank_info_ext e,teleplay t
+        where e.rank_info_id=#{rankInfoId}
+          and e.status=1
+          and t.status=1
+          and e.teleplay_id=t.id
+        order by e.weight desc
+        offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
     
 </mapper>
