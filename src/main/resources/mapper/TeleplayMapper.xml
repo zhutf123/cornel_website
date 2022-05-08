@@ -323,18 +323,29 @@
     <select id="queryTeleplayListByChannelId" parameterType="com.demai.cornel.reqParam.UserQueryTeleplayParam"
             resultMap="teleplayResultMap">
         select
-            id,
-            main_image,
-            main_source,
-            channel,
-            title,
-            depict
+        id,
+        main_image,
+        main_source,
+        channel,
+        title,
+        depict
         from teleplay
         where status=1
-        and <if test="channel !=null">
-        and <![CDATA[ channel @> array[#{channel}] ]]>
-    </if>
+        <if test="channel !=null">
+            and <![CDATA[ channel @> array[#{channel}] ]]>
+        </if>
         order by recommend desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="getTeleplayAllNumByChannelId" parameterType="com.demai.cornel.reqParam.UserQueryTeleplayParam"
+            resultType="integer">
+        select
+        count(1)
+        from teleplay
+        where status=1
+        <if test="channel !=null">
+            and <![CDATA[ channel @> array[#{channel}] ]]>
+        </if>
     </select>
     
 </mapper>

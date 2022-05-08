@@ -31,5 +31,7 @@ public interface TeleplayDao {
 
     List<Teleplay> queryTeleplayListByChannelId(UserQueryTeleplayParam param);
     
+    Integer getTeleplayAllNumByChannelId(UserQueryTeleplayParam param);
+
 
 }
