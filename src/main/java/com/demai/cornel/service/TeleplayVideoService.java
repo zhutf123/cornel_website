@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
         }
         
         if (teleplayId!=null){
-            video = teleplayVideoDao.queryTeleplayVideoById(vid);
+            video = teleplayVideoDao.queryTeleplayVideoFirstVideo(teleplayId);
         }
 
         if (video == null) {

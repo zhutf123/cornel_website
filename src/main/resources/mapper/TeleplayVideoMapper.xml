@@ -179,7 +179,7 @@
         from teleplay_video_browse_data group by video_id
         )fd
         on v.id=fd.video_id
-        where v.id=#{id}
+        where v.teleplay_id=#{teleplayId}
         and status=1
         order by seq limit 1
     </select>
