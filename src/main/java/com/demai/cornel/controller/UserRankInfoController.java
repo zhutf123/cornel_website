@@ -52,7 +52,7 @@ import java.util.List;
      *
      * @return
      */
-    @RequestMapping(value = "/changeRankInfo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/changeRankInfo.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody public JsonResult changeRankInfo(
             @RequestParam UserChangeRankInfoParam param, HttpServletResponse response) {
         try {
