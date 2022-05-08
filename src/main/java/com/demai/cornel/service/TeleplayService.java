@@ -150,8 +150,8 @@ import java.util.stream.Collectors;
      */
     public List<Teleplay> getTeleplayListByChannelId(UserQueryTeleplayParam param) {
         try {
-            teleplayDao.queryTeleplayListByChannelId(param);
-            Lists.newArrayList();
+            List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByChannelId(param);
+            return teleplayList;
         } catch (Exception e) {
             log.error("查询剧集list异常", e);
         }
