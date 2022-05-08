@@ -54,7 +54,7 @@ import java.util.stream.Collectors;
 
         if (video == null) {
             log.error("播放参数传递错误");
-            throw new Exception();
+            return resp;
         }
 
         List<TeleplayVideo> teleplayList = teleplayVideoDao
