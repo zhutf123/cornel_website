@@ -40,12 +40,12 @@ import java.util.stream.Collectors;
 @Service @Slf4j public class TeleplayVideoService {
 
     @Resource private TeleplayVideoDao teleplayVideoDao;
-    @Resource private TeleplayDao teleplayDao;
+    @Resource private TeleplayVideoDao teleplayVideoDao;
 
     public UserVideoInfoResp queryTeleplayVideoById(Long vid) {
         UserVideoInfoResp resp = UserVideoInfoResp.builder().build();
         TeleplayVideo video = teleplayVideoDao.queryTeleplayVideoById(vid);
-        List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByIds(Lists.newArrayList(video.getTeleplayId()));
+        List<TeleplayVideo> teleplayList = teleplayVideoDao.queryTeleplayVideoByTeleplayIds(Lists.newArrayList(video.getTeleplayId()));
         List<UserVideoInfoResp.UserTeleplayVideoResp> videoList = Lists.newArrayList();
         teleplayList.stream().forEach(t ->{
             UserVideoInfoResp.UserTeleplayVideoResp v = UserVideoInfoResp.UserTeleplayVideoResp.builder().build();

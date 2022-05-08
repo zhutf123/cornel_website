@@ -61,6 +61,8 @@ public class UserVideoInfoResp implements Serializable {
         private String title;
         private String mainImage;
         private String mainSource;
+        private String videoUrl;
+        private String videoSource;
         private Long id;
         //是否有锁
         private Boolean lock;
