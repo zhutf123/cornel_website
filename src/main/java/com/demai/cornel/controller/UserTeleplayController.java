@@ -6,6 +6,7 @@ import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.UserQueryTeleplayParam;
 import com.demai.cornel.service.ChannelService;
 import com.demai.cornel.service.TeleplayService;
+import com.demai.cornel.vo.JsonListResult;
 import com.demai.cornel.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -33,14 +34,15 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/teleplayList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonResult teleplayList(@RequestBody UserQueryTeleplayParam param, HttpServletResponse response) {
+    public JsonListResult teleplayList(@RequestBody UserQueryTeleplayParam param, HttpServletResponse response) {
         try {
             List<Teleplay> channelList = teleplayService.getTeleplayListByChannelId(param);
-            return JsonResult.success(channelList);
+            Integer allNum = teleplayService.getTeleplayAllNumByChannelId(param);
+            return JsonListResult.success(channelList);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);
         }
-        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
 }

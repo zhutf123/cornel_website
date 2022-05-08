@@ -158,4 +158,13 @@ import java.util.stream.Collectors;
         return Lists.newArrayList();
     }
 
+    /***
+     * 根据剧集标签后去剧集list
+     * @param param
+     * @return
+     */
+    public Integer getTeleplayAllNumByChannelId(UserQueryTeleplayParam param) {
+        return teleplayDao.getTeleplayAllNumByChannelId(param);
+    }
+
 }
