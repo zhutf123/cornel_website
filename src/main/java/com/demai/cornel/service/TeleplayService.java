@@ -143,8 +143,14 @@ import java.util.stream.Collectors;
         return 0;
     }
 
+    /***
+     * 根据剧集标签后去剧集list
+     * @param param
+     * @return
+     */
     public List<Teleplay> getTeleplayListByChannelId(UserQueryTeleplayParam param) {
         try {
+            teleplayDao.queryTeleplayListByChannelId(param);
             Lists.newArrayList();
         } catch (Exception e) {
             log.error("查询剧集list异常", e);
