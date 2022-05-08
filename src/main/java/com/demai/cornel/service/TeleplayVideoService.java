@@ -40,12 +40,23 @@ import java.util.stream.Collectors;
 @Service @Slf4j public class TeleplayVideoService {
 
     @Resource private TeleplayVideoDao teleplayVideoDao;
+    @Resource private TeleplayDao teleplayDao;
 
     public UserVideoInfoResp queryTeleplayVideoById(Long vid) {
         UserVideoInfoResp resp = UserVideoInfoResp.builder().build();
         TeleplayVideo video = teleplayVideoDao.queryTeleplayVideoById(vid);
-        
+        List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByIds(Lists.newArrayList(video.getTeleplayId()));
+        List<UserVideoInfoResp.UserTeleplayVideoResp> videoList = Lists.newArrayList();
+        teleplayList.stream().forEach(t ->{
+            UserVideoInfoResp.UserTeleplayVideoResp v = UserVideoInfoResp.UserTeleplayVideoResp.builder().build();
+            //根据用户身份判断lock状态
+            v.setLock(Boolean.FALSE);
+            BeanUtils.copyProperties(t,v);
+            videoList.add(v);
+        });
+        videoList.sort((a, b) -> a.getSeq().compareTo(b.getSeq()));
         BeanUtils.copyProperties(video,resp);
+        resp.setVideoList(videoList);
         return resp;
     }
 
