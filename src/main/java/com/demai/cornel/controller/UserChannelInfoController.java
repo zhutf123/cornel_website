@@ -30,8 +30,8 @@ import java.util.List;
      *
      * @return
      */
-    @RequestMapping(value = "/channelList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult channelList(
-            @RequestBody QueryChannelParam param, HttpServletResponse response) {
+    @RequestMapping(value = "/channelList.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult channelList(HttpServletResponse response) {
         try {
             List<Channel> channelList = channelService.getChannelListForUser();
             return JsonResult.success(channelList);
