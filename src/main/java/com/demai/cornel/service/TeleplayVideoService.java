@@ -41,22 +41,37 @@ import java.util.stream.Collectors;
 
     @Resource private TeleplayVideoDao teleplayVideoDao;
 
-    public UserVideoInfoResp queryTeleplayVideoById(Long vid) {
+    public UserVideoInfoResp queryTeleplayVideoById(Long vid, Long teleplayId) throws Exception {
         UserVideoInfoResp resp = UserVideoInfoResp.builder().build();
-        TeleplayVideo video = teleplayVideoDao.queryTeleplayVideoById(vid);
-        List<TeleplayVideo> teleplayList = teleplayVideoDao.queryTeleplayVideoByTeleplayIds(Lists.newArrayList(video.getTeleplayId()));
+        TeleplayVideo video = null;
+        if (vid != null){
+            video = teleplayVideoDao.queryTeleplayVideoById(vid);
+        }
+        
+        if (teleplayId!=null){
+            video = teleplayVideoDao.queryTeleplayVideoById(vid);
+        }
+
+        if (video == null) {
+            log.error("播放参数传递错误");
+            throw new Exception();
+        }
+
+        List<TeleplayVideo> teleplayList = teleplayVideoDao
+                .queryTeleplayVideoByTeleplayIds(Lists.newArrayList(video.getTeleplayId()));
         List<UserVideoInfoResp.UserTeleplayVideoResp> videoList = Lists.newArrayList();
-        teleplayList.stream().forEach(t ->{
+        teleplayList.stream().forEach(t -> {
             UserVideoInfoResp.UserTeleplayVideoResp v = UserVideoInfoResp.UserTeleplayVideoResp.builder().build();
             //根据用户身份判断lock状态
             v.setLock(Boolean.FALSE);
-            BeanUtils.copyProperties(t,v);
+            BeanUtils.copyProperties(t, v);
             videoList.add(v);
         });
         videoList.sort((a, b) -> a.getSeq().compareTo(b.getSeq()));
-        BeanUtils.copyProperties(video,resp);
+        BeanUtils.copyProperties(video, resp);
         resp.setVideoList(videoList);
         return resp;
+        
     }
 
 

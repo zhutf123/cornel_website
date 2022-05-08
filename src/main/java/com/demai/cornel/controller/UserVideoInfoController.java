@@ -32,9 +32,11 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/videoInfo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult videoInfo(
-            @RequestParam("videoId") Long videoId, HttpServletResponse response) {
+            @RequestParam("videoId") Long videoId,
+            @RequestParam("teleplayId") Long teleplayId,
+            HttpServletResponse response) {
         try {
-            UserVideoInfoResp resp = teleplayVideoService.queryTeleplayVideoById(videoId);
+            UserVideoInfoResp resp = teleplayVideoService.queryTeleplayVideoById(videoId, teleplayId);
             return JsonResult.success(resp);
         } catch (Exception e) {
             log.error("用户点击某一剧集进入播放详情异常！", e);
