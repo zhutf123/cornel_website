@@ -36,9 +36,9 @@ import java.util.List;
     @RequestMapping(value = "/teleplayList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
     public JsonListResult teleplayList(@RequestBody UserQueryTeleplayParam param, HttpServletResponse response) {
         try {
-            List<Teleplay> channelList = teleplayService.getTeleplayListByChannelId(param);
+            List<Teleplay> teleplayList = teleplayService.getTeleplayListByChannelId(param);
             Integer allNum = teleplayService.getTeleplayAllNumByChannelId(param);
-            return JsonListResult.success(channelList);
+            return JsonListResult.success(teleplayList, allNum);
         } catch (Exception e) {
             log.error("获取频道list异常！", e);
         }
