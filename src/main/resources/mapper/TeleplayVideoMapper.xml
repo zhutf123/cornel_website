@@ -160,6 +160,7 @@
         )fd
         on v.id=fd.video_id
         where v.id=#{id}
+        and status=1
     </select>
 
     <select id="queryTeleplayVideoList" parameterType="com.demai.cornel.reqParam.QueryTeleplayVideoParam"

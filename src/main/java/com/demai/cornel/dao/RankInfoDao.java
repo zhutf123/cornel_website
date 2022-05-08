@@ -28,7 +28,13 @@ public interface RankInfoDao {
 
     List<RankInfo> getRankInfoList(QueryRankInfoParam param);
 
+    List<RankInfo> getRankInfoListForUser();
+
     Integer getRankInfoAllNum(QueryRankInfoParam param);
 
     List<RankInfoExt> getRankInfoExtList(@Param("rankInfoId") Long rankInfoId);
+
+    List<RankInfoExt> getRankInfoExtInfo(@Param("rankInfoId") Long rankInfoId, @Param("offSet") Integer offSet,
+            @Param("pageSize") Integer pageSize);
+
 }
