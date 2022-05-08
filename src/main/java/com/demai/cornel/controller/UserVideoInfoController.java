@@ -32,8 +32,8 @@ import java.util.List;
      * @return
      */
     @RequestMapping(value = "/videoInfo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult videoInfo(
-            @RequestParam("videoId") Long videoId,
-            @RequestParam("teleplayId") Long teleplayId,
+            @RequestParam(value = "videoId",required = false) Long videoId,
+            @RequestParam(value = "teleplayId",required = false) Long teleplayId,
             HttpServletResponse response) {
         try {
             UserVideoInfoResp resp = teleplayVideoService.queryTeleplayVideoById(videoId, teleplayId);
