@@ -23,7 +23,7 @@ public interface TeleplayVideoDao {
 
     TeleplayVideo queryTeleplayVideoById(@Param("id")Long id);
 
-    TeleplayVideo queryTeleplayVideoFirstVideo();
+    TeleplayVideo queryTeleplayVideoFirstVideo(@Param("teleplayId")Long teleplayId);
 
     Integer queryTeleplayVideoAllNum(QueryTeleplayVideoParam param);
 
