@@ -77,7 +77,7 @@ import java.util.List;
                 UserRankInfoResp userRankInfoResp = UserRankInfoResp.builder().build();
                 BeanUtils.copyProperties(r,userRankInfoResp);
                 List<UserRankInfoResp.UserTeleplayResp> userTeleplayRespList = Lists.newArrayList();
-                List<RankInfoExt> teleplayList = rankInfoDao.getRankInfoExtInfo(r.getId(),1,3);
+                List<RankInfoExt> teleplayList = rankInfoDao.getRankInfoExtInfo(r.getId(),0,3);
                 teleplayList.stream().forEach(t ->{
                     UserRankInfoResp.UserTeleplayResp us = UserRankInfoResp.UserTeleplayResp.builder().build();
                     BeanUtils.copyProperties(t,us);
@@ -85,7 +85,7 @@ import java.util.List;
                     us.setTip("更新至第x集");
                     userTeleplayRespList.add(us);
                 });
-                
+
                 userRankInfoResp.setTeleplayList(userTeleplayRespList);
                 resp.add(userRankInfoResp);
             });
