@@ -51,5 +51,19 @@ public class UserVideoInfoResp implements Serializable {
     private Integer shareNum;
     private Integer commentNum;
 
-    List<TeleplayVideo> videoList;
+    List<UserTeleplayVideoResp> videoList;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static  class UserTeleplayVideoResp implements Serializable{
+        private String title;
+        private String mainImage;
+        private String mainSource;
+        private Long id;
+        //是否有锁
+        private Boolean lock;
+        private Integer seq;
+    }
 }
