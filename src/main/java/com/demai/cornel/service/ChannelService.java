@@ -48,6 +48,25 @@ import java.util.stream.Collectors;
         return Lists.newArrayList();
     }
 
+
+    /***
+     * 获取频道list
+     * @param param
+     * @return
+     */
+    public List<Channel> getChannelListForUser() {
+        try {
+            List<Channel> channelList = channelDao.getChannelListForUser();
+            if (CollectionUtils.isNotEmpty(channelList)) {
+                return channelList;
+            }
+        } catch (Exception e) {
+            log.error("查询频道list异常", e);
+        }
+        return Lists.newArrayList();
+    }
+
+
     /***
      * 获取频道list
      * @param param
