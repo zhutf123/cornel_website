@@ -13,6 +13,7 @@ import com.demai.cornel.model.RankInfoExt;
 import com.demai.cornel.reqParam.OperateRankInfoExtParam;
 import com.demai.cornel.reqParam.OperateRankInfoParam;
 import com.demai.cornel.reqParam.QueryRankInfoParam;
+import com.demai.cornel.reqParam.UserChangeRankInfoParam;
 import com.demai.cornel.util.DateUtils;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -121,13 +122,31 @@ import java.util.List;
         }
     }
 
-
     /***
      * 获取排行榜剧集
      * @param rankInfoId
      */
     public List<RankInfoExt> getRankInfoVideoById(Long rankInfoId) {
         return rankInfoDao.getRankInfoExtList(rankInfoId);
+    }
+
+    /***
+     * 换一批
+     * @param param
+     * @return
+     */
+    public List<UserRankInfoResp.UserTeleplayResp> changeRankInfo(UserChangeRankInfoParam param){
+        List<RankInfoExt> teleplayList = rankInfoDao.getRankInfoExtInfo(param.getRankInfoId(), param.getOffSet(),
+                param.getPageNum() != null ? param.getPageNum() : 3);
+        List<UserRankInfoResp.UserTeleplayResp> userTeleplayRespList = Lists.newArrayList();
+        teleplayList.stream().forEach(t ->{
+            UserRankInfoResp.UserTeleplayResp us = UserRankInfoResp.UserTeleplayResp.builder().build();
+            BeanUtils.copyProperties(t,us);
+            us.setTitle(t.getTeleplayName());
+            us.setTip("更新至第x集");
+            userTeleplayRespList.add(us);
+        });
+        return userTeleplayRespList;
     }
 
 }
