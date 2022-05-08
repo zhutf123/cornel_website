@@ -40,7 +40,6 @@ import java.util.stream.Collectors;
 @Service @Slf4j public class TeleplayVideoService {
 
     @Resource private TeleplayVideoDao teleplayVideoDao;
-    @Resource private TeleplayVideoDao teleplayVideoDao;
 
     public UserVideoInfoResp queryTeleplayVideoById(Long vid) {
         UserVideoInfoResp resp = UserVideoInfoResp.builder().build();
