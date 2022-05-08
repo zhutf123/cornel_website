@@ -3,6 +3,7 @@
  */
 package com.demai.cornel.service;
 
+import com.demai.cornel.Resp.UserVideoInfoResp;
 import com.demai.cornel.dao.ChannelDao;
 import com.demai.cornel.dao.TeleplayDao;
 import com.demai.cornel.dao.TeleplayVideoDao;
@@ -16,10 +17,13 @@ import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryChannelParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
+import com.demai.cornel.util.BeanMapper;
 import com.demai.cornel.util.DateUtils;
 import com.google.common.collect.Lists;
+import jodd.bean.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +40,15 @@ import java.util.stream.Collectors;
 @Service @Slf4j public class TeleplayVideoService {
 
     @Resource private TeleplayVideoDao teleplayVideoDao;
+
+    public UserVideoInfoResp queryTeleplayVideoById(Long vid) {
+        UserVideoInfoResp resp = UserVideoInfoResp.builder().build();
+        TeleplayVideo video = teleplayVideoDao.queryTeleplayVideoById(vid);
+        
+        BeanUtils.copyProperties(video,resp);
+        return resp;
+    }
+
 
     public List<TeleplayVideo> getTeleplayVideoList(QueryTeleplayVideoParam param) {
         return teleplayVideoDao.queryTeleplayVideoList(param);

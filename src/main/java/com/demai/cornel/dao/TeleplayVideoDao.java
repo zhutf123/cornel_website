@@ -21,6 +21,8 @@ public interface TeleplayVideoDao {
 
     List<TeleplayVideo> queryTeleplayVideoList(QueryTeleplayVideoParam param);
 
+    TeleplayVideo queryTeleplayVideoById(@Param("id")Long id);
+
     Integer queryTeleplayVideoAllNum(QueryTeleplayVideoParam param);
 
     List<TeleplayVideo> queryTeleplayVideoByTeleplayIds(@Param("teleplayIds")List<Long> teleplayIds);

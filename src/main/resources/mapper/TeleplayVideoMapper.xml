@@ -143,6 +143,25 @@
         )
     </insert>
 
+    <select id="queryTeleplayVideoById" parameterType="long"
+            resultMap="teleplayVideoResultMap">
+        select
+        <include refid="query_list_column"/>
+        from teleplay_video v left join
+        (
+        select
+        video_id,
+        max(all_follow_num) as all_follow_num,
+        max(all_play_num) as all_play_num,
+        max(all_like_num) as all_like_num,
+        max(all_share_num) as all_share_num,
+        max(all_comment_num) as all_comment_num
+        from teleplay_video_browse_data group by video_id
+        )fd
+        on v.id=fd.video_id
+        where v.id=#{id}
+    </select>
+
     <select id="queryTeleplayVideoList" parameterType="com.demai.cornel.reqParam.QueryTeleplayVideoParam"
             resultMap="teleplayVideoResultMap">
         select
