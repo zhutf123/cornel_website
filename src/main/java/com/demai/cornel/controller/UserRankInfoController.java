@@ -54,7 +54,7 @@ import java.util.List;
      */
     @RequestMapping(value = "/changeRankInfo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody public JsonResult changeRankInfo(
-            @RequestParam UserChangeRankInfoParam param HttpServletResponse response) {
+            @RequestParam UserChangeRankInfoParam param, HttpServletResponse response) {
         try {
             List<UserRankInfoResp.UserTeleplayResp> rankInfoRespList = rankInfoService.changeRankInfo(param);
             return JsonResult.success(rankInfoRespList);
