@@ -6,6 +6,7 @@ package com.demai.cornel.dao;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
+import com.demai.cornel.reqParam.UserQueryTeleplayParam;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public interface TeleplayDao {
     Integer queryTeleplayAllNum(QueryTeleplayParam param);
 
     List<Teleplay> suggestTeleplay(@Param("name") String name);
+
+    List<Teleplay> queryTeleplayListByChannelId(UserQueryTeleplayParam param);
     
 
 }
