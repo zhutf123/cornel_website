@@ -13,6 +13,7 @@ import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
+import com.demai.cornel.reqParam.UserQueryTeleplayParam;
 import com.demai.cornel.util.DateUtils;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -109,29 +110,29 @@ import java.util.stream.Collectors;
         return resp;
     }
 
-        public List<Teleplay> getTeleplayList(QueryTeleplayParam param) {
-            try {
-                List<Teleplay> teleplayList = teleplayDao.queryTeleplayList(param);
-                if (CollectionUtils.isNotEmpty(teleplayList)) {
-                    List<Channel> channelList = channelDao.queryAllOnlineChannel();
-                    Map<Long, String> channelMap = channelList.stream()
-                            .collect(Collectors.toMap(Channel::getId, Channel::getName));
-                    teleplayList.forEach(t -> {
-                        if (CollectionUtils.isNotEmpty(t.getChannel())){
-                            List<String> channelNames = Lists.newArrayList();
-                            t.getChannel().stream().forEach(c ->{
-                                channelNames.add(channelMap.get(Long.parseLong(c)));
-                            });
-                            t.setChannelDesc(channelNames);
-                        }
-                    });
-                    return teleplayList;
-                }
-            } catch (Exception e) {
-                log.error("查询剧集list异常", e);
+    public List<Teleplay> getTeleplayList(QueryTeleplayParam param) {
+        try {
+            List<Teleplay> teleplayList = teleplayDao.queryTeleplayList(param);
+            if (CollectionUtils.isNotEmpty(teleplayList)) {
+                List<Channel> channelList = channelDao.queryAllOnlineChannel();
+                Map<Long, String> channelMap = channelList.stream()
+                        .collect(Collectors.toMap(Channel::getId, Channel::getName));
+                teleplayList.forEach(t -> {
+                    if (CollectionUtils.isNotEmpty(t.getChannel())){
+                        List<String> channelNames = Lists.newArrayList();
+                        t.getChannel().stream().forEach(c ->{
+                            channelNames.add(channelMap.get(Long.parseLong(c)));
+                        });
+                        t.setChannelDesc(channelNames);
+                    }
+                });
+                return teleplayList;
             }
-            return Lists.newArrayList();
+        } catch (Exception e) {
+            log.error("查询剧集list异常", e);
         }
+        return Lists.newArrayList();
+    }
 
     public Integer getTeleplayAllNum(QueryTeleplayParam param) {
         try {
@@ -140,6 +141,15 @@ import java.util.stream.Collectors;
             log.error("查询剧集list异常", e);
         }
         return 0;
+    }
+
+    public List<Teleplay> getTeleplayListByChannelId(UserQueryTeleplayParam param) {
+        try {
+            Lists.newArrayList();
+        } catch (Exception e) {
+            log.error("查询剧集list异常", e);
+        }
+        return Lists.newArrayList();
     }
 
 }
