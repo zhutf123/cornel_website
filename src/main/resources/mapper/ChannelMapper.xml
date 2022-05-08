@@ -163,7 +163,16 @@
         <if test="type !=null">
             and type = #{type}
         </if>
-        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        order by weight desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="getChannelListForUser" resultMap="channelResultMap">
+        select
+            id,
+            name,
+            type
+        from channel
+        where status=1
     </select>
 
     <select id="queryChannelByIds" parameterType="list"
