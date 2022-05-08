@@ -187,7 +187,7 @@
         order by weight desc
     </select>
 
-    <select id="getRankInfoExtInfo" parameterType="long" resultType="com.demai.cornel.model.RankInfoExt">
+    <select id="getRankInfoExtInfo" resultType="com.demai.cornel.model.RankInfoExt">
         select
                 e.id,
                 e.rank_info_id as rankInfoId,
