@@ -423,3 +423,35 @@ CREATE TABLE rank_info_ext
 ;
 
 COMMENT ON COLUMN rank_info_ext.weight IS '权重';
+
+
+DROP TABLE IF EXISTS user_follow_video;
+CREATE TABLE user_follow_video
+(
+    id           serial PRIMARY KEY,
+    video_id     bigint,
+    status      integer default 1,
+    ext_info     hstore,
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+COMMENT ON COLUMN user_follow_video.video_id IS '视频id';
+
+
+DROP TABLE IF EXISTS user_watch_video_log;
+CREATE TABLE user_watch_video_log
+(
+    id           serial PRIMARY KEY,
+    video_id     bigint,
+    status      integer default 1,
+    ext_info     hstore,
+    operate_time timestamptz(6) default now(),
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+
+COMMENT ON COLUMN user_watch_video_log.video_id IS '视频id';
