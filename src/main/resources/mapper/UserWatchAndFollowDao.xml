@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.demai.cornel.dao.UserFollowAndWatchDao">
+<mapper namespace="com.demai.cornel.dao.UserWatchAndFollowDao">
 
     <resultMap type="com.demai.cornel.model.UserWatchVideo" id="userWatchVideoLogResultMap">
         <id column="id" property="id" />
@@ -103,5 +103,23 @@
         </trim>
         )
     </insert>
+
+
+    <select id="getUserWatchVideoList" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
+     resultMap="userWatchVideoLogResultMap">
+        select
+        <include refid="main_column"/>
+        from user_watch_video_log
+        where status=1
+        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="getUserWatchVideoAllNum" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
+        resultType="int">
+        select
+         count(1)
+        from user_watch_video_log
+        where status=1
+    </select>
     
 </mapper>

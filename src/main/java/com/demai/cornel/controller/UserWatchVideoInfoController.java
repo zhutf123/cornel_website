@@ -1,18 +1,22 @@
 package com.demai.cornel.controller;
 
-import com.demai.cornel.Resp.UserVideoInfoResp;
+import com.demai.cornel.Resp.UserWatchAndFollowVideoResp;
 import com.demai.cornel.dmEnum.ResponseStatusEnum;
+import com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam;
 import com.demai.cornel.service.TeleplayVideoService;
+import com.demai.cornel.service.UserWatchAndFollowService;
+import com.demai.cornel.vo.JsonListResult;
 import com.demai.cornel.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @Author tfzhu
@@ -20,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller @RequestMapping("/user") @Slf4j public class UserWatchVideoInfoController {
 
-    @Resource TeleplayVideoService teleplayVideoService;
+    @Resource UserWatchAndFollowService userWatchAndFollowService;
 
 
     /**
@@ -28,14 +32,17 @@ import javax.servlet.http.HttpServletResponse;
      * @return
      */
     @RequestMapping(value = "/myWatch.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonResult myWatch(
+    public JsonListResult myWatch(
+            @RequestBody QueryWatchAndFollowVideoParam param,
             HttpServletResponse response) {
         try {
-            return JsonResult.success("resp");
+            List<UserWatchAndFollowVideoResp> watchList = userWatchAndFollowService.getUserWatchVideoList(param);
+            Integer watchNum = userWatchAndFollowService.getUserWatchVideoAllNum(param);
+            return JsonListResult.success(watchList, watchNum);
         } catch (Exception e) {
             log.error("用户点击某一剧集进入播放详情异常！", e);
         }
-        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
 
