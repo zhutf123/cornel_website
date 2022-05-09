@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demai.cornel.dao.UserFollowAndWatchDao">
+
+    <resultMap type="com.demai.cornel.model.UserWatchVideo" id="userWatchVideoLogResultMap">
+        <id column="id" property="id" />
+        <result column="video_id" property="videoId" />
+        <result column="status" property="status" />
+        <result column="ext_info" property="extInfo" />
+        <result column="operate_time" property="operateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <resultMap type="com.demai.cornel.model.UserFollowVideo" id="userFollowVideoLogResultMap">
+        <id column="id" property="id" />
+        <result column="video_id" property="videoId" />
+        <result column="status" property="status" />
+        <result column="ext_info" property="extInfo" />
+        <result column="operate_time" property="operateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <sql id="main_column">
+        id,
+        video_id,
+        status,
+        ext_info,
+        operate_time,
+        create_time
+    </sql>
+
+    <sql id="follow_main_column">
+        id,
+        video_id,
+        status,
+        ext_info,
+        operate_time,
+        create_time
+    </sql>
+
+    <update id="update" parameterType="com.demai.cornel.model.UserWatchVideo">
+        update user_watch_video_log
+        <trim prefix="set" suffixOverrides=",">
+            <if test="videoId != null"> video_id = #{videoId},</if>
+            <if test="status != null"> status = #{status},</if>
+            <if test="extInfo != null"> ext_info = #{extInfo},</if>
+            <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="com.demai.cornel.model.UserWatchVideo" useGeneratedKeys="true" keyProperty="id" >
+        insert into user_watch_video_log(
+        <trim suffixOverrides=",">
+            <if test="videoId != null"> video_id ,</if>
+            <if test="status != null"> status ,</if>
+            <if test="extInfo != null"> ext_info ,</if>
+            <if test="operateTime != null"> operate_time ,</if>
+            <if test="createTime != null"> create_time ,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="videoId != null"> #{videoId} ,</if>
+            <if test="status != null"> #{status} ,</if>
+            <if test="extInfo != null"> #{extInfo} ,</if>
+            <if test="operateTime != null"> #{operateTime} ,</if>
+            <if test="createTime != null"> #{createTime} ,</if>
+        </trim>
+        )
+    </insert>
+
+
+    <update id="userFollowUpdate" parameterType="com.demai.cornel.model.UserFollowVideo">
+        update user_watch_video_log
+        <trim prefix="set" suffixOverrides=",">
+            <if test="videoId != null"> video_id = #{videoId},</if>
+            <if test="status != null"> status = #{status},</if>
+            <if test="extInfo != null"> ext_info = #{extInfo},</if>
+            <if test="operateTime != null"> operate_time = #{operateTime},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <insert id="userFollowSave" parameterType="com.demai.cornel.model.UserFollowVideo" useGeneratedKeys="true" keyProperty="id" >
+        insert into user_watch_video_log(
+        <trim suffixOverrides=",">
+            <if test="videoId != null"> video_id ,</if>
+            <if test="status != null"> status ,</if>
+            <if test="extInfo != null"> ext_info ,</if>
+            <if test="operateTime != null"> operate_time ,</if>
+            <if test="createTime != null"> create_time ,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="videoId != null"> #{videoId} ,</if>
+            <if test="status != null"> #{status} ,</if>
+            <if test="extInfo != null"> #{extInfo} ,</if>
+            <if test="operateTime != null"> #{operateTime} ,</if>
+            <if test="createTime != null"> #{createTime} ,</if>
+        </trim>
+        )
+    </insert>
+    
+</mapper>
