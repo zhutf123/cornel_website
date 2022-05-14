@@ -93,7 +93,7 @@ import java.util.List;
                     .status(UserWatchVideo.UserWatchVideoStatusEnum.OFFLINE.getValue())
                     .id(userFollowVideo.getId())
                     .build();
-            userWatchAndFollowDao.userFollowSave(followVideo);
+            userWatchAndFollowDao.userFollowUpdate(followVideo);
         }
     }
     
