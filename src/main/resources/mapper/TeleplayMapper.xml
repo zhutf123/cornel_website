@@ -362,9 +362,12 @@
     </select>
 
     <select id="queryTeleplaySeqNum" parameterType="long" resultType="integer">
-        select max(seq) as seq
-        from teleplay
-        where id =#{teleplayId}
+        select max(tv.seq) as seq
+        from teleplay t,teleplay_video tv
+        where t.id =#{teleplayId}
+        and t.id=tv.teleplay_id
+        and t.status=1
+        and tv.status=1
     </select>
 
 </mapper>
