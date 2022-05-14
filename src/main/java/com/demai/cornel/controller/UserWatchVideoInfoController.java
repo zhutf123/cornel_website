@@ -90,7 +90,7 @@ import java.util.List;
             if (StringUtils.isBlank(uid)){
                 return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
             }
-            userWatchAndFollowService.followVideoInfo(vid,Long.parseLong(uid));
+            userWatchAndFollowService.followVideoInfo(videoId,Long.parseLong(uid));
             return JsonResult.success("success");
         } catch (Exception e) {
             log.error("用户加入追剧！", e);
