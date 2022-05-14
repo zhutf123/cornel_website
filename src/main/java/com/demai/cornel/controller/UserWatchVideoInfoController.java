@@ -98,4 +98,24 @@ import java.util.List;
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+    /**
+     * 加入追剧
+     * @return
+     */
+    @RequestMapping(value = "/cancelFollowVideo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonResult cancelFollowVideo(
+            @RequestParam(value = "videoId", required = true) Long videoId, HttpServletResponse response) {
+        try {
+            String uid = UserHolder.getValue("uid");
+            if (StringUtils.isBlank(uid)) {
+                return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+            }
+            userWatchAndFollowService.cancelFollowVideoInfo(videoId, Long.parseLong(uid));
+            return JsonResult.success("success");
+        } catch (Exception e) {
+            log.error("用户加入追剧！", e);
+        }
+        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
 }
