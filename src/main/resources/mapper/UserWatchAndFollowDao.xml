@@ -6,6 +6,7 @@
     <resultMap type="com.demai.cornel.model.UserWatchVideo" id="userWatchVideoLogResultMap">
         <id column="id" property="id" />
         <result column="video_id" property="videoId" />
+        <result column="user_id" property="userId" />
         <result column="teleplay_id" property="teleplayId" />
         <result column="status" property="status" />
         <result column="ext_info" property="extInfo" />
@@ -47,6 +48,7 @@
         update user_watch_video_log
         <trim prefix="set" suffixOverrides=",">
             <if test="videoId != null"> video_id = #{videoId},</if>
+            <if test="userId != null"> user_id = #{userId},</if>
             <if test="teleplayId != null"> teleplay_id = #{teleplayId},</if>
             <if test="status != null"> status = #{status},</if>
             <if test="extInfo != null"> ext_info = #{extInfo},</if>
@@ -60,6 +62,7 @@
         insert into user_watch_video_log(
         <trim suffixOverrides=",">
             <if test="videoId != null"> video_id ,</if>
+            <if test="userId != null"> user_id ,</if>
             <if test="teleplayId != null"> teleplay_id ,</if>
             <if test="status != null"> status ,</if>
             <if test="extInfo != null"> ext_info ,</if>
@@ -69,6 +72,7 @@
         )values(
         <trim suffixOverrides=",">
             <if test="videoId != null"> #{videoId} ,</if>
+            <if test="userId != null"> #{userId} ,</if>
             <if test="teleplayId != null"> #{teleplayId} ,</if>
             <if test="status != null"> #{status} ,</if>
             <if test="extInfo != null"> #{extInfo} ,</if>
