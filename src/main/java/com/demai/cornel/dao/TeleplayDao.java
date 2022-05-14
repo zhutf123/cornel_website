@@ -34,5 +34,6 @@ public interface TeleplayDao {
 
     Teleplay queryTeleplayInfoByVid(@Param("vid")Long vid);
 
+    Integer queryTeleplaySeqNum(@Param("teleplayId")Long teleplayId);
 
 }

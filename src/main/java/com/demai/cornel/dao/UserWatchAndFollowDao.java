@@ -7,6 +7,7 @@ import com.demai.cornel.Resp.UserWatchAndFollowVideoResp;
 import com.demai.cornel.model.UserFollowVideo;
 import com.demai.cornel.model.UserWatchVideo;
 import com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public interface UserWatchAndFollowDao {
     List<UserWatchVideo> getUserWatchVideoList(QueryWatchAndFollowVideoParam param);
 
     Integer getUserWatchVideoAllNum(QueryWatchAndFollowVideoParam param);
+
+    UserWatchVideo getUserWatchSeqByTeleplayId(@Param("teleplayId")Long teleplayId, @Param("userId")Long userId);
 
     void userFollowUpdate(UserFollowVideo teleplay);
 

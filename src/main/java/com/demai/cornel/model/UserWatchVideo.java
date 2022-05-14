@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
@@ -31,4 +32,8 @@ public class UserWatchVideo implements Serializable {
     private Map<String,String> extInfo ;
     private Date operateTime ;
     private Date createTime ;
+
+
+    /**==========for admin,user show property=============**/
+    private Integer seq;
 }
