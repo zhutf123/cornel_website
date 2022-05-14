@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * zhutf 2019
  */
-@Slf4j @CustomInterceptor(order = 3, addPathPatterns = { "/admin/**" }, excludePathPatterns = { "/check.jsp",
+@Slf4j @CustomInterceptor(order = 3, addPathPatterns = { "/admin/**", "/user/**" }, excludePathPatterns = { "/check.jsp",
         "/admin_web","/admin/login.json", "/user/login/json", "/user/login/json", "register.json" }) public class AuthCheckInterceptor
         implements HandlerInterceptor {
 
