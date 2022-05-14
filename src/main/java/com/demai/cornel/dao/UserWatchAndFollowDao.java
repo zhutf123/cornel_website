@@ -32,7 +32,7 @@ public interface UserWatchAndFollowDao {
 
     void userFollowSave(UserFollowVideo teleplay);
 
-    UserFollowVideo getUserFollowVideoByVid(@Param("vid")Long vid,@Param("userId")Long userId);
+    UserFollowVideo getUserFollowVideoByVid(@Param("teleplayId")Long teleplayId,@Param("userId")Long userId);
 
     UserWatchVideo getUserWatchVideoByVid(@Param("teleplayId")Long teleplayId,@Param("userId")Long userId);
 

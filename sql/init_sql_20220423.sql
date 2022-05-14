@@ -439,7 +439,7 @@ CREATE TABLE user_follow_video
     WITH (OIDS = FALSE)
 ;
 
-COMMENT ON COLUMN user_follow_video.video_id IS '视频id';
+COMMENT ON COLUMN user_follow_video.teleplay_id IS '剧集id';
 
 
 DROP TABLE IF EXISTS user_watch_video_log;
