@@ -66,7 +66,7 @@ import java.util.List;
             return;
         }
 
-        UserFollowVideo userFollowVideo = userWatchAndFollowDao.getUserFollowVideoByVid(vid, userId);
+        UserFollowVideo userFollowVideo = userWatchAndFollowDao.getUserFollowVideoByVid(teleplayVideo.getId(), userId);
         if (userFollowVideo == null) {
             UserFollowVideo followVideo = UserFollowVideo.builder()
                     .userId(userId)

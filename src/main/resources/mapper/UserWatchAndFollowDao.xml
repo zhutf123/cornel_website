@@ -174,7 +174,7 @@
         from user_follow_video
         where status=1
         and user_id=#{userId}
-        and video_id=#{vid}
+        and teleplay_id=#{teleplayId}
     </select>
 
     <select id="getUserFollowVideoAllNum" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
