@@ -81,9 +81,9 @@ import java.util.List;
      * 加入追剧
      * @return
      */
-    @RequestMapping(value = "/followVideo.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/followVideo.json", method = RequestMethod.GET, produces = "application/json; charset=utf-8") @ResponseBody
     public JsonResult followVideo(
-            @RequestParam(value = "videoId",required = false) Long videoId,
+            @RequestParam(value = "videoId", required = true) Long videoId,
             HttpServletResponse response) {
         try {
             String uid = UserHolder.getValue("uid");
