@@ -76,12 +76,14 @@ import java.util.List;
 
 
     public List<UserWatchAndFollowVideoResp> getUserFollowVideoList(QueryWatchAndFollowVideoParam param) {
-        List<UserWatchVideo> videoList = userWatchAndFollowDao.getUserWatchVideoList(param);
+        List<UserFollowVideo> videoList = userWatchAndFollowDao.getUserFollowVideoList(param);
         List<UserWatchAndFollowVideoResp> result = Lists.newArrayList();
         if (CollectionUtils.isNotEmpty(videoList)){
             videoList.stream().forEach(v -> {
-                Teleplay teleplay = teleplayDao.queryTeleplayInfoByVid(v.getVideoId());
-                if (teleplay != null) {
+                
+                List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByIds(Lists.newArrayList(v.getTeleplayId()));
+                if (CollectionUtils.isNotEmpty(teleplayList)) {
+                    
                     UserWatchAndFollowVideoResp resp = UserWatchAndFollowVideoResp.builder().videoId(v.getVideoId())
                             .title(teleplay.getTitle())
                             .mainImage(teleplay.getMainImage())
@@ -95,7 +97,7 @@ import java.util.List;
     }
 
     public Integer getUserFollowVideoAllNum(QueryWatchAndFollowVideoParam param) {
-        return userWatchAndFollowDao.getUserWatchVideoAllNum(param);
+        return userWatchAndFollowDao.getUserFollowVideoAllNum(param);
     }
     
 }
