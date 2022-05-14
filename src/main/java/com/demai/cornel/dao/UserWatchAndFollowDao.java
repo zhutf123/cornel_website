@@ -29,4 +29,8 @@ public interface UserWatchAndFollowDao {
 
     void userFollowSave(UserFollowVideo teleplay);
 
+    List<UserWatchVideo> getUserFollowVideoList(QueryWatchAndFollowVideoParam param);
+
+    Integer getUserFollowVideoAllNum(QueryWatchAndFollowVideoParam param);
+
 }

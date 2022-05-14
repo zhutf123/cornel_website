@@ -128,5 +128,24 @@
         where status=1
         and user_id=#{userId}
     </select>
+
+    <select id="getUserFollowVideoList" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
+            resultMap="userFollowVideoLogResultMap">
+        select
+        <include refid="follow_main_column"/>
+        from user_follow_video
+        where status=1
+        and user_id=#{userId}
+        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="getUserFollowVideoAllNum" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
+            resultType="int">
+        select
+                count(1)
+        from user_follow_video
+        where status=1
+          and user_id=#{userId}
+    </select>
     
 </mapper>

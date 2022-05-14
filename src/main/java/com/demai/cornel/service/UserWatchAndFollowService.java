@@ -72,5 +72,30 @@ import java.util.List;
         
         userWatchAndFollowDao.userFollowSave(followVideo);
     }
+
+
+
+    public List<UserWatchAndFollowVideoResp> getUserFollowVideoList(QueryWatchAndFollowVideoParam param) {
+        List<UserWatchVideo> videoList = userWatchAndFollowDao.getUserWatchVideoList(param);
+        List<UserWatchAndFollowVideoResp> result = Lists.newArrayList();
+        if (CollectionUtils.isNotEmpty(videoList)){
+            videoList.stream().forEach(v -> {
+                Teleplay teleplay = teleplayDao.queryTeleplayInfoByVid(v.getVideoId());
+                if (teleplay != null) {
+                    UserWatchAndFollowVideoResp resp = UserWatchAndFollowVideoResp.builder().videoId(v.getVideoId())
+                            .title(teleplay.getTitle())
+                            .mainImage(teleplay.getMainImage())
+                            .mainSource(teleplay.getMainSource())
+                            .build();
+                    result.add(resp);
+                }
+            });
+        }
+        return result;
+    }
+
+    public Integer getUserFollowVideoAllNum(QueryWatchAndFollowVideoParam param) {
+        return userWatchAndFollowDao.getUserWatchVideoAllNum(param);
+    }
     
 }
