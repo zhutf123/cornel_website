@@ -76,6 +76,26 @@ import java.util.List;
             userWatchAndFollowDao.userFollowSave(followVideo);
         }
     }
+
+    /***
+     * 取消的追剧
+     * @param vid
+     */
+    public void cancelFollowVideoInfo(Long vid,Long userId){
+        Teleplay teleplayVideo = teleplayDao.queryTeleplayInfoByVid(vid);
+        if (teleplayVideo == null) {
+            return;
+        }
+
+        UserFollowVideo userFollowVideo = userWatchAndFollowDao.getUserFollowVideoByVid(teleplayVideo.getId(), userId);
+        if (userFollowVideo != null) {
+            UserFollowVideo followVideo = UserFollowVideo.builder()
+                    .status(UserWatchVideo.UserWatchVideoStatusEnum.OFFLINE.getValue())
+                    .id(userFollowVideo.getId())
+                    .build();
+            userWatchAndFollowDao.userFollowSave(followVideo);
+        }
+    }
     
 
     public List<UserWatchAndFollowVideoResp> getUserFollowVideoList(QueryWatchAndFollowVideoParam param) {
