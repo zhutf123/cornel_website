@@ -9,17 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/init_sql_20220423.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/init_sql_20220423.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/UserWatchAndFollowVideoResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/UserWatchAndFollowVideoResp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/TeleplayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/TeleplayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/UserFollowVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/UserFollowVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/UserWatchVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/model/UserWatchVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/QueryWatchAndFollowVideoParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/QueryWatchAndFollowVideoParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/TeleplayVideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/TeleplayVideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserWatchAndFollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/UserWatchAndFollowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/auth.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/auth.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TeleplayMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeleplayMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserWatchAndFollowDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserWatchAndFollowDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/interceptor/CookieInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/interceptor/CookieInterceptor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +221,7 @@
       <workItem from="1651784830981" duration="9647000" />
       <workItem from="1651828584377" duration="27783000" />
       <workItem from="1652191053525" duration="1427000" />
-      <workItem from="1652480712888" duration="7145000" />
+      <workItem from="1652480712888" duration="9275000" />
     </task>
     <servers />
   </component>
