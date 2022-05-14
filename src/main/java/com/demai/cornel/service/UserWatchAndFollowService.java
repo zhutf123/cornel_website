@@ -5,9 +5,11 @@ package com.demai.cornel.service;
 
 import com.demai.cornel.Resp.UserWatchAndFollowVideoResp;
 import com.demai.cornel.dao.TeleplayDao;
+import com.demai.cornel.dao.TeleplayVideoDao;
 import com.demai.cornel.dao.UserWatchAndFollowDao;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
+import com.demai.cornel.model.UserFollowVideo;
 import com.demai.cornel.model.UserWatchVideo;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam;
@@ -30,7 +32,6 @@ import java.util.List;
     private UserWatchAndFollowDao userWatchAndFollowDao;
     @Resource
     private TeleplayDao teleplayDao;
-    
 
     public List<UserWatchAndFollowVideoResp> getUserWatchVideoList(QueryWatchAndFollowVideoParam param) {
        List<UserWatchVideo> videoList = userWatchAndFollowDao.getUserWatchVideoList(param);
@@ -53,6 +54,23 @@ import java.util.List;
 
     public Integer getUserWatchVideoAllNum(QueryWatchAndFollowVideoParam param) {
         return userWatchAndFollowDao.getUserWatchVideoAllNum(param);
+    }
+
+    /***
+     * 加入我的追剧
+     * @param vid
+     */
+    public void followVideoInfo(Long vid,Long userId){
+        Teleplay teleplayVideo = teleplayDao.queryTeleplayInfoByVid(vid);
+        if (teleplayVideo == null) {
+            return;
+        }
+        UserFollowVideo followVideo = UserFollowVideo.builder()
+                .userId(userId)
+                .teleplayId(teleplayVideo.getId())
+                .build();
+        
+        userWatchAndFollowDao.userFollowSave(followVideo);
     }
     
 }

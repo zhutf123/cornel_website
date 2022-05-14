@@ -116,6 +116,7 @@
         <include refid="main_column"/>
         from user_watch_video_log
         where status=1
+        and user_id=#{userId}
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
 
@@ -125,6 +126,7 @@
          count(1)
         from user_watch_video_log
         where status=1
+        and user_id=#{userId}
     </select>
     
 </mapper>
