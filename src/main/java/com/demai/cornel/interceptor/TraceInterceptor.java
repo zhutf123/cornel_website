@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * 记录每个请求的信息
  */
 @Slf4j
-@CustomInterceptor(order = 1, addPathPatterns = {"/**"}, excludePathPatterns = { "/check.jsp",
+@CustomInterceptor(order = 1, addPathPatterns = { "/admin/**", "/user/**" }, excludePathPatterns = { "/check.jsp",
         "/admin_web","/admin/login.json", "/user/login/json", "/user/login/json", "register.json" })
 public class TraceInterceptor implements HandlerInterceptor {
 

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 @Component
-@CustomInterceptor(addPathPatterns = { "/**" }, excludePathPatterns = { "/check.jsp",
+@CustomInterceptor(addPathPatterns = { "/admin/**", "/user/**" }, excludePathPatterns = { "/check.jsp",
         "/admin_web","/admin/login.json", "/user/login/json", "/user/login/json", "register.json" })
 public class CheckRoleInterceptor implements HandlerInterceptor {
 
