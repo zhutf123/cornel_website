@@ -7,10 +7,12 @@ import com.demai.cornel.Resp.UserVideoInfoResp;
 import com.demai.cornel.dao.ChannelDao;
 import com.demai.cornel.dao.TeleplayDao;
 import com.demai.cornel.dao.TeleplayVideoDao;
+import com.demai.cornel.dao.UserWatchAndFollowDao;
 import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
+import com.demai.cornel.model.UserWatchVideo;
 import com.demai.cornel.reqParam.OperateChannelParam;
 import com.demai.cornel.reqParam.OperateTeleplayParam;
 import com.demai.cornel.reqParam.OperateTeleplayVideoParam;
@@ -40,6 +42,7 @@ import java.util.stream.Collectors;
 @Service @Slf4j public class TeleplayVideoService {
 
     @Resource private TeleplayVideoDao teleplayVideoDao;
+    @Resource private UserWatchAndFollowDao userWatchAndFollowDao;
 
     public UserVideoInfoResp queryTeleplayVideoById(Long vid, Long teleplayId) throws Exception {
         UserVideoInfoResp resp = UserVideoInfoResp.builder().build();
@@ -56,7 +59,15 @@ import java.util.stream.Collectors;
             log.error("播放参数传递错误");
             return resp;
         }
-
+        
+        String uid = UserHolder.getValue("uid");
+        UserWatchVideo userWatchVideo = UserWatchVideo.builder()
+                .videoId(video.getId())
+                .operateTime(DateUtils.now())
+                .userId(Long.parseLong(uid))
+                .build();
+        userWatchAndFollowDao.save(userWatchVideo);
+        
         List<TeleplayVideo> teleplayList = teleplayVideoDao
                 .queryTeleplayVideoByTeleplayIds(Lists.newArrayList(video.getTeleplayId()));
         List<UserVideoInfoResp.UserTeleplayVideoResp> videoList = Lists.newArrayList();

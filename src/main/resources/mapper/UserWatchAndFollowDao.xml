@@ -14,7 +14,7 @@
 
     <resultMap type="com.demai.cornel.model.UserFollowVideo" id="userFollowVideoLogResultMap">
         <id column="id" property="id" />
-        <result column="video_id" property="videoId" />
+        <result column="teleplay_id" property="teleplayId" />
         <result column="status" property="status" />
         <result column="ext_info" property="extInfo" />
         <result column="operate_time" property="operateTime" />
@@ -24,6 +24,7 @@
     <sql id="main_column">
         id,
         video_id,
+        user_id,
         status,
         ext_info,
         operate_time,
@@ -32,7 +33,8 @@
 
     <sql id="follow_main_column">
         id,
-        video_id,
+        teleplay_id,
+        user_id,
         status,
         ext_info,
         operate_time,
@@ -73,9 +75,10 @@
 
 
     <update id="userFollowUpdate" parameterType="com.demai.cornel.model.UserFollowVideo">
-        update user_watch_video_log
+        update user_follow_video
         <trim prefix="set" suffixOverrides=",">
-            <if test="videoId != null"> video_id = #{videoId},</if>
+            <if test="teleplayId != null"> teleplay_id = #{teleplayId},</if>
+            <if test="userId != null"> user_id = #{userId},</if>
             <if test="status != null"> status = #{status},</if>
             <if test="extInfo != null"> ext_info = #{extInfo},</if>
             <if test="operateTime != null"> operate_time = #{operateTime},</if>
@@ -85,9 +88,10 @@
     </update>
 
     <insert id="userFollowSave" parameterType="com.demai.cornel.model.UserFollowVideo" useGeneratedKeys="true" keyProperty="id" >
-        insert into user_watch_video_log(
+        insert into user_follow_video(
         <trim suffixOverrides=",">
-            <if test="videoId != null"> video_id ,</if>
+            <if test="teleplayId != null"> teleplay_id ,</if>
+            <if test="userId != null"> user_id ,</if>
             <if test="status != null"> status ,</if>
             <if test="extInfo != null"> ext_info ,</if>
             <if test="operateTime != null"> operate_time ,</if>
@@ -95,7 +99,8 @@
         </trim>
         )values(
         <trim suffixOverrides=",">
-            <if test="videoId != null"> #{videoId} ,</if>
+            <if test="teleplayId != null"> #{teleplayId} ,</if>
+            <if test="userId != null"> #{userId} ,</if>
             <if test="status != null"> #{status} ,</if>
             <if test="extInfo != null"> #{extInfo} ,</if>
             <if test="operateTime != null"> #{operateTime} ,</if>

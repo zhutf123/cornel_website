@@ -24,6 +24,10 @@ import java.util.Map;
 @AllArgsConstructor
 public class UserWatchAndFollowVideoResp implements Serializable {
 
-    private  
+    private String mainImage;
+    private String mainSource;
+    private Long videoId;
+    private String title;
+
 
 }

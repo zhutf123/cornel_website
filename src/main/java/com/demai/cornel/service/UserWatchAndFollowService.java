@@ -4,11 +4,14 @@
 package com.demai.cornel.service;
 
 import com.demai.cornel.Resp.UserWatchAndFollowVideoResp;
+import com.demai.cornel.dao.TeleplayDao;
 import com.demai.cornel.dao.UserWatchAndFollowDao;
+import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.TeleplayVideo;
 import com.demai.cornel.model.UserWatchVideo;
 import com.demai.cornel.reqParam.QueryTeleplayVideoParam;
 import com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -25,15 +28,27 @@ import java.util.List;
 
     @Resource
     private UserWatchAndFollowDao userWatchAndFollowDao;
-    private TeleplayService teleplayService;
+    @Resource
+    private TeleplayDao teleplayDao;
+    
 
     public List<UserWatchAndFollowVideoResp> getUserWatchVideoList(QueryWatchAndFollowVideoParam param) {
        List<UserWatchVideo> videoList = userWatchAndFollowDao.getUserWatchVideoList(param);
+       List<UserWatchAndFollowVideoResp> result = Lists.newArrayList();
        if (CollectionUtils.isNotEmpty(videoList)){
-           
+           videoList.stream().forEach(v -> {
+               Teleplay teleplay = teleplayDao.queryTeleplayInfoByVid(v.getVideoId());
+               if (teleplay != null) {
+                   UserWatchAndFollowVideoResp resp = UserWatchAndFollowVideoResp.builder().videoId(v.getVideoId())
+                           .title(teleplay.getTitle())
+                           .mainImage(teleplay.getMainImage())
+                           .mainSource(teleplay.getMainSource())
+                           .build();
+                   result.add(resp);
+               }
+           });
        }
-       
-       return null;
+       return result;
     }
 
     public Integer getUserWatchVideoAllNum(QueryWatchAndFollowVideoParam param) {

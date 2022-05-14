@@ -33,5 +33,7 @@ public interface TeleplayDao {
     
     Integer getTeleplayAllNumByChannelId(UserQueryTeleplayParam param);
 
+    Teleplay queryTeleplayInfoByVid(@Param("vid")Long vid);
+
 
 }

@@ -430,7 +430,7 @@ CREATE TABLE user_follow_video
 (
     id           serial PRIMARY KEY,
     teleplay_id     bigint,
-    video_id     bigint,
+    user_id     bigint,
     status      integer default 1,
     ext_info     hstore,
     operate_time timestamptz(6) default now(),
@@ -446,7 +446,8 @@ DROP TABLE IF EXISTS user_watch_video_log;
 CREATE TABLE user_watch_video_log
 (
     id           serial PRIMARY KEY,
-    teleplay_id     bigint,
+    video_id     bigint,
+    user_id     bigint,
     status      integer default 1,
     ext_info     hstore,
     operate_time timestamptz(6) default now(),
