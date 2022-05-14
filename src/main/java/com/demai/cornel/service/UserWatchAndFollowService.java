@@ -65,15 +65,18 @@ import java.util.List;
         if (teleplayVideo == null) {
             return;
         }
-        UserFollowVideo followVideo = UserFollowVideo.builder()
-                .userId(userId)
-                .teleplayId(teleplayVideo.getId())
-                .build();
-        
-        userWatchAndFollowDao.userFollowSave(followVideo);
+
+        UserFollowVideo userFollowVideo = userWatchAndFollowDao.getUserFollowVideoByVid(vid, userId);
+        if (userFollowVideo == null) {
+            UserFollowVideo followVideo = UserFollowVideo.builder()
+                    .userId(userId)
+                    .teleplayId(teleplayVideo.getId())
+                    .build();
+
+            userWatchAndFollowDao.userFollowSave(followVideo);
+        }
     }
-
-
+    
 
     public List<UserWatchAndFollowVideoResp> getUserFollowVideoList(QueryWatchAndFollowVideoParam param) {
         List<UserFollowVideo> videoList = userWatchAndFollowDao.getUserFollowVideoList(param);
