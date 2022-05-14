@@ -134,6 +134,17 @@
         and user_id=#{userId}
     </select>
 
+    <select id="getUserWatchSeqByTeleplayId" resultType="com.demai.cornel.model.UserWatchVideo">
+        select
+            wv.video_id as videoId,
+            tv.seq
+        from user_watch_video_log wv,teleplay_video tv
+        where wv.status=1
+        and wv.video_id=tv.id
+        and wv.user_id=#{userId}
+        and wv.teleplay_id=#{teleplayId}
+    </select>
+
     <select id="getUserFollowVideoList" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
             resultMap="userFollowVideoLogResultMap">
         select

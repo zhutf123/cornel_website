@@ -83,11 +83,17 @@ import java.util.List;
                 
                 List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByIds(Lists.newArrayList(v.getTeleplayId()));
                 if (CollectionUtils.isNotEmpty(teleplayList)) {
+                    Teleplay teleplay = teleplayList.get(0);
+                    UserWatchVideo watch = userWatchAndFollowDao
+                            .getUserWatchSeqByTeleplayId(teleplay.getId(), param.getUserId());
+                    Integer update = teleplayDao.queryTeleplaySeqNum(teleplay.getId());
                     
-                    UserWatchAndFollowVideoResp resp = UserWatchAndFollowVideoResp.builder().videoId(v.getVideoId())
+                    UserWatchAndFollowVideoResp resp = UserWatchAndFollowVideoResp.builder().videoId(watch.getVideoId())
                             .title(teleplay.getTitle())
                             .mainImage(teleplay.getMainImage())
                             .mainSource(teleplay.getMainSource())
+                            .watchTips(String.format("看到第%d集", watch.getSeq()))
+                            .updateTips(String.format("更新至第%d集", update))
                             .build();
                     result.add(resp);
                 }
