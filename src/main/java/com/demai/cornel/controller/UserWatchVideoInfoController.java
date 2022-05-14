@@ -83,7 +83,7 @@ import java.util.List;
      */
     @RequestMapping(value = "/followVideo.json", method = RequestMethod.GET)
     public JsonResult followVideo(
-            @RequestParam Long vid,
+            @RequestParam(value = "videoId",required = false) Long videoId,
             HttpServletResponse response) {
         try {
             String uid = UserHolder.getValue("uid");
