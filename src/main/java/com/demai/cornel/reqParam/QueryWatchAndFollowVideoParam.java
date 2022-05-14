@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
  */
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class QueryWatchAndFollowVideoParam extends BaseQueryParam {
-    private String test;
+    private Long userId;
 
 }

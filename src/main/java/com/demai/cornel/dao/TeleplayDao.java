@@ -3,7 +3,6 @@
  */
 package com.demai.cornel.dao;
 
-import com.demai.cornel.model.Channel;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.reqParam.QueryTeleplayParam;
 import com.demai.cornel.reqParam.UserQueryTeleplayParam;
