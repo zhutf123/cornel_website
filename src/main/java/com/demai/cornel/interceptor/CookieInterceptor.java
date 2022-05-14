@@ -26,7 +26,7 @@ import static com.demai.cornel.vo.JsonResult.SHOULD_LOGIN_CODE;
  * 获取用户信息
  */
 @Slf4j @CustomInterceptor(order = 2, addPathPatterns = { "/**" }, excludePathPatterns = { "/check.jsp",
-        "/admin_web","/admin/login.json", "/user/login/json", "/user/login/json", "register.json" }) public class CookieInterceptor implements HandlerInterceptor {
+        "/admin_web/","/admin_web","/admin/login.json", "/user/login/json", "/user/login/json", "register.json" }) public class CookieInterceptor implements HandlerInterceptor {
 
     @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o)
             throws Exception {
