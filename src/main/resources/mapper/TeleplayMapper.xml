@@ -364,7 +364,7 @@
     <select id="queryTeleplaySeqNum" parameterType="long" resultType="integer">
         select max(seq) as seq
         from teleplay
-        where id ={teleplayId}
+        where id =#{teleplayId}
     </select>
 
 </mapper>
