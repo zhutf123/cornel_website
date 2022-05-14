@@ -33,6 +33,8 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
+@CustomInterceptor(addPathPatterns = { "/**" }, excludePathPatterns = { "/check.jsp",
+        "/admin_web","/admin/login.json", "/user/login/json", "/user/login/json", "register.json" })
 public class AccessControlnterceptor implements HandlerInterceptor {
 
     @Resource
