@@ -58,14 +58,23 @@ import java.util.List;
      *
      * @return
      */
-    @RequestMapping(value = "/myFollow.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult myFollow(
+    @RequestMapping(value = "/myFollow.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonListResult myFollow(
+            @RequestBody QueryWatchAndFollowVideoParam param,
             HttpServletResponse response) {
         try {
-            return JsonResult.success("resp");
+            String uid = UserHolder.getValue("uid");
+            if (StringUtils.isBlank(uid)){
+                return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+            }
+            param.setUserId(Long.parseLong(uid));
+            List<UserWatchAndFollowVideoResp> watchList = userWatchAndFollowService.getUserFollowVideoList(param);
+            Integer watchNum = userWatchAndFollowService.getUserFollowVideoAllNum(param);
+            return JsonListResult.success(watchList, watchNum);
         } catch (Exception e) {
-            log.error("我的追剧异常", e);
+            log.error("最近播放记录异常", e);
         }
-        return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
     /**
@@ -81,11 +90,10 @@ import java.util.List;
             if (StringUtils.isBlank(uid)){
                 return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
             }
-            
             userWatchAndFollowService.followVideoInfo(vid,Long.parseLong(uid));
             return JsonResult.success("success");
         } catch (Exception e) {
-            log.error("用户点击某一剧集进入播放详情异常！", e);
+            log.error("用户加入追剧！", e);
         }
         return JsonResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
