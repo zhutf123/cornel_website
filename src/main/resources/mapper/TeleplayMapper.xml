@@ -347,5 +347,18 @@
             and <![CDATA[ channel @> array[#{channel}::varchar ] ]]>
         </if>
     </select>
+
+    <select id="queryTeleplayInfoByVid" parameterType="long" resultMap="teleplayResultMap">
+        select
+            t.id,
+            t.main_image,
+            t.main_source,
+            t.channel,
+            t.title,
+            t.depict
+        from teleplay t,teleplay_video v
+        where t.id=v.teleplay_id
+        and v.id=#{vid}
+    </select>
     
 </mapper>

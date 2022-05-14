@@ -24,7 +24,8 @@ import java.util.Map;
 public class UserFollowVideo implements Serializable {
     private static final long serialVersionUID = 7928071720281632850L;
     private Long id ;
-    private Long videoId ;
+    private Long teleplayId ;
+    private Long userId ;
     private Integer status ;
     private Map<String,String> extInfo ;
     private Date operateTime ;
