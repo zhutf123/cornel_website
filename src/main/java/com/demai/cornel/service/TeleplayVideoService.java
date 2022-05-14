@@ -59,15 +59,26 @@ import java.util.stream.Collectors;
             log.error("播放参数传递错误");
             return resp;
         }
-        
+
         String uid = UserHolder.getValue("uid");
-        UserWatchVideo userWatchVideo = UserWatchVideo.builder()
-                .videoId(video.getId())
-                .teleplayId(video.getTeleplayId())
-                .operateTime(DateUtils.now())
-                .userId(Long.parseLong(uid))
-                .build();
-        userWatchAndFollowDao.save(userWatchVideo);
+        Long userId = Long.parseLong(uid);
+
+        UserWatchVideo userWatchVideo = userWatchAndFollowDao.getUserWatchVideoByVid(video.getTeleplayId(), userId);
+        if (userWatchVideo!=null){
+            userWatchVideo.setVideoId(video.getId());
+            userWatchVideo.setOperateTime(DateUtils.now());
+            userWatchVideo.setTeleplayId(video.getTeleplayId());
+            userWatchAndFollowDao.update(userWatchVideo);
+        }else {
+            userWatchVideo = UserWatchVideo.builder()
+                    .videoId(video.getId())
+                    .teleplayId(video.getTeleplayId())
+                    .operateTime(DateUtils.now())
+                    .userId(userId)
+                    .build();
+            userWatchAndFollowDao.save(userWatchVideo);
+        }
+
         
         List<TeleplayVideo> teleplayList = teleplayVideoDao
                 .queryTeleplayVideoByTeleplayIds(Lists.newArrayList(video.getTeleplayId()));

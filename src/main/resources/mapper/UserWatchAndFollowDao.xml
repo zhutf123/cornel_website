@@ -145,6 +145,15 @@
         and wv.teleplay_id=#{teleplayId}
     </select>
 
+    <select id="getUserWatchVideoByVid" resultMap="userWatchVideoLogResultMap">
+        select
+        <include refid="main_column"/>
+        from user_watch_video_log
+        where status=1
+        and user_id=#{userId}
+        and teleplay_id=#{teleplayId}
+    </select>
+
     <select id="getUserFollowVideoList" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
             resultMap="userFollowVideoLogResultMap">
         select
@@ -153,6 +162,15 @@
         where status=1
         and user_id=#{userId}
         order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+    </select>
+
+    <select id="getUserFollowVideoByVid" resultMap="userFollowVideoLogResultMap">
+        select
+        <include refid="follow_main_column"/>
+        from user_follow_video
+        where status=1
+        and user_id=#{userId}
+        and video_id=#{vid}
     </select>
 
     <select id="getUserFollowVideoAllNum" parameterType="com.demai.cornel.reqParam.QueryWatchAndFollowVideoParam"
