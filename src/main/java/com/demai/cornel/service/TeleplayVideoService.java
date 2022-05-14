@@ -63,6 +63,7 @@ import java.util.stream.Collectors;
         String uid = UserHolder.getValue("uid");
         UserWatchVideo userWatchVideo = UserWatchVideo.builder()
                 .videoId(video.getId())
+                .teleplayId(video.getTeleplayId())
                 .operateTime(DateUtils.now())
                 .userId(Long.parseLong(uid))
                 .build();

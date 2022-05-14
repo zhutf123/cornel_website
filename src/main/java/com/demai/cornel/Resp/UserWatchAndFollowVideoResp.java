@@ -29,5 +29,10 @@ public class UserWatchAndFollowVideoResp implements Serializable {
     private Long videoId;
     private String title;
 
+    /**更新信息*/
+    private String  updateTips;
+    /**观看信息*/
+    private String  watchTips;
+
 
 }
