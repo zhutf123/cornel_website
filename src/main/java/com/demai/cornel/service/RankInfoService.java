@@ -32,6 +32,7 @@ import java.util.List;
 @Service @Slf4j public class RankInfoService {
 
     @Resource private RankInfoDao rankInfoDao;
+    @Resource private TeleplayDao teleplayDao;
 
     /***
      * 添加、编辑排行榜
@@ -83,7 +84,8 @@ import java.util.List;
                     UserRankInfoResp.UserTeleplayResp us = UserRankInfoResp.UserTeleplayResp.builder().build();
                     BeanUtils.copyProperties(t,us);
                     us.setTitle(t.getTeleplayName());
-                    us.setTip("更新至第x集");
+                    Integer update = teleplayDao.queryTeleplaySeqNum(t.getTeleplayId());
+                    us.setTip(String.format("更新至第%d集", update));
                     userTeleplayRespList.add(us);
                 });
 
