@@ -50,7 +50,7 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
                 name = fileName;
             }
             log.info("file name is [{}]", fileName);
-            String path = configProperties.uploadLocation + IDUtils.getUUID();
+            String path = configProperties.uploadLocation + IDUtils.getUUID()+".jpg";
             File saveFile = new File(path);
             FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
             String sourceId;
