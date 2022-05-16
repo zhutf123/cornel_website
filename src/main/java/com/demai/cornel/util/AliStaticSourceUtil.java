@@ -234,7 +234,7 @@ import java.io.InputStream;
         // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
         String endpoint = "http://oss-cn-shenzhen.aliyuncs.com";
         // 填写Bucket名称，例如examplebucket。
-        String bucketName = "";
+        String bucketName = "outin-4bfcaac9c80e11ecbfcd00163e021072";
         // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
         //String objectName = "default/exampleobject.txt";
         // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
