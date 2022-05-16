@@ -8,8 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cornel_backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cornel_backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/RankInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/RankInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RebelAgentSelection">
@@ -154,15 +157,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -221,7 +222,8 @@
       <workItem from="1651784830981" duration="9647000" />
       <workItem from="1651828584377" duration="27783000" />
       <workItem from="1652191053525" duration="1427000" />
-      <workItem from="1652480712888" duration="24309000" />
+      <workItem from="1652480712888" duration="29490000" />
+      <workItem from="1652706748793" duration="656000" />
     </task>
     <servers />
   </component>
