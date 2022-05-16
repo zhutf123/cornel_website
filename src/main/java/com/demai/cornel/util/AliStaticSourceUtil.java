@@ -3,6 +3,9 @@
  */
 package com.demai.cornel.util;
 
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.OSSException;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.auth.sts.AssumeRoleRequest;
 import com.aliyuncs.auth.sts.AssumeRoleResponse;
@@ -19,6 +22,9 @@ import com.aliyuncs.vod.model.v20170321.GetImageInfoResponse;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
  * Create By tfzhu  2022/4/30  5:48 AM
@@ -154,7 +160,8 @@ import lombok.extern.slf4j.Slf4j;
             log.info("UploadAuth, " + response.getUploadAuth());
             log.info("VideoId, " + response.getVideoId());
             result = response.getVideoId();
-        } catch (ClientException e) {
+            doUploadFile(showName, path);
+        } catch (Exception e) {
             log.error("upload video exception ", e);
         }
         return result;
@@ -199,7 +206,8 @@ import lombok.extern.slf4j.Slf4j;
             log.info("imageId, " + response.getImageId());
             log.info("imageURL, " + response.getImageURL());
             result = response.getImageId();
-        } catch (ClientException e) {
+            doUploadFile(showName, path);
+        } catch (Exception e) {
             log.error("upload video exception ", e);
         }
         return result;
@@ -219,6 +227,36 @@ import lombok.extern.slf4j.Slf4j;
             log.error("query image url exception ", e);
         }
         return result;
+    }
+
+
+    public static void doUploadFile(String objectName,String filePath) throws Exception {
+        // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
+        String endpoint = "https://oss-cn-shenzhen.aliyuncs.com";
+        // 填写Bucket名称，例如examplebucket。
+        String bucketName = "default";
+        // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
+        //String objectName = "default/exampleobject.txt";
+        // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
+        //String filePath= "D:\\localpath\\examplefile.txt";
+        // 创建OSSClient实例。
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+
+        try {
+            InputStream inputStream = new FileInputStream(filePath);
+            // 创建PutObject请求。
+            ossClient.putObject(bucketName, objectName, inputStream);
+        } catch (OSSException oe) {
+            log.error(
+                    "Caught an OSSException, which means your request made it to OSS,but was rejected with an error response for some reason."
+                            + oe.getErrorMessage() + "Error Code:" + oe.getErrorCode() + "Request ID:" + oe
+                            .getRequestId() + "Host ID:" + oe.getHostId());
+
+        } finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
+        }
     }
 }
 
