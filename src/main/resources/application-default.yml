@@ -114,7 +114,7 @@ banner:
   download: https://demeteria.com/banner/download.json?key=1.png,https://demeteria.com/banner/download.json?key=2.png
   purchaseBanner: https://beta.demeteria.com/banner/download.json?key=3.png,https://beta.demeteria.com/banner/download.json?key=4.png
 upload:
-  location: :
-  downloadHost: https://demeteria.com
+  location: /update/
+  downloadHost:
 car-config:
   carlicetype: 本人,他人,公司
