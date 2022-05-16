@@ -8,10 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cornel_backend_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cornel_backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cornel_backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -223,7 +220,7 @@
       <workItem from="1651828584377" duration="27783000" />
       <workItem from="1652191053525" duration="1427000" />
       <workItem from="1652480712888" duration="29490000" />
-      <workItem from="1652706748793" duration="656000" />
+      <workItem from="1652706748793" duration="924000" />
     </task>
     <servers />
   </component>
