@@ -3,7 +3,6 @@
  */
 package com.demai.cornel.reqParam;
 
-import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +21,7 @@ import java.util.List;
 @Data
 @Builder
 public class OperateChannelGroupParam implements Serializable {
-    @NotNull
     private String name;
-    @NotNull
     private Integer recommend;
     List<String> channel;
     private Integer status;
