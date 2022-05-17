@@ -7,6 +7,12 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.PutObjectRequest;
+import com.aliyun.vod.upload.impl.UploadImageImpl;
+import com.aliyun.vod.upload.impl.UploadVideoImpl;
+import com.aliyun.vod.upload.req.UploadImageRequest;
+import com.aliyun.vod.upload.req.UploadVideoRequest;
+import com.aliyun.vod.upload.resp.UploadImageResponse;
+import com.aliyun.vod.upload.resp.UploadVideoResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.auth.sts.AssumeRoleRequest;
 import com.aliyuncs.auth.sts.AssumeRoleResponse;
@@ -22,6 +28,7 @@ import com.aliyuncs.vod.model.v20170321.GetImageInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetImageInfoResponse;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
+import com.demai.cornel.vo.uploadfile.UploadResp;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -55,6 +62,8 @@ import java.io.InputStream;
      * 点播服务所在的Region，接入服务中心为上海，则填cn-shanghai
      */
     private static String regionId = "cn-shenzhen";
+
+    private static String localStorage = "outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com";
     /**
      * 定制你的policy
      */
@@ -67,14 +76,15 @@ import java.io.InputStream;
 //        log.info(getImageUrl("5e8236886e4845e3bcf61cb8f3a51f41"));
 //    }
 
-    public static String uploadVideo(String showName, String path) {
+    public static UploadResp uploadVideo(String title,String path) {
         try {
-            AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
-            return createUploadVideo(response.getCredentials().getAccessKeyId(),
-                    response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken(),
-                    showName, path);
+//            AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
+//            return createUploadVideo(response.getCredentials().getAccessKeyId(),
+//                    response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken(),
+//                    showName, path);
 
-        } catch (ClientException e) {
+           return doUploadVideo(title,path);
+        } catch (Exception e) {
             log.error("上传文件失败", e);
         }
         return null;
@@ -93,14 +103,15 @@ import java.io.InputStream;
         return null;
     }
 
-    public static String uploadImg(String showName, String path) {
+    public static UploadResp uploadImg(String path) {
         try {
-            AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
-            return createUploadImg(response.getCredentials().getAccessKeyId(),
-                    response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken(),
-                    showName, path);
+//            AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
+//            return createUploadImg(response.getCredentials().getAccessKeyId(),
+//                    response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken(),
+//                    showName, path);
 
-        } catch (ClientException e) {
+            return doUploadImage(path);
+        } catch (Exception e) {
             log.error("上传文件失败", e);
         }
         return null;
@@ -162,7 +173,6 @@ import java.io.InputStream;
             log.info("UploadAuth, " + response.getUploadAuth());
             log.info("VideoId, " + response.getVideoId());
             result = response.getVideoId();
-            doUploadFile(showName, path);
         } catch (Exception e) {
             log.error("upload video exception ", e);
         }
@@ -208,7 +218,7 @@ import java.io.InputStream;
             log.info("imageId, " + response.getImageId());
             log.info("imageURL, " + response.getImageURL());
             result = response.getImageId();
-            doUploadFile(showName, path);
+            log.info(new String(Base64Utils.decode(response.getUploadAddress())));
         } catch (Exception e) {
             log.error("upload video exception ", e);
         }
@@ -231,77 +241,58 @@ import java.io.InputStream;
         return result;
     }
 
-
-    public static void doUploadFile(String objectName,String filePath) throws Exception {
-        // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
-        String endpoint = "http://oss-cn-shenzhen.aliyuncs.com";
-        // 填写Bucket名称，例如examplebucket。
-        String bucketName = "outin-4bfcaac9c80e11ecbfcd00163e021072";
-        // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
-        // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
-        //String filePath= "D:\\localpath\\examplefile.txt";
-        // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-
-        try {
-            InputStream inputStream = new FileInputStream(filePath);
-            // 创建PutObject请求。
-            ossClient.putObject(bucketName, objectName, inputStream);
-        } catch (OSSException oe) {
-            log.error(
-                    "Caught an OSSException, which means your request made it to OSS,but was rejected with an error response for some reason."
-                            + oe.getErrorMessage() + "Error Code:" + oe.getErrorCode() + "Request ID:" + oe
-                            .getRequestId() + "Host ID:" + oe.getHostId());
-
-        } finally {
-            if (ossClient != null) {
-                ossClient.shutdown();
-            }
+    public static UploadResp doUploadVideo(String title,String path) throws Exception {
+        UploadVideoRequest request = new UploadVideoRequest(accessKeyId, accessKeySecret, title, path);
+        request.setPartSize(2 * 1024 * 1024L);
+        request.setTaskNum(1);
+        request.setStorageLocation(localStorage);
+        request.setApiRegionId(regionId);
+        /* ECS部署区域*/
+        request.setEcsRegionId(regionId);
+        UploadVideoImpl uploader = new UploadVideoImpl();
+        UploadVideoResponse response = uploader.uploadVideo(request);
+        log.info("RequestId=" + response.getRequestId());  //请求视频点播服务的请求ID
+        if (response.isSuccess()) {
+            System.out.print("VideoId=" + response.getVideoId() + "\n");
+            UploadResp resp = UploadResp.builder()
+                    .sourceId(response.getVideoId())
+                    .url(response.getVideoId())
+                    .build();
+            return resp;
         }
+        return null;
     }
 
 
+    public static UploadResp doUploadImage(String path) throws Exception {
+        /* 图片类型（必选）取值范围：default（默认)，cover（封面），watermark（水印）*/
+        String imageType = "default";
+        UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
+        request.setImageType("default");
+        request.setStorageLocation(localStorage);
+        request.setFileName(path);
+        request.setApiRegionId(regionId);
+        UploadImageImpl uploadImage = new UploadImageImpl();
+        UploadImageResponse response = uploadImage.upload(request);
+        log.info("RequestId=" + response.getRequestId());
+        if (response.isSuccess()) {
+            UploadResp resp = UploadResp.builder()
+                    .sourceId(response.getImageId())
+                    .url(response.getImageURL())
+                    .build();
+            return resp;
+        }
+        return null;
+    }
 
-
-    public static void main(String[] args) throws Exception {
-        // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
-        String endpoint = "https://oss-cn-shenzhen.aliyuncs.com";
-        // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-        // 填写Bucket名称，例如examplebucket。
-        String bucketName = "outin-4bfcaac9c80e11ecbfcd00163e021072";
-        // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
-        String objectName = "1642509481706184.jpg";
-        // 填写本地文件的完整路径，例如D:\\localpath\\examplefile.txt。
-        // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件。
-        String filePath= "/Users/tfzhu/fh/1642509481706184.jpg";
-
-        // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-
+    public static void main(String[] args) {
         try {
-            // 创建PutObjectRequest对象。
-            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objectName, new File(filePath));
-            // 如果需要上传时设置存储类型和访问权限，请参考以下示例代码。
-            // ObjectMetadata metadata = new ObjectMetadata();
-            // metadata.setHeader(OSSHeaders.OSS_STORAGE_CLASS, StorageClass.Standard.toString());
-            // metadata.setObjectAcl(CannedAccessControlList.Private);
-            // putObjectRequest.setMetadata(metadata);
-
-            // 上传文件。
-            ossClient.putObject(putObjectRequest);
-        } catch (OSSException oe) {
-            System.out.println("Caught an OSSException, which means your request made it to OSS, "
-                    + "but was rejected with an error response for some reason.");
-            System.out.println("Error Message:" + oe.getErrorMessage());
-            System.out.println("Error Code:" + oe.getErrorCode());
-            System.out.println("Request ID:" + oe.getRequestId());
-            System.out.println("Host ID:" + oe.getHostId());
-        } finally {
-            if (ossClient != null) {
-                ossClient.shutdown();
-            }
+            doUploadImage("");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 }
 
 

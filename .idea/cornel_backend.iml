@@ -44,6 +44,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="commons-logging-1.2" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.aliyun.vod:upload:1.4.14">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/VODUploadDemo-java-1.4.14/lib/aliyun-java-vod-upload-1.4.14.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: com.aliyun.oss:aliyun-sdk-oss:3.10.2" level="project" />
     <orderEntry type="library" name="Maven: org.jdom:jdom2:2.0.6" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jettison:jettison:1.1" level="project" />
@@ -51,6 +61,7 @@
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-ram:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-sts:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-ecs:4.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-kms:2.7.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-core:4.6.0" level="project" />
@@ -71,7 +82,7 @@
     <orderEntry type="library" name="Maven: io.opentracing:opentracing-noop:0.33.0" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-vod:2.16.5" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.62" level="project" />
-    <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-kms:2.10.1" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20170516" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.31.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.31.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.31.Final" level="project" />

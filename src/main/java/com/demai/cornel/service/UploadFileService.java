@@ -53,16 +53,14 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
             String path = configProperties.uploadLocation + IDUtils.getUUID()+".jpg";
             File saveFile = new File(path);
             FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
-            String sourceId;
-            String url;
             if (type == 0) {
-                sourceId = AliStaticSourceUtil.uploadVideo(name, path);
-                url = AliStaticSourceUtil.getVideoUrl(sourceId);
+                UploadResp resp = AliStaticSourceUtil.uploadVideo(fileName,path);
+                String url = AliStaticSourceUtil.getVideoUrl(resp.getSourceId());
+                resp.setUrl(url);
+                return resp;
             } else {
-                sourceId = AliStaticSourceUtil.uploadImg(name, path);
-                url = AliStaticSourceUtil.getImageUrl(sourceId);
+                return AliStaticSourceUtil.uploadImg(path);
             }
-            return UploadResp.builder().sourceId(sourceId).url(url).build();
         } catch (Exception e) {
             log.error("save file fail ", e);
             return null;
