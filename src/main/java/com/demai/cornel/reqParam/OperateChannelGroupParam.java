@@ -3,7 +3,7 @@
  */
 package com.demai.cornel.reqParam;
 
-import com.sun.istack.NotNull;
+import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

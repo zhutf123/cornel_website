@@ -248,11 +248,21 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.aliyun.vod</groupId>
+            <artifactId>upload</artifactId>
+            <version>1.4.14</version>
+            <scope>system</scope>
+            <systemPath>/Users/tfzhu/Downloads/VODUploadDemo-java-1.4.14/lib/aliyun-java-vod-upload-1.4.14.jar</systemPath>
+        </dependency>
+
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>3.10.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
@@ -279,10 +289,15 @@
             <version>1.2.62</version>
         </dependency>
         <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-kms</artifactId>
-            <version>2.10.1</version>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20170516</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun</groupId>-->
+<!--            <artifactId>aliyun-java-sdk-kms</artifactId>-->
+<!--            <version>2.10.1</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport-native-epoll</artifactId>
