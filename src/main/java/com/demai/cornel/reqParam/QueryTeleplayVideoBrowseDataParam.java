@@ -4,7 +4,7 @@
 package com.demai.cornel.reqParam;
 
 import com.demai.cornel.reqParam.base.BaseQueryParam;
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
