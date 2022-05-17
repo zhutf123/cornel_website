@@ -287,7 +287,7 @@ import java.io.InputStream;
 
     public static void main(String[] args) {
         try {
-            doUploadImage("");
+            doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }
