@@ -681,7 +681,7 @@
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                     <compilerArguments>
-                        <extdirs>${project.basedir}/src/main/resources/lib</extdirs>
+                        <extdirs>${project.basedir}/lib</extdirs>
                     </compilerArguments>
                 </configuration>
             </plugin>
@@ -697,7 +697,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <webResources>
                         <resource>
-                            <directory>${project.basedir}/src/main/resources/lib</directory>
+                            <directory>${project.basedir}/lib</directory>
                             <targetPath>WEB-INF/lib</targetPath>
                         </resource>
                     </webResources>
