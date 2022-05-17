@@ -89,7 +89,7 @@
       <recent name="com.demai.cornel.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GenJavaCode4Pg">
+  <component name="RunManager" selected="Application.AliStaticSourceUtil">
     <configuration name="AliStaticSourceUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.AliStaticSourceUtil" />
       <module name="cornel_backend" />
@@ -167,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AliStaticSourceUtil" />
         <item itemvalue="Application.GenJavaCode4Pg" />
         <item itemvalue="Application.GenJavaCode4Pg (1)" />
         <item itemvalue="Application.IDUtils" />
         <item itemvalue="Application.MD5Util" />
-        <item itemvalue="Application.AliStaticSourceUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +220,7 @@
       <workItem from="1651828584377" duration="27783000" />
       <workItem from="1652191053525" duration="1427000" />
       <workItem from="1652480712888" duration="29490000" />
-      <workItem from="1652706748793" duration="2804000" />
+      <workItem from="1652706748793" duration="5001000" />
     </task>
     <servers />
   </component>
@@ -238,5 +238,23 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>jar://$MAVEN_REPOSITORY$/com/aliyun/aliyun-java-sdk-vod/2.16.5/aliyun-java-sdk-vod-2.16.5.jar!/com/aliyuncs/vod/model/v20170321/CreateUploadImageResponse.class</url>
+          <line>12</line>
+          <properties field="requestId" class="com.aliyuncs.vod.model.v20170321.CreateUploadImageResponse" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>jar://$MAVEN_REPOSITORY$/com/aliyun/aliyun-java-sdk-vod/2.16.5/aliyun-java-sdk-vod-2.16.5.jar!/com/aliyuncs/vod/model/v20170321/CreateUploadImageResponse.class</url>
+          <line>14</line>
+          <properties field="imageURL" class="com.aliyuncs.vod.model.v20170321.CreateUploadImageResponse" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
