@@ -254,7 +254,7 @@
             <artifactId>upload</artifactId>
             <version>1.4.14</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/aliyun-java-vod-upload-1.4.14.jar</systemPath>
+            <systemPath>${project.basedir}/lib/aliyun-java-vod-upload-1.4.14.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -695,6 +695,12 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/src/main/resources/lib</directory>
+                            <targetPath>WEB-INF/lib</targetPath>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
