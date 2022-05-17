@@ -254,7 +254,7 @@
             <artifactId>upload</artifactId>
             <version>1.4.14</version>
             <scope>system</scope>
-            <systemPath>/Users/tfzhu/Downloads/VODUploadDemo-java-1.4.14/lib/aliyun-java-vod-upload-1.4.14.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/resources/lib/aliyun-java-vod-upload-1.4.14.jar</systemPath>
         </dependency>
 
         <dependency>
