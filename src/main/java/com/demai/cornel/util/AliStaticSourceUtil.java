@@ -75,15 +75,6 @@ import java.io.InputStream;
             "{\n" + "  \"Version\": \"1\",\n" + "  \"Statement\": [\n" + "    {\n" + "      \"Action\": \"vod:*\",\n"
                     + "      \"Resource\": \"*\",\n" + "      \"Effect\": \"Allow\"\n" + "    }\n" + "  ]\n" + "}";
 
-    public static UploadResp uploadVideo(String title,String path) {
-        try {
-           return doUploadVideo(title,path);
-        } catch (Exception e) {
-            log.error("上传文件失败", e);
-        }
-        return null;
-    }
-
     public static String getVideoUrl(String videoId) {
         try {
             AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
@@ -97,14 +88,6 @@ import java.io.InputStream;
         return null;
     }
 
-    public static UploadResp uploadImg(String path) {
-        try {
-            return doUploadImage(path);
-        } catch (Exception e) {
-            log.error("上传文件失败", e);
-        }
-        return null;
-    }
 
     public static String getImageUrl(String imageId) {
         try {
@@ -255,7 +238,7 @@ import java.io.InputStream;
 
     public static void main(String[] args) {
         try {
-            doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
+            //doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
             //doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
             System.out.println(getVideoUrl("cdef8ee4ddcb4b8798a94d679233c994"));
         } catch (Exception e) {
