@@ -282,7 +282,7 @@ import java.io.InputStream;
 
     public static void main(String[] args) {
         try {
-            //doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
+            doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
 
             //doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
             System.out.println(getVideoUrl("cdef8ee4ddcb4b8798a94d679233c994"));
