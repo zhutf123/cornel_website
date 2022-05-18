@@ -50,18 +50,21 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
                 fileName = name;
             }
             log.info("file name is [{}]", fileName);
-            String path = configProperties.uploadLocation + IDUtils.getUUID();
-            File saveFile = new File(path);
-            FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
             if (type == 0) {
-                UploadResp resp = AliStaticSourceUtil.uploadVideo(fileName,path+".mp4");
+                String path = configProperties.uploadLocation + IDUtils.getUUID() + ".mp4";
+                File saveFile = new File(path);
+                FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
+                UploadResp resp = AliStaticSourceUtil.uploadVideo(fileName, path);
                 if (resp != null) {
                     String url = AliStaticSourceUtil.getVideoUrl(resp.getSourceId());
                     resp.setUrl(url);
                 }
                 return resp;
             } else {
-                return AliStaticSourceUtil.uploadImg(path+".jpg");
+                String path = configProperties.uploadLocation + IDUtils.getUUID() + ".jpg";
+                File saveFile = new File(path);
+                FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
+                return AliStaticSourceUtil.uploadImg(path);
             }
         } catch (Exception e) {
             log.error("save file fail ", e);
