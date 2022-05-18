@@ -242,7 +242,7 @@ import java.io.InputStream;
         request.setEcsRegionId(regionId);
         UploadImageImpl uploadImage = new UploadImageImpl();
         UploadImageResponse response = uploadImage.upload(request);
-        log.info("RequestId=" + response.getRequestId());
+        log.info("RequestId=" + response.getRequestId() +" "+ response.getCode() + " " + response.getMessage());
         if (response.isSuccess()) {
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getImageId())
