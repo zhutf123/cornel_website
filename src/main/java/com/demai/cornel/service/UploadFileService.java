@@ -53,9 +53,10 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
             if (type == 0) {
                 String path = configProperties.uploadLocation + IDUtils.getUUID() + ".mp4";
                 log.info("file path is [{}]", path);
-                File saveFile = new File(path);
-                FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
-                UploadResp resp = AliStaticSourceUtil.uploadVideo(fileName, path);
+//                File saveFile = new File(path);
+//                FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
+//                UploadResp resp = AliStaticSourceUtil.uploadVideo(fileName, path);
+                UploadResp resp = AliStaticSourceUtil.doUploadVideoStream(fileName, files.getInputStream());
                 if (resp != null) {
                     String url = AliStaticSourceUtil.getVideoUrl(resp.getSourceId());
                     resp.setUrl(url);
@@ -64,9 +65,10 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
             } else {
                 String path = configProperties.uploadLocation + IDUtils.getUUID() + ".jpg";
                 log.info("file path is [{}]", path);
-                File saveFile = new File(path);
-                FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
-                return AliStaticSourceUtil.uploadImg(path);
+//                File saveFile = new File(path);
+//                FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
+//                return AliStaticSourceUtil.uploadImg(path);
+                return AliStaticSourceUtil.doUploadImageStream(path,files.getInputStream());
             }
         } catch (Exception e) {
             log.error("save file fail ", e);

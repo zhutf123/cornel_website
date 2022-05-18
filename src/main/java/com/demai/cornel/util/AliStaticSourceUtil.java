@@ -11,9 +11,11 @@ import com.aliyun.vod.upload.impl.UploadImageImpl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadFileStreamRequest;
 import com.aliyun.vod.upload.req.UploadImageRequest;
+import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.req.UploadVideoRequest;
 import com.aliyun.vod.upload.resp.UploadFileStreamResponse;
 import com.aliyun.vod.upload.resp.UploadImageResponse;
+import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.aliyun.vod.upload.resp.UploadVideoResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.auth.sts.AssumeRoleRequest;
@@ -73,18 +75,8 @@ import java.io.InputStream;
             "{\n" + "  \"Version\": \"1\",\n" + "  \"Statement\": [\n" + "    {\n" + "      \"Action\": \"vod:*\",\n"
                     + "      \"Resource\": \"*\",\n" + "      \"Effect\": \"Allow\"\n" + "    }\n" + "  ]\n" + "}";
 
-//    public static void main(String[] args) {
-//        log.info(getVideoUrl("3e8a569162c646d8bb5f399dfa73177b"));
-//        log.info(getImageUrl("5e8236886e4845e3bcf61cb8f3a51f41"));
-//    }
-
     public static UploadResp uploadVideo(String title,String path) {
         try {
-//            AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
-//            return createUploadVideo(response.getCredentials().getAccessKeyId(),
-//                    response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken(),
-//                    showName, path);
-
            return doUploadVideo(title,path);
         } catch (Exception e) {
             log.error("上传文件失败", e);
@@ -107,11 +99,6 @@ import java.io.InputStream;
 
     public static UploadResp uploadImg(String path) {
         try {
-//            AssumeRoleResponse response = assumeRole(accessKeyId, accessKeySecret, roleArn, roleSessionName, policy);
-//            return createUploadImg(response.getCredentials().getAccessKeyId(),
-//                    response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken(),
-//                    showName, path);
-
             return doUploadImage(path);
         } catch (Exception e) {
             log.error("上传文件失败", e);
@@ -157,30 +144,6 @@ import java.io.InputStream;
         }
     }
 
-    private static String createUploadVideo(String accessKeyId, String accessKeySecret, String token, String showName,
-            String path) {
-        IClientProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessKeySecret);
-        DefaultAcsClient client = new DefaultAcsClient(profile);
-
-        CreateUploadVideoRequest request = new CreateUploadVideoRequest();
-        request.setSecurityToken(token);
-        request.setTitle(showName);
-        request.setFileName(path);
-        String result = null;
-        try {
-            CreateUploadVideoResponse response = client.getAcsResponse(request);
-            log.info("CreateUploadVideoRequest, " + request.getUrl());
-            log.info("CreateUploadVideoRequest, requestId:" + response.getRequestId());
-            log.info("UploadAddress, " + response.getUploadAddress());
-            log.info("UploadAuth, " + response.getUploadAuth());
-            log.info("VideoId, " + response.getVideoId());
-            result = response.getVideoId();
-        } catch (Exception e) {
-            log.error("upload video exception ", e);
-        }
-        return result;
-    }
-
     private static String queryUploadVideo(String accessKeyId, String accessKeySecret, String token, String videoId) {
         IClientProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessKeySecret);
         DefaultAcsClient client = new DefaultAcsClient(profile);
@@ -194,35 +157,6 @@ import java.io.InputStream;
             result = response.getPlayInfoList().get(0).getPlayURL();
         } catch (ClientException e) {
             log.error("query video url exception ", e);
-        }
-        return result;
-    }
-
-    private static String createUploadImg(String accessKeyId, String accessKeySecret, String token, String showName,
-            String path) {
-        IClientProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessKeySecret);
-        // 点播服务所在的Region，接入服务中心为上海，则填cn-shanghai
-        DefaultAcsClient client = new DefaultAcsClient(profile);
-
-        CreateUploadImageRequest request = new CreateUploadImageRequest();
-        request.setSecurityToken(token);
-        request.setTitle(showName);
-        request.setImageType("default");
-        request.setUserData(path);
-        String result = null;
-
-        try {
-            CreateUploadImageResponse response = client.getAcsResponse(request);
-            log.info("CreateUploadVideoRequest, " + request.getUserData());
-            log.info("CreateUploadVideoRequest, requestId:" + response.getRequestId());
-            log.info("UploadAddress, " + response.getUploadAddress());
-            log.info("UploadAuth, " + response.getUploadAuth());
-            log.info("imageId, " + response.getImageId());
-            log.info("imageURL, " + response.getImageURL());
-            result = response.getImageId();
-            log.info(new String(Base64Utils.decode(response.getUploadAddress())));
-        } catch (Exception e) {
-            log.error("upload video exception ", e);
         }
         return result;
     }
@@ -259,6 +193,23 @@ import java.io.InputStream;
         return null;
     }
 
+    public static UploadResp doUploadVideoStream(String title,InputStream inputStream) throws Exception {
+        UploadStreamRequest request = new UploadStreamRequest(accessKeyId, accessKeySecret, title, title, inputStream);
+        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com");
+        request.setApiRegionId("cn-shenzhen");
+        UploadVideoImpl uploader = new UploadVideoImpl();
+        UploadStreamResponse response = uploader.uploadStream(request);
+        log.info("RequestId=" + response.getRequestId() +" "+ response.isSuccess()+" " + response.getVideoId() ); //请求视频点播服务的请求ID
+        if (response.isSuccess()) {
+            UploadResp resp = UploadResp.builder()
+                    .sourceId(response.getVideoId())
+                    .build();
+            return resp;
+        }
+        return null;
+    }
+
+
     public static UploadResp doUploadImage(String path) throws Exception {
         /* 图片类型（必选）取值范围：default（默认)，cover（封面），watermark（水印）*/
         String imageType = "default";
@@ -280,10 +231,29 @@ import java.io.InputStream;
         return null;
     }
 
+    public static UploadResp doUploadImageStream(String path,InputStream urlStream) throws Exception {
+        String imageType = "cover";
+        UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
+        request.setInputStream(urlStream);
+        request.setImageType("default");
+        request.setStorageLocation(localStorage);
+        request.setApiRegionId(regionId);
+        UploadImageImpl uploadImage = new UploadImageImpl();
+        UploadImageResponse response = uploadImage.upload(request);
+        log.info("RequestId=" + response.getRequestId());
+        if (response.isSuccess()) {
+            UploadResp resp = UploadResp.builder()
+                    .sourceId(response.getImageId())
+                    .url(response.getImageURL())
+                    .build();
+            return resp;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         try {
             doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
-
             //doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
             System.out.println(getVideoUrl("cdef8ee4ddcb4b8798a94d679233c994"));
         } catch (Exception e) {
