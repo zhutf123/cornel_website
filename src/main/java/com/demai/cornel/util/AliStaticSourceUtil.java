@@ -9,8 +9,10 @@ import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.vod.upload.impl.UploadImageImpl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
+import com.aliyun.vod.upload.req.UploadFileStreamRequest;
 import com.aliyun.vod.upload.req.UploadImageRequest;
 import com.aliyun.vod.upload.req.UploadVideoRequest;
+import com.aliyun.vod.upload.resp.UploadFileStreamResponse;
 import com.aliyun.vod.upload.resp.UploadImageResponse;
 import com.aliyun.vod.upload.resp.UploadVideoResponse;
 import com.aliyuncs.DefaultAcsClient;
@@ -242,21 +244,15 @@ import java.io.InputStream;
     }
 
     public static UploadResp doUploadVideo(String title,String path) throws Exception {
-        UploadVideoRequest request = new UploadVideoRequest(accessKeyId, accessKeySecret, title, path);
-        request.setPartSize(2 * 1024 * 1024L);
-        request.setTaskNum(1);
-        request.setStorageLocation(localStorage);
-        request.setApiRegionId(regionId);
-        /* ECS部署区域*/
-        request.setEcsRegionId(regionId);
+        UploadFileStreamRequest request = new UploadFileStreamRequest(accessKeyId, accessKeySecret, title, path);
+        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com");
+        request.setApiRegionId("cn-shenzhen");
         UploadVideoImpl uploader = new UploadVideoImpl();
-        UploadVideoResponse response = uploader.uploadVideo(request);
-        log.info("RequestId=" + response.getRequestId());  //请求视频点播服务的请求ID
+        UploadFileStreamResponse response = uploader.uploadFileStream(request);
+        System.out.print("RequestId=" + response.getRequestId() ); //请求视频点播服务的请求ID
         if (response.isSuccess()) {
-            System.out.print("VideoId=" + response.getVideoId() + "\n");
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getVideoId())
-                    .url(response.getVideoId())
                     .build();
             return resp;
         }
@@ -287,7 +283,9 @@ import java.io.InputStream;
 
     public static void main(String[] args) {
         try {
-            doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
+            //doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
+
+            doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
         } catch (Exception e) {
             e.printStackTrace();
         }
