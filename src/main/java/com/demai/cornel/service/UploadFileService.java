@@ -47,7 +47,7 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
         try {
             String fileName = files.getOriginalFilename();
             if (StringUtil.isBlank(name)){
-                name = fileName;
+                fileName = name;
             }
             log.info("file name is [{}]", fileName);
             String path = configProperties.uploadLocation + IDUtils.getUUID();
