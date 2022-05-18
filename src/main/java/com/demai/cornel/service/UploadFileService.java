@@ -55,8 +55,10 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
             FileUtils.copyInputStreamToFile(files.getInputStream(), saveFile);
             if (type == 0) {
                 UploadResp resp = AliStaticSourceUtil.uploadVideo(fileName,path);
-                String url = AliStaticSourceUtil.getVideoUrl(resp.getSourceId());
-                resp.setUrl(url);
+                if (resp != null) {
+                    String url = AliStaticSourceUtil.getVideoUrl(resp.getSourceId());
+                    resp.setUrl(url);
+                }
                 return resp;
             } else {
                 return AliStaticSourceUtil.uploadImg(path);
