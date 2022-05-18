@@ -46,7 +46,7 @@ import static com.demai.cornel.config.BannerConfig.downloadUrl;
     public UploadResp uploadFile(MultipartFile files,String name,Integer type) throws IOException {
         try {
             String fileName = files.getOriginalFilename();
-            if (StringUtil.isBlank(name)){
+            if (StringUtil.isNotBlank(name)){
                 fileName = name;
             }
             log.info("file name is [{}]", fileName);
