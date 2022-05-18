@@ -5,8 +5,8 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-file-size: 10MB
-      max-request-size: 50MB
+      max-file-size: 500MB
+      max-request-size: 500MB
   redis:
     cluster:
       nodes: 192.168.0.107:6379,192.168.0.107:6380,192.168.0.107:6381
