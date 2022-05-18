@@ -2,6 +2,7 @@ package com.demai.cornel.controller;
 
 import com.demai.cornel.service.DownloadFileService;
 import com.demai.cornel.service.UploadFileService;
+import com.demai.cornel.util.json.JsonUtil;
 import com.demai.cornel.vo.JsonResult;
 import com.demai.cornel.vo.uploadfile.UploadResp;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ import java.io.IOException;
         log.info("upload the file the file key is [{}] name is:{}", name);
         try {
             UploadResp resp = uploadFileService.uploadFile(req, name, type);
+            log.info("update file response:{}", JsonUtil.toJson(resp));
             return JsonResult.success(resp);
         } catch (IOException e) {
             log.error("upload file fail due to ", e);
