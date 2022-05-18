@@ -249,7 +249,7 @@ import java.io.InputStream;
         request.setApiRegionId("cn-shenzhen");
         UploadVideoImpl uploader = new UploadVideoImpl();
         UploadFileStreamResponse response = uploader.uploadFileStream(request);
-        System.out.print("RequestId=" + response.getRequestId() ); //请求视频点播服务的请求ID
+        log.info("RequestId=" + response.getRequestId() ); //请求视频点播服务的请求ID
         if (response.isSuccess()) {
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getVideoId())
@@ -258,7 +258,6 @@ import java.io.InputStream;
         }
         return null;
     }
-
 
     public static UploadResp doUploadImage(String path) throws Exception {
         /* 图片类型（必选）取值范围：default（默认)，cover（封面），watermark（水印）*/
@@ -285,7 +284,8 @@ import java.io.InputStream;
         try {
             //doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
 
-            doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
+            //doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
+            System.out.println(getVideoUrl("cdef8ee4ddcb4b8798a94d679233c994"));
         } catch (Exception e) {
             e.printStackTrace();
         }
