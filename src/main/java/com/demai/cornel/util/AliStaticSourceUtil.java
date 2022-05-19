@@ -287,7 +287,7 @@ import java.io.InputStream;
 
 
     public static void test() {
-        testUploadVideo1(accessKeyId, accessKeySecret,"阿里云内网上传", "/update/22541fb22e1c4fa7b0eb6d7ab0d88235.jpg");
+        testUploadVideo1(accessKeyId, accessKeySecret,"阿里云内网上传", "/update/7f7e1447a15946e3af8af723497c4228.mp4");
     }
 
 
