@@ -223,7 +223,7 @@ import java.io.InputStream;
         request.setImageType("default");
         request.setStorageLocation(internalLocalStorage);
         request.setApiRegionId(regionId);
-        request.setEcsRegionId(regionId);
+        //request.setEcsRegionId(regionId);
         UploadImageImpl uploadImage = new UploadImageImpl();
         UploadImageResponse response = uploadImage.upload(request);
         log.info("RequestId=" + response.getRequestId() +" "+ response.getCode() + " " + response.getMessage());
