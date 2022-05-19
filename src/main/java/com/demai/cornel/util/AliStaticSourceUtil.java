@@ -270,7 +270,7 @@ import java.io.InputStream;
         request.setSlowRequestsThreshold(300000L);
         /* 可指定每个分片慢请求时打印日志的时间阈值，默认为300s*/
         request.setSlowRequestsThreshold(300000L);
-        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen-internal.aliyuncs.com");
+        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com");
         request.setEcsRegionId("cn-shenzhen");
         UploadVideoImpl uploader = new UploadVideoImpl();
         UploadVideoResponse response = uploader.uploadVideo(request);
