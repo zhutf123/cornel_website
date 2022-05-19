@@ -218,26 +218,25 @@ import java.io.InputStream;
     }
 
     public static UploadResp doUploadImageStream(String path,InputStream urlStream) throws Exception {
-//        String imageType = "cover";
-//        UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
-//        request.setInputStream(urlStream);
-//        request.setImageType("default");
-//        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen-internal.aliyuncs.com");
-//        request.setApiRegionId("cn-shenzhen");
-//        request.setEcsRegionId("cn-shenzhen");
-//        request.setPrintProgress(Boolean.TRUE);
-//        log.info("request:{}", JsonUtil.toJson(request));
-//        UploadImageImpl uploadImage = new UploadImageImpl();
-//        UploadImageResponse response = uploadImage.upload(request);
-//        log.info("response:{}",JsonUtil.toJson(response));
-//        if (response.isSuccess()) {
-//            UploadResp resp = UploadResp.builder()
-//                    .sourceId(response.getImageId())
-//                    .url(response.getImageURL())
-//                    .build();
-//            return resp;
-//        }
-        test();
+        String imageType = "cover";
+        UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
+        request.setInputStream(urlStream);
+        request.setImageType("default");
+        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com");
+        request.setApiRegionId("cn-shenzhen");
+        request.setEcsRegionId("cn-shenzhen");
+        request.setPrintProgress(Boolean.TRUE);
+        log.info("request:{}", JsonUtil.toJson(request));
+        UploadImageImpl uploadImage = new UploadImageImpl();
+        UploadImageResponse response = uploadImage.upload(request);
+        log.info("response:{}",JsonUtil.toJson(response));
+        if (response.isSuccess()) {
+            UploadResp resp = UploadResp.builder()
+                    .sourceId(response.getImageId())
+                    .url(response.getImageURL())
+                    .build();
+            return resp;
+        }
         return null;
     }
 
@@ -252,44 +251,6 @@ import java.io.InputStream;
             e.printStackTrace();
         }
     }
-
-
-    /**
-     * 本地文件上传接口
-     *
-     * @param accessKeyId
-     * @param accessKeySecret
-     * @param title
-     * @param fileName
-     */
-    private static void testUploadVideo1(String accessKeyId, String accessKeySecret, String title, String fileName) {
-        UploadVideoRequest request = new UploadVideoRequest(accessKeyId, accessKeySecret, title, fileName);
-        request.setPartSize(10 * 1024 * 1024L);
-        request.setTaskNum(5);
-        request.setEnableCheckpoint(false);
-        request.setSlowRequestsThreshold(300000L);
-        /* 可指定每个分片慢请求时打印日志的时间阈值，默认为300s*/
-        request.setSlowRequestsThreshold(300000L);
-        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com");
-        request.setEcsRegionId("cn-shenzhen");
-        UploadVideoImpl uploader = new UploadVideoImpl();
-        UploadVideoResponse response = uploader.uploadVideo(request);
-        System.out.print("RequestId=" + response.getRequestId() + "\n");  //请求视频点播服务的请求ID
-        if (response.isSuccess()) {
-            System.out.print("VideoId=" + response.getVideoId() + "\n");
-        } else {
-            /* 如果设置回调URL无效，不影响视频上传，可以返回VideoId同时会返回错误码。其他情况上传失败时，VideoId为空，此时需要根据返回错误码分析具体错误原因 */
-            System.out.print("VideoId=" + response.getVideoId() + "\n");
-            System.out.print("ErrorCode=" + response.getCode() + "\n");
-            System.out.print("ErrorMessage=" + response.getMessage() + "\n");
-        }
-    }
-
-
-    public static void test() {
-        testUploadVideo1(accessKeyId, accessKeySecret,"阿里云内网上传", "/update/7f7e1447a15946e3af8af723497c4228.mp4");
-    }
-
 
 
 }
