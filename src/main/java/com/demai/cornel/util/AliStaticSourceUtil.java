@@ -167,8 +167,9 @@ import java.io.InputStream;
         request.setApiRegionId(regionId);
         request.setEcsRegionId(regionId);
         UploadVideoImpl uploader = new UploadVideoImpl();
+        log.info("request:{}", JsonUtil.toJson(request));
         UploadFileStreamResponse response = uploader.uploadFileStream(request);
-        log.info("RequestId=" + response.getRequestId() +" "+ response.isSuccess()+" " + response.getVideoId() ); //请求视频点播服务的请求ID
+        log.info("response:{}",JsonUtil.toJson(response));
         if (response.isSuccess()) {
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getVideoId())
@@ -184,8 +185,9 @@ import java.io.InputStream;
         request.setApiRegionId(regionId);
         request.setEcsRegionId(regionId);
         UploadVideoImpl uploader = new UploadVideoImpl();
+        log.info("request:{}", JsonUtil.toJson(request));
         UploadStreamResponse response = uploader.uploadStream(request);
-        log.info("RequestId=" + response.getRequestId() +" "+ response.isSuccess()+" " + response.getVideoId() ); //请求视频点播服务的请求ID
+        log.info("response:{}",JsonUtil.toJson(response));
         if (response.isSuccess()) {
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getVideoId())
@@ -206,8 +208,9 @@ import java.io.InputStream;
         request.setApiRegionId(regionId);
         request.setEcsRegionId(regionId);
         UploadImageImpl uploadImage = new UploadImageImpl();
+        log.info("request:{}", JsonUtil.toJson(request));
         UploadImageResponse response = uploadImage.upload(request);
-        log.info("RequestId=" + response.getRequestId() +" "+ response.getCode() + " " + response.getMessage());
+        log.info("response:{}",JsonUtil.toJson(response));
         if (response.isSuccess()) {
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getImageId())
