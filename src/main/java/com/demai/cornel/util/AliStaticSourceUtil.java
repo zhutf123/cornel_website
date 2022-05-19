@@ -222,9 +222,9 @@ import java.io.InputStream;
         UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
         request.setInputStream(urlStream);
         request.setImageType("default");
-        request.setStorageLocation(internalLocalStorage);
-        request.setApiRegionId(regionId);
-        request.setEcsRegionId(regionId);
+        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen-internal.aliyuncs.com");
+        request.setApiRegionId("cn-shenzhen");
+        request.setEcsRegionId("cn-shenzhen");
         request.setPrintProgress(Boolean.TRUE);
         log.info("request:{}", JsonUtil.toJson(request));
         UploadImageImpl uploadImage = new UploadImageImpl();
@@ -245,6 +245,8 @@ import java.io.InputStream;
             //doUploadImage("/Users/tfzhu/fh/1642509481706184.jpg");
             //doUploadVideo("a","/Users/tfzhu/Downloads/7d60cbb899ade990506d43a37922da0d.mp4");
             System.out.println(getVideoUrl("cdef8ee4ddcb4b8798a94d679233c994"));
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
