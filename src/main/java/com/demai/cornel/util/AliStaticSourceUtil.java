@@ -68,8 +68,7 @@ import java.io.InputStream;
      */
     private static String regionId = "cn-shenzhen";
 
-    //private static String localStorage = "outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com";
-    private static String internalLocalStorage = "outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen-internal.aliyuncs.com";
+    private static String localStorage = "outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com";
     /**
      * 定制你的policy
      */
@@ -164,8 +163,9 @@ import java.io.InputStream;
 
     public static UploadResp doUploadVideo(String title,String path) throws Exception {
         UploadFileStreamRequest request = new UploadFileStreamRequest(accessKeyId, accessKeySecret, title, path);
-        request.setStorageLocation(internalLocalStorage);
+        request.setStorageLocation(localStorage);
         request.setApiRegionId(regionId);
+        request.setEcsRegionId(regionId);
         UploadVideoImpl uploader = new UploadVideoImpl();
         UploadFileStreamResponse response = uploader.uploadFileStream(request);
         log.info("RequestId=" + response.getRequestId() +" "+ response.isSuccess()+" " + response.getVideoId() ); //请求视频点播服务的请求ID
@@ -180,8 +180,9 @@ import java.io.InputStream;
 
     public static UploadResp doUploadVideoStream(String title,InputStream inputStream) throws Exception {
         UploadStreamRequest request = new UploadStreamRequest(accessKeyId, accessKeySecret, title, title, inputStream);
-        request.setStorageLocation(internalLocalStorage);
+        request.setStorageLocation(localStorage);
         request.setApiRegionId(regionId);
+        request.setEcsRegionId(regionId);
         UploadVideoImpl uploader = new UploadVideoImpl();
         UploadStreamResponse response = uploader.uploadStream(request);
         log.info("RequestId=" + response.getRequestId() +" "+ response.isSuccess()+" " + response.getVideoId() ); //请求视频点播服务的请求ID
@@ -200,7 +201,7 @@ import java.io.InputStream;
         String imageType = "default";
         UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
         request.setImageType("default");
-        request.setStorageLocation(internalLocalStorage);
+        request.setStorageLocation(localStorage);
         request.setFileName(path);
         request.setApiRegionId(regionId);
         request.setEcsRegionId(regionId);
@@ -222,9 +223,9 @@ import java.io.InputStream;
         UploadImageRequest request = new UploadImageRequest(accessKeyId, accessKeySecret, imageType);
         request.setInputStream(urlStream);
         request.setImageType("default");
-        request.setStorageLocation("outin-4bfcaac9c80e11ecbfcd00163e021072.oss-cn-shenzhen.aliyuncs.com");
-        request.setApiRegionId("cn-shenzhen");
-        request.setEcsRegionId("cn-shenzhen");
+        request.setStorageLocation(localStorage);
+        request.setApiRegionId(regionId);
+        request.setEcsRegionId(regionId);
         request.setPrintProgress(Boolean.TRUE);
         log.info("request:{}", JsonUtil.toJson(request));
         UploadImageImpl uploadImage = new UploadImageImpl();
