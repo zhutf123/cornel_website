@@ -32,6 +32,7 @@ import com.aliyuncs.vod.model.v20170321.GetImageInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetImageInfoResponse;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
+import com.demai.cornel.util.json.JsonUtil;
 import com.demai.cornel.vo.uploadfile.UploadResp;
 import lombok.extern.slf4j.Slf4j;
 
@@ -224,9 +225,10 @@ import java.io.InputStream;
         request.setStorageLocation(internalLocalStorage);
         request.setApiRegionId(regionId);
         //request.setEcsRegionId(regionId);
+        log.info("request:{}", JsonUtil.toJson(request));
         UploadImageImpl uploadImage = new UploadImageImpl();
         UploadImageResponse response = uploadImage.upload(request);
-        log.info("RequestId=" + response.getRequestId() +" "+ response.getCode() + " " + response.getMessage());
+        log.info("response:{}",JsonUtil.toJson(response));
         if (response.isSuccess()) {
             UploadResp resp = UploadResp.builder()
                     .sourceId(response.getImageId())
