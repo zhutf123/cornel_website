@@ -6,6 +6,7 @@
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="weight" property="weight" />
+        <result column="type" property="type" />
         <result column="status" property="status" />
         <result column="operator" property="operator" />
         <result column="operator_name" property="operatorName" />
@@ -31,6 +32,7 @@
         id,
         name,
         weight,
+        type,
         status,
         operator,
         operator_name,
@@ -57,6 +59,7 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="name != null"> name = #{name},</if>
             <if test="weight != null"> weight = #{weight},</if>
+            <if test="type != null"> type = #{type},</if>
             <if test="status != null"> status = #{status},</if>
             <if test="operator != null"> operator = #{operator},</if>
             <if test="operatorName != null"> operator_name = #{operatorName},</if>
@@ -72,6 +75,7 @@
         <trim suffixOverrides=",">
             <if test="name != null"> name ,</if>
             <if test="weight != null"> weight ,</if>
+            <if test="type != null"> type ,</if>
             <if test="status != null"> status ,</if>
             <if test="operator != null"> operator ,</if>
             <if test="operatorName != null"> operator_name ,</if>
@@ -83,6 +87,7 @@
         <trim suffixOverrides=",">
             <if test="name != null"> #{name} ,</if>
             <if test="weight != null"> #{weight} ,</if>
+            <if test="type != null"> #{type} ,</if>
             <if test="status != null"> #{status} ,</if>
             <if test="operator != null"> #{operator} ,</if>
             <if test="operatorName != null"> #{operatorName} ,</if>
@@ -105,7 +110,7 @@
         <if test="name !=null">
             and name ~ #{name}
         </if>
-        order by weight asc
+        order by type asc, weight desc
     </select>
 
     <select id="getRankInfoAllNum" parameterType="com.demai.cornel.reqParam.QueryRankInfoParam"
@@ -185,7 +190,7 @@
         <include refid="main_column"/>
         from rank_info
         where status=1
-        order by weight desc
+        order by type asc, weight desc
     </select>
 
     <select id="getRankInfoExtInfo" resultType="com.demai.cornel.model.RankInfoExt">
