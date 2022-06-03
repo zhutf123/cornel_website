@@ -223,7 +223,7 @@ CREATE TABLE teleplay_video
     title        text,
     seq         integer,
     video_time   bigint,
-    vip          integer default 0,
+    vip          integer default 1,
     status       integer default 1,
     operate_time timestamptz(6) default now(),
     operator     bigint,
