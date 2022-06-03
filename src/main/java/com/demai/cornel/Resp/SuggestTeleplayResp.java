@@ -26,6 +26,7 @@ public class SuggestTeleplayResp implements Serializable {
     private String mainSource;
     private String title;
     private String depict;
+    private Long id;
 
     List<TeleplayVideo> videoList;
 }

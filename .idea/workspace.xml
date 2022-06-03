@@ -8,8 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cornel_backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cornel_backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/util/AliStaticSourceUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/SuggestTeleplayResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/Resp/SuggestTeleplayResp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/TeleplayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/TeleplayService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +96,7 @@
       <recent name="com.demai.cornel.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AliStaticSourceUtil">
+  <component name="RunManager" selected="Application.GenJavaCode4Pg">
     <configuration name="AliStaticSourceUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.demai.cornel.util.AliStaticSourceUtil" />
       <module name="cornel_backend" />
@@ -158,23 +161,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AliStaticSourceUtil" />
         <item itemvalue="Application.GenJavaCode4Pg" />
+        <item itemvalue="Application.AliStaticSourceUtil" />
         <item itemvalue="Application.GenJavaCode4Pg (1)" />
         <item itemvalue="Application.IDUtils" />
         <item itemvalue="Application.MD5Util" />
@@ -227,7 +228,12 @@
       <workItem from="1652191053525" duration="1427000" />
       <workItem from="1652480712888" duration="29490000" />
       <workItem from="1652706748793" duration="5658000" />
-      <workItem from="1652817312793" duration="33617000" />
+      <workItem from="1652817312793" duration="35096000" />
+      <workItem from="1653632348207" duration="1743000" />
+      <workItem from="1653787804944" duration="227000" />
+      <workItem from="1653789039093" duration="849000" />
+      <workItem from="1654134884698" duration="1191000" />
+      <workItem from="1654215099913" duration="975000" />
     </task>
     <servers />
   </component>
