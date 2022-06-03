@@ -144,6 +144,18 @@ import java.util.stream.Collectors;
         return 0;
     }
 
+    public Teleplay getTeleplayInfoById(Long id) {
+        try {
+            List<Teleplay> teleplayList = teleplayDao.queryTeleplayListByIds(Lists.newArrayList(id));
+            if (CollectionUtils.isNotEmpty(teleplayList)) {
+                return teleplayList.get(0);
+            }
+        } catch (Exception e) {
+            log.error("查询剧集list异常", e);
+        }
+        return null;
+    }
+
     /***
      * 根据剧集标签后去剧集list
      * @param param
