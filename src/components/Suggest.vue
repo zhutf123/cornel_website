@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-select
-            v-model="input"
+            v-model="value"
             :multiple="multiple"
             remote
             filterable
@@ -12,10 +12,10 @@
             @change="onChange"
         >
             <el-option
-                v-for="(item, index) in options"
+                v-for="(item) in options"
                 :key="item.id"
                 :label="item[valueKey]"
-                :value="index"
+                :value="item.id"
             >
             </el-option>
         </el-select>
@@ -67,6 +67,7 @@ export default {
     },
     data() {
         return {
+            value: [],
             loading: false,
             options: [],
             input: this.displayValue
@@ -74,12 +75,11 @@ export default {
     },
     methods: {
         onChange(data) {
-            let selected;
-            if (!this.multiple) {
-                selected = this.cacheOptions[data];
-            } else {
-                selected = data.map(i => this.cacheOptions[i]);
+            let id = data;
+            if (this.multiple) {
+                id = data.slice(-1)[0];
             }
+            const selected = this.cacheOptions.find(item => item.id === id);
             this.onSelect(selected);
             this.$emit('select', selected);
         },

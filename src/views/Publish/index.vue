@@ -56,7 +56,7 @@
                     />
                 </el-form-item>
                 <el-form-item label="VIP剧集" prop="vip">
-                    <el-select v-model="form.status">
+                    <el-select v-model="form.vip">
                         <el-option label="是" :value="1" />
                         <el-option label="否" :value="2" />
                     </el-select>

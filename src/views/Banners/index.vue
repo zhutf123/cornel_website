@@ -114,9 +114,10 @@
                     <suggest
                         type="episode"
                         valueKey="title"
+                        :multiple="false"
                         placeholder="请输入剧集名称"
                         :onSelect="handleSelectEpisode"
-                    ></suggest>
+                    />
                 </el-form-item>
                 <el-form-item label="描述" prop="depict">
                     <el-row>

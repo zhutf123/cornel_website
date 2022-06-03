@@ -1,19 +1,19 @@
 <template>
     <div class="m-episodes">
         <el-form ref="form" :model="form" :inline="true">
-            <el-form-item label="内容ID">
+            <el-form-item label="内容ID" prop="id">
                 <el-input v-model="form.id" />
             </el-form-item>
-            <el-form-item label="标题">
+            <el-form-item label="标题" prop="title">
                 <el-input v-model="form.title" />
             </el-form-item>
-            <el-form-item label="审核状态">
+            <el-form-item label="审核状态" prop="status">
                 <el-select v-model="form.status">
                     <el-option label="已上架" :value="1"/>
                     <el-option label="未上架" :value="0"/>
                 </el-select>
             </el-form-item>
-            <el-form-item label="频道类型">
+            <el-form-item label="频道类型" prop="channel">
                 <suggest
                     :key="refresh"
                     type="channel"
@@ -23,7 +23,7 @@
                     @select="handleSelectChannel($event, 'form')"
                 />
             </el-form-item>
-            <el-form-item label="VIP剧集">
+            <el-form-item label="VIP剧集" prop="vip">
                 <el-select v-model="form.vip">
                     <el-option label="是" :value="1" />
                     <el-option label="否" :value="0" />
@@ -172,7 +172,6 @@
                     >{{tag}}</el-tag>
                     <suggest
                         class="inline-input"
-                        v-model="dialogChannel"
                         :key="refresh"
                         type="channel"
                         valueKey="name"
@@ -311,11 +310,10 @@ export default {
                 cb(res.data);
             })
         },
-        handleSelectChannel(data, type) {
+        handleSelectChannel(item, type) {
             if (type === 'form') {
-                this.form.channel = data.id;
+                this.form.channel = item.id;
             } else {
-                const [item] = data;
                 const index = (this.editingData.channel || []).findIndex(ch => +ch === item.id);
                 if (index === -1) {
                     if (!this.editingData.channel) {
