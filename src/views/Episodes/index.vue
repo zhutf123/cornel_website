@@ -32,6 +32,7 @@
             <el-button type="primary" @click="search(1)">查询</el-button>
             <el-button @click="reset">清空</el-button>
             <el-button @click="exportData">导出excel</el-button>
+            <el-button type="success" @click="addEpisode">添加剧集</el-button>
         </el-form>
         <el-table
             :data="list"
@@ -172,18 +173,17 @@
                     <suggest
                         class="inline-input"
                         v-model="dialogChannel"
-
                         :key="refresh"
                         type="channel"
                         valueKey="name"
-                        placeholder="请输入剧集名称"
+                        placeholder="请输入频道名称"
                         @select="handleSelectChannel($event, 'editingData')"
                     />
                 </el-form-item>
                 <el-form-item label="VIP剧集">
-                    <el-select v-model="editingData.status">
+                    <el-select v-model="editingData.vip">
                         <el-option label="是" :value="1" />
-                        <el-option label="否" :value="0" />
+                        <el-option label="否" :value="2" />
                     </el-select>
                 </el-form-item>
                 <el-form-item label="推荐首页">
@@ -193,7 +193,7 @@
                     />
                 </el-form-item>
                 <el-form-item label="频道置顶">
-                    <el-input type="number" v-model="editingData.top" />
+                    <el-input-number v-model="editingData.top" :min="0" />
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -262,6 +262,18 @@ export default {
         },
         exportData() {
 
+        },
+        addEpisode() {
+            this.editingData = {
+                title: '',
+                depict: '',
+                mainImage: '',
+                mainSource: '',
+                channel: [],
+                vip: 2,
+                recommend: 0,
+                top: 0
+            };
         },
         edit(index, data) {
             this.editingData = data;
