@@ -74,12 +74,14 @@ export default {
     },
     methods: {
         onChange(data) {
+            let selected;
             if (!this.multiple) {
-                this.onSelect(this.cacheOptions[data]);
-                return;
+                selected = this.cacheOptions[data];
+            } else {
+                selected = data.map(i => this.cacheOptions[i]);
             }
-            const selected = data.map(i => this.cacheOptions[i]);
             this.onSelect(selected);
+            this.$emit('select', selected);
         },
         queryChannel(input) {
             if (!input) {
@@ -107,7 +109,7 @@ export default {
                     break;
                 default:
                     suggestChannel(input).then(res => {
-                        this.cacheOptions = data;
+                        this.cacheOptions = res.data;
                         this.options = res.data;
                         this.loading = false;
                     });

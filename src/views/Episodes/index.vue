@@ -14,15 +14,14 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="频道类型">
-                <el-autocomplete
-                    class="inline-input"
-                    value-key="name"
-                    v-model="searchChannel"
-                    :fetch-suggestions="queryChannel"
-                    placeholder="请输入频道"
-                    @select="handleSelectChannel('form', $events)"
-                    :trigger-on-focus="false"
-                ></el-autocomplete>
+                <suggest
+                    :key="refresh"
+                    type="channel"
+                    :multiple="false"
+                    valueKey="name"
+                    placeholder="请输入剧集名称"
+                    @select="handleSelectChannel($event, 'form')"
+                />
             </el-form-item>
             <el-form-item label="VIP剧集">
                 <el-select v-model="form.vip">
@@ -30,7 +29,7 @@
                     <el-option label="否" :value="0" />
                 </el-select>
             </el-form-item>
-            <el-button type="primary" @click="search({pageNum: 1})">查询</el-button>
+            <el-button type="primary" @click="search(1)">查询</el-button>
             <el-button @click="reset">清空</el-button>
             <el-button @click="exportData">导出excel</el-button>
         </el-form>
@@ -134,7 +133,7 @@
             background
             layout="prev, pager, next"
             :total="total"
-            @current-change="onPageChange"
+            @current-change="search"
         >
         </el-pagination>
 
@@ -170,16 +169,16 @@
                         closable
                         @close="handleCloseChannelTag(tag)"
                     >{{tag}}</el-tag>
-                    <el-autocomplete
+                    <suggest
                         class="inline-input"
                         v-model="dialogChannel"
-                        value-key="name"
-                        size="mini"
-                        :fetch-suggestions="queryChannel"
-                        placeholder="请输入频道"
-                        @select="handleSelectChannel('editingData', $events)"
-                        :trigger-on-focus="false"
-                    ></el-autocomplete>
+
+                        :key="refresh"
+                        type="channel"
+                        valueKey="name"
+                        placeholder="请输入剧集名称"
+                        @select="handleSelectChannel($event, 'editingData')"
+                    />
                 </el-form-item>
                 <el-form-item label="VIP剧集">
                     <el-select v-model="editingData.status">
@@ -210,11 +209,13 @@
 import {getEpisodeList, suggestChannel, updateEpisode} from '../../apis';
 import { methodsMixins } from '../../utils/mixins';
 import Uploader from '../../components/Uploader.vue';
+import Suggest from '../../components/Suggest.vue';
 
 export default {
     name: 'episodes',
     mixins: [methodsMixins],
     components: {
+        Suggest,
         Uploader
     },
     computed: {
@@ -224,6 +225,7 @@ export default {
     },
     data() {
         return {
+            refresh: 0,
             form: {
                 id: '',
                 vip: '',
@@ -245,14 +247,8 @@ export default {
         this.search();
     },
     methods: {
-        onPageChange(pageNum) {
+        search(pageNum = 1) {
             this.form.pageNum = pageNum;
-            this.search();
-        },
-        search(data) {
-            if (data && data.pageNum) {
-                this.form.pageNum = data.pageNum;
-            }
             getEpisodeList(this.form).then(res => {
                 if (res.status === 0) {
                     this.list = res.data;
@@ -262,19 +258,20 @@ export default {
         },
         reset() {
             this.$refs.form.resetFields();
+            this.refresh = Date.now();
         },
         exportData() {
 
         },
         edit(index, data) {
             this.editingData = data;
-            console.log(data)
         },
         onConfirmEdit() {
             updateEpisode(this.editingData).then(res => {
                 if (res.status === 0) {
                     this.$message.success(res.msg || '编辑成功');
                     this.editingData = null;
+                    this.search(this.form.pageNum);
                 } else if (res.msg) {
                     this.$message.error(res.msg);
                 }
@@ -302,12 +299,19 @@ export default {
                 cb(res.data);
             })
         },
-        handleSelectChannel(type, item) {
+        handleSelectChannel(data, type) {
             if (type === 'form') {
-                this.form.channel = item.id;
+                this.form.channel = data.id;
             } else {
+                const [item] = data;
                 const index = this.editingData.channel.indexOf(item.id);
                 if (index === -1) {
+                    if (!this.editingData.channel) {
+                        this.editingData.channel = [];
+                    }
+                    if (!this.editingData.channelDesc) {
+                        this.editingData.channelDesc = [];
+                    }
                     this.editingData.channel.push(item.id);
                     this.editingData.channelDesc.push(item.name);
                 }

@@ -29,7 +29,7 @@
                     <el-option label="删除" :value="4" />
                 </el-select>
             </el-form-item>
-            <el-button type="primary" @click="search">查询</el-button>
+            <el-button type="primary" @click="search(1)">查询</el-button>
             <el-button @click="exportData">导出excel</el-button>
         </el-form>
         

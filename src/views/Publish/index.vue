@@ -4,7 +4,7 @@
             <el-form ref="form" :model="form"
                 label-width="100px"
             >
-                <el-form-item label="集数" prop="seq" required>
+                <el-form-item label="集数" prop="seq">
                     第
                     <el-input-number
                         v-model="form.seq"
@@ -35,7 +35,7 @@
                         :onSuccess="onUploadImg"
                     />
                 </el-form-item>
-                <el-form-item label="剧集信息" prop="videoId">
+                <el-form-item label="剧集信息" prop="teleplayId">
                     <suggest
                         :key="refresh"
                         :deep="1"
@@ -48,7 +48,7 @@
                         :onSelect="handleSelectEpisode"
                     ></suggest>
                 </el-form-item>
-                <el-form-item class="video" label="视频" prop="videoUrl" required>
+                <el-form-item class="video" label="视频" prop="videoUrl">
                     <uploader
                         type="avatar"
                         sourceType="video"

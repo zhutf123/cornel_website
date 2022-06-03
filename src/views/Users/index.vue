@@ -10,7 +10,7 @@
                     <el-option label="否" :value="2" />
                 </el-select>
             </el-form-item>
-            <el-button type="primary" @click="search">查询</el-button>
+            <el-button type="primary" @click="search(1)">查询</el-button>
         </el-form>
         <el-table
             :data="list"
