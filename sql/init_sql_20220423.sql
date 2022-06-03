@@ -392,6 +392,7 @@ CREATE TABLE rank_info
     id           serial PRIMARY KEY,
     name   varchar(256),
     weight        integer,
+    type        integer,
     status      integer default 1,
     operator     bigint,
     operator_name varchar(256),
@@ -403,7 +404,7 @@ CREATE TABLE rank_info
 ;
 
 COMMENT ON COLUMN rank_info.name IS '榜单名称';
-
+COMMENT ON COLUMN rank_info.type IS '样式类型';
 
 DROP TABLE IF EXISTS rank_info_ext;
 CREATE TABLE rank_info_ext
