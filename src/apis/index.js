@@ -52,6 +52,9 @@ export function updateSubEpisode(params) {
 export function suggestEpisode(input) {
     return axios.get(`/admin/suggestTeleplay.json?name=${input}`);
 }
+export function getEpisodeInfoById(id) {
+    return axios.get(`/admin/getTeleplayInfoById.json?id=${id}`);
+}
 
 
 // 频道接口

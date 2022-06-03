@@ -5,6 +5,7 @@
             :multiple="multiple"
             remote
             filterable
+            :disabled="disabled"
             :remote-method="queryChannel"
             :loading="loading"
             :placeholder="placeholder"
@@ -26,6 +27,14 @@ import {suggestChannel, suggestEpisode} from '../apis';
 
 export default {
     props: {
+        deep: {
+            type: Number,
+            default: 2
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
         type: {
             type: String,
             default: 'channel'
@@ -49,6 +58,11 @@ export default {
         onSelect: {
             type: Function,
             default: () => {}
+        }
+    },
+    watch: {
+        displayValue() {
+            this.input = this.displayValue
         }
     },
     data() {
@@ -77,13 +91,13 @@ export default {
                 case 'episode':
                     suggestEpisode(input).then(res => {
                         if (res.data) {
-                            const data = res.data.reduce((res, item) => {
+                            const data = this.depp === 2 ? res.data.reduce((res, item) => {
                                 const {title, videoList} = item;
                                 videoList.forEach(item => {
                                     item.title = title + '-' + item.title;
                                 });
                                 return res.concat(videoList);
-                            }, []);
+                            }, []) : res.data;
 
                             this.cacheOptions = data;
                             this.options = data;

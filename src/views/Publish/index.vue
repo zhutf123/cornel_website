@@ -21,14 +21,20 @@
                 </el-form-item>
                 <el-form-item label="设置封面" prop="mainImage">
                     <uploader
+                        :key="refresh"
                         type="avatar"
                         :onSuccess="onUploadImg"
                     />
                 </el-form-item>
                 <el-form-item label="剧集信息" prop="videoId">
                     <suggest
+                        :key="refresh"
+                        :deep="1"
+                        :multiple="false"
+                        :disabled="!!$route.query.tId"
                         type="episode"
                         valueKey="title"
+                        :displayValue="suggestValue"
                         placeholder="请输入剧集名称"
                         :onSelect="handleSelectEpisode"
                     ></suggest>
@@ -64,6 +70,7 @@ import './index.scss';
 
 import Uploader from '../../components/Uploader.vue';
 import Suggest from '../../components/Suggest.vue';
+import { updateSubEpisode, getEpisodeInfoById } from '../../apis';
 
 
 export default {
@@ -74,6 +81,8 @@ export default {
     },
     data() {
         return {
+            refresh: 0,
+            suggestValue: '',
             form: {
                 title: '',
                 depict: '',
@@ -82,13 +91,26 @@ export default {
                 videoUrl: '',
                 videoSource: '',
                 videoTime: '',
-                channel: [],
+                teleplayId: '',
                 vip: 2,
                 status: 1
             }
         };
     },
+    mounted() {
+        const {tId} = this.$route.query;
+        if (tId) {
+            this.getCurrentEpisodeInfo(tId);
+        }
+    },
     methods: {
+        getCurrentEpisodeInfo(tId) {
+            getEpisodeInfoById(tId).then(res => {
+                if (res.status === 0 && res.data) {
+                    this.suggestValue = res.data.title;
+                }
+            });
+        },
         onUploadVideo(res) {
             const {url, sourceId, videoTime} = res.data;
             if (url) {
@@ -105,13 +127,36 @@ export default {
             }
         },
         handleSelectEpisode(data) {
-            this.form.channel = data.map(item => item.id);
+            this.form.teleplayId = data.id;
         },
         reset() {
-            this.$refs.form.resetFields();
+            this.form = {
+                title: '',
+                depict: '',
+                mainImage: '',
+                mainSource: '',
+                videoUrl: '',
+                videoSource: '',
+                videoTime: '',
+                teleplayId: '',
+                vip: 2,
+                status: 1
+            };
+            this.refresh = Date.now();
         },
         submit() {
-
+            this.$refs.form.validate().then(() => {
+                const form = {...this.form};
+                const {tId} = this.$route.query;
+                if (tId && !form.teleplayId) {
+                    form.teleplayId = tId;
+                }
+                updateSubEpisode(form).then(res => {
+                    if (res.status === 0) {
+                        this.reset();
+                    }
+                })
+            });
         }
     }
 }
