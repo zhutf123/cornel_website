@@ -10,6 +10,7 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
+          <root url="file://$MODULE_DIR$/lib" relative="WEB-INF/lib" />
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
@@ -45,10 +46,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="commons-logging-1.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: com.aliyun.vod:upload:1.4.14">
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/VODUploadDemo-java-1.4.14/lib/aliyun-java-vod-upload-1.4.14.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/aliyun-java-vod-upload-1.4.14.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

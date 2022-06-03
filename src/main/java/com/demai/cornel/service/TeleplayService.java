@@ -98,6 +98,7 @@ import java.util.stream.Collectors;
                     vs.sort((a, b) -> a.getSeq().compareTo(b.getSeq()));
                     resp.add(SuggestTeleplayResp.builder()
                             .depict(t.getDepict())
+                            .id(t.getId())
                             .mainSource(t.getMainSource())
                             .mainImage(t.getMainImage())
                             .title(t.getTitle())
