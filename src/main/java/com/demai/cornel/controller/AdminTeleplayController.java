@@ -66,6 +66,23 @@ import java.util.List;
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+
+    /**
+     * 查询剧集list
+     * @return
+     */
+    @RequestMapping(value = "/getTeleplayInfoById.json", method = RequestMethod.GET) @ResponseBody
+    public JsonListResult getTeleplayInfoById(
+            @RequestParam("id")Long id, HttpServletResponse response) {
+        try {
+            Teleplay teleplay = teleplayService.getTeleplayInfoById(id);
+            return JsonListResult.success(teleplay);
+        } catch (Exception e) {
+            log.error("获取剧集list异常！", e);
+        }
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
     /**
      * 保存、编辑剧集
      * @return
