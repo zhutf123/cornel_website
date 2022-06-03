@@ -304,7 +304,7 @@ export default {
                 this.form.channel = data.id;
             } else {
                 const [item] = data;
-                const index = this.editingData.channel.indexOf(item.id);
+                const index = (this.editingData.channel || []).findIndex(ch => +ch === item.id);
                 if (index === -1) {
                     if (!this.editingData.channel) {
                         this.editingData.channel = [];
