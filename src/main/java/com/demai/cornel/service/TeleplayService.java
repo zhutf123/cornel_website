@@ -120,7 +120,7 @@ import java.util.stream.Collectors;
                         .collect(Collectors.toMap(Channel::getId, Channel::getName));
                 teleplayList.forEach(t -> {
                     if (t.getDepict().length() > 20) {
-                        t.setDepict(t.getDepict().substring(0, 20));
+                        t.setDepict(t.getDepict().substring(0, 20)+"...");
                     }
                     
                     if (CollectionUtils.isNotEmpty(t.getChannel())){
