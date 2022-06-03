@@ -4,6 +4,15 @@
             <el-form ref="form" :model="form"
                 label-width="100px"
             >
+                <el-form-item label="集数" prop="seq" required>
+                    第
+                    <el-input-number
+                        v-model="form.seq"
+                        :min="1"
+                        :max="999"
+                    />
+                    集
+                </el-form-item>
                 <el-form-item label="标题" prop="title" required>
                     <el-input
                         v-model="form.title"
@@ -39,7 +48,7 @@
                         :onSelect="handleSelectEpisode"
                     ></suggest>
                 </el-form-item>
-                <el-form-item class="video" label="视频" prop="videoUrl">
+                <el-form-item class="video" label="视频" prop="videoUrl" required>
                     <uploader
                         type="avatar"
                         sourceType="video"
@@ -72,6 +81,19 @@ import Uploader from '../../components/Uploader.vue';
 import Suggest from '../../components/Suggest.vue';
 import { updateSubEpisode, getEpisodeInfoById } from '../../apis';
 
+const defaultForm = {
+    title: '',
+    depict: '',
+    mainImage: '',
+    mainSource: '',
+    videoUrl: '',
+    videoSource: '',
+    videoTime: '',
+    teleplayId: '',
+    seq: 1,
+    vip: 2,
+    status: 1
+};
 
 export default {
     name: 'publish',
@@ -84,16 +106,7 @@ export default {
             refresh: 0,
             suggestValue: '',
             form: {
-                title: '',
-                depict: '',
-                mainImage: '',
-                mainSource: '',
-                videoUrl: '',
-                videoSource: '',
-                videoTime: '',
-                teleplayId: '',
-                vip: 2,
-                status: 1
+                ...defaultForm
             }
         };
     },
@@ -131,16 +144,7 @@ export default {
         },
         reset() {
             this.form = {
-                title: '',
-                depict: '',
-                mainImage: '',
-                mainSource: '',
-                videoUrl: '',
-                videoSource: '',
-                videoTime: '',
-                teleplayId: '',
-                vip: 2,
-                status: 1
+                ...defaultForm
             };
             this.refresh = Date.now();
         },
