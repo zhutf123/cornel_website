@@ -192,7 +192,7 @@ CREATE TABLE teleplay
     depict     text,
     nums         integer,
     channel      varchar(40)[],
-    vip          integer default 0,
+    vip          integer default 1,
     status       integer default 1,
     operate_time timestamptz(6) default now(),
     operator     bigint,
