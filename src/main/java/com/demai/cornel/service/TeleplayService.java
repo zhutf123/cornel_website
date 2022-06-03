@@ -121,9 +121,14 @@ import java.util.stream.Collectors;
                 teleplayList.forEach(t -> {
                     if (CollectionUtils.isNotEmpty(t.getChannel())){
                         List<String> channelNames = Lists.newArrayList();
+                        List<String> channelIds = Lists.newArrayList();
                         t.getChannel().stream().forEach(c ->{
-                            channelNames.add(channelMap.get(Long.parseLong(c)));
+                            if (channelMap.containsKey(Long.parseLong(c))){
+                                channelNames.add(channelMap.get(Long.parseLong(c)));
+                                channelIds.add(c);
+                            }
                         });
+                        t.setChannel(channelIds);
                         t.setChannelDesc(channelNames);
                     }
                 });
