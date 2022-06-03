@@ -119,6 +119,10 @@ import java.util.stream.Collectors;
                 Map<Long, String> channelMap = channelList.stream()
                         .collect(Collectors.toMap(Channel::getId, Channel::getName));
                 teleplayList.forEach(t -> {
+                    if (t.getDepict().length() > 20) {
+                        t.setDepict(t.getDepict().substring(0, 20));
+                    }
+                    
                     if (CollectionUtils.isNotEmpty(t.getChannel())){
                         List<String> channelNames = Lists.newArrayList();
                         List<String> channelIds = Lists.newArrayList();
