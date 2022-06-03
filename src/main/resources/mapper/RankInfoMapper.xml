@@ -105,6 +105,7 @@
         <if test="name !=null">
             and name ~ #{name}
         </if>
+        order by weight asc
     </select>
 
     <select id="getRankInfoAllNum" parameterType="com.demai.cornel.reqParam.QueryRankInfoParam"
