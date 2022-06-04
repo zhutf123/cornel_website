@@ -43,12 +43,6 @@ export default {
             type: String,
             default: ''
         },
-        selected: {
-            type: Object,
-            default: () => {
-                return [];
-            }
-        },
         valueKey: {
             type: String,
             default: 'name'
@@ -72,9 +66,8 @@ export default {
         }
     },
     data() {
-        console.log(333, this.selected)
         return {
-            value: this.selected,
+            value: [],
             loading: false,
             options: [],
             input: this.displayValue

@@ -35,27 +35,28 @@
                 label="描述"
                 prop="depict"
             ></el-table-column>
-            <el-table-column
+            <!-- <el-table-column
                 label="权重"
                 prop="weight"
-            ></el-table-column>
-            <el-table-column
+            ></el-table-column> -->
+            <!-- <el-table-column
                 label="弹幕"
                 prop="operateTime"
-            ></el-table-column>
+            ></el-table-column> -->
             <el-table-column
                 label="曝光"
                 prop="operateTime"
             ></el-table-column>
             <el-table-column
                 label="点击数"
-                prop="operateTime"
+                prop="watchCount"
             ></el-table-column>
             <el-table-column
                 label="发布人"
                 prop="operatorName"
             ></el-table-column>
             <el-table-column
+                width="90"
                 label="发布时间"
                 prop="operateTime"
             ></el-table-column>
@@ -73,6 +74,11 @@
                             type="text"
                             @click="edit(scope.$index, scope.row)"
                         >编辑</el-button>
+                        <el-button
+                            type="text"
+                            class="color-danger"
+                            @click="del(scope.$index, scope.row)"
+                        >删除</el-button>
                     </div>
                 </template>
             </el-table-column>
@@ -97,7 +103,7 @@
                 <el-form-item label="轮播图模式" prop="type">
                     <el-select v-model="editingData.type">
                         <el-option label="剧集" :value="1" />
-                        <el-option label="广告" :value="2" />
+                        <!-- <el-option label="广告" :value="2" /> -->
                     </el-select>
                 </el-form-item>
                 <el-form-item label="标题" prop="title">
@@ -108,14 +114,11 @@
                     </el-row>
                 </el-form-item>
                 <el-form-item label="剧集信息" prop="videoId">
-                    <el-tag
-                        v-if="editingData.videoId"
-                    >{{tag.name}}</el-tag>
                     <suggest
                         type="episode"
                         valueKey="title"
                         :multiple="false"
-                        placeholder="请输入剧集名称"
+                        :placeholder="editingData.title || '请输入剧集名称'"
                         :onSelect="handleSelectEpisode"
                     />
                 </el-form-item>
@@ -214,7 +217,7 @@ export default {
         },
         add() {
             this.editingData = {
-                type: 2,
+                type: 1,
                 title: '',
                 depict: '',
                 mainImage: '',
@@ -223,11 +226,16 @@ export default {
             };
         },
         edit(index, data) {
-            this.editingData = data;
+            this.editingData = {
+                ...data
+            };
         },
         del(index, data) {
-            delTag(data.id).then(res => {
-                this.$message[res.status === 0 ? 'success' : 'error'](res.msg);
+            updateBanner({
+                ...data,
+                status: 2
+            }).then(res => {
+                this.$message[res.status === 0 ? 'success' : 'error'](res.msg || '删除成功');
                 this.search(this.form.pageNum);
             });
         },
@@ -248,7 +256,9 @@ export default {
             });
         },
         handleSelectEpisode(item) {
+            console.log(item)
             this.editingData.videoId = item.id;
+            this.editingData.title = item.title;
         },
         onUploadImg(res) {
             const {data} = res;

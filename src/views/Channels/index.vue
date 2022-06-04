@@ -71,6 +71,7 @@
                     >修改</el-button>
                     <el-button
                         type="text"
+                        class="color-danger"
                         @click="del(scope.$index, scope.row)"
                     >删除</el-button>
                 </template>
