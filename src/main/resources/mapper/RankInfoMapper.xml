@@ -110,7 +110,7 @@
         <if test="name !=null">
             and name ~ #{name}
         </if>
-        order by type asc, weight desc
+        order by type asc, weight desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER}
     </select>
 
     <select id="getRankInfoAllNum" parameterType="com.demai.cornel.reqParam.QueryRankInfoParam"
