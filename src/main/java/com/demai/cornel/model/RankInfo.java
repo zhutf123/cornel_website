@@ -84,6 +84,40 @@ public class RankInfo implements Serializable {
 
     }
 
+
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static enum RankInfoTypeSizeEnum {
+
+        TYPE_1(1, 4),
+        TYPE_2(2, 3),
+        TYPE_3(3, 4);
+
+        @Setter @Getter
+        private int value;
+        @Setter @Getter
+        private Integer size;
+
+        private static Map<Integer, RankInfoStatusEnum> rankInfoStatusEnumMap;
+        static {
+            rankInfoStatusEnumMap = Maps.newHashMap();
+            for (RankInfoStatusEnum code : RankInfoStatusEnum.values()) {
+                rankInfoStatusEnumMap.put(code.getValue(), code);
+            }
+        }
+
+        public static RankInfoStatusEnum getRankInfoStatusEnum(Integer value, RankInfoStatusEnum def) {
+            RankInfoStatusEnum p = rankInfoStatusEnumMap.get(value);
+            if (null != p) {
+                return p;
+            } else {
+                return def;
+            }
+        }
+
+    }
+
     
 }
 
