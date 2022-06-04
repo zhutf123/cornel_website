@@ -49,6 +49,12 @@
                     <div>
                         <el-button
                             type="text"
+                            @click="edit(scope.$index, scope.row)"
+                        >修改</el-button>
+                    </div>
+                    <div>
+                        <el-button
+                            type="text"
                             @click="goToDetail(scope.$index, scope.row)"
                         >详情</el-button>
                     </div>
@@ -63,7 +69,7 @@
         >
         </el-pagination>
 
-        <el-dialog title="新建榜单"
+        <el-dialog title="编辑榜单"
             :visible.sync="showDialog"
             :show-close="false"
             :close-on-click-modal="false"
@@ -74,6 +80,9 @@
             >
                 <el-form-item label="榜单名称" prop="name">
                     <el-input v-model="editingData.name" />
+                </el-form-item>
+                <el-form-item label="类型" prop="type">
+                    <el-input-number :min="1" :max="10" v-model="editingData.type" />
                 </el-form-item>
                 <el-form-item label="首页权重" prop="weight">
                     <el-input-number :max="10" v-model="editingData.weight" />
@@ -137,8 +146,14 @@ export default {
         add() {
             this.editingData = {
                 name: '',
+                type: 1,
                 weight: 0,
                 status: 1
+            };
+        },
+        edit(index, data) {
+            this.editingData = {
+                ...data
             };
         },
         onConfirmEdit() {

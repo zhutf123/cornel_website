@@ -55,17 +55,18 @@
                 v-if="editingData"
                 label-width="100px"
             >
-                <el-form-item label="剧集名称" prop="name">
+                <el-form-item label="剧集名称" prop="teleplayName">
                     <suggest
+                        :deep="1"
                         type="episode"
                         valueKey="title"
-                        :displayValue="editingData.teleplayName"
+                        :placeholder="editingData.teleplayName"
                         :multiple="false"
                         :onSelect="onSelectEpisode"
                     />
                 </el-form-item>
                 <el-form-item label="首页权重" prop="weight">
-                    <el-input-number :max="10" v-model="editingData.weight" />
+                    <el-input-number :min="0" :max="10" v-model="editingData.weight" />
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -122,7 +123,7 @@ export default {
                 teleplayId: '',
                 status: 1,
                 weight: 0
-            }
+            };
         },
         edit(index, data) {
             this.editingData = {
@@ -157,7 +158,7 @@ export default {
             });
         },
         onSelectEpisode(item) {
-            this.editingData.teleplayId = item.teleplayId;
+            this.editingData.teleplayId = item.id;
             this.editingData.teleplayName = item.name;
         }
     }

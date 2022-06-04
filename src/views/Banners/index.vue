@@ -248,7 +248,7 @@ export default {
             });
         },
         handleSelectEpisode(item) {
-            this.editingData.videoId = item.teleplayId;
+            this.editingData.videoId = item.id;
         },
         onUploadImg(res) {
             const {data} = res;

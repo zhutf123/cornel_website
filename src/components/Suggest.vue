@@ -43,6 +43,12 @@ export default {
             type: String,
             default: ''
         },
+        selected: {
+            type: Object,
+            default: () => {
+                return [];
+            }
+        },
         valueKey: {
             type: String,
             default: 'name'
@@ -62,12 +68,13 @@ export default {
     },
     watch: {
         displayValue() {
-            this.input = this.displayValue
+            this.input = this.displayValue;
         }
     },
     data() {
+        console.log(333, this.selected)
         return {
-            value: [],
+            value: this.selected,
             loading: false,
             options: [],
             input: this.displayValue
@@ -93,7 +100,7 @@ export default {
                 case 'episode':
                     suggestEpisode(input).then(res => {
                         if (res.data) {
-                            const data = this.depp === 2 ? res.data.reduce((res, item) => {
+                            const data = this.deep === 2 ? res.data.reduce((res, item) => {
                                 const {title, videoList} = item;
                                 videoList.forEach(item => {
                                     item.title = title + '-' + item.title;
