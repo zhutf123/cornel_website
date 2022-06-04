@@ -177,6 +177,7 @@
             e.id,
             e.rank_info_id as rankInfoId,
             e.teleplay_id as  teleplayId,
+            e.weight as weight,
             t.title as teleplayName
         from rank_info_ext e,teleplay t
         where e.rank_info_id=#{rankInfoId}
