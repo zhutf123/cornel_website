@@ -66,7 +66,7 @@
                     />
                 </el-form-item>
                 <el-form-item label="首页权重" prop="weight">
-                    <el-input-number :min="0" :max="10" v-model="editingData.weight" />
+                    <el-input-number :min="0" v-model="editingData.weight" />
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">

@@ -9,7 +9,6 @@
                     <el-input-number
                         v-model="form.seq"
                         :min="1"
-                        :max="999"
                     />
                     集
                 </el-form-item>

@@ -151,7 +151,7 @@
                     </el-row>
                 </el-form-item>
                 <el-form-item label="首页权重" required prop="weight">
-                    <el-input-number :max="10" v-model="editingData.weight" />
+                    <el-input-number :min="0" v-model="editingData.weight" />
                 </el-form-item>
                 <el-form-item label="关联标签" required prop="channelList">
                     <el-tag

@@ -187,7 +187,6 @@
                 </el-form-item>
                 <el-form-item label="推荐首页">
                     <el-input-number v-model="editingData.recommend"
-                        :max="10"
                         :min="0"
                     />
                 </el-form-item>

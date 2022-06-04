@@ -82,10 +82,10 @@
                     <el-input v-model="editingData.name" />
                 </el-form-item>
                 <el-form-item label="类型" prop="type">
-                    <el-input-number :min="1" :max="10" v-model="editingData.type" />
+                    <el-input-number :min="1" v-model="editingData.type" />
                 </el-form-item>
                 <el-form-item label="首页权重" prop="weight">
-                    <el-input-number :max="10" v-model="editingData.weight" />
+                    <el-input-number :min="0" v-model="editingData.weight" />
                 </el-form-item>
                 <el-form-item label="状态" prop="status">
                     <el-select v-model="editingData.status">
