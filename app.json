@@ -13,22 +13,22 @@
             "pagePath": "pages/follow/index",
             "text": "追剧",
             "iconPath": "/assets/images/film.png",
-            "selectedIconPath": ""
+            "selectedIconPath": "/assets/images/film.png"
         }, {
             "pagePath": "pages/films/index",
             "text": "小剧场",
             "iconPath": "/assets/images/camera.png",
-            "selectedIconPath": ""
+            "selectedIconPath": "/assets/images/film.png"
         }, {
             "pagePath": "pages/recommend/index",
             "text": "推荐",
             "iconPath": "/assets/images/play3.png",
-            "selectedIconPath": ""
+            "selectedIconPath": "/assets/images/film.png"
         }, {
             "pagePath": "pages/mine/index",
             "text": "我的",
             "iconPath": "/assets/images/mine.png",
-            "selectedIconPath": ""
+            "selectedIconPath": "/assets/images/film.png"
         }]
     },
     "window":{
@@ -46,5 +46,6 @@
         "dialog": "/components/dialog/index",
         "watched-item": "/components/watched-item/index",
         "watched-history-item": "/components/watched-history-item/index"
-    }
+    },
+    "lazyCodeLoading": "requiredComponents"
 }

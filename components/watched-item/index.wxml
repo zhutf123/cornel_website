@@ -1,7 +1,7 @@
 <view class="watched-item" bindtap="onClick">
     <view class="pic">
         <view class="pic-bg more g-flexbox-column"
-            wx:if="more"
+            wx:if="{{more}}"
         >
             <image class="pic-ico" src="/assets/images/more.png" />
             <text class="desc">更多记录</text>
@@ -9,15 +9,13 @@
         <image
             wx:else
             class="pic-bg"
-            src="/assets/images/thumb.png"
-            mode="cover"
+            src="{{item.mainImage}}"
         />
-
     </view>
     <view class="name">
-        <text class="name-txt">暗夜制裁者</text>
+        <text class="name-txt">{{item.title}}</text>
     </view>
     <view class="desc">
-        <text class="desc-txt">更新至第23集</text>
+        <text class="desc-txt">{{item.updateTips}}</text>
     </view>
 </view>

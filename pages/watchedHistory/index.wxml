@@ -1,17 +1,23 @@
 <view class="container g-flexbox-column">
-    <scroll-view class="flex" scroll-y="true">
+    <scroll-view class="flex" scroll-y="true"
+        scroll-anchoring="true"
+        bindscroll="onScroll"
+    >
         <view class="title g-flexbox">
             <image class="title-ico" src="/assets/images/t1.png" />
             <text class="title-txt">最近观看</text>
         </view>
         <view class="list">
-            <view class="time">
+            <!-- <view class="time">
                 <text class="time-txt">昨天</text>
-            </view>
+            </view> -->
             <watched-history-item
+                wx:for="{{list}}"
+                wx:key="{{item.videoId}}"
+                item="{{item}}"
                 bind:onClick="clickWatched"
             />
         </view>
     </scroll-view>
-    <dialog  />
+    <dialog />
 </view>

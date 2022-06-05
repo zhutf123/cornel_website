@@ -1,17 +1,24 @@
-<view class="m-dialog g-flexbox-column" wx:if="{{show}}">
+<view class="m-dialog g-flexbox-column" wx:if="{{show}}"
+    id="mask"
+    bindtap="clickMask"
+>
     <view class="main">
         <view class="tit">
-            <text class="tit-txt">{{title}}</text>
+            <text class="tit-txt">{{config.title}}</text>
         </view>
         <view class="cont">
-            <text class="cont-txt">{{content}}</text>
+            <text class="cont-txt">{{config.content}}</text>
         </view>
         <view class="opts g-flexbox">
-            <view class="btn flex">
-                <text class="btn-txt">{{cancelText}}</text>
+            <view class="btn flex {{config.highlight === 'left' ? 'btn-confirm' : ''}}"
+                catchtap="onCancel"
+            >
+                <text class="btn-txt">{{config.cancelText}}</text>
             </view>
-            <view class="btn flex btn-confirm">
-                <text class="btn-txt">{{confirmText}}</text>
+            <view class="btn flex {{config.highlight === 'right' ? 'btn-confirm' : ''}}"
+                catchtap="onConfirm"
+            >
+                <text class="btn-txt">{{config.confirmText}}</text>
             </view>
         </view>
     </view>

@@ -1,21 +1,23 @@
 const app = getApp()
+
+const CLOSE_MASK = false;
+
 Component({
     properties: {
         show: {
             type: Boolean,
             default: false
         },
-        title: {
-            type: String,
-            value: '提示'
-        },
-        cancelText: {
-            type: String,
-            value: '取消'
-        },
-        confirmText: {
-            type: String,
-            value: '确定'
+        config: {
+            type: Object,
+            default: {
+                title: '提示',
+                content: '',
+                cancelText: '取消',
+                confirmText: '确定',
+                highlight: 'right',
+                closeMask: CLOSE_MASK
+            }
         }
     },
     methods: {
@@ -24,6 +26,13 @@ Component({
         },
         onConfirm() {
             this.triggerEvent('onConfirm');
+        },
+        clickMask(evt) {
+            const {currentTarget, target} = evt;
+            const {closeMask = CLOSE_MASK} = this.data.config;
+            if (closeMask && currentTarget.id === 'mask' && currentTarget.id === target.id) {
+                this.triggerEvent('onCancel');
+            }
         }
     }
 });

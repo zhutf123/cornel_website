@@ -56,5 +56,8 @@
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
+    },
+    "scripts": {
+        "beforeCompile": "npm run build"
     }
 }

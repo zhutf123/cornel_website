@@ -7,8 +7,11 @@ Component({
         }
     },
     methods: {
-        onClick(e) {
-            this.triggerEvent('onClick', e);
+        onClick() {
+            this.triggerEvent('onClick', this.item);
+        },
+        changeFollow() {
+            this.triggerEvent('onChangeFollow', this.item);
         }
     }
 });

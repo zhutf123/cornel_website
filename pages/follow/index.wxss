@@ -11,6 +11,9 @@
     font-weight: 500;
 }
 
+.watched-list {
+    padding-left: 10px;
+}
 .noresult {
     width: 100%;
 }
