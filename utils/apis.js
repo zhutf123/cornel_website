@@ -36,3 +36,47 @@ export const removeFollow = videoId => {
     });
 }
 
+// 推荐tab
+export function getTabs() {
+    return get({
+        url: '/user/channelList.json'
+    });
+}
+export function getBannerList() {
+    return post({
+        url: '/user/bannerList.json'
+    });
+}
+export function getTeleplayList(channel, pageNum = 1) {
+    return post({
+        url: '/user/teleplayList.json',
+        data: {
+            channel,
+            pageSize: 10,
+            pageNum
+        }
+    });
+}
+export function getRankInfoList() {
+
+}
+export function changeRankInfo(rankInfoId, pageNum) {
+    return post({
+        url: '/user/changeRankInfo.json',
+        data: {
+            rankInfoId,
+            pageSize: 10,
+            pageNum
+        }
+    });
+}
+
+
+export function getVideoInfo(videoId) {
+    return get({
+        url: '/user/videoInfo.json',
+        param: {
+            videoId
+        }
+    });
+}

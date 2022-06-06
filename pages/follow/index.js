@@ -38,10 +38,12 @@ Page({
     },
     jumpToVideo(e) {
         const {id} = e.target.dataset;
+        route.go('videoDetail', {
+            videoId: id
+        });
     },
     changeFollow() {
         removeFollow(this.followId).then(res => {
-            console.log(res);
             if (res.status === 0) {
                 this.setData({
                     followedList: this.data.followedList.filter(item => item.videoId !== this.followId)

@@ -10,6 +10,9 @@ page,
 .g-flexbox-column {
     flex-direction: column;
 }
+.g-flexbox-column .flex {
+    width: 100%;
+}
 .flex {
     flex: 1;
     overflow: auto;
@@ -32,4 +35,11 @@ page,
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     display: -webkit-box;
+}
+
+view {
+    box-sizing: border-box;
+}
+.hide {
+    display: none;
 }

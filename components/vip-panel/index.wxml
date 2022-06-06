@@ -1,0 +1,31 @@
+<panel className="vip-panel" bind:clickMask="clickMask">
+    <view class="tit g-flexbox">
+        <image class="tit-ico" src="/assets/images/icon-d.png" />
+        <view class="tit-txt">开通会员即可免费观看</view>
+        <view class="tit-desc flex" catchtap="jumpToVip">了解更多会员特权 ></view>
+        <view class="tit-close" catchtap="clickMask">
+            <image mode="widthFix" src="/assets/images/icon-c.png" />
+        </view>
+    </view>
+    <view class="vip-list g-flexbox">
+        <view class="vip-item {{index === activeIndex ? 'active' : ''}}"
+            wx:for="{{list}}"
+            wx:key="price"
+            data-index="{{index}}"
+            catchtap="changeItem"
+        >
+            <view class="tag">{{item.discount}}折</view>
+            <view class="time">{{item.time}}个月</view>
+            <view class="price g-flexbox">
+                <view class="yen">￥</view>
+                <view class="price-num">{{item.price}}</view>
+            </view>
+            <view class="origin">
+                <text class="origin-price">{{item.origin}}元</text>
+            </view>
+        </view>
+    </view>
+    <image mode="widthFix" class="vip-btn" src="/assets/images/vip-btn.png"
+        catchtap="getVip"
+    />
+</panel>

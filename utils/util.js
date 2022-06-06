@@ -21,3 +21,13 @@ export const queryStringify = (obj = {}) => {
     }
     return keys.map(key => `${key}=${obj[key]}`).join('&');
 }
+
+export const Toast = {
+    show(msg = '', duration = 3000) {
+        wx.showToast({
+            icon: 'none',
+            title: msg,
+            duration
+        });
+    }
+}

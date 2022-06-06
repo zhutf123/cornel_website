@@ -1,0 +1,6 @@
+<view class="m-panel g-flexbox-column {{className}}">
+    <view class="flex" bindtap="clickMask"></view>
+    <view class="main g-flexbox-column">
+        <slot />
+    </view>
+</view>

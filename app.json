@@ -4,7 +4,8 @@
         "pages/watchedHistory/index",
         "pages/films/index",
         "pages/recommend/index",
-        "pages/mine/index"
+        "pages/mine/index",
+        "pages/videoDetail/index"
     ],
     "tabBar": {
         "color": "#212121",
@@ -13,22 +14,22 @@
             "pagePath": "pages/follow/index",
             "text": "追剧",
             "iconPath": "/assets/images/film.png",
-            "selectedIconPath": "/assets/images/film.png"
+            "selectedIconPath": "/assets/images/play3.png"
         }, {
             "pagePath": "pages/films/index",
             "text": "小剧场",
             "iconPath": "/assets/images/camera.png",
-            "selectedIconPath": "/assets/images/film.png"
+            "selectedIconPath": "/assets/images/play3.png"
         }, {
             "pagePath": "pages/recommend/index",
             "text": "推荐",
             "iconPath": "/assets/images/play3.png",
-            "selectedIconPath": "/assets/images/film.png"
+            "selectedIconPath": "/assets/images/play3.png"
         }, {
             "pagePath": "pages/mine/index",
             "text": "我的",
             "iconPath": "/assets/images/mine.png",
-            "selectedIconPath": "/assets/images/film.png"
+            "selectedIconPath": "/assets/images/play3.png"
         }]
     },
     "window":{
@@ -41,6 +42,8 @@
     "usingComponents": {
         "van-button": "@vant/weapp/button/index",
         "nav": "/components/nav/index",
+        "panel": "/components/panel/index",
+        "vip-panel": "/components/vip-panel/index",
         "list-item": "/components/list-item/index",
         "like-item": "/components/like-item/index",
         "dialog": "/components/dialog/index",

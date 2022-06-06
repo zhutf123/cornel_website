@@ -1,2 +1,31 @@
-<view class="container">
+<view class="container g-flexbox-column">
+    <nav title="蜂巢小剧场" />
+    <view class="tabs">
+        <van-tabs active="{{activeIndex}}"
+            bind:change="changeTab"
+        >
+            <van-tab
+                title="推荐"
+            >
+                <scroll-view class="flex" scroll-y="true">
+                    
+                </scroll-view>
+            </van-tab>
+            <van-tab
+                wx:for="{{tabs}}"
+                wx:key="id"
+                title="{{item.name}}"
+            >
+                <scroll-view class="flex" scroll-y="true">
+                    
+                </scroll-view>
+            </van-tab>
+        </van-tabs>
+    </view>
+    <dialog
+        show="{{showDialog}}"
+        config="{{dialogConfig}}"
+        bind:onCancel="closeDialog"
+        bind:onConfirm="changeFollow"
+    />
 </view>

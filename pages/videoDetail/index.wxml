@@ -1,0 +1,133 @@
+<view class="container g-flexbox-column">
+    <view class="m-video g-flexbox-column">
+        <swiper class="flex"
+            vertical
+            current="{{playIndex}}"
+            bindchange="onSwiperChange"
+        >
+            <swiper-item wx:for="{{videoInfo.videoList}}"
+                wx:key="id"
+            >
+                <video
+                    wx:if="{{index === playIndex && playInfo.videoUrl}}"
+                    class="video"
+                    src="{{playInfo.videoUrl}}"
+                    poster="{{playInfo.mainImage}}"
+                    object-fit="fill"
+                    autoplay="true"
+                    play-btn-position="center"
+                    show-mute-btn="true"
+                    enable-play-gesture="true"
+                    show-fullscreen-btn="{{false}}"
+                    bindended="onVideoEnd"
+                />
+                <image src="{{item.mainImage}}" class="video video-placeholder" wx:else />
+            </swiper-item>
+        </swiper>
+        <view class="ft g-flexbox" bindtap="toggleSelectPanel">
+            <image class="icon" src="/assets/images/icon1.png" />
+            <view class="flex">
+                <text class="desc">{{videoInfo.title}} · 更新至xxx集</text>
+            </view>
+            <image class="arrow-up" src="/assets/images/arrow-up.png" />
+        </view>
+
+        <!-- 侧边栏 -->
+        <view class="sidebar g-flexbox-column">
+            <view class="sidebar-item">
+                <image class="sidebar-wechat"
+                    src="/assets/images/wechat.png"
+                />
+                <view class="sidebar-count" wx:if="{{videoInfo.shareNum > 0}}">{{videoInfo.shareNum}}</view>
+                <button class="sidebar-btn" open-type="share" bindtap="shareVideo"></button>
+            </view>
+            <view class="sidebar-item">
+                <image class="sidebar-like"
+                    src="/assets/images/like.png"
+                />
+                <view class="sidebar-count" wx:if="{{videoInfo.likeNum > 0}}">{{videoInfo.likeNum}}</view>
+                <button class="sidebar-btn" bindtap="likeVideo"></button>
+            </view>
+            <view class="sidebar-item">
+                <image class="sidebar-fav"
+                    src="/assets/images/fav.png"
+                />
+                <view class="sidebar-count" wx:if="{{videoInfo.followNum > 0}}">{{videoInfo.followNum}}</view>
+                <button class="sidebar-btn" bindtap="saveVideo"></button>
+            </view>
+        </view>
+
+        <!-- 选集弹层 -->
+        <view class="m-panel select-panel g-flexbox-column" wx:if="{{showSelectPanel}}">
+            <view class="flex" bindtap="toggleSelectPanel" />
+            <view class="main g-flexbox-column">
+                <view class="tit g-flexbox" bindtap="toggleSelectPanel">
+                    <view class="flex">
+                        <text class="tit-txt">{{videoInfo.title}}</text>
+                    </view>
+                    <image class="arrow-down" src="/assets/images/arrow-down-d.png" />
+                </view>
+                <scroll-view scroll-x class="episode hide">
+                    <view class="episode-item">
+                        1-30
+                    </view>
+                    <view class="episode-item">
+                        31-60
+                    </view>
+                </scroll-view>
+                <scroll-view scroll-y class="flex episode-list">
+                    <view class="episode-list-item g-flexbox {{item.id === playInfo.id ? 'active' : ''}}" wx:for="{{videoInfo.videoList}}"
+                        wx:key="id"
+                        data-index="{{index}}"
+                        bindtap="changeVideo"
+                    >
+                        <view class="thumb">
+                            <image class="thumb" mode="cover" src="{{item.mainImage}}" />
+                            <view class="thumb-lock g-flexbox" wx:if="{{item.lock}}">
+                                解锁观看
+                            </view>
+                        </view>
+                        <view class="desc flex clamp2">{{item.title}} | {{item.desc}}</view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+
+        <!-- 解锁剧集弹层 -->
+        <panel class="unlock-panel"
+            wx:if="{{showUnlockPanel}}"
+            bind:clickMask="toggleUnlockPanel"
+        >
+            <view class="main g-flexbox-column">
+                <view class="tit g-flexbox">
+                    <view class="line flex" />
+                    <view class="tit-txt">感谢您支持作者，购买后继续观看</view>
+                    <view class="line flex" />
+                </view>
+                <view class="price g-flexbox">
+                    <text class="price-txt">价格：</text>
+                    <text class="price-num">5元</text>
+                </view>
+                <view class="account g-flexbox">
+                    <text class="account-txt">账户余额：</text>
+                    <text class="account-num">2元</text>
+                </view>
+                <view class="btn" bindtap="unlockVideo">购买本集</view>
+                <view class="link" bindtap="toggleVipPanel">开通会员，享受5折优惠></view>
+            </view>
+        </panel>
+
+        <vip-panel
+            wx:if="{{showVipPanel}}"
+            bind:clickMask="toggleVipPanel"
+        />
+
+        <!-- 追剧dialog -->
+        <dialog
+            show="{{showDialog}}"
+            config="{{dialogConfig}}"
+            bind:onCancel="toggleDialog"
+            bind:onConfirm="addFollow"
+        />
+    </view>
+</view>

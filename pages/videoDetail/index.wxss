@@ -1,0 +1,191 @@
+.m-video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+}
+.m-video .video {
+    width: 100%;
+    height: 100%;
+}
+.m-video .ft {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    background-color: #000;
+    box-sizing: border-box;
+}
+.m-video .ft .icon {
+    width: 16px;
+    height: 16px;
+}
+.m-video .ft .desc {
+    padding-left: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+.m-video .ft .arrow-up {
+    font-size: 14px;
+    color: #fff;
+    width: 11px;
+    height: 8px;
+}
+.m-video .select-panel {
+    justify-content: flex-end;
+}
+.m-video .select-panel .tit {
+    width: 100%;
+    padding: 15px 12px;
+    border-bottom: 1rpx solid #eaeaea;
+}
+.m-video .select-panel .tit-txt {
+    font-size: 14px;
+    line-height: 20px;
+}
+.m-video .select-panel .arrow-down {
+    width: 13px;
+    height: 9px;
+}
+.m-video .select-panel .episode {
+    width: 100%;
+    padding: 15px 0;
+}
+.m-video .select-panel .episode-item {
+    display: inline-block;
+    white-space: no-wrap;
+    margin: 0 12px;
+}
+.m-video .select-panel .episode-list {
+    height: 60vh;
+    width: 100%;
+}
+.m-video .select-panel .episode-list-item {
+    width: 100%;
+    padding: 11px 13px;
+}
+.m-video .select-panel .episode-list-item.active {
+    background-color: #f8f8f8;
+}
+.m-video .select-panel .episode-list-item .thumb {
+    position: relative;
+    width: 46px;
+    height: 64px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.m-video .select-panel .episode-list-item .thumb-lock {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    font-size: 10px;
+    color: rgba(255, 255, 255, .8);
+    align-items: center;
+    justify-content: center;
+}
+.m-video .select-panel .episode-list-item .desc {
+    padding-left: 10px;
+    font-size: 14px;
+    color: #282828;
+}
+
+.m-video .sidebar {
+    position: absolute;
+    right: 0;
+    bottom: 80px;
+    padding-right: 10px;
+}
+.m-video .sidebar-item {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+.m-video .sidebar-wechat {
+    width: 48px;
+    height: 48px;
+}
+.m-video .sidebar-like {
+    width: 36px;
+    height: 32px;
+}
+.m-video .sidebar-fav {
+    width: 32px;
+    height: 31px;
+}
+.m-video .sidebar-count {
+    position: relative;
+    left: -3px;
+}
+.m-video .sidebar-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0;
+}
+
+.unlock-panel {
+    justify-content: flex-end;
+}
+.unlock-panel .main {
+    padding-bottom: 44px;
+}
+.unlock-panel .tit {
+    padding: 20px 32px 0;
+    font-weight: 500;
+    font-size: 16px;
+    width: 100%;
+}
+.unlock-panel .tit-txt {
+    padding: 0 10px;
+}
+.unlock-panel .line {
+    border-top: 1px solid #e8e8e8;
+    width: 100%;
+}
+.unlock-panel .price {
+    margin-top: 18px;
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.unlock-panel .price-num {
+    color: #fa7528;
+}
+.unlock-panel .account {
+    margin-top: 3px;
+    line-height: 17px;
+    font-size: 12px;
+}
+.unlock-panel .account-num {
+    color: #fa7528;
+}
+.unlock-panel .btn {
+    margin-top: 20px;
+    width: 362rpx;
+    height: 76rpx;
+    line-height: 76rpx;
+    background: #FA7528;
+    border-radius: 100rpx;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    box-sizing: border-box;
+}
+.unlock-panel .link {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #FA7528;
+}
