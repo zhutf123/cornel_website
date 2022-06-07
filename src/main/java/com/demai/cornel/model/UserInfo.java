@@ -46,6 +46,7 @@ public class UserInfo implements Serializable {
     private Long score;
     private Long goldCoin;
     private Integer status;
+    private Integer vip;
     private Map<String, String> extInfo;
     private Date lastLoginTime;
     private Date createTime;

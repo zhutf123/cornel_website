@@ -20,6 +20,7 @@
         <result column="score" property="score"/>
         <result column="gold_coin" property="goldCoin"/>
         <result column="status" property="status"/>
+        <result column="vip" property="vip"/>
         <result column="ext_info" property="extInfo"/>
         <result column="last_login_time" property="lastLoginTime"/>
         <result column="create_time" property="createTime"/>
@@ -45,6 +46,7 @@
         score,
         gold_coin,
         status,
+        vip,
         ext_info,
         last_login_time,
         create_time,
@@ -102,6 +104,9 @@
             </if>
             <if test="status != null">
                 status = #{status},
+            </if>
+            <if test="vip != null">
+                vip = #{vip},
             </if>
             <if test="extInfo != null">
                 ext_info = #{extInfo},
@@ -173,6 +178,9 @@
             <if test="status != null">
                 status ,
             </if>
+            <if test="vip != null">
+                vip ,
+            </if>
             <if test="extInfo != null">
                 ext_info ,
             </if>
@@ -238,6 +246,9 @@
             </if>
             <if test="status != null">
                 #{status} ,
+            </if>
+            <if test="vip != null">
+                #{vip} ,
             </if>
             <if test="extInfo != null">
                 #{extInfo} ,

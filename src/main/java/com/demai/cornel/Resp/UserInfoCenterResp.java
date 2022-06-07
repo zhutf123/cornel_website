@@ -29,5 +29,6 @@ public class UserInfoCenterResp implements Serializable {
     private String headImg;
     private String nickName;
     private Long goldCoin;
+    private Integer vip;
     
 }
