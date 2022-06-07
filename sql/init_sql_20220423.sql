@@ -113,6 +113,7 @@ CREATE TABLE user_info
     mobile          varchar(64),
     mail          varchar(64),
     score           integer,
+    gold_coin           integer,
     status          integer default 1,
     ext_info        hstore,
     last_login_time timestamptz(6) default now(),
@@ -144,6 +145,8 @@ COMMENT
 ON COLUMN user_info.mobile IS '电话';
 COMMENT
 ON COLUMN user_info.score IS '积分';
+COMMENT
+ON COLUMN user_info.gold_coin IS '金币';
 COMMENT
 ON COLUMN user_info.status IS '状态 1:有效  2无效';
 COMMENT

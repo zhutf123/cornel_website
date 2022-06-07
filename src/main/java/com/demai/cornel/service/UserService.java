@@ -1,6 +1,7 @@
 package com.demai.cornel.service;
 
 import com.demai.cornel.Resp.UserAddUserResp;
+import com.demai.cornel.Resp.UserInfoCenterResp;
 import com.demai.cornel.constant.ConfigProperties;
 import com.demai.cornel.dao.UserInfoDao;
 import com.demai.cornel.dao.UserPayInfoDao;
@@ -99,6 +100,24 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
     public UserInfo getUserInfoResp(){
         UserInfo userInfo = userInfoDao.getUserInfoByUserId(CookieAuthUtils.getCurrentUser());
         return userInfo;
+    }
+
+
+    public UserInfoCenterResp userCenterInfo(){
+        UserInfo userInfo = userInfoDao.getUserInfoByUserId(CookieAuthUtils.getCurrentUser());
+        if (userInfo!=null){
+            UserInfoCenterResp resp = UserInfoCenterResp.builder()
+                    .userId(userInfo.getUserId())
+                    .openId(userInfo.getOpenId())
+                    .name(userInfo.getName())
+                    .gender(userInfo.getGender())
+                    .headImg(userInfo.getHeadImg())
+                    .nickName(userInfo.getNickName())
+                    .goldCoin(userInfo.getGoldCoin())
+                    .build();
+            return resp;
+        }
+        return null;
     }
 
     /**
