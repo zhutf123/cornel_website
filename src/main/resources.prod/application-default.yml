@@ -97,6 +97,7 @@ caching:
 
 cookie:
   domain: wx.ydwlys.com
+  ip: 120.77.214.74
 
 upload:
   location: /update/

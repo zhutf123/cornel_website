@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static com.demai.cornel.util.CookieAuthUtils.COOKIE_ADMIN_USER;
@@ -37,16 +38,20 @@ import static com.demai.cornel.util.CookieAuthUtils.COOKIE_ADMIN_USER;
      * @return
      */
     @RequestMapping(value = "/login.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonResult doUserLogin(
-            @RequestBody UserLoginParam param, HttpServletResponse response) {
+            @RequestBody UserLoginParam param, HttpServletRequest request,HttpServletResponse response) {
         try {
             Preconditions.checkNotNull(param.getName());
             Preconditions.checkNotNull(param.getPasswd());
             param.setAdmin(Boolean.TRUE);
             UserLoginResp login = userLoginService.doLogin(param);
+
             if (login.getCode().compareTo(UserLoginResp.CODE_ENUE.SUCCESS.getValue()) == 0) {
                 Cookie cookie = new Cookie(COOKIE_ADMIN_USER, login.getUserId());
                 cookie.setMaxAge(24 * 60 * 60);
                 cookie.setDomain(configProperties.cookieDomain);
+                if (request.getRequestURL().toString().contains(configProperties.cookieip)){
+                    cookie.setDomain(configProperties.cookieip);
+                }
                 cookie.setPath("/");
                 response.addCookie(cookie);
                 return JsonResult.success(login);
