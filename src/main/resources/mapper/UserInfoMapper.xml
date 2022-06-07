@@ -303,6 +303,12 @@
         where id = #{userId}
     </update>
 
+    <update id="addGoldCoin">
+        update user_info
+        set gold_coin = gold_coin+#{goldCoin}
+        where id = #{userId}
+    </update>
+
     <select id="getAllUserInfoList" parameterType="com.demai.cornel.reqParam.QueryUserParam" resultMap="userInfoResultMap">
         SELECT
         <include refid="main_column"/>

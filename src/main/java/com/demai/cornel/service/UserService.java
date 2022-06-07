@@ -153,6 +153,7 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
                     .signInTime(date)
                     .build();
             userSignInfoDao.save(signInInfo);
+            userInfoDao.addGoldCoin(userId, 30);
         }
         return getSignInInfoList();
     }
