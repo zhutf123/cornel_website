@@ -165,11 +165,6 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
      */
     public UserSignInfoResp getSignInInfoList(){
         String uid = UserHolder.getValue("uid");
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         List<UserSignInInfo> userSignInInfos = userSignInfoDao.querySignInfoList(Long.parseLong(uid));
         if (CollectionUtils.isNotEmpty(userSignInInfos)){
             return UserSignInfoResp.builder()

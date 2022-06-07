@@ -55,7 +55,7 @@ public class UserInfoController {
              HttpServletResponse response) {
         try {
             UserSignInfoResp signInfoResp = userService.doSignIn();
-            if (signInfoResp.getSignInEd()) {
+            if (signInfoResp.getSignInEd()!=null && signInfoResp.getSignInEd()) {
                 return JsonListResult.success(signInfoResp, "今天已经签到过了哦");
             }
             return JsonListResult.success(signInfoResp);
