@@ -98,6 +98,7 @@
         <include refid="main_column"/>
         from user_sign_in_info
         where user_id=#{uid}
+        order by sign_in_time desc
     </select>
 
     <select id="queryUserSignInfo" resultMap="userSignInInfoResultMap">

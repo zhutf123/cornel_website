@@ -167,9 +167,20 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         String uid = UserHolder.getValue("uid");
         List<UserSignInInfo> userSignInInfos = userSignInfoDao.querySignInfoList(Long.parseLong(uid));
         if (CollectionUtils.isNotEmpty(userSignInInfos)){
+            int days = 0;
+            for (int i = 0; i < userSignInInfos.size(); i++) {
+                int tmp = 0-i;
+                String signInTime = DateFormatUtils.format(DateUtils.addDays(DateUtils.now(),tmp));
+                if (DateFormatUtils.format(userSignInInfos.get(i).getSignInTime()).equals(signInTime)) {
+                    days += 1;
+                } else {
+                    continue;
+                }
+            }
+            
             return UserSignInfoResp.builder()
                     .signInList(userSignInInfos)
-                    .days(1)
+                    .days(days)
                     .build();
         }
         return UserSignInfoResp.builder().build();
