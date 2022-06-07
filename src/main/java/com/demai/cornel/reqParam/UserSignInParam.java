@@ -17,5 +17,4 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class UserSignInParam extends BaseQueryParam {
 
-    private Long channel;
 }
