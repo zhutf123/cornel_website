@@ -159,6 +159,7 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
 
     /**
      * 获取我的签到记录
+     *
      * @return
      */
     public UserSignInfoResp getSignInInfoList(){
