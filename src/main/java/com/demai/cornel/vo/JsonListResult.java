@@ -35,6 +35,13 @@ public class JsonListResult<DATATYPE> implements Serializable {
         this.data = data;
     }
 
+    public JsonListResult(DATATYPE data,String msg) {
+        this();
+        this.status = ResponseStatusEnum.SUCCESS.getValue();
+        this.msg = msg;
+        this.data = data;
+    }
+
     public JsonListResult(DATATYPE data,Integer allNum) {
         this();
         this.status = ResponseStatusEnum.SUCCESS.getValue();
@@ -106,7 +113,7 @@ public class JsonListResult<DATATYPE> implements Serializable {
     }
 
     public static JsonListResult success(Object object,String msg) {
-        return new JsonListResult<>(object);
+        return new JsonListResult<>(object, msg);
     }
 
     public static JsonListResult success(Object object,Integer allNum) {
