@@ -115,6 +115,7 @@ CREATE TABLE user_info
     score           integer,
     gold_coin           integer,
     status          integer default 1,
+    vip          integer default 2,
     ext_info        hstore,
     last_login_time timestamptz(6) default now(),
     create_time     timestamptz(6) default now(),
@@ -149,6 +150,8 @@ COMMENT
 ON COLUMN user_info.gold_coin IS '金币';
 COMMENT
 ON COLUMN user_info.status IS '状态 1:有效  2无效';
+COMMENT
+ON COLUMN user_info.vip IS '是否vip  1是 2否';
 COMMENT
 ON COLUMN user_info.ext_info IS '扩展信息';
 COMMENT

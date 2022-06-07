@@ -114,6 +114,7 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
                     .headImg(userInfo.getHeadImg())
                     .nickName(userInfo.getNickName())
                     .goldCoin(userInfo.getGoldCoin())
+                    .vip(userInfo.getVip())
                     .build();
             return resp;
         }
