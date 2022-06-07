@@ -1,10 +1,12 @@
-CREATE TABLE user_follow_video
+
+
+CREATE TABLE user_sign_in_info
 (
     id           serial PRIMARY KEY,
-    teleplay_id     bigint,
-    user_id     bigint,
-    status      integer default 1,
+    user_id   bigint,
+    gold_coin      integer,
+    status          integer default 0,
+    sign_in_time  timestamptz(6),
     ext_info     hstore,
-    operate_time timestamptz(6) default now(),
     create_time  timestamptz(6) default now()
 )

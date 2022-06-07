@@ -105,6 +105,10 @@ public class JsonListResult<DATATYPE> implements Serializable {
         return new JsonListResult<>(object);
     }
 
+    public static JsonListResult success(Object object,String msg) {
+        return new JsonListResult<>(object);
+    }
+
     public static JsonListResult success(Object object,Integer allNum) {
         return new JsonListResult<>(object, allNum);
     }
