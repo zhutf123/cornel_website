@@ -21,6 +21,13 @@
                     "query": "videoId=13",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "recm",
+                    "pathName": "pages/recommend/index",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

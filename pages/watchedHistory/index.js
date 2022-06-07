@@ -1,6 +1,7 @@
 const app = getApp()
 
 import {getWatchedHistory} from '../../utils/apis';
+import { getWindowInfo } from '../../utils/util';
 
 Page({
     data: {
@@ -11,6 +12,7 @@ Page({
     },
     onLoad() {
         this.loadData();
+        this.windowHeight = getWindowInfo().windowHeight;
     },
     loadData() {
         if (this.isLoading) {
@@ -29,9 +31,8 @@ Page({
     },
     onScroll(e) {
         const {scrollTop, scrollHeight} = e.detail;
-        const {windowHeight} = wx.getWindowInfo();
 
-        if (scrollTop + windowHeight >= scrollHeight - 200) {
+        if (scrollTop + this.windowHeight >= scrollHeight - 200) {
             this.loadData();
         }
     },

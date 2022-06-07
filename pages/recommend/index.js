@@ -1,28 +1,82 @@
 import route from '../../utils/route';
-import { getWatchedHistory, getFollowList, removeFollow, getTabs } from '../../utils/apis';
+import { getWatchedHistory, getFollowList, removeFollow, getTabs, getBannerList, getTeleplayList } from '../../utils/apis';
+import { getWindowInfo } from '../../utils/util';
 
-const app = getApp()
+const {safeareaTop} = getApp().globalData;
 
 Page({
     data: {
-        safeareaTop: app.globalData.safeareaTop,
-        activeIndex: 1,
-        list: {}
+        safeareaTop,
+        tabContHeight: getWindowInfo().windowHeight - safeareaTop - 44 - 44,
+        activeIndex: 0,
+        tabList: [],
+        list: [],
+        banners: []
     },
     onLoad() {
         this.initPage();
+        this.listPage = [0];
     },
     initPage() {
         getTabs().then(res => {
             if (res.data) {
                 this.setData({
-                    tabList: res.data
+                    tabList: [{name: '推荐'}].concat(res.data)
+                });
+            }
+        });
+        this.getRecommendData();
+    },
+    onTabChange(e) {
+        console.log(e);
+        const {index} = e.detail;
+        const tab = this.data.tabList[index];
+
+        if (index === 0) {
+            this.setData({
+                activeIndex: e.detail.index
+            });
+        } else {
+            this.getTeleplayList(index);
+        }
+    },
+    getTeleplayList(index) {
+        const curIndex = index === undefined ? this.data.activeIndex : index;
+        const {id: channel} = this.data.tabList[curIndex];
+        if (this.isLoading) {
+            return;
+        }
+        this.isLoading = true;
+        getTeleplayList(channel, this.pageNum).then(res => {
+            if (res.data) {
+                this.setData({
+                    list: [...this.data.list, res.data],
+                    activeIndex: index
+                });
+                this.isLoading = res.data.length < 10;
+            }
+        });
+    },
+
+    // 推荐tab的数据
+    getRecommendData() {
+        getBannerList().then(res => {
+            if (res.data) {
+                this.setData({
+                    banners: res.data
                 });
             }
         });
     },
+    onScroll(e) {
+
+    },
+
     jumpToVideo(e) {
         const {id} = e.target.dataset;
+        route.go('videoDetail', {
+            videoId: id
+        });
     },
     changeFollow() {
         removeFollow(this.followId).then(res => {

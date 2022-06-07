@@ -1,5 +1,5 @@
-<view class="nav" style="padding-top: {{safeareaTop}}px;">
-    <view class="nav-main g-flexbox">
+<view class="nav" style="padding-top: {{safeareaTop + 44}}px;">
+    <view class="nav-main g-flexbox" style="padding-top: {{safeareaTop}}px;">
         <image class="nav-logo" src="/assets/images/logo.png" />
         <text class="nav-txt">{{title}}</text>
     </view>

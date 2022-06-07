@@ -31,3 +31,7 @@ export const Toast = {
         });
     }
 }
+
+export function getWindowInfo() {
+    return wx.getSystemInfoSync();
+}

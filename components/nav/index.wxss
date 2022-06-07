@@ -1,11 +1,16 @@
 .nav {
     width: 100%;
     text-align: center;
-    line-height: 56rpx;
     background-color: #fff;
 }
 .nav-main {
+    position: fixed;
+    z-index: 5000;
+    left: 0;
+    top: 0;
+    right: 0;
     line-height: 88rpx;
+    background-color: #fff;
 }
 .nav-txt {
     font-size: 40rpx;

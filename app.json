@@ -40,7 +40,8 @@
     },
     "sitemapLocation": "sitemap.json",
     "usingComponents": {
-        "van-button": "@vant/weapp/button/index",
+        "van-tab": "@vant/weapp/tab/index",
+        "van-tabs": "@vant/weapp/tabs/index",
         "nav": "/components/nav/index",
         "panel": "/components/panel/index",
         "vip-panel": "/components/vip-panel/index",
