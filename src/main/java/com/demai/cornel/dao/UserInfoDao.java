@@ -34,4 +34,7 @@ public interface UserInfoDao {
     List<UserInfo> getAllUserInfoList(QueryUserParam param);
 
     Integer getAllUserInfoNum(QueryUserParam param);
+
+    void addGoldCoin(@Param("userId") Long userId,@Param("goldCoin")Integer goldCoin);
 }
+
