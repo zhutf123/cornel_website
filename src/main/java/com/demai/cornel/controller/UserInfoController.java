@@ -8,6 +8,7 @@ import com.demai.cornel.dmEnum.ResponseStatusEnum;
 import com.demai.cornel.model.Teleplay;
 import com.demai.cornel.model.UserInfo;
 import com.demai.cornel.reqParam.UserQueryTeleplayParam;
+import com.demai.cornel.reqParam.UserSignInParam;
 import com.demai.cornel.service.UserService;
 import com.demai.cornel.vo.JsonListResult;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,21 @@ public class UserInfoController {
     private UserService userService;
     
     @RequestMapping(value = "/myInfo.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonListResult teleplayList(@RequestBody UserQueryTeleplayParam param, HttpServletResponse response) {
+    public JsonListResult teleplayList(HttpServletResponse response) {
+        try {
+            UserInfoCenterResp userInfo = userService.userCenterInfo();
+            if (userInfo!=null){
+                return JsonListResult.success(userInfo);
+            }
+        } catch (Exception e) {
+            log.error("获取我的信息失败！", e);
+        }
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+
+    @RequestMapping(value = "/signIn.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
+    public JsonListResult signIn(@RequestBody UserSignInParam param, HttpServletResponse response) {
         try {
             UserInfoCenterResp userInfo = userService.userCenterInfo();
             if (userInfo!=null){
