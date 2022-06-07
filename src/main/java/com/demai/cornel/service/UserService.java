@@ -2,18 +2,24 @@ package com.demai.cornel.service;
 
 import com.demai.cornel.Resp.UserAddUserResp;
 import com.demai.cornel.Resp.UserInfoCenterResp;
+import com.demai.cornel.Resp.UserSignInfoResp;
 import com.demai.cornel.constant.ConfigProperties;
 import com.demai.cornel.dao.UserInfoDao;
 import com.demai.cornel.dao.UserPayInfoDao;
 import com.demai.cornel.dao.UserRoleInfoDao;
+import com.demai.cornel.dao.UserSignInfoDao;
+import com.demai.cornel.holder.UserHolder;
 import com.demai.cornel.model.RoleInfo;
 import com.demai.cornel.model.UserInfo;
 import com.demai.cornel.model.UserPayInfo;
 import com.demai.cornel.model.UserRoleInfo;
+import com.demai.cornel.model.UserSignInInfo;
 import com.demai.cornel.reqParam.QueryUserParam;
 import com.demai.cornel.reqParam.UserAddParam;
 import com.demai.cornel.reqParam.UserRegisterParam;
 import com.demai.cornel.util.CookieAuthUtils;
+import com.demai.cornel.util.DateFormatUtils;
+import com.demai.cornel.util.DateUtils;
 import com.demai.cornel.util.IDUtils;
 import com.demai.cornel.util.JacksonUtils;
 import com.demai.cornel.util.PhoneUtil;
@@ -21,6 +27,7 @@ import com.demai.cornel.util.StringUtil;
 import com.demai.cornel.util.json.JsonUtil;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
@@ -28,6 +35,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +51,7 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
     @Resource private UserRoleInfoDao userRoleInfoDao;
     @Resource private ConfigProperties configProperties;
     @Resource private UserPayInfoDao userPayInfoDao;
+    @Resource private UserSignInfoDao userSignInfoDao;
 
     //todo 这一块更新需要补全
     public UserAddUserResp updateUserInfo(UserAddParam userAddReq) {
@@ -102,7 +111,10 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         return userInfo;
     }
 
-
+    /***
+     * 我的
+     * @return
+     */
     public UserInfoCenterResp userCenterInfo(){
         UserInfo userInfo = userInfoDao.getUserInfoByUserId(CookieAuthUtils.getCurrentUser());
         if (userInfo!=null){
@@ -120,6 +132,47 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         }
         return null;
     }
+
+    /***
+     * 签到领积分
+     * @return
+     */
+    public UserSignInfoResp doSignIn(){
+        String uid = UserHolder.getValue("uid");
+        Long userId = Long.parseLong(uid);
+        Date date = DateUtils.now();
+        UserSignInInfo signInInfo = userSignInfoDao.queryUserSignInfo(userId, DateFormatUtils.format(date));
+        if (signInInfo !=null){
+            UserSignInfoResp resp = getSignInInfoList();
+            resp.setSignInEd(Boolean.TRUE);
+            return resp;
+        }else {
+            signInInfo = UserSignInInfo.builder()
+                    .userId(userId)
+                    .goldCoin(30)
+                    .signInTime(date)
+                    .build();
+            userSignInfoDao.save(signInInfo);
+        }
+        return getSignInInfoList();
+    }
+
+    /**
+     * 获取我的签到记录
+     * @return
+     */
+    public UserSignInfoResp getSignInInfoList(){
+        String uid = UserHolder.getValue("uid");
+        List<UserSignInInfo> userSignInInfos = userSignInfoDao.querySignInfoList(Long.parseLong(uid));
+        if (CollectionUtils.isNotEmpty(userSignInInfos)){
+            return UserSignInfoResp.builder()
+                    .signInList(userSignInInfos)
+                    .days(1)
+                    .build();
+        }
+        return UserSignInfoResp.builder().build();
+    }
+    
 
     /**
      * 获取当前用户的角色id

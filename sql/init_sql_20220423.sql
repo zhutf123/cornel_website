@@ -188,6 +188,27 @@ ON COLUMN user_pay_info.status IS '0 待支付 1 已支付';
 insert into user_pay_info(user_id,product_id,order_id,product_name,money,status,pay_time,create_time) values(2,1,1,'测试产品',95.00,1,now(),now());
 
 
+
+--积分领取
+DROP TABLE IF EXISTS user_sign_in_info;
+CREATE TABLE user_sign_in_info
+(
+    id           serial PRIMARY KEY,
+    user_id   bigint,
+    gold_coin      integer,
+    status          integer default 0,
+    sign_in_time  timestamptz(6),
+    ext_info     hstore,
+    create_time  timestamptz(6) default now()
+)
+    WITH (OIDS = FALSE)
+;
+COMMENT
+ON COLUMN user_sign_in_info.gold_coin IS '获得金币数量';
+COMMENT
+ON COLUMN user_sign_in_info.sign_in_time IS '领取时间';
+
+
 DROP TABLE IF EXISTS teleplay;
 CREATE TABLE teleplay
 (
