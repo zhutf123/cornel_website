@@ -105,7 +105,7 @@
         <include refid="main_column"/>
         from user_sign_in_info
         where user_id=#{uid}
-        and sign_in_time::date = #{current}
+        and to_char(sign_in_time,'yyyy-mm-dd') = #{current}
     </select>
 
 </mapper>
