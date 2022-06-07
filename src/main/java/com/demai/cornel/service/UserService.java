@@ -142,11 +142,11 @@ import static com.demai.cornel.util.CookieAuthUtils.c_key;
         Long userId = Long.parseLong(uid);
         Date date = DateUtils.now();
         UserSignInInfo signInInfo = userSignInfoDao.queryUserSignInfo(userId, DateFormatUtils.format(date));
-        if (signInInfo !=null){
+        if (signInInfo != null) {
             UserSignInfoResp resp = getSignInInfoList();
             resp.setSignInEd(Boolean.TRUE);
             return resp;
-        }else {
+        } else {
             signInInfo = UserSignInInfo.builder()
                     .userId(userId)
                     .goldCoin(30)
