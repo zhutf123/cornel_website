@@ -9,7 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/UserSignInParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/reqParam/UserSignInParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserSignInMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserSignInMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +232,7 @@
       <workItem from="1654134884698" duration="1191000" />
       <workItem from="1654215099913" duration="10670000" />
       <workItem from="1654330620451" duration="7618000" />
-      <workItem from="1654608320694" duration="8121000" />
+      <workItem from="1654608320694" duration="8257000" />
     </task>
     <servers />
   </component>
