@@ -52,7 +52,7 @@ public class UserInfoController {
     }
 
     @RequestMapping(value = "/signIn.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonListResult signIn(
-            @RequestBody UserSignInParam param, HttpServletResponse response) {
+             HttpServletResponse response) {
         try {
             UserSignInfoResp signInfoResp = userService.doSignIn();
             if (signInfoResp.getSignInEd()) {
@@ -67,7 +67,7 @@ public class UserInfoController {
 
 
     @RequestMapping(value = "/mySignInList.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody
-    public JsonListResult mySignInList(@RequestBody UserSignInParam param, HttpServletResponse response) {
+    public JsonListResult mySignInList(HttpServletResponse response) {
         try {
             UserSignInfoResp signInfoResp = userService.getSignInInfoList();
             return JsonListResult.success(signInfoResp);
