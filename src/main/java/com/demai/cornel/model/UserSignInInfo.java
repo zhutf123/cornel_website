@@ -29,5 +29,4 @@ public class UserSignInInfo implements Serializable {
     private Integer status ;
     private Date signInTime ;
     private Map<String,String> extInfo ;
-    private Date createTime ;
 }

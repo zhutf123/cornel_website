@@ -18,8 +18,7 @@
         gold_coin,
         status,
         sign_in_time,
-        ext_info,
-        create_time
+        ext_info
     </sql>
 
     <update id="update" parameterType="com.demai.cornel.model.UserSignInInfo">
