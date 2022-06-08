@@ -24,7 +24,7 @@
                     scroll-y
                 >
                     <block wx:if="{{activeIndex === 0}}">
-                        <view class="search g-flexbox" bindtap="gotoSearch">
+                        <view class="search g-flexbox hide" bindtap="gotoSearch">
                             <image class="search-ico" src="/assets/images/search.png" />
                             <text class="search-tip flex"></text>
                         </view>
@@ -63,7 +63,7 @@
                                     data-title="{{item.name}}"
                                     bindtap="jumpToList"
                                 >
-                                    <image class="m1-pic" src="{{item.teleplayList[0].mainImage}}" />
+                                    <image class="m1-pic" src="/assets/images/ch{{item.id}}.png" />
                                 </view>
                             </view>
 

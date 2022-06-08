@@ -23,8 +23,8 @@
                     "scene": null
                 },
                 {
-                    "name": "recm",
-                    "pathName": "pages/recommend/index",
+                    "name": "films",
+                    "pathName": "pages/films/index",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
