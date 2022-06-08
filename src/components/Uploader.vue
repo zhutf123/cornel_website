@@ -1,7 +1,7 @@
 <template>
     <el-upload
         :class="type === 'avatar' ? 'avatar-uploader' : ''"
-        :action="'//wx.ydwlys.com/admin/file/upload.json?type=' + apiType"
+        :action="'/admin/file/upload.json?type=' + apiType"
         :multiple="multiple"
         :show-file-list="false"
         :on-success="onUploaded"
