@@ -55,3 +55,8 @@
     font-size: 11px;
     color: #8c8c8c;
 }
+
+.empty {
+    text-align: center;
+    font-size: 12px;
+}

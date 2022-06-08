@@ -1,4 +1,4 @@
-<view class="m-list g-flexbox" wx:if="{{list.left}}">
+<view class="m-list g-flexbox">
     <view class="col left">
         <common-list-item
             wx:for="{{list.left}}"
@@ -13,7 +13,7 @@
             item="{{item}}"
         />
     </view>
-</view>
-<view class="noresult" wx:else>
-    暂时没有更多数据了
+    <view class="empty" wx:if="{{list.empty}}">
+        暂时没有数据
+    </view>
 </view>

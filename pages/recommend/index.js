@@ -56,6 +56,9 @@ Page({
             }
         });
     },
+    gotoSearch() {
+        route.go('search');
+    },
 
     // 推荐tab的数据
     getRecommendData() {

@@ -9,6 +9,7 @@
         </view>
         <scroll-view scroll-x class="watched-list">
             <watched-item
+                class="watched-item"
                 wx:for="{{watchedList}}"
                 wx:key="videoId"
                 data-idx="{{index}}"

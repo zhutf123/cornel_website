@@ -36,6 +36,9 @@ Page({
     clickWatched() {
         route.go('watchedHistory');
     },
+    jumpToFollow() {
+        route.relaunch('follow');
+    },
     jumpToVideo(e) {
         const {id} = e.target.dataset;
         route.go('videoDetail', {

@@ -24,7 +24,7 @@
                     scroll-y
                 >
                     <block wx:if="{{activeIndex === 0}}">
-                        <view class="search g-flexbox">
+                        <view class="search g-flexbox" bindtap="gotoSearch">
                             <image class="search-ico" src="/assets/images/search.png" />
                             <text class="search-tip flex"></text>
                         </view>

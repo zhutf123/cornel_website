@@ -65,5 +65,9 @@ page {
 }
 
 .watched-list {
-    padding-left: 10px;
+    width: 100%;
+    white-space: nowrap;
+}
+.watched-item:first-of-type {
+    margin-left: 10px;
 }
