@@ -58,40 +58,40 @@
         </view>
 
         <!-- 选集弹层 -->
-        <view class="m-panel select-panel g-flexbox-column" wx:if="{{showSelectPanel}}">
-            <view class="flex" bindtap="toggleSelectPanel" />
-            <view class="main g-flexbox-column">
-                <view class="tit g-flexbox" bindtap="toggleSelectPanel">
-                    <view class="flex">
-                        <text class="tit-txt">{{videoInfo.title}}</text>
-                    </view>
-                    <image class="arrow-down" src="/assets/images/arrow-down-d.png" />
+        <panel class="m-panel select-panel g-flexbox-column"
+            wx:if="{{showSelectPanel}}"
+            bind:clickMask="toggleSelectPanel"
+        >
+            <view class="tit g-flexbox" bindtap="toggleSelectPanel">
+                <view class="flex">
+                    <text class="tit-txt">{{videoInfo.title}}</text>
                 </view>
-                <scroll-view scroll-x class="episode hide">
-                    <view class="episode-item">
-                        1-30
-                    </view>
-                    <view class="episode-item">
-                        31-60
-                    </view>
-                </scroll-view>
-                <scroll-view scroll-y class="flex episode-list">
-                    <view class="episode-list-item g-flexbox {{item.id === playInfo.id ? 'active' : ''}}" wx:for="{{videoInfo.videoList}}"
-                        wx:key="id"
-                        data-index="{{index}}"
-                        bindtap="changeVideo"
-                    >
-                        <view class="thumb">
-                            <image class="thumb" mode="cover" src="{{item.mainImage}}" />
-                            <view class="thumb-lock g-flexbox" wx:if="{{item.lock}}">
-                                解锁观看
-                            </view>
-                        </view>
-                        <view class="desc flex clamp2">{{item.title}} | {{item.desc}}</view>
-                    </view>
-                </scroll-view>
+                <image class="arrow-down" src="/assets/images/arrow-down-d.png" />
             </view>
-        </view>
+            <scroll-view scroll-x class="episode hide">
+                <view class="episode-item">
+                    1-30
+                </view>
+                <view class="episode-item">
+                    31-60
+                </view>
+            </scroll-view>
+            <scroll-view scroll-y class="flex episode-list">
+                <view class="episode-list-item g-flexbox {{item.id === playInfo.id ? 'active' : ''}}" wx:for="{{videoInfo.videoList}}"
+                    wx:key="id"
+                    data-index="{{index}}"
+                    bindtap="changeVideo"
+                >
+                    <view class="thumb">
+                        <image class="thumb" mode="cover" src="{{item.mainImage}}" />
+                        <view class="thumb-lock g-flexbox" wx:if="{{item.lock}}">
+                            解锁观看
+                        </view>
+                    </view>
+                    <view class="desc flex clamp2">{{item.title}} | {{item.desc}}</view>
+                </view>
+            </scroll-view>
+        </panel>
 
         <!-- 解锁剧集弹层 -->
         <panel class="unlock-panel"

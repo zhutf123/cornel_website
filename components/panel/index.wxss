@@ -1,7 +1,7 @@
 @import '/assets/styles/common.wxss';
 
 .m-panel {
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     left: 0;
     right: 0;
@@ -9,7 +9,7 @@
     top: 0;
     background-color: rgba(0, 0, 0, .5);
 }
-.m-panel .main {
+.main {
     width: 100%;
     background-color: #fff;
     border-radius: 10px 10px 0 0;
