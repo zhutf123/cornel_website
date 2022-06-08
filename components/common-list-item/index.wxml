@@ -1,0 +1,31 @@
+<view class="list-item" bindtap="jumpToVideo" data-id="{{item.id}}">
+    <view class="pic">
+        <image
+            class="pic-bg"
+            src="{{item.mainImage}}"
+            mode="cover"
+        />
+        <image
+            class="pic-like"
+            src="/assets/images/ico-z.png"
+            catchtap="clickLike"
+            data-id="{{item.id}}"
+        />
+    </view>
+    <view class="info">
+        <view class="info-tit g-flexbox">
+            {{item.title}}
+        </view>
+        <view class="info-desc">
+            {{item.depict}}
+        </view>
+        <view class="tags">
+            <view class="tag tag-r">
+                <text class="tag-txt">热播top2</text>
+            </view>
+            <view class="tag">
+                <text class="tag-txt">情感</text>
+            </view>
+        </view>
+    </view>
+</view>

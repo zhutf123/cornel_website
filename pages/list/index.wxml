@@ -1,0 +1,3 @@
+<view class="m-list">
+    <common-list list="{{list}}" />
+</view>

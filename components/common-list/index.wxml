@@ -1,0 +1,19 @@
+<view class="m-list g-flexbox" wx:if="{{list.left}}">
+    <view class="col left">
+        <common-list-item
+            wx:for="{{list.left}}"
+            wx:key="id"
+            item="{{item}}"
+        />
+    </view>
+    <view class="col right">
+        <common-list-item
+            wx:for="{{list.right}}"
+            wx:key="id"
+            item="{{item}}"
+        />
+    </view>
+</view>
+<view class="noresult" wx:else>
+    暂时没有更多数据了
+</view>

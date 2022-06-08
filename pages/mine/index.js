@@ -1,18 +1,14 @@
-// index.js
+import route from '../../utils/route';
 // 获取应用实例
 const app = getApp()
 
 Page({
     data: {
-        nbFrontColor: '#000000',
-        nbBackgroundColor: '#ffffff',
+        userInfo: {}
     },
     onLoad() {
-        this.setData({
-            nbTitle: '新标题',
-            nbLoading: true,
-            nbFrontColor: '#ffffff',
-            nbBackgroundColor: '#999',
-        })
+    },
+    jumpToFollow() {
+        route.relaunch('follow');
     }
 })

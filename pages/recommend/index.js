@@ -1,6 +1,6 @@
 import route from '../../utils/route';
-import { getWatchedHistory, getFollowList, removeFollow, getTabs, getBannerList, getTeleplayList } from '../../utils/apis';
-import { getWindowInfo } from '../../utils/util';
+import { getTabs, getBannerList, getTeleplayList, addFollow } from '../../utils/apis';
+import { getWindowInfo, handleWaterfall } from '../../utils/util';
 
 const {safeareaTop} = getApp().globalData;
 
@@ -10,7 +10,7 @@ Page({
         tabContHeight: getWindowInfo().windowHeight - safeareaTop - 44 - 44,
         activeIndex: 0,
         tabList: [],
-        list: [],
+        list: {},
         banners: []
     },
     onLoad() {
@@ -30,15 +30,14 @@ Page({
     onTabChange(e) {
         console.log(e);
         const {index} = e.detail;
-        const tab = this.data.tabList[index];
+        this.setData({
+            activeIndex: index,
+            list: {}
+        });
+        this.isLoading = false;
+        this.pageNum = 1;
 
-        if (index === 0) {
-            this.setData({
-                activeIndex: e.detail.index
-            });
-        } else {
-            this.getTeleplayList(index);
-        }
+        this.getTeleplayList(index);
     },
     getTeleplayList(index) {
         const curIndex = index === undefined ? this.data.activeIndex : index;
@@ -50,7 +49,7 @@ Page({
         getTeleplayList(channel, this.pageNum).then(res => {
             if (res.data) {
                 this.setData({
-                    list: [...this.data.list, res.data],
+                    list: handleWaterfall(this.data.list, res.data),
                     activeIndex: index
                 });
                 this.isLoading = res.data.length < 10;
@@ -69,7 +68,11 @@ Page({
         });
     },
     onScroll(e) {
+        const {scrollTop, scrollHeight} = e.detail;
 
+        if (this.data.tabContHeight + scrollTop >= scrollHeight - 200) {
+            this.getTeleplayList();
+        }
     },
 
     jumpToVideo(e) {
@@ -78,9 +81,9 @@ Page({
             videoId: id
         });
     },
+
     changeFollow() {
-        removeFollow(this.followId).then(res => {
-            console.log(res);
+        addFollow(this.followId).then(res => {
             if (res.status === 0) {
                 this.setData({
                     followedList: this.data.followedList.filter(item => item.videoId !== this.followId)

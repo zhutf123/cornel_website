@@ -52,10 +52,13 @@
                                 </view>
                             </swiper-item>
                         </swiper>
+                        <common-list />
                     </block>
-                    <scroll-view class="tab-cont" wx:else>
-                        <view>{{item.name}}</view>
-                    </scroll-view>
+                    <block wx:else>
+                        <common-list
+                            list="{{list}}"
+                        />
+                    </block>
                 </scroll-view>
             </van-tab>
         </van-tabs>

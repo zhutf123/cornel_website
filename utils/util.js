@@ -35,3 +35,22 @@ export const Toast = {
 export function getWindowInfo() {
     return wx.getSystemInfoSync();
 }
+
+export function handleWaterfall(list = {}, data = []) {
+    const {left: oLeft = [], right: oRight = []} = list;
+    const left = [];
+    const right = [];
+    
+    data.forEach((item, index) => {
+        if (index % 2 === 0) {
+            left.push(item);
+        } else {
+            right.push(item);
+        }
+    })
+
+    return {
+        left: [...oLeft, ...left],
+        right: [...oRight, ...right]
+    };
+}

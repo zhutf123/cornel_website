@@ -1,2 +1,20 @@
-<view class="container">
+<view class="m-mine">
+    <view class="info g-flexbox">
+        <image class="avatar" src="/assets/images/logo-d.png" />
+        <view class="name">未登录</view>
+    </view>
+    <view class="list">
+        <view class="item g-flexbox" bindtap="jumpToFollow">
+            <view class="item-tit flex">我追的剧</view>
+            <image class="arrow-ico" src="/assets/images/arrow-right-d.png" />
+        </view>
+        <view class="item g-flexbox">
+            <view class="item-tit flex">联系客服</view>
+            <image class="arrow-ico" src="/assets/images/arrow-right-d.png" />
+        </view>
+        <!-- <view class="item g-flexbox">
+            <view class="item-tit flex">设置</view>
+            <image class="arrow-ico" src="/assets/images/arrow-right-d.png" />
+        </view> -->
+    </view>
 </view>

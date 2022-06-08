@@ -5,6 +5,7 @@
         "pages/films/index",
         "pages/recommend/index",
         "pages/mine/index",
+        "pages/list/index",
         "pages/videoDetail/index"
     ],
     "tabBar": {
@@ -47,6 +48,8 @@
         "vip-panel": "/components/vip-panel/index",
         "list-item": "/components/list-item/index",
         "like-item": "/components/like-item/index",
+        "common-list": "/components/common-list/index",
+        "common-list-item": "/components/common-list-item/index",
         "dialog": "/components/dialog/index",
         "watched-item": "/components/watched-item/index",
         "watched-history-item": "/components/watched-history-item/index"
