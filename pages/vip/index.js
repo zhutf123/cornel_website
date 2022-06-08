@@ -12,6 +12,9 @@ Page({
     onLoad() {
         this.getMyWatched();
     },
+    onGetVip() {
+
+    },
     getMyWatched() {
         getWatchedHistory().then(res => {
             const {data: watchedList = [], allNum: watchedListTotal = 0} = res;

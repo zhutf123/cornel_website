@@ -1,0 +1,41 @@
+<view class="m-search">
+    <view class="search-bar">
+        <view class="search-cont g-flexbox">
+            <image class="search-ico" src="/assets/images/search.png" />
+            <form class="flex" bindsubmit="search">
+                <input class="search-input"
+                    confirm-type="search"
+                    bindinput="onInput"
+                    focus
+                />
+            </form>
+        </view>
+        <view class="search-btn">
+
+        </view>
+    </view>
+    <view class="search-list">
+        <view class="follow-empty" wx:if="{{list.length === 0 && hasSearched}}">
+            <image class="noresult" src="/assets/images/noresult.png" />
+            <view class="empty-main g-flexbox-column">
+                <text class="desc">暂无追剧</text>
+                <text class="desc-tip">追剧后，热门剧集会在这里显示</text>
+                <image class="btn" src="/assets/images/btn1.png" bindtap="jumpToRecm" />
+            </view>
+        </view>
+        <block wx:else>
+            <view class="item g-flexbox">
+                <image class="ico-item" src="/assets/images/t1.png" />
+                <view class="item-name">暗夜制裁者</view>
+            </view>
+            <view class="item g-flexbox">
+                <image class="ico-item" src="/assets/images/t1.png" />
+                <view class="item-name">白夜追凶</view>
+            </view>
+            <view class="item g-flexbox trash">
+                <image class="ico-trash" src="/assets/images/trash.png" />
+                <view class="trash-txt">清空搜索记录</view>
+            </view>
+        </block>
+    </view>
+</view>

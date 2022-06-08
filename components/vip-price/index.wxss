@@ -1,0 +1,59 @@
+@import '/assets/styles/common.wxss';
+
+.vip-list {
+    padding: 0 10px;
+    font-size: 0;
+    width: 100%;
+    justify-content: space-around;
+}
+.vip-item {
+    position: relative;
+    width: 210rpx;
+    height: 240rpx;
+    background: #FFFFFF;
+    border: 3px solid rgba(237,237,237,1);
+    border-radius: 8px;
+    text-align: center;
+}
+.vip-item.active {
+    background: #FCF8EC;
+    border: 3px solid rgba(230,184,118,1);
+}
+.vip-item .tag {
+    position: absolute;
+    right: -3px;
+    top: -8px;
+    padding: 2px 13px;
+    background-image: linear-gradient(240deg, #E6B876 33%, #F0CC98 100%);
+    border-radius: 0px 13px 0px 13px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.vip-item .time {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 22px;
+}
+.vip-item .price {
+    justify-content: center;
+    align-items: flex-end;
+}
+.vip-item .yen {
+    font-size: 14px;
+    top: -6px;
+    position: relative;
+}
+.vip-item .price-num {
+    font-size: 32px;
+    font-weight: bold;
+}
+.vip-item .origin {
+    font-size: 16px;
+    color: #838185;
+}
+.vip-item .origin-price {
+    text-decoration: line-through;
+}
+.vip-btn {
+    margin: 21px auto 0;
+}

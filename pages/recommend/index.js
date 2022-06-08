@@ -82,6 +82,10 @@ Page({
         });
     },
 
+    jumpToSearch() {
+        route.go('search');
+    },
+
     changeFollow() {
         addFollow(this.followId).then(res => {
             if (res.status === 0) {

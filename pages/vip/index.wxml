@@ -1,0 +1,84 @@
+<view class="m-vip">
+    <image class="vip-bg" mode="widthFix" src="/assets/images/vip-bg.png" />
+
+
+    <view class="info g-flexbox">
+        <image class="avatar" src="/assets/images/logo-{{userInfo.name ? 'l' : 'd'}}.png" />
+        <view class="user-info g-flexbox-column flex">
+            <view class="name g-flexbox">
+                {{userInfo.name || '游客'}}
+                <image class="vip-tag" src="/assets/images/vip-tag.png" />
+            </view>
+            <view class="desc">{{userInfo.vipTime ? '蜂巢VIP：' + userInfo.vipTime : '开通会员，尊享多重特权'}}</view>
+        </view>
+        <view class="login-btn" wx:if="{{userInfo.name}}">登录</view>
+    </view>
+
+
+    <view class="vip-choose">
+        <vip-price bind:onGetVip="onGetVip" />
+    </view>
+
+
+    <view class="title g-flexbox">
+        <text class="title-txt">会员特权</text>
+    </view>
+    <view class="vip-private g-flexbox">
+        <view class="private-item">
+            <image class="private-pic" mode="widthFix" src="/assets/images/private0.png" />
+        </view>
+        <view class="private-item">
+            <image class="private-pic" mode="widthFix" src="/assets/images/private1.png" />
+        </view>
+        <view class="private-item">
+            <image class="private-pic" mode="widthFix" src="/assets/images/private2.png" />
+        </view>
+        <view class="private-item">
+            <image class="private-pic" mode="widthFix" src="/assets/images/private3.png" />
+        </view>
+    </view>
+
+
+    <view wx:if="{{watchedListTotal > 0}}">
+        <view class="title g-flexbox">
+            <text class="title-txt">会员特权</text>
+        </view>
+        <scroll-view scroll-x class="watched-list">
+            <watched-item
+                wx:for="{{watchedList}}"
+                wx:key="videoId"
+                data-idx="{{index}}"
+                data-id="{{item.videoId}}"
+                item="{{item}}"
+                bind:onClick="jumpToVideo"
+            />
+            <watched-item
+                wx:if="{{watchedListTotal > 10}}"
+                more="true"
+                bind:onClick="clickWatched"
+            />
+        </scroll-view>
+    </view>
+
+
+    <view class="title g-flexbox">
+        <text class="title-txt">会员帮助中心</text>
+    </view>
+    <view class="vip-help g-flexbox">
+        <view class="help-item flex">
+            <image class="help-pic" mode="widthFix" src="/assets/images/help0.png" />
+            <view class="help-txt">常见问题</view>
+        </view>
+        <view class="help-item flex">
+            <image class="help-pic" mode="widthFix" src="/assets/images/help1.png" />
+            <view class="help-txt">联系客服</view>
+        </view>
+        <view class="help-item flex">
+            <image class="help-pic" mode="widthFix" src="/assets/images/help2.png" />
+            <view class="help-txt">会员未到账</view>
+        </view>
+    </view>
+
+
+    <view class="fill" />
+</view>

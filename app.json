@@ -6,6 +6,9 @@
         "pages/recommend/index",
         "pages/mine/index",
         "pages/list/index",
+        "pages/search/index",
+        "pages/vip/index",
+        "pages/webview/index",
         "pages/videoDetail/index"
     ],
     "tabBar": {
@@ -46,6 +49,7 @@
         "nav": "/components/nav/index",
         "panel": "/components/panel/index",
         "vip-panel": "/components/vip-panel/index",
+        "vip-price": "/components/vip-price/index",
         "list-item": "/components/list-item/index",
         "like-item": "/components/like-item/index",
         "common-list": "/components/common-list/index",

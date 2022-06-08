@@ -3,12 +3,32 @@
         <image class="avatar" src="/assets/images/logo-d.png" />
         <view class="name">未登录</view>
     </view>
+    <view class="m-watched" wx:if="{{watchedListTotal > 0}}">
+        <view class="title g-flexbox">
+            <text class="title-txt">最近观看</text>
+        </view>
+        <scroll-view scroll-x class="watched-list">
+            <watched-item
+                wx:for="{{watchedList}}"
+                wx:key="videoId"
+                data-idx="{{index}}"
+                data-id="{{item.videoId}}"
+                item="{{item}}"
+                bind:onClick="jumpToVideo"
+            />
+            <watched-item
+                wx:if="{{watchedListTotal > 10}}"
+                more="true"
+                bind:onClick="clickWatched"
+            />
+        </scroll-view>
+    </view>
     <view class="list">
         <view class="item g-flexbox" bindtap="jumpToFollow">
             <view class="item-tit flex">我追的剧</view>
             <image class="arrow-ico" src="/assets/images/arrow-right-d.png" />
         </view>
-        <view class="item g-flexbox">
+        <view class="item g-flexbox" bindtap="jumpToConsult">
             <view class="item-tit flex">联系客服</view>
             <image class="arrow-ico" src="/assets/images/arrow-right-d.png" />
         </view>

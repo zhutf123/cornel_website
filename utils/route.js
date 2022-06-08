@@ -19,6 +19,12 @@ const back = (delta = 1) => {
         delta
     });
 };
+const replace = (pageName, query) => {
+    const url = genUrl(pageName, query);
+    wx.switchTo({
+        url
+    });
+};
 
 const relaunch = (pageName, query) => {
     const url = genUrl(pageName, query);
@@ -30,5 +36,6 @@ const relaunch = (pageName, query) => {
 module.exports = {
     go,
     back,
+    replace,
     relaunch
 }

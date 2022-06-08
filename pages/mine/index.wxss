@@ -29,6 +29,7 @@ page {
     padding: 0 13px;
 }
 .item {
+    position: relative;
     padding: 15px 0;
     line-height: 20px;
     font-size: 14px;
@@ -37,4 +38,32 @@ page {
 .arrow-ico {
     width: 5px;
     height: 10px;
+}
+.contact-btn {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.m-watched {
+    border-bottom: 10px solid #f2f2f2;
+}
+.title {
+    padding: 15px 12px;
+}
+.title-ico {
+    width: 26rpx;
+    height: 24rpx;
+}
+.title-txt {
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.watched-list {
+    padding-left: 10px;
 }
