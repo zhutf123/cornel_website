@@ -1,10 +1,11 @@
-import { getFollowList } from '../../utils/apis';
+import { getFollowList, getTeleplayList } from '../../utils/apis';
 import { handleWaterfall } from '../../utils/util';
 
 function empty() {}
 
 const methods = {
-    getFollowList
+    getFollowList,
+    getTeleplayList
 };
 
 Page({
@@ -13,13 +14,19 @@ Page({
     },
     onLoad(queryParams) {
         this.pageNum = 1;
+        this.isLoading = false;
         this.queryParams = queryParams;
         this.request = methods[queryParams.method] || empty;
-        this.extraParams = queryParams.extraParams || {};
-
+        try {
+            this.extraParams = JSON.parse(queryParams.extraParams);
+        } catch {
+            this.extraParams = queryParams.extraParams;
+        }
         wx.setNavigationBarTitle({
-            title: queryParams.title
+            title: queryParams.title || ''
         });
+
+        this.loadData();
     },
     loadData() {
         if (this.isLoading) {
@@ -29,8 +36,9 @@ Page({
         this.request({...this.extraParams, pageNum: this.pageNum})
             .then(res => {
                 if (res.data) {
+                    this.pageNum++;
                     this.setData({
-                        list: handleWaterfall(list, res.data)
+                        list: handleWaterfall(this.data.list, res.data)
                     });
                     this.isLoading = res.data.length < 10;
                 }

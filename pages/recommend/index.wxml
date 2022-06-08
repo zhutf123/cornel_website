@@ -52,7 +52,81 @@
                                 </view>
                             </swiper-item>
                         </swiper>
-                        <common-list />
+
+                        <block wx:for="{{recmList}}" wx:for-item="row"
+                            wx:key="index"
+                        >
+                            <view class="m1 g-flexbox" wx:if="{{row.type === 1}}">
+                                <view class="m1-item" wx:for="{{row.list}}"
+                                    wx:key="id"
+                                    data-channel="{{item.id}}"
+                                    data-title="{{item.name}}"
+                                    bindtap="jumpToList"
+                                >
+                                    <image class="m1-pic" src="{{item.teleplayList[0].mainImage}}" />
+                                </view>
+                            </view>
+
+                            <view class="m2" wx:elif="{{row.type === 2}}">
+                                <view class="m2-tit g-flexbox">
+                                    <view class="tit-txt flex">{{row.name}}</view>
+                                    <view class="m2-more"
+                                        data-channel="{{item.id}}"
+                                        data-title="{{row.name}}"
+                                        bindtap="jumpToList"
+                                    >
+                                        查看更多
+                                        <image class="m2-arrow" src="/assets/images/arrow-right-g.png" />    
+                                    </view>
+                                </view>
+                                <view class="m2-list g-flexbox">
+                                    <watched-item
+                                        wx:for="{{row.teleplayList}}"
+                                        wx:key="id"
+                                        item="{{item}}"
+                                    />
+                                </view>
+                            </view>
+
+                            <view class="m2" wx:elif="{{row.type === 3}}">
+                                <view class="m2-tit g-flexbox">
+                                    <view class="tit-txt flex">{{row.name}}</view>
+                                    <view class="m2-more"
+                                        data-channel="{{item.id}}"
+                                        data-title="{{row.name}}"
+                                        bindtap="jumpToList"
+                                    >
+                                        查看更多
+                                        <image class="m2-arrow" src="/assets/images/arrow-right-g.png" />    
+                                    </view>
+                                </view>
+                                <view class="m2-list g-flexbox">
+                                    <watched-item
+                                        wx:for="{{row.teleplayList}}"
+                                        wx:key="id"
+                                        item="{{item}}"
+                                    />
+                                </view>
+                            </view>
+
+                            <view class="m2 m4" wx:elif="{{row.type === 4}}">
+                                <view class="m2-tit g-flexbox">
+                                    <view class="tit-txt flex">{{row.name}}</view>
+                                    <view class="m2-more"
+                                        data-channel="{{item.id}}"
+                                        data-title="{{row.name}}"
+                                        bindtap="jumpToList"
+                                    >
+                                        查看更多
+                                        <image class="m2-arrow" src="/assets/images/arrow-right-g.png" />    
+                                    </view>
+                                </view>
+                                <view class="m4-list">
+                                    <common-list list="{{row.teleplayList}}" />
+                                </view>
+                            </view>
+
+                        </block>
                     </block>
                     <block wx:else>
                         <common-list

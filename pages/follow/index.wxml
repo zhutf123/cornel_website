@@ -11,7 +11,6 @@
                     class="watched-item"
                     wx:for="{{watchedList}}"
                     wx:key="videoId"
-                    data-idx="{{index}}"
                     data-id="{{item.videoId}}"
                     item="{{item}}"
                     bind:onClick="jumpToVideo"

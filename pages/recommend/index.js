@@ -1,5 +1,5 @@
 import route from '../../utils/route';
-import { getTabs, getBannerList, getTeleplayList, addFollow } from '../../utils/apis';
+import { getTabs, getBannerList, getTeleplayList, addFollow, getRankInfoList } from '../../utils/apis';
 import { getWindowInfo, handleWaterfall } from '../../utils/util';
 
 const {safeareaTop} = getApp().globalData;
@@ -15,7 +15,7 @@ Page({
     },
     onLoad() {
         this.initPage();
-        this.listPage = [0];
+        this.pageNum = 1;
     },
     initPage() {
         getTabs().then(res => {
@@ -42,12 +42,14 @@ Page({
     getTeleplayList(index) {
         const curIndex = index === undefined ? this.data.activeIndex : index;
         const {id: channel} = this.data.tabList[curIndex];
-        if (this.isLoading) {
+
+        if (this.isLoading || index === 0) {
             return;
         }
         this.isLoading = true;
-        getTeleplayList(channel, this.pageNum).then(res => {
+        getTeleplayList({channel, pageNum: this.pageNum}).then(res => {
             if (res.data) {
+                this.pageNum += 1;
                 this.setData({
                     list: handleWaterfall(this.data.list, res.data),
                     activeIndex: index
@@ -69,13 +71,48 @@ Page({
                 });
             }
         });
+        getRankInfoList().then(res => {
+            console.log(res);
+            if (res.data) {
+                const special = [];
+                const data = [];
+                res.data.forEach(item => {
+                    if (item.type === 1) {
+                        special.push(item);
+                    } else {
+                        if (item.type === 4) {
+                            item.teleplayList = handleWaterfall({}, item.teleplayList);
+                        }
+                        data.push(item);
+                    }
+                });
+                this.setData({
+                    recmList: [{
+                        id: -100,
+                        type: 1,
+                        list: special
+                    }, ...data]
+                });
+            }
+        });
     },
     onScroll(e) {
         const {scrollTop, scrollHeight} = e.detail;
 
         if (this.data.tabContHeight + scrollTop >= scrollHeight - 200) {
-            this.getTeleplayList();
+            this.getTeleplayList(this.data.activeIndex);
         }
+    },
+
+    jumpToList(e) {
+        const {channel, title} = e.currentTarget.dataset;
+        route.go('list', {
+            title,
+            extraParams: JSON.stringify({
+                channel
+            }),
+            method: 'getTeleplayList'
+        });
     },
 
     jumpToVideo(e) {

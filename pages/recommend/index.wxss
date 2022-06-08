@@ -81,3 +81,52 @@
     width: 53px;
     height: 26px;
 }
+
+
+.m1 {
+    padding: 20px 7px 0 12px;
+}
+.m1-item {
+    width: 25%;
+    height: 108rpx;
+    padding-right: 5px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.m1-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.m2 {
+    padding-top: 19px;
+    padding-left: 12px;
+}
+.m2-tit {
+    margin-bottom: 15px;
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.m2-more {
+    padding-right: 12px;
+    font-size: 11px;
+    color: #8c8c8c;
+}
+.m2-arrow {
+    position: relative;
+    top: 1px;
+    width: 6px;
+    height: 10px;
+}
+
+.m4 {
+    padding-left: 0;
+    background-color: #f2f2f2;
+}
+.m4 .m2-tit {
+    margin-bottom: 3px;
+    padding-left: 12px;
+}

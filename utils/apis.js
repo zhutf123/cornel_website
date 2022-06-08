@@ -47,7 +47,7 @@ export function getBannerList() {
         url: '/user/bannerList.json'
     });
 }
-export function getTeleplayList(channel, pageNum = 1) {
+export function getTeleplayList({channel, pageNum = 1}) {
     return post({
         url: '/user/teleplayList.json',
         data: {
@@ -58,7 +58,9 @@ export function getTeleplayList(channel, pageNum = 1) {
     });
 }
 export function getRankInfoList() {
-
+    return post({
+        url: '/user/rankInfoList.json'
+    });
 }
 export function changeRankInfo(rankInfoId, pageNum) {
     return post({
