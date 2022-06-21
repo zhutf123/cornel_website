@@ -1,15 +1,17 @@
 <template>
     <el-upload
-        :class="type === 'avatar' ? 'avatar-uploader' : ''"
+        v-loading="loading"
+        :class="[{'avatar-uploader': type === 'avatar'}, className]"
         :action="'/admin/file/upload.json?type=' + apiType"
         :multiple="multiple"
         :show-file-list="false"
+        :on-progress="onProgress"
         :on-success="onUploaded"
     >
         <el-button size="small" type="primary" v-if="type === 'button'">本地上传</el-button>
         <template v-else-if="type === 'avatar'">
-            <div v-if="data.url">
-                <img v-if="sourceType === 'pic'" :src="data.url" class="avatar" />
+            <div v-if="data.url" class="preview">
+                <img v-if="sourceType === 'pic'" :src="data.url" />
                 <video controls :src="data.url" v-else />
             </div>
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -21,6 +23,10 @@
 import './uploader.scss';
 export default {
     props: {
+        className: {
+            type: String,
+            default: ''
+        },
         type: {
             type: String,
             default: 'button'
@@ -49,12 +55,16 @@ export default {
     },
     data() {
         return {
+            loading: false,
             data: {}
         };
     },
     methods: {
+        onProgress() {
+            this.loading = true;
+        },
         onUploaded(res) {
-            console.log(res);
+            this.loading = false;
             if (res.data) {
                 this.data = {
                     url: res.data.url

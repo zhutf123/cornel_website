@@ -17,9 +17,16 @@
         line-height: 178px;
         text-align: center;
     }
-    .avatar {
+
+    .preview {
         width: 178px;
         height: 178px;
-        display: block;
+
+        img,
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 }

@@ -30,6 +30,7 @@
                 <el-form-item label="设置封面" prop="mainImage">
                     <uploader
                         :key="refresh"
+                        className="uploader"
                         type="avatar"
                         :onSuccess="onUploadImg"
                     />
@@ -49,6 +50,8 @@
                 </el-form-item>
                 <el-form-item class="video" label="视频" prop="videoUrl">
                     <uploader
+                        :key="refresh"
+                        className="uploader"
                         type="avatar"
                         sourceType="video"
                         :onSuccess="onUploadVideo"
