@@ -159,6 +159,7 @@ export default {
                 }
                 updateSubEpisode(form).then(res => {
                     if (res.status === 0) {
+                        this.$message.success('发布成功');
                         this.reset();
                     }
                 })
