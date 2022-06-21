@@ -161,6 +161,8 @@ export default {
                     if (res.status === 0) {
                         this.$message.success('发布成功');
                         this.reset();
+                    } else {
+                        this.$message.error(res.msg || '发布失败');
                     }
                 })
             });
