@@ -5,9 +5,9 @@
         <img src="./assets/logo.png" />
       </div>
       <div class="name">蜂巢小剧场</div>
-      <el-button type="primary"
+      <!-- <el-button type="primary"
         @click="gotoPublish"
-      >发布<i class="el-icon-caret-bottom el-icon-right"></i></el-button>
+      >发布<i class="el-icon-caret-bottom el-icon-right"></i></el-button> -->
 
       <el-collapse class="entry" v-model="collapse">
         <el-collapse-item name="manage">
