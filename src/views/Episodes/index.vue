@@ -127,6 +127,20 @@
                             @click="openSubEpisode(scope.$index, scope.row)"
                         >详细数据</el-button>
                     </div>
+                    <div v-if="scope.row.status === 1">
+                        <el-button
+                            type="text"
+                            class="color-danger"
+                            @click="offline(scope.$index, scope.row)"
+                        >下线</el-button>
+                    </div>
+                    <div v-else>
+                        <el-button
+                            type="text"
+                            class="color-success"
+                            @click="online(scope.$index, scope.row)"
+                        >上线</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -275,6 +289,30 @@ export default {
         },
         edit(index, data) {
             this.editingData = data;
+        },
+        online(index, data) {
+            updateEpisode({
+                ...data,
+                status: 1
+            }).then(res => {
+                if (res.status === 0) {
+                    this.search(this.form.pageNum);
+                } else {
+                    this.$message.error(res.msg || '删除失败');
+                }
+            });
+        },
+        offline(index, data) {
+            updateEpisode({
+                ...data,
+                status: 2
+            }).then(res => {
+                if (res.status === 0) {
+                    this.search(this.form.pageNum);
+                } else {
+                    this.$message.error(res.msg || '删除失败');
+                }
+            });
         },
         onConfirmEdit() {
             updateEpisode(this.editingData).then(res => {
