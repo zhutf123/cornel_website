@@ -116,18 +116,6 @@
                 fixed="right"
             >
                 <template slot-scope="scope">
-                    <div>
-                        <el-button
-                            type="text"
-                            @click="edit(scope.$index, scope.row)"
-                        >修改</el-button>
-                    </div>
-                    <div>
-                        <el-button
-                            type="text"
-                            @click="openSubEpisode(scope.$index, scope.row)"
-                        >详细数据</el-button>
-                    </div>
                     <div v-if="scope.row.status === 1">
                         <el-button
                             type="text"
@@ -141,6 +129,25 @@
                             class="color-success"
                             @click="online(scope.$index, scope.row)"
                         >上线</el-button>
+                    </div>
+                    <div>
+                        <el-button
+                            type="text"
+                            @click="edit(scope.$index, scope.row)"
+                        >修改</el-button>
+                    </div>
+                    <div>
+                        <el-button
+                            type="text"
+                            @click="openSubEpisode(scope.$index, scope.row)"
+                        >详细数据</el-button>
+                    </div>
+                    <div>
+                        <el-button
+                            type="text"
+                            class="color-danger"
+                            @click="del(scope.$index, scope.row)"
+                        >删除</el-button>
                     </div>
                 </template>
             </el-table-column>
@@ -301,6 +308,18 @@ export default {
         edit(index, data) {
             this.editingData = data;
         },
+        del(index, data) {
+            updateEpisode({
+                ...data,
+                status: -1
+            }).then(res => {
+                if (res.status === 0) {
+                    this.search(this.form.pageNum);
+                } else {
+                    this.$message.error(res.msg || '删除失败');
+                }
+            });
+        },
         online(index, data) {
             updateEpisode({
                 ...data,
@@ -309,7 +328,7 @@ export default {
                 if (res.status === 0) {
                     this.search(this.form.pageNum);
                 } else {
-                    this.$message.error(res.msg || '删除失败');
+                    this.$message.error(res.msg || '上线失败');
                 }
             });
         },
@@ -321,7 +340,7 @@ export default {
                 if (res.status === 0) {
                     this.search(this.form.pageNum);
                 } else {
-                    this.$message.error(res.msg || '删除失败');
+                    this.$message.error(res.msg || '下线失败');
                 }
             });
         },
