@@ -203,6 +203,7 @@
          count(1)
         from channel
         where status!=4
+        and status!=-1
         <if test="status !=null">
             and status=#{status}
         </if>
@@ -220,6 +221,7 @@
         <include refid="main_column"/>
         from channel
         where status!=4
+        and status!=-1
     </select>
 
     <select id="queryAllOnlineChannel" parameterType="com.demai.cornel.reqParam.QueryChannelParam"
@@ -248,6 +250,7 @@
         <include refid="group_main_column"/>
         from channel_group
         where status!=4
+        and status!=-1
         <if test="status !=null">
             and status=#{status}
         </if>
@@ -267,6 +270,7 @@
         count(1)
         from channel_group
         where status!=4
+        and status!=-1
         <if test="status !=null">
             and status=#{status}
         </if>

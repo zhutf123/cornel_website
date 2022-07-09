@@ -247,7 +247,7 @@
         )fd
         on t.id=fd.teleplay_id
         <where>
-            1=1
+            t.status!=-1
             <if test="id != null">
                and t.id=#{id}
             </if>
@@ -277,7 +277,7 @@
          count(1)
         from teleplay 
         <where>
-            1=1
+            status!=-1
             <if test="id != null">
                 and id=#{id}
             </if>
@@ -357,6 +357,7 @@
             t.depict
         from teleplay t,teleplay_video v
         where t.id=v.teleplay_id
+        and t.status!=-1
         and v.id=#{vid}
     </select>
 
