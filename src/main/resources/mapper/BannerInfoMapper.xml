@@ -107,6 +107,7 @@
             <include refid="main_column"/>
         from banner_info
         where status!=4
+        and status!=-1
         <if test="status !=null">
             and status=#{status}
         </if>
@@ -120,6 +121,7 @@
             count(1)
         from banner_info
         where status!=4
+        and status!=-1
         <if test="status !=null">
             and status=#{status}
         </if>
