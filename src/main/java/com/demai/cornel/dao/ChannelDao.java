@@ -26,6 +26,8 @@ public interface ChannelDao {
     void saveChannelGroup(ChannelGroup channel);
 
     List<Channel> queryChannelList(QueryChannelParam param);
+    
+    List<Channel> getAllChannelList();
 
     List<Channel> getChannelListForUser();
 

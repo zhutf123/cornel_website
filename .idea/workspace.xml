@@ -9,7 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1ab4835b-e5d2-4e1c-9959-62898610bb76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/TeleplayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/TeleplayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminTeleplayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/controller/AdminTeleplayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/ChannelDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/dao/ChannelDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/ChannelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demai/cornel/service/ChannelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ChannelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ChannelMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +237,7 @@
       <workItem from="1654330620451" duration="7618000" />
       <workItem from="1654608320694" duration="12636000" />
       <workItem from="1654729781264" duration="3111000" />
-      <workItem from="1657350379624" duration="849000" />
+      <workItem from="1657350379624" duration="1624000" />
     </task>
     <servers />
   </component>

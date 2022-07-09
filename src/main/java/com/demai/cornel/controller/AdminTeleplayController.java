@@ -152,6 +152,23 @@ import java.util.List;
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+
+
+    /**
+     * 查询频道list
+     * @return
+     */
+    @RequestMapping(value = "/allChannel.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody public JsonListResult allChannelList(HttpServletResponse response) {
+        try {
+            List<Channel> channelList = channelService.getAllChannelList();
+            return JsonListResult.success(channelList);
+        } catch (Exception e) {
+            log.error("获取频道list异常！", e);
+        }
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
     /**
      * 查询频道list
      * @return
