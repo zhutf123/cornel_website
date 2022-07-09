@@ -16,6 +16,6 @@
         <text class="name-txt">{{item.title}}</text>
     </view>
     <view class="desc">
-        <text class="desc-txt">{{item.updateTips}}</text>
+        <text class="desc-txt">{{item.updateTips || item.tip}}</text>
     </view>
 </view>
