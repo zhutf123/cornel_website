@@ -248,7 +248,7 @@
         <if test="recommend !=null">
             and recommend=#{recommend}
         </if>
-        order by operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        order by id desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
 
 
