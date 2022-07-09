@@ -74,11 +74,9 @@ export function changeRankInfo(rankInfoId, pageNum) {
 }
 
 
-export function getVideoInfo(videoId) {
+export function getVideoInfo(param) {
     return get({
         url: '/user/videoInfo.json',
-        param: {
-            videoId
-        }
+        param
     });
 }

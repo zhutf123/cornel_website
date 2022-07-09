@@ -17,7 +17,6 @@
                 title="{{item.name}}"
             >
                 <scroll-view
-                    
                     class="tab-cont"
                     style="height: {{tabContHeight}}px"
                     bindscroll="onScroll"
@@ -37,6 +36,8 @@
                                 class="banner-item"
                                 autoplay
                                 circular
+                                data-id="{{item.videoId}}"
+                                bindtap="jumpToBannerVideo"
                             >
                                 <image class="banner-bg" mode="heightFix" src="{{item.mainImage}}" />
                                 <view class="banner-mask"></view>
@@ -84,6 +85,8 @@
                                         wx:for="{{row.teleplayList}}"
                                         wx:key="id"
                                         item="{{item}}"
+                                        data-id="{{item.teleplayId}}"
+                                        bind:onClick="jumpToVideo"
                                     />
                                 </view>
                             </view>
@@ -105,6 +108,8 @@
                                         wx:for="{{row.teleplayList}}"
                                         wx:key="id"
                                         item="{{item}}"
+                                        data-id="{{item.teleplayId}}"
+                                        bind:onClick="jumpToVideo"
                                     />
                                 </view>
                             </view>

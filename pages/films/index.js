@@ -118,6 +118,12 @@ Page({
     jumpToVideo(e) {
         const {id} = e.target.dataset;
         route.go('videoDetail', {
+            teleplayId: id
+        });
+    },
+    jumpToBannerVideo(e) {
+        const {id} = e.target.dataset;
+        route.go('videoDetail', {
             videoId: id
         });
     },

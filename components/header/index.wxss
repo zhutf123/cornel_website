@@ -1,0 +1,33 @@
+@import '/assets/styles/list-item.wxss';
+
+.header {
+    width: 100%;
+    text-align: center;
+    background-color: #000;
+}
+.header-main {
+    position: fixed;
+    z-index: 5000;
+    left: 0;
+    top: 0;
+    right: 0;
+    line-height: 40px;
+    background-color: #000;
+    justify-content: flex-start;
+}
+.header-back {
+    position: relative;
+    top: 0;
+    margin-left: 20px;
+    width: 15px;
+    height: 15px;
+    border-width: 2px 0 0 2px;
+    border-style: solid;
+    border-color: #fff;
+    transform: rotate(-45deg);
+}
+.header-txt {
+    margin-left: 10px;
+    font-size: 17px;
+    color: #fff;
+}

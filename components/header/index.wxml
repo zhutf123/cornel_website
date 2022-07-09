@@ -1,0 +1,6 @@
+<view class="header" style="padding-top: {{safeareaTop + 40}}px;">
+    <view class="header-main g-flexbox" style="padding-top: {{safeareaTop}}px;">
+        <view class="header-back" bindtap="onClick"></view>
+        <text class="header-txt">{{title}}</text>
+    </view>
+</view>

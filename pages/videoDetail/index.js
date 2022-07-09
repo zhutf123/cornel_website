@@ -22,13 +22,21 @@ Page({
     },
     onLoad(query) {
         this.initPage(query);
+        wx.setNavigationBarColor({
+            frontColor: '#ffffff'
+        });
     },
     initPage(query) {
-        const {videoId} = query;
-        if (!videoId) {
+        const {videoId, teleplayId} = query;
+        if (!videoId && !teleplayId) {
             return;
         }
-        getVideoInfo(videoId).then(res => {
+        let params = videoId ? {
+            videoId
+        } : {
+            teleplayId
+        };
+        getVideoInfo(params).then(res => {
             if (res.data) {
                 this.setData({
                     videoInfo: res.data,
@@ -38,7 +46,6 @@ Page({
         });
     },
     onSwiperChange(e) {
-        console.log(e);
         const {current} = e.detail;
         this.setData({
             playIndex: current,

@@ -1,4 +1,5 @@
 <view class="container g-flexbox-column">
+    <header title="{{playInfo.title}}" />
     <view class="m-video g-flexbox-column">
         <swiper class="flex"
             vertical
@@ -27,7 +28,8 @@
         <view class="ft g-flexbox" bindtap="toggleSelectPanel">
             <image class="icon" src="/assets/images/icon1.png" />
             <view class="flex">
-                <text class="desc">{{videoInfo.title}} · 更新至xxx集</text>
+                <!-- <text class="desc">{{videoInfo.title}} · 更新至xxx集</text> -->
+                <text class="desc">{{videoInfo.title}}</text>
             </view>
             <image class="arrow-up" src="/assets/images/arrow-up.png" />
         </view>

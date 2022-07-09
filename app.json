@@ -42,6 +42,7 @@
         "van-tab": "@vant/weapp/tab/index",
         "van-tabs": "@vant/weapp/tabs/index",
         "nav": "/components/nav/index",
+        "header": "/components/header/index",
         "panel": "/components/panel/index",
         "vip-panel": "/components/vip-panel/index",
         "vip-price": "/components/vip-price/index",

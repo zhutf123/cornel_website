@@ -11,7 +11,7 @@ Component({
         jumpToVideo(e) {
             const {id} = e.currentTarget.dataset;
             route.go('videoDetail', {
-                videoId: id
+                teleplayId: id
             });
         },
         clickLike(e) {
