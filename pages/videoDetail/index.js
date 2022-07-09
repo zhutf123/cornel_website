@@ -20,11 +20,14 @@ Page({
         playInfo: {},
         playIndex: 0
     },
+    onShow() {
+        wx.setNavigationBarColor({
+            frontColor: '#ffffff',
+            backgroundColor: '#000000'
+        });
+    },
     onLoad(query) {
         this.initPage(query);
-        wx.setNavigationBarColor({
-            frontColor: '#ffffff'
-        });
     },
     initPage(query) {
         const {videoId, teleplayId} = query;
