@@ -34,6 +34,7 @@
             <el-table-column
                 label="描述"
                 prop="depict"
+                :formatter="depictLengthFormatter"
             ></el-table-column>
             <!-- <el-table-column
                 label="权重"

@@ -36,3 +36,10 @@ export function genderFormatter(row) {
     }
     return '女';
 }
+
+export function depictLengthFormatter(row) {
+    if (row.depict && row.depict.length > 20) {
+        return row.depict.slice(0, 20) + '...';
+    }
+    return row.depict;
+}
