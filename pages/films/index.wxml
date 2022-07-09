@@ -39,7 +39,7 @@
                                 data-id="{{item.videoId}}"
                                 bindtap="jumpToBannerVideo"
                             >
-                                <image class="banner-bg" mode="heightFix" src="{{item.mainImage}}" />
+                                <image class="banner-bg" mode="aspectFill" src="{{item.mainImage}}" />
                                 <view class="banner-mask"></view>
                                 <view class="banner-tit g-flexbox">
                                     <view class="banner-pic">
