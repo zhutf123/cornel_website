@@ -3,8 +3,8 @@
         <el-select
             v-model="value"
             :multiple="multiple"
-            remote
-            filterable
+            :remote="dataSource.length === 0"
+            :filterable="dataSource.length === 0"
             :disabled="disabled"
             :remote-method="queryChannel"
             :loading="loading"
@@ -30,6 +30,12 @@ export default {
         deep: {
             type: Number,
             default: 2
+        },
+        dataSource: {
+            type: Array,
+            default: () => {
+                return [];
+            }
         },
         disabled: {
             type: Boolean,
@@ -69,7 +75,7 @@ export default {
         return {
             value: [],
             loading: false,
-            options: [],
+            options: this.dataSource,
             input: this.displayValue
         };
     },

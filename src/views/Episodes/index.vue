@@ -189,6 +189,7 @@
                         class="inline-input"
                         :key="refresh"
                         type="channel"
+                        :dataSource="allChannels"
                         valueKey="name"
                         placeholder="请输入频道名称"
                         @select="handleSelectChannel($event, 'editingData')"
@@ -219,7 +220,7 @@
 </template>
 
 <script>
-import {getEpisodeList, suggestChannel, updateEpisode} from '../../apis';
+import {getAllChannels, getEpisodeList, suggestChannel, updateEpisode} from '../../apis';
 import { methodsMixins } from '../../utils/mixins';
 import Uploader from '../../components/Uploader.vue';
 import Suggest from '../../components/Suggest.vue';
@@ -250,6 +251,7 @@ export default {
             },
             list: [],
             total: 0,
+            allChannels: [],
             searchChannel: '',
             dialogChannel: '',
             editingData: null,
@@ -258,8 +260,16 @@ export default {
     },
     mounted() {
         this.search();
+        this.getAllChannels();
     },
     methods: {
+        getAllChannels() {
+            getAllChannels().then(res => {
+                if (res.status === 0 && res.data) {
+                    this.allChannels = res.data;
+                }
+            });
+        },
         search(pageNum = 1) {
             this.form.pageNum = pageNum;
             getEpisodeList(this.form).then(res => {

@@ -70,6 +70,9 @@ export function updateChannel(params) {
 export function suggestChannel(input) {
     return axios.get(`/admin/suggestChannel.json?name=${input}`);
 }
+export function getAllChannels() {
+    return axios.post('/admin/allChannel.json');
+}
 
 // 聚合标签接口
 export function getTagsList(params) {
