@@ -66,6 +66,24 @@ import java.util.List;
         return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
     }
 
+    /**
+     * 查询剧集list
+     *
+     * @return
+     */
+    @RequestMapping(value = "/teleplayExport.json", method = RequestMethod.POST, produces = "application/json; charset=utf-8") @ResponseBody public JsonListResult teleplayExport(
+            @RequestBody QueryTeleplayParam param, HttpServletResponse response) {
+        try {
+            List<Teleplay> teleplayList = teleplayService.getTeleplayList(param);
+            Integer allNum = teleplayService.getTeleplayAllNum(param);
+            return JsonListResult.success(teleplayList, allNum);
+        } catch (Exception e) {
+            log.error("获取剧集list异常！", e);
+        }
+        return JsonListResult.successStatus(ResponseStatusEnum.NETWORK_ERROR);
+    }
+
+
 
     /**
      * 查询剧集list
