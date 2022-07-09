@@ -268,7 +268,7 @@
             </if>
 
         </where>
-        order by t.operate_time desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
+        order by t.id desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
 
     <select id="queryTeleplayAllNum" parameterType="com.demai.cornel.reqParam.QueryTeleplayParam"
