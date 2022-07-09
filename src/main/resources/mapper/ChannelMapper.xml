@@ -166,6 +166,15 @@
         order by weight desc offset #{offSet,jdbcType=INTEGER} limit #{pageSize,jdbcType=INTEGER} ;
     </select>
 
+    <select id="getAllChannelList" resultMap="channelResultMap">
+        select
+        <include refid="main_column"/>
+        from channel
+        where status=1
+        order by weight desc
+    </select>
+    
+
     <select id="getChannelListForUser" resultMap="channelResultMap">
         select
             id,
